@@ -96,7 +96,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/FNode/Rcon/master/rcon.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/rcon.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -112,7 +112,7 @@ update() {
     else
         version=$2
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/wyx2685/rcon-script/master/install.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/install.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}æ›´æ–°å®Œæˆï¼Œå·²è‡ªåŠ¨é‡å¯ rconï¼Œè¯·ä½¿ç”¨ rcon log æŸ¥çœ‹è¿è¡Œæ—¥å¿—${plain}"
         exit
@@ -300,7 +300,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/rcon -N --no-check-certificate https://raw.githubusercontent.com/wyx2685/rcon-script/master/rcon.sh
+    wget -O /usr/bin/rcon -N --no-check-certificate https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/rcon.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}ä¸‹è½½è„šæœ¬å¤±è´¥ï¼Œè¯·æ£€æŸ¥æœ¬æœºèƒ½å¦è¿žæŽ¥ Github${plain}"
@@ -423,82 +423,61 @@ show_rcon_version() {
 }
 
 add_node_config() {
-    echo -e "${green}è¯·é€‰æ‹©èŠ‚ç‚¹æ ¸å¿ƒç±»åž‹ï¼š${plain}"
-    echo -e "${green}1. xray${plain}"
-    read -rp "è¯·è¾“å…¥ï¼š" core_type
-    if [ "$core_type" == "1" ]; then
-        core="xray"
-        core_xray=true
-    else
-        echo "æ— æ•ˆçš„é€‰æ‹©ã€‚è¯·é€‰æ‹© 1ã€‚"
-        continue
-    fi
     while true; do
-        read -rp "è¯·è¾“å…¥èŠ‚ç‚¹Node IDï¼š" NodeID
-        # åˆ¤æ–­NodeIDæ˜¯å¦ä¸ºæ­£æ•´æ•°
+        read -rp "请输入节点Node ID：" NodeID
         if [[ "$NodeID" =~ ^[0-9]+$ ]]; then
-            break  # è¾“å…¥æ­£ç¡®ï¼Œé€€å‡ºå¾ªçŽ¯
+            break
         else
-            echo "é”™è¯¯ï¼šè¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—ä½œä¸ºNode IDã€‚"
+            echo "错误：请输入正确的数字作为Node ID。"
         fi
     done
 
-    if [ "$core_hysteria2" = true ] && [ "$core_xray" = false ] && [ "$core_sing" = false ]; then
-        NodeType="hysteria2"
-    else
-        echo -e "${yellow}è¯·é€‰æ‹©èŠ‚ç‚¹ä¼ è¾“åè®®ï¼š${plain}"
-        echo -e "${green}1. Shadowsocks${plain}"
-        echo -e "${green}2. Vless${plain}"
-        echo -e "${green}3. Vmess${plain}"
-        echo -e "${green}6. Trojan${plain}"  
-        read -rp "è¯·è¾“å…¥ï¼š" NodeType
-        case "$NodeType" in
-            1 ) NodeType="shadowsocks" ;;
-            2 ) NodeType="vless" ;;
-            3 ) NodeType="vmess" ;;
-            6 ) NodeType="trojan" ;;
-            * ) NodeType="shadowsocks" ;;
-        esac
-    fi
-    fastopen=true
+    echo -e "${yellow}请选择节点传输协议：${plain}"
+    echo -e "${green}1. Shadowsocks${plain}"
+    echo -e "${green}2. Vless${plain}"
+    echo -e "${green}3. Vmess${plain}"
+    echo -e "${green}6. Trojan${plain}"
+    read -rp "请输入：" NodeType
+    case "$NodeType" in
+        1 ) NodeType="shadowsocks" ;;
+        2 ) NodeType="vless" ;;
+        3 ) NodeType="vmess" ;;
+        6 ) NodeType="trojan" ;;
+        * ) NodeType="shadowsocks" ;;
+    esac
+
     isreality=""
     istls=""
     if [ "$NodeType" == "vless" ]; then
-        read -rp "è¯·é€‰æ‹©æ˜¯å¦ä¸ºrealityèŠ‚ç‚¹ï¼Ÿ(y/n)" isreality
+        read -rp "请选择是否为reality节点？(y/n)" isreality
     fi
 
     if [[ "$NodeType" != "shadowsocks" && "$isreality" != "y" && "$isreality" != "Y" ]]; then
-        read -rp "è¯·é€‰æ‹©æ˜¯å¦è¿›è¡ŒTLSé…ç½®ï¼Ÿ(y/n)" istls
+        read -rp "请选择是否进行TLS配置？(y/n)" istls
     fi
 
     certmode="none"
     certdomain="example.com"
     if [[ "$isreality" != "y" && "$isreality" != "Y" && ( "$istls" == "y" || "$istls" == "Y" ) ]]; then
-        echo -e "${yellow}è¯·é€‰æ‹©è¯ä¹¦ç”³è¯·æ¨¡å¼ï¼š${plain}"
-        echo -e "${green}1. httpæ¨¡å¼è‡ªåŠ¨ç”³è¯·ï¼ŒèŠ‚ç‚¹åŸŸåå·²æ­£ç¡®è§£æž${plain}"
-        echo -e "${green}2. dnsæ¨¡å¼è‡ªåŠ¨ç”³è¯·ï¼Œéœ€å¡«å…¥æ­£ç¡®åŸŸåæœåŠ¡å•†APIå‚æ•°${plain}"
-        echo -e "${green}3. selfæ¨¡å¼ï¼Œè‡ªç­¾è¯ä¹¦æˆ–æä¾›å·²æœ‰è¯ä¹¦æ–‡ä»¶${plain}"
-        read -rp "è¯·è¾“å…¥ï¼š" certmode
+        echo -e "${yellow}请选择证书申请模式：${plain}"
+        echo -e "${green}1. http模式自动申请，节点域名已正确解析${plain}"
+        echo -e "${green}2. dns模式自动申请，需填入正确域名服务商API参数${plain}"
+        echo -e "${green}3. self模式，自签证书或提供已有证书文件${plain}"
+        read -rp "请输入：" certmode
         case "$certmode" in
             1 ) certmode="http" ;;
             2 ) certmode="dns" ;;
             3 ) certmode="self" ;;
         esac
-        read -rp "è¯·è¾“å…¥èŠ‚ç‚¹è¯ä¹¦åŸŸå(example.com)ï¼š" certdomain
+        read -rp "请输入节点证书域名(example.com)：" certdomain
         if [ "$certmode" != "http" ]; then
-            echo -e "${red}è¯·æ‰‹åŠ¨ä¿®æ”¹é…ç½®æ–‡ä»¶åŽé‡å¯rconï¼${plain}"
+            echo -e "${red}请手动修改配置文件后重启rcon！${plain}"
         fi
     fi
-    ipv6_support=$(check_ipv6_support)
-    listen_ip="0.0.0.0"
-    if [ "$ipv6_support" -eq 1 ]; then
-        listen_ip="::"
-    fi
-    node_config=""
-    if [ "$core_type" == "1" ]; then 
+
     node_config=$(cat <<EOF
 {
-            "Core": "$core",
+            "Core": "xray",
             "ApiHost": "$ApiHost",
             "ApiKey": "$ApiKey",
             "NodeID": $NodeID,
@@ -507,11 +486,13 @@ add_node_config() {
             "ListenIP": "0.0.0.0",
             "SendIP": "0.0.0.0",
             "DeviceOnlineMinTraffic": 200,
-            "MinReportTraffic": 0,
-            "EnableProxyProtocol": false,
-            "EnableUot": true,
-            "EnableTFO": true,
-            "DNSType": "UseIPv4",
+            "ReportMinTraffic": 0,
+            "XrayOptions": {
+                "EnableProxyProtocol": false,
+                "EnableUot": true,
+                "EnableTFO": true,
+                "DNSType": "UseIPv4"
+            },
             "CertConfig": {
                 "CertMode": "$certmode",
                 "RejectUnknownSni": false,
@@ -527,140 +508,69 @@ add_node_config() {
         },
 EOF
 )
-    elif [ "$core_type" == "2" ]; then
-    node_config=$(cat <<EOF
-{
-            "Core": "$core",
-            "ApiHost": "$ApiHost",
-            "ApiKey": "$ApiKey",
-            "NodeID": $NodeID,
-            "NodeType": "$NodeType",
-            "Timeout": 30,
-            "ListenIP": "$listen_ip",
-            "SendIP": "0.0.0.0",
-            "DeviceOnlineMinTraffic": 200,
-            "MinReportTraffic": 0,
-            "TCPFastOpen": $fastopen,
-            "SniffEnabled": true,
-            "CertConfig": {
-                "CertMode": "$certmode",
-                "RejectUnknownSni": false,
-                "CertDomain": "$certdomain",
-                "CertFile": "/etc/rcon/fullchain.cer",
-                "KeyFile": "/etc/rcon/cert.key",
-                "Email": "rcon@github.com",
-                "Provider": "cloudflare",
-                "DNSEnv": {
-                    "EnvName": "env1"
-                }
-            }
-        },
-EOF
-)
-    elif [ "$core_type" == "3" ]; then
-    node_config=$(cat <<EOF
-{
-            "Core": "$core",
-            "ApiHost": "$ApiHost",
-            "ApiKey": "$ApiKey",
-            "NodeID": $NodeID,
-            "NodeType": "$NodeType",
-            "Hysteria2ConfigPath": "/etc/rcon/hy2config.yaml",
-            "Timeout": 30,
-            "ListenIP": "",
-            "SendIP": "0.0.0.0",
-            "DeviceOnlineMinTraffic": 200,
-            "MinReportTraffic": 0,
-            "CertConfig": {
-                "CertMode": "$certmode",
-                "RejectUnknownSni": false,
-                "CertDomain": "$certdomain",
-                "CertFile": "/etc/rcon/fullchain.cer",
-                "KeyFile": "/etc/rcon/cert.key",
-                "Email": "rcon@github.com",
-                "Provider": "cloudflare",
-                "DNSEnv": {
-                    "EnvName": "env1"
-                }
-            }
-        },
-EOF
-)
-    fi
     nodes_config+=("$node_config")
 }
 
 generate_config_file() {
-    echo -e "${yellow}rcon é…ç½®æ–‡ä»¶ç”Ÿæˆå‘å¯¼${plain}"
-    echo -e "${red}è¯·é˜…è¯»ä»¥ä¸‹æ³¨æ„äº‹é¡¹ï¼š${plain}"
-    echo -e "${red}1. ç›®å‰è¯¥åŠŸèƒ½æ­£å¤„æµ‹è¯•é˜¶æ®µ${plain}"
-    echo -e "${red}2. ç”Ÿæˆçš„é…ç½®æ–‡ä»¶ä¼šä¿å­˜åˆ° /etc/rcon/config.json${plain}"
-    echo -e "${red}3. åŽŸæ¥çš„é…ç½®æ–‡ä»¶ä¼šä¿å­˜åˆ° /etc/rcon/config.json.bak${plain}"
-    echo -e "${red}4. ç›®å‰ä»…éƒ¨åˆ†æ”¯æŒTLS${plain}"
-    echo -e "${red}5. ä½¿ç”¨æ­¤åŠŸèƒ½ç”Ÿæˆçš„é…ç½®æ–‡ä»¶ä¼šè‡ªå¸¦å®¡è®¡ï¼Œç¡®å®šç»§ç»­ï¼Ÿ(y/n)${plain}"
-    read -rp "è¯·è¾“å…¥ï¼š" continue_prompt
+    echo -e "${yellow}rcon 配置文件生成向导${plain}"
+    echo -e "${red}请阅读以下注意事项：${plain}"
+    echo -e "${red}1. 目前该功能正处测试阶段${plain}"
+    echo -e "${red}2. 生成的配置文件会保存到 /etc/rcon/config.json${plain}"
+    echo -e "${red}3. 原来的配置文件会保存到 /etc/rcon/config.json.bak${plain}"
+    echo -e "${red}4. 目前仅部分支持TLS${plain}"
+    echo -e "${red}5. 使用此功能生成的配置文件会自带审计，确定继续？(y/n)${plain}"
+    read -rp "请输入：" continue_prompt
     if [[ "$continue_prompt" =~ ^[Nn][Oo]? ]]; then
         exit 0
     fi
-    
+
     nodes_config=()
     first_node=true
-    core_xray=false
     fixed_api_info=false
-    check_api=false
-    
+
     while true; do
         if [ "$first_node" = true ]; then
-            read -rp "è¯·è¾“å…¥æœºåœºç½‘å€(https://example.com)ï¼š" ApiHost
-            read -rp "è¯·è¾“å…¥é¢æ¿å¯¹æŽ¥API Keyï¼š" ApiKey
-            read -rp "æ˜¯å¦è®¾ç½®å›ºå®šçš„æœºåœºç½‘å€å’ŒAPI Keyï¼Ÿ(y/n)" fixed_api
+            read -rp "请输入机场网址(https://example.com)：" ApiHost
+            read -rp "请输入面板对接API Key：" ApiKey
+            read -rp "是否设置固定的机场网址和API Key？(y/n)" fixed_api
             if [ "$fixed_api" = "y" ] || [ "$fixed_api" = "Y" ]; then
                 fixed_api_info=true
-                echo -e "${red}æˆåŠŸå›ºå®šåœ°å€${plain}"
+                echo -e "${red}成功固定地址${plain}"
             fi
             first_node=false
             add_node_config
         else
-            read -rp "æ˜¯å¦ç»§ç»­æ·»åŠ èŠ‚ç‚¹é…ç½®ï¼Ÿ(å›žè½¦ç»§ç»­ï¼Œè¾“å…¥næˆ–noé€€å‡º)" continue_adding_node
+            read -rp "是否继续添加节点配置？(回车继续，输入n或no退出)" continue_adding_node
             if [[ "$continue_adding_node" =~ ^[Nn][Oo]? ]]; then
                 break
             elif [ "$fixed_api_info" = false ]; then
-                read -rp "è¯·è¾“å…¥æœºåœºç½‘å€ï¼š" ApiHost
-                read -rp "è¯·è¾“å…¥é¢æ¿å¯¹æŽ¥API Keyï¼š" ApiKey
+                read -rp "请输入机场网址：" ApiHost
+                read -rp "请输入面板对接API Key：" ApiKey
             fi
             add_node_config
         fi
     done
 
-    # åˆå§‹åŒ–æ ¸å¿ƒé…ç½®æ•°ç»„
-    cores_config="["
-
-    # æ£€æŸ¥å¹¶æ·»åŠ xrayæ ¸å¿ƒé…ç½®
-    if [ "$core_xray" = true ]; then
-        cores_config+="
+    cores_config='[
     {
-        \"Type\": \"xray\",
-        \"Log\": {
-            \"Level\": \"error\",
-            \"ErrorPath\": \"/etc/rcon/error.log\"
+        "Type": "xray",
+        "Log": {
+            "Level": "error",
+            "ErrorPath": "/etc/rcon/error.log"
         },
-        \"OutboundConfigPath\": \"/etc/rcon/custom_outbound.json\",
-        \"RouteConfigPath\": \"/etc/rcon/route.json\"
-    }"
-    fi
+        "OutboundConfigPath": "/etc/rcon/custom_outbound.json",
+        "RouteConfigPath": "/etc/rcon/route.json"
+    }]'
 
-    # å…³é—­æ•°ç»„
-    cores_config+="]"
-
-    # åˆ‡æ¢åˆ°é…ç½®æ–‡ä»¶ç›®å½•
+    # 切换到配置文件目录
     cd /etc/rcon
-    
-    # å¤‡ä»½æ—§çš„é…ç½®æ–‡ä»¶
+
+    # 备份旧的配置文件
     mv config.json config.json.bak
     nodes_config_str="${nodes_config[*]}"
     formatted_nodes_config="${nodes_config_str%,}"
 
-    # åˆ›å»º config.json æ–‡ä»¶
+    # 创建 config.json 文件
     cat <<EOF > /etc/rcon/config.json
 {
     "Log": {
@@ -671,8 +581,8 @@ generate_config_file() {
     "Nodes": [$formatted_nodes_config]
 }
 EOF
-    
-    # åˆ›å»º custom_outbound.json æ–‡ä»¶
+
+    # 创建 custom_outbound.json 文件
     cat <<EOF > /etc/rcon/custom_outbound.json
     [
         {
@@ -695,8 +605,8 @@ EOF
         }
     ]
 EOF
-    
-    # åˆ›å»º route.json æ–‡ä»¶
+
+    # 创建 route.json 文件
     cat <<EOF > /etc/rcon/route.json
     {
         "domainStrategy": "AsIs",
@@ -758,7 +668,7 @@ EOF
     }
 EOF
 
-    echo -e "${green}rcon é…ç½®æ–‡ä»¶ç”Ÿæˆå®Œæˆï¼Œæ­£åœ¨é‡æ–°å¯åŠ¨ rcon æœåŠ¡${plain}"
+    echo -e "${green}rcon 配置文件生成完成，正在重新启动 rcon 服务${plain}"
     restart 0
     before_show_menu
 }

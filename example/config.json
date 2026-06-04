@@ -1,44 +1,95 @@
-﻿{
+{
   "Log": {
     "Level": "info",
     "Output": ""
   },
   "Cores": [
     {
-      "Type": "sing",
+      "Type": "xray",
       "Log": {
-        "Level": "info",
-        "Timestamp": true
+        "Level": "warning",
+        "AccessPath": "",
+        "ErrorPath": ""
       },
-      "NTP": {
-        "Enable": false,
-        "Server": "time.apple.com",
-        "ServerPort": 0
-      },
-      "OriginalPath": "/etc/rcon/sing_origin.json"
+      "AssetPath": "/etc/rcon/",
+      "DnsConfigPath": "",
+      "RouteConfigPath": "",
+      "InboundConfigPath": "",
+      "OutboundConfigPath": "",
+      "XrayConnectionConfig": {
+        "handshake": 4,
+        "connIdle": 30,
+        "uplinkOnly": 2,
+        "downlinkOnly": 4,
+        "bufferSize": 64
+      }
     }
   ],
   "Nodes": [
     {
-      "Core": "sing",
+      "Name": "",
+      "Core": "xray",
+      "CoreName": "",
       "ApiHost": "http://127.0.0.1",
+      "ApiSendIP": "",
       "ApiKey": "test",
       "NodeID": 33,
       "NodeType": "shadowsocks",
       "Timeout": 30,
+      "RuleListPath": "",
       "ListenIP": "0.0.0.0",
       "SendIP": "0.0.0.0",
       "DeviceOnlineMinTraffic": 200,
-      "MinReportTraffic": 0,
-      "TCPFastOpen": false,
-      "SniffEnabled": true,
+      "ReportMinTraffic": 0,
+      "LimitConfig": {
+        "EnableRealtime": false,
+        "SpeedLimit": 0,
+        "DeviceLimit": 0,
+        "ConnLimit": 0,
+        "EnableIpRecorder": false,
+        "IpRecorderConfig": {
+          "Periodic": 60,
+          "Type": "recorder",
+          "RecorderConfig": {
+            "Url": "",
+            "Token": "",
+            "Timeout": 10
+          },
+          "RedisConfig": {
+            "Address": "127.0.0.1:6379",
+            "Password": "",
+            "Db": 0,
+            "Expiry": 60
+          },
+          "EnableIpSync": false
+        },
+        "EnableDynamicSpeedLimit": false,
+        "DynamicSpeedLimitConfig": {
+          "Periodic": 60,
+          "Traffic": 0,
+          "SpeedLimit": 0,
+          "ExpireTime": 0
+        }
+      },
+      "XrayOptions": {
+        "EnableProxyProtocol": false,
+        "EnableDNS": false,
+        "DNSType": "AsIs",
+        "EnableUot": false,
+        "EnableTFO": false,
+        "DisableIVCheck": false,
+        "DisableSniffing": false,
+        "EnableFallback": false,
+        "FallBackConfigs": []
+      },
       "CertConfig": {
-        "CertMode": "self",
+        "CertMode": "none",
         "RejectUnknownSni": false,
         "CertDomain": "example.com",
         "CertFile": "/etc/rcon/fullchain.cer",
         "KeyFile": "/etc/rcon/cert.key",
         "Provider": "cloudflare",
+        "Email": "",
         "DNSEnv": {
           "EnvName": "env1"
         }
