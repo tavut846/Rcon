@@ -1,0 +1,16 @@
+﻿syntax = "proto3";
+
+package rcon.core.app.dispatcher;
+option csharp_namespace = "rcon.core.app.dispatcher";
+option go_package = "github.com/FNode/Rcon/core/xray/app/dispatcher";
+option java_package = "com.rcon.core.app.dispatcher";
+option java_multiple_files = true;
+
+message SessionConfig {
+  reserved 1;
+}
+
+message Config {
+  SessionConfig settings = 1;
+}
+
