@@ -73,13 +73,20 @@ type VAllssNode struct {
 }
 
 type TlsSettings struct {
-	ServerName  string `json:"server_name"`
-	Dest        string `json:"dest"`
-	ServerPort  string `json:"server_port"`
-	ShortId     string `json:"short_id"`
-	PrivateKey  string `json:"private_key"`
-	Mldsa65Seed string `json:"mldsa65Seed"`
-	Xver        uint64 `json:"xver,string"`
+	ServerName  string     `json:"server_name"`
+	Dest        string     `json:"dest"`
+	ServerPort  string     `json:"server_port"`
+	ShortId     string     `json:"short_id"`
+	PrivateKey  string     `json:"private_key"`
+	Mldsa65Seed string     `json:"mldsa65Seed"`
+	Xver        uint64     `json:"xver,string"`
+	Ech         *EchConfig `json:"ech"`
+}
+
+type EchConfig struct {
+	Enabled bool   `json:"enabled"`
+	Key     string `json:"key"`
+	KeyPath string `json:"key_path"`
 }
 
 type EncSettings struct {

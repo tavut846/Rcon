@@ -461,11 +461,13 @@ add_node_config() {
         esac
     fi
     fastopen=true
+    isreality=""
+    istls=""
     if [ "$NodeType" == "vless" ]; then
         read -rp "è¯·é€‰æ‹©æ˜¯å¦ä¸ºrealityèŠ‚ç‚¹ï¼Ÿ(y/n)" isreality
     fi
 
-    if [[ "$isreality" != "y" && "$isreality" != "Y" &&  "$istls" != "y" ]]; then
+    if [[ "$NodeType" != "shadowsocks" && "$isreality" != "y" && "$isreality" != "Y" ]]; then
         read -rp "è¯·é€‰æ‹©æ˜¯å¦è¿›è¡ŒTLSé…ç½®ï¼Ÿ(y/n)" istls
     fi
 

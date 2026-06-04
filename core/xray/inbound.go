@@ -4,8 +4,10 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/hex"
+	"encoding/pem"
 	"errors"
 	"fmt"
+	"os"
 	"strings"
 	"time"
 
@@ -101,7 +103,7 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 			break // disable
 		default:
 			in.StreamSetting.Security = "tls"
-			in.StreamSetting.TLSSettings = &coreConf.TLSConfig{
+			tlsCfg := &coreConf.TLSConfig{
 				Certs: []*coreConf.TLSCertConfig{
 					{
 						CertFile:     option.CertConfig.CertFile,
@@ -111,6 +113,12 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 				},
 				RejectUnknownSNI: option.CertConfig.RejectUnknownSni,
 			}
+			if nodeInfo.VAllss != nil {
+				if keys := extractECHServerKeys(nodeInfo.VAllss.TlsSettings.Ech); keys != "" {
+					tlsCfg.ECHServerKeys = keys
+				}
+			}
+			in.StreamSetting.TLSSettings = tlsCfg
 		}
 	case panel.Reality:
 		// Reality
@@ -289,6 +297,16 @@ func buildTrojan(config *conf.Options, nodeInfo *panel.NodeInfo, inbound *coreCo
 		if err != nil {
 			return fmt.Errorf("unmarshal grpc settings error: %s", err)
 		}
+	case "httpupgrade":
+		err := json.Unmarshal(v.NetworkSettings, &inbound.StreamSetting.HTTPUPGRADESettings)
+		if err != nil {
+			return fmt.Errorf("unmarshal httpupgrade settings error: %s", err)
+		}
+	case "splithttp", "xhttp":
+		err := json.Unmarshal(v.NetworkSettings, &inbound.StreamSetting.SplitHTTPSettings)
+		if err != nil {
+			return fmt.Errorf("unmarshal xhttp settings error: %s", err)
+		}
 	default:
 		return errors.New("the network type is not vail")
 	}
@@ -384,5 +402,41 @@ func buildTrojanFallbacks(fallbackConfigs []conf.FallBackConfigForXray) ([]*core
 		}
 	}
 	return trojanFallBacks, nil
+}
+
+// extractECHServerKeys returns a base64-encoded ECH private key string
+// suitable for xray-core's TLSConfig.ECHServerKeys field.
+// Returns empty string when ECH is disabled or the key cannot be read.
+func extractECHServerKeys(ech *panel.EchConfig) string {
+	if ech == nil || !ech.Enabled {
+		return ""
+	}
+	var pemData []byte
+	if ech.Key != "" {
+		pemData = []byte(ech.Key)
+	} else if ech.KeyPath != "" {
+		data, err := os.ReadFile(ech.KeyPath)
+		if err != nil {
+			return ""
+		}
+		pemData = data
+	} else {
+		return ""
+	}
+	return echPEMToBase64(pemData)
+}
+
+// echPEMToBase64 decodes an "ECH KEYS" PEM block and returns base64 of the raw bytes.
+// If the input contains no PEM header it is assumed to already be raw base64.
+func echPEMToBase64(data []byte) string {
+	trimmed := strings.TrimSpace(string(data))
+	if !strings.Contains(trimmed, "-----") {
+		return trimmed
+	}
+	block, _ := pem.Decode(data)
+	if block == nil || block.Type != "ECH KEYS" {
+		return ""
+	}
+	return base64.StdEncoding.EncodeToString(block.Bytes)
 }
 
