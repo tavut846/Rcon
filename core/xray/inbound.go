@@ -112,6 +112,7 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 					},
 				},
 				RejectUnknownSNI: option.CertConfig.RejectUnknownSni,
+				ALPN:             &coreConf.StringList{"h2", "http/1.1"},
 			}
 			if nodeInfo.VAllss != nil {
 				if keys := extractECHServerKeys(nodeInfo.VAllss.TlsSettings.Ech); keys != "" {
