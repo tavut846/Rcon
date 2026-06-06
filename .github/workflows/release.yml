@@ -6,6 +6,8 @@ on:
     branches:
       - master
       - dev_new
+    tags:
+      - "*"
     paths:
       - "**/*.go"
       - "go.mod"
@@ -119,14 +121,17 @@ jobs:
       - name: Get project dependencies
         run: |
           go mod download
-      - name: Get release version
-        if: ${{ github.event_name == 'release' }}
+      - name: Get version
         run: |
-          echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
-      - name: Get other version
-        if: ${{ github.event_name != 'release' }}
-        run: |
-          echo "version=${{ github.sha }}" >> $GITHUB_ENV
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
+          elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
+          else
+            git fetch --tags
+            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.1")
+            echo "version=$LATEST_TAG" >> $GITHUB_ENV
+          fi
       - name: Build rcon
         run: |
           echo "version: $version"
@@ -180,10 +185,12 @@ jobs:
             ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}/*
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
-        if: github.event_name == 'release'
+        if: github.event_name == 'release' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')))
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}.zip*
-          tag: ${{ github.ref }}
+          tag: ${{ env.version }}
           file_glob: true
+          overwrite: true
+          release_name: "Release ${{ env.version }}"
 
