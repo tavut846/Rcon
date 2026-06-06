@@ -99,6 +99,9 @@ jobs:
     steps:
       - name: Checkout codebase
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
       - name: Show workflow information
         id: get_filename
         run: |
