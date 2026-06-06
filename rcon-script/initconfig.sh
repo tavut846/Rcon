@@ -1,31 +1,31 @@
 #!/bin/bash
-# 一键配置
+# One-click configuration
 
-# 检查系统是否有 IPv6 地址
+# Check if the system has an IPv6 address
 check_ipv6_support() {
     if ip -6 addr | grep -q "inet6"; then
-        echo "1"  # 支持 IPv6
+        echo "1"  # Supports IPv6
     else
-        echo "0"  # 不支持 IPv6
+        echo "0"  # Does not support IPv6
     fi
 }
 
 add_node_config() {
     while true; do
-        read -rp "请输入节点Node ID：" NodeID
+        read -rp "Please enter the Node ID: " NodeID
         if [[ "$NodeID" =~ ^[0-9]+$ ]]; then
             break
         else
-            echo "错误：请输入正确的数字作为Node ID。"
+            echo "Error: Please enter a valid number for Node ID."
         fi
     done
 
-    echo -e "${yellow}请选择节点传输协议：${plain}"
+    echo -e "${yellow}Please select the node transport protocol:${plain}"
     echo -e "${green}1. Shadowsocks${plain}"
     echo -e "${green}2. Vless${plain}"
     echo -e "${green}3. Vmess${plain}"
     echo -e "${green}6. Trojan${plain}"
-    read -rp "请输入：" NodeType
+    read -rp "Please enter: " NodeType
     case "$NodeType" in
         1 ) NodeType="shadowsocks" ;;
         2 ) NodeType="vless" ;;
@@ -37,29 +37,29 @@ add_node_config() {
     isreality=""
     istls=""
     if [ "$NodeType" == "vless" ]; then
-        read -rp "请选择是否为reality节点？(y/n)" isreality
+        read -rp "Is this a Reality node? (y/n) " isreality
     fi
 
     if [[ "$NodeType" != "shadowsocks" && "$isreality" != "y" && "$isreality" != "Y" ]]; then
-        read -rp "请选择是否进行TLS配置？(y/n)" istls
+        read -rp "Do you want to configure TLS? (y/n) " istls
     fi
 
     certmode="none"
     certdomain="example.com"
     if [[ "$isreality" != "y" && "$isreality" != "Y" && ( "$istls" == "y" || "$istls" == "Y" ) ]]; then
-        echo -e "${yellow}请选择证书申请模式：${plain}"
-        echo -e "${green}1. http模式自动申请，节点域名已正确解析${plain}"
-        echo -e "${green}2. dns模式自动申请，需填入正确域名服务商API参数${plain}"
-        echo -e "${green}3. self模式，自签证书或提供已有证书文件${plain}"
-        read -rp "请输入：" certmode
+        echo -e "${yellow}Please select the certificate application mode:${plain}"
+        echo -e "${green}1. HTTP mode: Automatic application, node domain must be correctly resolved${plain}"
+        echo -e "${green}2. DNS mode: Automatic application, requires correct DNS provider API parameters${plain}"
+        echo -e "${green}3. Self mode: Self-signed certificate or provide existing certificate files${plain}"
+        read -rp "Please enter: " certmode
         case "$certmode" in
             1 ) certmode="http" ;;
             2 ) certmode="dns" ;;
             3 ) certmode="self" ;;
         esac
-        read -rp "请输入节点证书域名(example.com)：" certdomain
+        read -rp "Please enter the node certificate domain (example.com): " certdomain
         if [ "$certmode" != "http" ]; then
-            echo -e "${red}请手动修改配置文件后重启rcon！${plain}"
+            echo -e "${red}Please manually modify the configuration file and restart rcon!${plain}"
         fi
     fi
 
@@ -100,13 +100,13 @@ EOF
 }
 
 generate_config_file() {
-    echo -e "${yellow}rcon 配置文件生成向导${plain}"
-    echo -e "${red}请阅读以下注意事项：${plain}"
-    echo -e "${red}1. 目前该功能正处测试阶段${plain}"
-    echo -e "${red}2. 生成的配置文件会保存到 /etc/rcon/config.json${plain}"
-    echo -e "${red}3. 原来的配置文件会保存到 /etc/rcon/config.json.bak${plain}"
-    echo -e "${red}4. 使用此功能生成的配置文件会自带审计，确定继续？(y/n)${plain}"
-    read -rp "请输入：" continue_prompt
+    echo -e "${yellow}rcon Configuration File Generation Wizard${plain}"
+    echo -e "${red}Please read the following notes:${plain}"
+    echo -e "${red}1. This feature is currently in the testing stage${plain}"
+    echo -e "${red}2. The generated configuration file will be saved to /etc/rcon/config.json${plain}"
+    echo -e "${red}3. The original configuration file will be saved to /etc/rcon/config.json.bak${plain}"
+    echo -e "${red}4. The configuration file generated using this feature will include auditing. Are you sure you want to continue? (y/n)${plain}"
+    read -rp "Please enter: " continue_prompt
     if [[ "$continue_prompt" =~ ^[Nn][Oo]? ]]; then
         exit 0
     fi
@@ -117,22 +117,22 @@ generate_config_file() {
 
     while true; do
         if [ "$first_node" = true ]; then
-            read -rp "请输入机场网址(https://example.com)：" ApiHost
-            read -rp "请输入面板对接API Key：" ApiKey
-            read -rp "是否设置固定的机场网址和API Key？(y/n)" fixed_api
+            read -rp "Please enter the panel website URL (https://example.com): " ApiHost
+            read -rp "Please enter the panel API Key: " ApiKey
+            read -rp "Do you want to set a fixed panel URL and API Key? (y/n) " fixed_api
             if [ "$fixed_api" = "y" ] || [ "$fixed_api" = "Y" ]; then
                 fixed_api_info=true
-                echo -e "${red}成功固定地址${plain}"
+                echo -e "${red}Successfully fixed the address${plain}"
             fi
             first_node=false
             add_node_config
         else
-            read -rp "是否继续添加节点配置？(回车继续，输入n或no退出)" continue_adding_node
+            read -rp "Do you want to continue adding node configurations? (Enter to continue, n or no to exit) " continue_adding_node
             if [[ "$continue_adding_node" =~ ^[Nn][Oo]? ]]; then
                 break
             elif [ "$fixed_api_info" = false ]; then
-                read -rp "请输入机场网址(https://example.com)：" ApiHost
-                read -rp "请输入面板对接API Key：" ApiKey
+                read -rp "Please enter the panel website URL (https://example.com): " ApiHost
+                read -rp "Please enter the panel API Key: " ApiKey
             fi
             add_node_config
         fi
@@ -149,15 +149,15 @@ generate_config_file() {
         "RouteConfigPath": "/etc/rcon/route.json"
     }]'
 
-    # 切换到配置文件目录
+    # Change to configuration file directory
     cd /etc/rcon
 
-    # 备份旧的配置文件
+    # Backup old configuration file
     mv config.json config.json.bak
     nodes_config_str="${nodes_config[*]}"
     formatted_nodes_config="${nodes_config_str%,}"
 
-    # 创建 config.json 文件
+    # Create config.json file
     cat <<EOF > /etc/rcon/config.json
 {
     "Log": {
@@ -169,7 +169,7 @@ generate_config_file() {
 }
 EOF
 
-    # 创建 custom_outbound.json 文件
+    # Create custom_outbound.json file
     cat <<EOF > /etc/rcon/custom_outbound.json
 [
     {
@@ -193,7 +193,7 @@ EOF
 ]
 EOF
 
-    # 创建 route.json 文件
+    # Create route.json file
     cat <<EOF > /etc/rcon/route.json
     {
         "domainStrategy": "AsIs",
@@ -255,7 +255,5 @@ EOF
     }
 EOF
 
-    echo -e "${green}rcon 配置文件生成完成，正在重新启动 rcon 服务${plain}"
-    restart 0
-    before_show_menu
+    echo -e "${green}rcon configuration file generation complete.${plain}"
 }

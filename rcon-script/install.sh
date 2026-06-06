@@ -8,7 +8,7 @@ plain='\033[0m'
 cur_dir=$(pwd)
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}Error: ${plain} This script must be run as root!\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -30,7 +30,7 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat|rocky|alma|oracle linu
 elif cat /proc/version | grep -Eqi "arch"; then
     release="arch"
 else
-    echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
+    echo -e "${red}OS version not detected, please contact the script author!${plain}\n" && exit 1
 fi
 
 arch=$(uname -m)
@@ -43,13 +43,13 @@ elif [[ $arch == "s390x" ]]; then
     arch="s390x"
 else
     arch="64"
-    echo -e "${red}检测架构失败，使用默认架构: ${arch}${plain}"
+    echo -e "${red}Failed to detect architecture, using default architecture: ${arch}${plain}"
 fi
 
-echo "架构: ${arch}"
+echo "Architecture: ${arch}"
 
 if [ "$(getconf WORD_BIT)" != '32' ] && [ "$(getconf LONG_BIT)" != '64' ] ; then
-    echo "本软件不支持 32 位系统(x86)，请使用 64 位系统(x86_64)，如果检测有误，请联系作者"
+    echo "This software does not support 32-bit systems (x86), please use a 64-bit system (x86_64). If this is a misdetection, please contact the author."
     exit 2
 fi
 
@@ -63,15 +63,15 @@ fi
 
 if [[ x"${release}" == x"centos" ]]; then
     if [[ ${os_version} -le 6 ]]; then
-        echo -e "${red}请使用 CentOS 7 或更高版本的系统！${plain}\n" && exit 1
+        echo -e "${red}Please use CentOS 7 or higher!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
-        echo -e "${red}请使用 Ubuntu 16 或更高版本的系统！${plain}\n" && exit 1
+        echo -e "${red}Please use Ubuntu 16 or higher!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
-        echo -e "${red}请使用 Debian 8 或更高版本的系统！${plain}\n" && exit 1
+        echo -e "${red}Please use Debian 8 or higher!${plain}\n" && exit 1
     fi
 fi
 
@@ -131,22 +131,22 @@ install_rcon() {
     if  [ $# == 0 ] ;then
         last_version=$(curl -Ls "https://api.github.com/repos/tavut846/Rcon/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}检测 rcon 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 rcon 版本安装${plain}"
+            echo -e "${red}Failed to detect rcon version, possibly due to GitHub API limits. Please try again later or manually specify a version for installation.${plain}"
             exit 1
         fi
-        echo -e "检测到 rcon 最新版本：${last_version}，开始安装"
+        echo -e "Latest rcon version detected: ${last_version}, starting installation..."
         wget --no-check-certificate -N --progress=bar -O /usr/local/rcon/rcon-linux.zip https://github.com/tavut846/Rcon/releases/download/${last_version}/rcon-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}下载 rcon 失败，请确保你的服务器能够下载 Github 的文件${plain}"
+            echo -e "${red}Failed to download rcon, please ensure your server can download files from GitHub.${plain}"
             exit 1
         fi
     else
         last_version=$1
         url="https://github.com/tavut846/Rcon/releases/download/${last_version}/rcon-linux-${arch}.zip"
-        echo -e "开始安装 rcon $1"
+        echo -e "Starting installation of rcon $1..."
         wget --no-check-certificate -N --progress=bar -O /usr/local/rcon/rcon-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}下载 rcon $1 失败，请确保此版本存在${plain}"
+            echo -e "${red}Failed to download rcon $1, please ensure this version exists.${plain}"
             exit 1
         fi
     fi
@@ -178,7 +178,7 @@ depend() {
 EOF
         chmod +x /etc/init.d/rcon
         rc-update add rcon default
-        echo -e "${green}rcon ${last_version}${plain} 安装完成，已设置开机自启"
+        echo -e "${green}rcon ${last_version}${plain} installation complete, set to start on boot."
     else
         rm /etc/systemd/system/rcon.service -f
         cat <<EOF > /etc/systemd/system/rcon.service
@@ -206,13 +206,13 @@ EOF
         systemctl daemon-reload
         systemctl stop rcon
         systemctl enable rcon
-        echo -e "${green}rcon ${last_version}${plain} 安装完成，已设置开机自启"
+        echo -e "${green}rcon ${last_version}${plain} installation complete, set to start on boot."
     fi
 
     if [[ ! -f /etc/rcon/config.json ]]; then
         cp config.json /etc/rcon/
         echo -e ""
-        echo -e "全新安装，请先参看教程：https://github.com/tavut846/Rcon，配置必要的内容"
+        echo -e "New installation, please refer to the tutorial: https://github.com/tavut846/Rcon to configure the necessary content."
         first_install=true
     else
         if [[ x"${release}" == x"alpine" ]]; then
@@ -224,9 +224,9 @@ EOF
         check_status
         echo -e ""
         if [[ $? == 0 ]]; then
-            echo -e "${green}rcon 重启成功${plain}"
+            echo -e "${green}rcon restarted successfully${plain}"
         else
-            echo -e "${red}rcon 可能启动失败，请稍后使用 rcon log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/tavut846/Rcon/wiki${plain}"
+            echo -e "${red}rcon may have failed to start, please use 'rcon log' later to view the logs. If it cannot start, the configuration format may have changed; please check the wiki: https://github.com/tavut846/Rcon/wiki${plain}"
         fi
         first_install=false
     fi
@@ -245,43 +245,45 @@ EOF
     fi
     curl -o /usr/bin/rcon -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/rcon.sh
     chmod +x /usr/bin/rcon
-    if [ ! -L /usr/bin/rcon ]; then
-        ln -s /usr/bin/rcon /usr/bin/rcon
-        chmod +x /usr/bin/rcon
-    fi
     cd $cur_dir
     rm -f install.sh
     echo -e ""
-    echo "rcon 管理脚本使用方法 (兼容使用rcon执行，大小写不敏感): "
+    echo "rcon management script usage (compatible with 'rcon' command, case-insensitive): "
     echo "------------------------------------------"
-    echo "rcon              - 显示管理菜单 (功能更多)"
-    echo "rcon start        - 启动 rcon"
-    echo "rcon stop         - 停止 rcon"
-    echo "rcon restart      - 重启 rcon"
-    echo "rcon status       - 查看 rcon 状态"
-    echo "rcon enable       - 设置 rcon 开机自启"
-    echo "rcon disable      - 取消 rcon 开机自启"
-    echo "rcon log          - 查看 rcon 日志"
-    echo "rcon x25519       - 生成 x25519 密钥"
-    echo "rcon generate     - 生成 rcon 配置文件"
-    echo "rcon update       - 更新 rcon"
-    echo "rcon update x.x.x - 更新 rcon 指定版本"
-    echo "rcon install      - 安装 rcon"
-    echo "rcon uninstall    - 卸载 rcon"
-    echo "rcon version      - 查看 rcon 版本"
+    echo "rcon              - Show management menu (more features)"
+    echo "rcon start        - Start rcon"
+    echo "rcon stop         - Stop rcon"
+    echo "rcon restart      - Restart rcon"
+    echo "rcon status       - Check rcon status"
+    echo "rcon enable       - Enable rcon on boot"
+    echo "rcon disable      - Disable rcon on boot"
+    echo "rcon log          - Check rcon logs"
+    echo "rcon x25519       - Generate x25519 key"
+    echo "rcon generate     - Generate rcon configuration file"
+    echo "rcon update       - Update rcon"
+    echo "rcon update x.x.x - Update rcon to specified version"
+    echo "rcon install      - Install rcon"
+    echo "rcon uninstall    - Uninstall rcon"
+    echo "rcon version      - Check rcon version"
     echo "------------------------------------------"
-    # 首次安装询问是否生成配置文件
+    # Ask whether to generate a configuration file during first-time installation
     if [[ $first_install == true ]]; then
-        read -rp "检测到你为第一次安装rcon,是否自动直接生成配置文件？(y/n): " if_generate
+        read -rp "First-time installation detected, do you want to automatically generate a configuration file? (y/n): " if_generate
         if [[ $if_generate == [Yy] ]]; then
             curl -o ./initconfig.sh -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/initconfig.sh
             source initconfig.sh
             rm initconfig.sh -f
             generate_config_file
+            if [[ x"${release}" == x"alpine" ]]; then
+                service rcon restart
+            else
+                systemctl restart rcon
+            fi
+            echo -e "${green}rcon has been started/restarted.${plain}"
         fi
     fi
 }
 
-echo -e "${green}开始安装${plain}"
+echo -e "${green}Starting installation...${plain}"
 install_base
 install_rcon $1

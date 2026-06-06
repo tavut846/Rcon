@@ -16,7 +16,7 @@ Network course
 ### One-click Install
 
 ```bash
-wget -N https://raw.githubusercontent.com/tavut846/Rcon/master/rcon.sh && bash rcon.sh
+wget -N https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh && bash install.sh
 ```
 
 ## Build

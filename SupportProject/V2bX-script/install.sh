@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -8,7 +8,7 @@ plain='\033[0m'
 cur_dir=$(pwd)
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}é”™è¯¯ï¼š${plain} å¿…é¡»ä½¿ç”¨rootç”¨æˆ·è¿è¡Œæ­¤è„šæœ¬ï¼\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}Error:${plain} must be root to run this script\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -30,7 +30,7 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat|rocky|alma|oracle linu
 elif cat /proc/version | grep -Eqi "arch"; then
     release="arch"
 else
-    echo -e "${red}æœªæ£€æµ‹åˆ°ç³»ç»Ÿç‰ˆæœ¬ï¼Œè¯·è”ç³»è„šæœ¬ä½œè€…ï¼${plain}\n" && exit 1
+    echo -e "${red}Unknown system version, please contact the script author!${plain}\n" && exit 1
 fi
 
 arch=$(uname -m)
@@ -43,13 +43,13 @@ elif [[ $arch == "s390x" ]]; then
     arch="s390x"
 else
     arch="64"
-    echo -e "${red}æ£€æµ‹æž¶æž„å¤±è´¥ï¼Œä½¿ç”¨é»˜è®¤æž¶æž„: ${arch}${plain}"
+    echo -e "${red}Architecture detection failed, using default: ${arch}${plain}"
 fi
 
-echo "æž¶æž„: ${arch}"
+echo "Architecture: ${arch}"
 
 if [ "$(getconf WORD_BIT)" != '32' ] && [ "$(getconf LONG_BIT)" != '64' ] ; then
-    echo "æœ¬è½¯ä»¶ä¸æ”¯æŒ 32 ä½ç³»ç»Ÿ(x86)ï¼Œè¯·ä½¿ç”¨ 64 ä½ç³»ç»Ÿ(x86_64)ï¼Œå¦‚æžœæ£€æµ‹æœ‰è¯¯ï¼Œè¯·è”ç³»ä½œè€…"
+    echo "This software does not support 32-bit systems (x86), please use a 64-bit system (x86_64). If the detection is wrong, please contact the author."
     exit 2
 fi
 
@@ -63,18 +63,18 @@ fi
 
 if [[ x"${release}" == x"centos" ]]; then
     if [[ ${os_version} -le 6 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ CentOS 7 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use CentOS 7 or higher!${plain}\n" && exit 1
     fi
     if [[ ${os_version} -eq 7 ]]; then
-        echo -e "${red}æ³¨æ„ï¼š CentOS 7 æ— æ³•ä½¿ç”¨hysteria1/2åè®®ï¼${plain}\n"
+        echo -e "${red}Note: CentOS 7 cannot use hysteria1/2 protocol!${plain}\n"
     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ Ubuntu 16 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use Ubuntu 16 or higher!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ Debian 8 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use Debian 8 or higher!${plain}\n" && exit 1
     fi
 fi
 
@@ -103,18 +103,18 @@ install_base() {
 
 # 0: running, 1: not running, 2: not installed
 check_status() {
-    if [[ ! -f /usr/local/rcon/rcon ]]; then
+    if [[ ! -f /usr/local/V2bX/V2bX ]]; then
         return 2
     fi
     if [[ x"${release}" == x"alpine" ]]; then
-        temp=$(service rcon status | awk '{print $3}')
+        temp=$(service V2bX status | awk '{print $3}')
         if [[ x"${temp}" == x"started" ]]; then
             return 0
         else
             return 1
         fi
     else
-        temp=$(systemctl status rcon | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+        temp=$(systemctl status V2bX | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
         if [[ x"${temp}" == x"running" ]]; then
             return 0
         else
@@ -123,70 +123,70 @@ check_status() {
     fi
 }
 
-install_rcon() {
-    if [[ -e /usr/local/rcon/ ]]; then
-        rm -rf /usr/local/rcon/
+install_V2bX() {
+    if [[ -e /usr/local/V2bX/ ]]; then
+        rm -rf /usr/local/V2bX/
     fi
 
-    mkdir /usr/local/rcon/ -p
-    cd /usr/local/rcon/
+    mkdir /usr/local/V2bX/ -p
+    cd /usr/local/V2bX/
 
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/wyx2685/rcon/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/V2bX-project/V2bX/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "${red}æ£€æµ‹ rcon ç‰ˆæœ¬å¤±è´¥ï¼Œå¯èƒ½æ˜¯è¶…å‡º Github API é™åˆ¶ï¼Œè¯·ç¨åŽå†è¯•ï¼Œæˆ–æ‰‹åŠ¨æŒ‡å®š rcon ç‰ˆæœ¬å®‰è£…${plain}"
+            echo -e "${red}Failed to detect V2bX version, it may exceed the Github API limit, please try again later, or manually specify the V2bX version to install${plain}"
             exit 1
         fi
-        echo -e "æ£€æµ‹åˆ° rcon æœ€æ–°ç‰ˆæœ¬ï¼š${last_version}ï¼Œå¼€å§‹å®‰è£…"
-        wget --no-check-certificate -N --progress=bar -O /usr/local/rcon/rcon-linux.zip https://github.com/wyx2685/rcon/releases/download/${last_version}/rcon-linux-${arch}.zip
+        echo -e "Detected V2bX latest version: ${last_version}, starting installation"
+        wget --no-check-certificate -N --progress=bar -O /usr/local/V2bX/V2bX-linux.zip https://github.com/V2bX-project/V2bX/releases/download/${last_version}/V2bX-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}ä¸‹è½½ rcon å¤±è´¥ï¼Œè¯·ç¡®ä¿ä½ çš„æœåŠ¡å™¨èƒ½å¤Ÿä¸‹è½½ Github çš„æ–‡ä»¶${plain}"
+            echo -e "${red}Failed to download V2bX, please make sure your server can download Github files${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/wyx2685/rcon/releases/download/${last_version}/rcon-linux-${arch}.zip"
-        echo -e "å¼€å§‹å®‰è£… rcon $1"
-        wget --no-check-certificate -N --progress=bar -O /usr/local/rcon/rcon-linux.zip ${url}
+        url="https://github.com/V2bX-project/V2bX/releases/download/${last_version}/V2bX-linux-${arch}.zip"
+        echo -e "Starting installation of V2bX $1"
+        wget --no-check-certificate -N --progress=bar -O /usr/local/V2bX/V2bX-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "${red}ä¸‹è½½ rcon $1 å¤±è´¥ï¼Œè¯·ç¡®ä¿æ­¤ç‰ˆæœ¬å­˜åœ¨${plain}"
+            echo -e "${red}Failed to download V2bX $1, please make sure this version exists${plain}"
             exit 1
         fi
     fi
 
-    unzip rcon-linux.zip
-    rm rcon-linux.zip -f
-    chmod +x rcon
-    mkdir /etc/rcon/ -p
-    cp geoip.dat /etc/rcon/
-    cp geosite.dat /etc/rcon/
+    unzip V2bX-linux.zip
+    rm V2bX-linux.zip -f
+    chmod +x V2bX
+    mkdir /etc/V2bX/ -p
+    cp geoip.dat /etc/V2bX/
+    cp geosite.dat /etc/V2bX/
     if [[ x"${release}" == x"alpine" ]]; then
-        rm /etc/init.d/rcon -f
-        cat <<EOF > /etc/init.d/rcon
+        rm /etc/init.d/V2bX -f
+        cat <<EOF > /etc/init.d/V2bX
 #!/sbin/openrc-run
 
-name="rcon"
-description="rcon"
+name="V2bX"
+description="V2bX"
 
-command="/usr/local/rcon/rcon"
+command="/usr/local/V2bX/V2bX"
 command_args="server"
 command_user="root"
 
-pidfile="/run/rcon.pid"
+pidfile="/run/V2bX.pid"
 command_background="yes"
 
 depend() {
         need net
 }
 EOF
-        chmod +x /etc/init.d/rcon
-        rc-update add rcon default
-        echo -e "${green}rcon ${last_version}${plain} å®‰è£…å®Œæˆï¼Œå·²è®¾ç½®å¼€æœºè‡ªå¯"
+        chmod +x /etc/init.d/V2bX
+        rc-update add V2bX default
+        echo -e "${green}V2bX ${last_version}${plain} installation completed, set to start on boot"
     else
-        rm /etc/systemd/system/rcon.service -f
-        cat <<EOF > /etc/systemd/system/rcon.service
+        rm /etc/systemd/system/V2bX.service -f
+        cat <<EOF > /etc/systemd/system/V2bX.service
 [Unit]
-Description=rcon Service
+Description=V2bX Service
 After=network.target nss-lookup.target
 Wants=network.target
 
@@ -198,8 +198,8 @@ LimitAS=infinity
 LimitRSS=infinity
 LimitCORE=infinity
 LimitNOFILE=999999
-WorkingDirectory=/usr/local/rcon/
-ExecStart=/usr/local/rcon/rcon server
+WorkingDirectory=/usr/local/V2bX/
+ExecStart=/usr/local/V2bX/V2bX server
 Restart=always
 RestartSec=10
 
@@ -207,78 +207,76 @@ RestartSec=10
 WantedBy=multi-user.target
 EOF
         systemctl daemon-reload
-        systemctl stop rcon
-        systemctl enable rcon
-        echo -e "${green}rcon ${last_version}${plain} å®‰è£…å®Œæˆï¼Œå·²è®¾ç½®å¼€æœºè‡ªå¯"
+        systemctl stop V2bX
+        systemctl enable V2bX
+        echo -e "${green}V2bX ${last_version}${plain} installation completed, set to start on boot"
     fi
 
-    if [[ ! -f /etc/rcon/config.json ]]; then
-        cp config.json /etc/rcon/
+    if [[ ! -f /etc/V2bX/config.json ]]; then
+        cp config.json /etc/V2bX/
         echo -e ""
-        echo -e "å…¨æ–°å®‰è£…ï¼Œè¯·å…ˆå‚çœ‹æ•™ç¨‹ï¼šhttps://rcon.v-50.me/ï¼Œé…ç½®å¿…è¦çš„å†…å®¹"
+        echo -e "New installation, please refer to the tutorial first to configure the necessary content"
         first_install=true
     else
         if [[ x"${release}" == x"alpine" ]]; then
-            service rcon start
+            service V2bX start
         else
-            systemctl start rcon
+            systemctl start V2bX
         fi
         sleep 2
         check_status
         echo -e ""
         if [[ $? == 0 ]]; then
-            echo -e "${green}rcon é‡å¯æˆåŠŸ${plain}"
+            echo -e "${green}V2bX restarted successfully${plain}"
         else
-            echo -e "${red}rcon å¯èƒ½å¯åŠ¨å¤±è´¥ï¼Œè¯·ç¨åŽä½¿ç”¨ rcon log æŸ¥çœ‹æ—¥å¿—ä¿¡æ¯ï¼Œè‹¥æ— æ³•å¯åŠ¨ï¼Œåˆ™å¯èƒ½æ›´æ”¹äº†é…ç½®æ ¼å¼ï¼Œè¯·å‰å¾€ wiki æŸ¥çœ‹ï¼šhttps://github.com/rcon-project/rcon/wiki${plain}"
+            echo -e "${red}V2bX may have failed to start, please use V2bX log to view the log information later. If it cannot start, the configuration format may have changed, please check the wiki.${plain}"
         fi
         first_install=false
     fi
 
-    if [[ ! -f /etc/rcon/dns.json ]]; then
-        cp dns.json /etc/rcon/
+    if [[ ! -f /etc/V2bX/dns.json ]]; then
+        cp dns.json /etc/V2bX/
     fi
-    if [[ ! -f /etc/rcon/route.json ]]; then
-        cp route.json /etc/rcon/
+    if [[ ! -f /etc/V2bX/route.json ]]; then
+        cp route.json /etc/V2bX/
     fi
-    if [[ ! -f /etc/rcon/custom_outbound.json ]]; then
-        cp custom_outbound.json /etc/rcon/
+    if [[ ! -f /etc/V2bX/custom_outbound.json ]]; then
+        cp custom_outbound.json /etc/V2bX/
     fi
-    if [[ ! -f /etc/rcon/custom_inbound.json ]]; then
-        cp custom_inbound.json /etc/rcon/
+    if [[ ! -f /etc/V2bX/custom_inbound.json ]]; then
+        cp custom_inbound.json /etc/V2bX/
     fi
-    curl -o /usr/bin/rcon -Ls https://raw.githubusercontent.com/wyx2685/rcon-script/master/rcon.sh
-    chmod +x /usr/bin/rcon
-    if [ ! -L /usr/bin/rcon ]; then
-        ln -s /usr/bin/rcon /usr/bin/rcon
-        chmod +x /usr/bin/rcon
+    curl -o /usr/bin/V2bX -Ls https://raw.githubusercontent.com/V2bX-project/V2bX-script/master/V2bX.sh
+    chmod +x /usr/bin/V2bX
+    if [ ! -L /usr/bin/V2bX ]; then
+        ln -s /usr/bin/V2bX /usr/bin/V2bX
+        chmod +x /usr/bin/V2bX
     fi
     cd $cur_dir
     rm -f install.sh
     echo -e ""
-    echo "rcon ç®¡ç†è„šæœ¬ä½¿ç”¨æ–¹æ³• (å…¼å®¹ä½¿ç”¨rconæ‰§è¡Œï¼Œå¤§å°å†™ä¸æ•æ„Ÿ): "
+    echo "V2bX management script usage (compatible with V2bX execution, case-insensitive): "
     echo "------------------------------------------"
-    echo "rcon              - æ˜¾ç¤ºç®¡ç†èœå• (åŠŸèƒ½æ›´å¤š)"
-    echo "rcon start        - å¯åŠ¨ rcon"
-    echo "rcon stop         - åœæ­¢ rcon"
-    echo "rcon restart      - é‡å¯ rcon"
-    echo "rcon status       - æŸ¥çœ‹ rcon çŠ¶æ€"
-    echo "rcon enable       - è®¾ç½® rcon å¼€æœºè‡ªå¯"
-    echo "rcon disable      - å–æ¶ˆ rcon å¼€æœºè‡ªå¯"
-    echo "rcon log          - æŸ¥çœ‹ rcon æ—¥å¿—"
-    echo "rcon x25519       - ç”Ÿæˆ x25519 å¯†é’¥"
-    echo "rcon generate     - ç”Ÿæˆ rcon é…ç½®æ–‡ä»¶"
-    echo "rcon update       - æ›´æ–° rcon"
-    echo "rcon update x.x.x - æ›´æ–° rcon æŒ‡å®šç‰ˆæœ¬"
-    echo "rcon install      - å®‰è£… rcon"
-    echo "rcon uninstall    - å¸è½½ rcon"
-    echo "rcon version      - æŸ¥çœ‹ rcon ç‰ˆæœ¬"
+    echo "V2bX              - Show management menu (more features)"
+    echo "V2bX start        - Start V2bX"
+    echo "V2bX stop         - Stop V2bX"
+    echo "V2bX restart      - Restart V2bX"
+    echo "V2bX status       - Check V2bX status"
+    echo "V2bX enable       - Set V2bX to start on boot"
+    echo "V2bX disable      - Cancel V2bX start on boot"
+    echo "V2bX log          - View V2bX logs"
+    echo "V2bX x25519       - Generate x25519 key"
+    echo "V2bX generate     - Generate V2bX configuration file"
+    echo "V2bX update       - Update V2bX"
+    echo "V2bX update x.x.x - Update V2bX specified version"
+    echo "V2bX install      - Install V2bX"
+    echo "V2bX uninstall    - Uninstall V2bX"
+    echo "V2bX version      - Check V2bX version"
     echo "------------------------------------------"
-    curl -fsS --max-time 10 "https://api.v-50.me/counter_rcon" || true
-    # é¦–æ¬¡å®‰è£…è¯¢é—®æ˜¯å¦ç”Ÿæˆé…ç½®æ–‡ä»¶
     if [[ $first_install == true ]]; then
-        read -rp "æ£€æµ‹åˆ°ä½ ä¸ºç¬¬ä¸€æ¬¡å®‰è£…rcon,æ˜¯å¦è‡ªåŠ¨ç›´æŽ¥ç”Ÿæˆé…ç½®æ–‡ä»¶ï¼Ÿ(y/n): " if_generate
+        read -rp "Detected that this is your first time installing V2bX, do you want to automatically generate a configuration file? (y/n): " if_generate
         if [[ $if_generate == [Yy] ]]; then
-            curl -o ./initconfig.sh -Ls https://raw.githubusercontent.com/wyx2685/rcon-script/master/initconfig.sh
+            curl -o ./initconfig.sh -Ls https://raw.githubusercontent.com/V2bX-project/V2bX-script/master/initconfig.sh
             source initconfig.sh
             rm initconfig.sh -f
             generate_config_file
@@ -286,7 +284,6 @@ EOF
     fi
 }
 
-echo -e "${green}å¼€å§‹å®‰è£…${plain}"
+echo -e "${green}Starting installation${plain}"
 install_base
-install_rcon $1
-
+install_V2bX $1

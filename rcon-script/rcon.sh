@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -6,7 +6,7 @@ yellow='\033[0;33m'
 plain='\033[0m'
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}é”™è¯¯: ${plain} å¿…é¡»ä½¿ç”¨rootç”¨æˆ·è¿è¡Œæ­¤è„šæœ¬ï¼\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}Error: ${plain} This script must be run as root!\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -28,7 +28,7 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat|rocky|alma|oracle linu
 elif cat /proc/version | grep -Eqi "arch"; then
     release="arch"
 else
-    echo -e "${red}æœªæ£€æµ‹åˆ°ç³»ç»Ÿç‰ˆæœ¬ï¼Œè¯·è”ç³»è„šæœ¬ä½œè€…ï¼${plain}\n" && exit 1
+    echo -e "${red}OS version not detected, please contact the script author!${plain}\n" && exit 1
 fi
 
 # os version
@@ -41,33 +41,33 @@ fi
 
 if [[ x"${release}" == x"centos" ]]; then
     if [[ ${os_version} -le 6 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ CentOS 7 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use CentOS 7 or higher!${plain}\n" && exit 1
     fi
     if [[ ${os_version} -eq 7 ]]; then
-        echo -e "${red}æ³¨æ„ï¼š CentOS 7 æ— æ³•ä½¿ç”¨hysteria1/2åè®®ï¼${plain}\n"
+        echo -e "${red}Note: CentOS 7 cannot use hysteria1/2 protocol!${plain}\n"
     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ Ubuntu 16 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use Ubuntu 16 or higher!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ Debian 8 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use Debian 8 or higher!${plain}\n" && exit 1
     fi
 fi
 
-# æ£€æŸ¥ç³»ç»Ÿæ˜¯å¦æœ‰ IPv6 åœ°å€
+# Check if the system has an IPv6 address
 check_ipv6_support() {
     if ip -6 addr | grep -q "inet6"; then
-        echo "1"  # æ”¯æŒ IPv6
+        echo "1"  # Supports IPv6
     else
-        echo "0"  # ä¸æ”¯æŒ IPv6
+        echo "0"  # Does not support IPv6
     fi
 }
 
 confirm() {
     if [[ $# > 1 ]]; then
-        echo && read -rp "$1 [é»˜è®¤$2]: " temp
+        echo && read -rp "$1 [default $2]: " temp
         if [[ x"${temp}" == x"" ]]; then
             temp=$2
         fi
@@ -82,7 +82,7 @@ confirm() {
 }
 
 confirm_restart() {
-    confirm "æ˜¯å¦é‡å¯rcon" "y"
+    confirm "Restart rcon?" "y"
     if [[ $? == 0 ]]; then
         restart
     else
@@ -91,12 +91,12 @@ confirm_restart() {
 }
 
 before_show_menu() {
-    echo && echo -n -e "${yellow}æŒ‰å›žè½¦è¿”å›žä¸»èœå•: ${plain}" && read temp
+    echo && echo -n -e "${yellow}Press Enter to return to the main menu: ${plain}" && read temp
     show_menu
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/rcon.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -108,13 +108,13 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "è¾“å…¥æŒ‡å®šç‰ˆæœ¬(é»˜è®¤æœ€æ–°ç‰ˆ): " && read version
+        echo && echo -n -e "Enter the specified version (default latest): " && read version
     else
         version=$2
     fi
     bash <(curl -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh) $version
     if [[ $? == 0 ]]; then
-        echo -e "${green}æ›´æ–°å®Œæˆï¼Œå·²è‡ªåŠ¨é‡å¯ rconï¼Œè¯·ä½¿ç”¨ rcon log æŸ¥çœ‹è¿è¡Œæ—¥å¿—${plain}"
+        echo -e "${green}Update completed, rcon has been automatically restarted, please use 'rcon log' to view the running logs${plain}"
         exit
     fi
 
@@ -124,30 +124,30 @@ update() {
 }
 
 config() {
-    echo "rconåœ¨ä¿®æ”¹é…ç½®åŽä¼šè‡ªåŠ¨å°è¯•é‡å¯"
+    echo "rcon will automatically try to restart after modifying the configuration"
     vi /etc/rcon/config.json
     sleep 2
     restart
     check_status
     case $? in
         0)
-            echo -e "rconçŠ¶æ€: ${green}å·²è¿è¡Œ${plain}"
+            echo -e "rcon status: ${green}Running${plain}"
             ;;
         1)
-            echo -e "æ£€æµ‹åˆ°æ‚¨æœªå¯åŠ¨rconæˆ–rconè‡ªåŠ¨é‡å¯å¤±è´¥ï¼Œæ˜¯å¦æŸ¥çœ‹æ—¥å¿—ï¼Ÿ[Y/n]" && echo
-            read -e -rp "(é»˜è®¤: y):" yn
+            echo -e "Detected that you have not started rcon or rcon automatic restart failed, do you want to view the logs? [Y/n]" && echo
+            read -e -rp "(default: y):" yn
             [[ -z ${yn} ]] && yn="y"
             if [[ ${yn} == [Yy] ]]; then
                show_log
             fi
             ;;
         2)
-            echo -e "rconçŠ¶æ€: ${red}æœªå®‰è£…${plain}"
+            echo -e "rcon status: ${red}Not installed${plain}"
     esac
 }
 
 uninstall() {
-    confirm "ç¡®å®šè¦å¸è½½ rcon å—?" "n"
+    confirm "Are you sure you want to uninstall rcon?" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
@@ -169,7 +169,7 @@ uninstall() {
     rm /usr/local/rcon/ -rf
 
     echo ""
-    echo -e "å¸è½½æˆåŠŸï¼Œå¦‚æžœä½ æƒ³åˆ é™¤æ­¤è„šæœ¬ï¼Œåˆ™é€€å‡ºè„šæœ¬åŽè¿è¡Œ ${green}rm /usr/bin/rcon -f${plain} è¿›è¡Œåˆ é™¤"
+    echo -e "Uninstall successful, if you want to delete this script, exit the script and run ${green}rm /usr/bin/rcon -f${plain} to delete it"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -181,7 +181,7 @@ start() {
     check_status
     if [[ $? == 0 ]]; then
         echo ""
-        echo -e "${green}rconå·²è¿è¡Œï¼Œæ— éœ€å†æ¬¡å¯åŠ¨ï¼Œå¦‚éœ€é‡å¯è¯·é€‰æ‹©é‡å¯${plain}"
+        echo -e "${green}rcon is already running, no need to start it again, if you need to restart please select restart${plain}"
     else
         if [[ x"${release}" == x"alpine" ]]; then
             service rcon start
@@ -191,9 +191,9 @@ start() {
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            echo -e "${green}rcon å¯åŠ¨æˆåŠŸï¼Œè¯·ä½¿ç”¨ rcon log æŸ¥çœ‹è¿è¡Œæ—¥å¿—${plain}"
+            echo -e "${green}rcon started successfully, please use 'rcon log' to view the running logs${plain}"
         else
-            echo -e "${red}rconå¯èƒ½å¯åŠ¨å¤±è´¥ï¼Œè¯·ç¨åŽä½¿ç”¨ rcon log æŸ¥çœ‹æ—¥å¿—ä¿¡æ¯${plain}"
+            echo -e "${red}rcon may have failed to start, please use 'rcon log' later to view the log information${plain}"
         fi
     fi
 
@@ -211,9 +211,9 @@ stop() {
     sleep 2
     check_status
     if [[ $? == 1 ]]; then
-        echo -e "${green}rcon åœæ­¢æˆåŠŸ${plain}"
+        echo -e "${green}rcon stopped successfully${plain}"
     else
-        echo -e "${red}rconåœæ­¢å¤±è´¥ï¼Œå¯èƒ½æ˜¯å› ä¸ºåœæ­¢æ—¶é—´è¶…è¿‡äº†ä¸¤ç§’ï¼Œè¯·ç¨åŽæŸ¥çœ‹æ—¥å¿—ä¿¡æ¯${plain}"
+        echo -e "${red}rcon failed to stop, possibly because the stop time exceeded two seconds, please check the log information later${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -230,9 +230,9 @@ restart() {
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
-        echo -e "${green}rcon é‡å¯æˆåŠŸï¼Œè¯·ä½¿ç”¨ rcon log æŸ¥çœ‹è¿è¡Œæ—¥å¿—${plain}"
+        echo -e "${green}rcon restarted successfully, please use 'rcon log' to view the running logs${plain}"
     else
-        echo -e "${red}rconå¯èƒ½å¯åŠ¨å¤±è´¥ï¼Œè¯·ç¨åŽä½¿ç”¨ rcon log æŸ¥çœ‹æ—¥å¿—ä¿¡æ¯${plain}"
+        echo -e "${red}rcon may have failed to start, please use 'rcon log' later to view the log information${plain}"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -257,9 +257,9 @@ enable() {
         systemctl enable rcon
     fi
     if [[ $? == 0 ]]; then
-        echo -e "${green}rcon è®¾ç½®å¼€æœºè‡ªå¯æˆåŠŸ${plain}"
+        echo -e "${green}rcon set to start on boot successfully${plain}"
     else
-        echo -e "${red}rcon è®¾ç½®å¼€æœºè‡ªå¯å¤±è´¥${plain}"
+        echo -e "${red}rcon failed to set to start on boot${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -274,9 +274,9 @@ disable() {
         systemctl disable rcon
     fi
     if [[ $? == 0 ]]; then
-        echo -e "${green}rcon å–æ¶ˆå¼€æœºè‡ªå¯æˆåŠŸ${plain}"
+        echo -e "${green}rcon cancelled start on boot successfully${plain}"
     else
-        echo -e "${red}rcon å–æ¶ˆå¼€æœºè‡ªå¯å¤±è´¥${plain}"
+        echo -e "${red}rcon failed to cancel start on boot${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -286,7 +286,7 @@ disable() {
 
 show_log() {
     if [[ x"${release}" == x"alpine" ]]; then
-        echo -e "${red}alpineç³»ç»Ÿæš‚ä¸æ”¯æŒæ—¥å¿—æŸ¥çœ‹${plain}\n" && exit 1
+        echo -e "${red}Alpine system currently does not support viewing logs${plain}\n" && exit 1
     else
         journalctl -u rcon.service -e --no-pager -f
     fi
@@ -303,11 +303,11 @@ update_shell() {
     wget -O /usr/bin/rcon -N --no-check-certificate https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/rcon.sh
     if [[ $? != 0 ]]; then
         echo ""
-        echo -e "${red}ä¸‹è½½è„šæœ¬å¤±è´¥ï¼Œè¯·æ£€æŸ¥æœ¬æœºèƒ½å¦è¿žæŽ¥ Github${plain}"
+        echo -e "${red}Failed to download the script, please check if this machine can connect to GitHub${plain}"
         before_show_menu
     else
         chmod +x /usr/bin/rcon
-        echo -e "${green}å‡çº§è„šæœ¬æˆåŠŸï¼Œè¯·é‡æ–°è¿è¡Œè„šæœ¬${plain}" && exit 0
+        echo -e "${green}Script upgraded successfully, please rerun the script${plain}" && exit 0
     fi
 }
 
@@ -355,7 +355,7 @@ check_uninstall() {
     check_status
     if [[ $? != 2 ]]; then
         echo ""
-        echo -e "${red}rconå·²å®‰è£…ï¼Œè¯·ä¸è¦é‡å¤å®‰è£…${plain}"
+        echo -e "${red}rcon is already installed, please do not reinstall${plain}"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -369,7 +369,7 @@ check_install() {
     check_status
     if [[ $? == 2 ]]; then
         echo ""
-        echo -e "${red}è¯·å…ˆå®‰è£…rcon${plain}"
+        echo -e "${red}Please install rcon first${plain}"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -383,29 +383,29 @@ show_status() {
     check_status
     case $? in
         0)
-            echo -e "rconçŠ¶æ€: ${green}å·²è¿è¡Œ${plain}"
+            echo -e "rcon status: ${green}Running${plain}"
             show_enable_status
             ;;
         1)
-            echo -e "rconçŠ¶æ€: ${yellow}æœªè¿è¡Œ${plain}"
+            echo -e "rcon status: ${yellow}Not running${plain}"
             show_enable_status
             ;;
         2)
-            echo -e "rconçŠ¶æ€: ${red}æœªå®‰è£…${plain}"
+            echo -e "rcon status: ${red}Not installed${plain}"
     esac
 }
 
 show_enable_status() {
     check_enabled
     if [[ $? == 0 ]]; then
-        echo -e "æ˜¯å¦å¼€æœºè‡ªå¯: ${green}æ˜¯${plain}"
+        echo -e "Start on boot: ${green}Yes${plain}"
     else
-        echo -e "æ˜¯å¦å¼€æœºè‡ªå¯: ${red}å¦${plain}"
+        echo -e "Start on boot: ${red}No${plain}"
     fi
 }
 
 generate_x25519_key() {
-    echo -n "æ­£åœ¨ç”Ÿæˆ x25519 å¯†é’¥ï¼š"
+    echo -n "Generating x25519 key: "
     /usr/local/rcon/rcon x25519
     echo ""
     if [[ $# == 0 ]]; then
@@ -414,7 +414,7 @@ generate_x25519_key() {
 }
 
 show_rcon_version() {
-    echo -n "rcon ç‰ˆæœ¬ï¼š"
+    echo -n "rcon version: "
     /usr/local/rcon/rcon version
     echo ""
     if [[ $# == 0 ]]; then
@@ -424,20 +424,20 @@ show_rcon_version() {
 
 add_node_config() {
     while true; do
-        read -rp "请输入节点Node ID：" NodeID
+        read -rp "Please enter the Node ID: " NodeID
         if [[ "$NodeID" =~ ^[0-9]+$ ]]; then
             break
         else
-            echo "错误：请输入正确的数字作为Node ID。"
+            echo "Error: Please enter a valid number for Node ID."
         fi
     done
 
-    echo -e "${yellow}请选择节点传输协议：${plain}"
+    echo -e "${yellow}Please select the node transport protocol:${plain}"
     echo -e "${green}1. Shadowsocks${plain}"
     echo -e "${green}2. Vless${plain}"
     echo -e "${green}3. Vmess${plain}"
     echo -e "${green}6. Trojan${plain}"
-    read -rp "请输入：" NodeType
+    read -rp "Please enter: " NodeType
     case "$NodeType" in
         1 ) NodeType="shadowsocks" ;;
         2 ) NodeType="vless" ;;
@@ -449,29 +449,29 @@ add_node_config() {
     isreality=""
     istls=""
     if [ "$NodeType" == "vless" ]; then
-        read -rp "请选择是否为reality节点？(y/n)" isreality
+        read -rp "Is this a Reality node? (y/n) " isreality
     fi
 
     if [[ "$NodeType" != "shadowsocks" && "$isreality" != "y" && "$isreality" != "Y" ]]; then
-        read -rp "请选择是否进行TLS配置？(y/n)" istls
+        read -rp "Do you want to configure TLS? (y/n) " istls
     fi
 
     certmode="none"
     certdomain="example.com"
     if [[ "$isreality" != "y" && "$isreality" != "Y" && ( "$istls" == "y" || "$istls" == "Y" ) ]]; then
-        echo -e "${yellow}请选择证书申请模式：${plain}"
-        echo -e "${green}1. http模式自动申请，节点域名已正确解析${plain}"
-        echo -e "${green}2. dns模式自动申请，需填入正确域名服务商API参数${plain}"
-        echo -e "${green}3. self模式，自签证书或提供已有证书文件${plain}"
-        read -rp "请输入：" certmode
+        echo -e "${yellow}Please select the certificate application mode:${plain}"
+        echo -e "${green}1. HTTP mode: Automatic application, node domain must be correctly resolved${plain}"
+        echo -e "${green}2. DNS mode: Automatic application, requires correct DNS provider API parameters${plain}"
+        echo -e "${green}3. Self mode: Self-signed certificate or provide existing certificate files${plain}"
+        read -rp "Please enter: " certmode
         case "$certmode" in
             1 ) certmode="http" ;;
             2 ) certmode="dns" ;;
             3 ) certmode="self" ;;
         esac
-        read -rp "请输入节点证书域名(example.com)：" certdomain
+        read -rp "Please enter the node certificate domain (example.com): " certdomain
         if [ "$certmode" != "http" ]; then
-            echo -e "${red}请手动修改配置文件后重启rcon！${plain}"
+            echo -e "${red}Please manually modify the configuration file and restart rcon!${plain}"
         fi
     fi
 
@@ -512,14 +512,14 @@ EOF
 }
 
 generate_config_file() {
-    echo -e "${yellow}rcon 配置文件生成向导${plain}"
-    echo -e "${red}请阅读以下注意事项：${plain}"
-    echo -e "${red}1. 目前该功能正处测试阶段${plain}"
-    echo -e "${red}2. 生成的配置文件会保存到 /etc/rcon/config.json${plain}"
-    echo -e "${red}3. 原来的配置文件会保存到 /etc/rcon/config.json.bak${plain}"
-    echo -e "${red}4. 目前仅部分支持TLS${plain}"
-    echo -e "${red}5. 使用此功能生成的配置文件会自带审计，确定继续？(y/n)${plain}"
-    read -rp "请输入：" continue_prompt
+    echo -e "${yellow}rcon Configuration File Generation Wizard${plain}"
+    echo -e "${red}Please read the following notes:${plain}"
+    echo -e "${red}1. This feature is currently in the testing stage${plain}"
+    echo -e "${red}2. The generated configuration file will be saved to /etc/rcon/config.json${plain}"
+    echo -e "${red}3. The original configuration file will be saved to /etc/rcon/config.json.bak${plain}"
+    echo -e "${red}4. Currently only partial TLS is supported${plain}"
+    echo -e "${red}5. The configuration file generated using this feature will include auditing. Are you sure you want to continue? (y/n)${plain}"
+    read -rp "Please enter: " continue_prompt
     if [[ "$continue_prompt" =~ ^[Nn][Oo]? ]]; then
         exit 0
     fi
@@ -530,22 +530,22 @@ generate_config_file() {
 
     while true; do
         if [ "$first_node" = true ]; then
-            read -rp "请输入机场网址(https://example.com)：" ApiHost
-            read -rp "请输入面板对接API Key：" ApiKey
-            read -rp "是否设置固定的机场网址和API Key？(y/n)" fixed_api
+            read -rp "Please enter the panel website URL (https://example.com): " ApiHost
+            read -rp "Please enter the panel API Key: " ApiKey
+            read -rp "Do you want to set a fixed panel URL and API Key? (y/n) " fixed_api
             if [ "$fixed_api" = "y" ] || [ "$fixed_api" = "Y" ]; then
                 fixed_api_info=true
-                echo -e "${red}成功固定地址${plain}"
+                echo -e "${red}Successfully fixed the address${plain}"
             fi
             first_node=false
             add_node_config
         else
-            read -rp "是否继续添加节点配置？(回车继续，输入n或no退出)" continue_adding_node
+            read -rp "Do you want to continue adding node configurations? (Enter to continue, n or no to exit) " continue_adding_node
             if [[ "$continue_adding_node" =~ ^[Nn][Oo]? ]]; then
                 break
             elif [ "$fixed_api_info" = false ]; then
-                read -rp "请输入机场网址：" ApiHost
-                read -rp "请输入面板对接API Key：" ApiKey
+                read -rp "Please enter the panel website URL: " ApiHost
+                read -rp "Please enter the panel API Key: " ApiKey
             fi
             add_node_config
         fi
@@ -562,15 +562,15 @@ generate_config_file() {
         "RouteConfigPath": "/etc/rcon/route.json"
     }]'
 
-    # 切换到配置文件目录
+    # Change to configuration file directory
     cd /etc/rcon
 
-    # 备份旧的配置文件
+    # Backup old configuration file
     mv config.json config.json.bak
     nodes_config_str="${nodes_config[*]}"
     formatted_nodes_config="${nodes_config_str%,}"
 
-    # 创建 config.json 文件
+    # Create config.json file
     cat <<EOF > /etc/rcon/config.json
 {
     "Log": {
@@ -582,7 +582,7 @@ generate_config_file() {
 }
 EOF
 
-    # 创建 custom_outbound.json 文件
+    # Create custom_outbound.json file
     cat <<EOF > /etc/rcon/custom_outbound.json
     [
         {
@@ -606,7 +606,7 @@ EOF
     ]
 EOF
 
-    # 创建 route.json 文件
+    # Create route.json file
     cat <<EOF > /etc/rcon/route.json
     {
         "domainStrategy": "AsIs",
@@ -668,12 +668,12 @@ EOF
     }
 EOF
 
-    echo -e "${green}rcon 配置文件生成完成，正在重新启动 rcon 服务${plain}"
+    echo -e "${green}rcon configuration file generation complete, restarting rcon service...${plain}"
     restart 0
     before_show_menu
 }
 
-# æ”¾å¼€é˜²ç«å¢™ç«¯å£
+# Open firewall ports
 open_ports() {
     systemctl stop firewalld.service 2>/dev/null
     systemctl disable firewalld.service 2>/dev/null
@@ -687,58 +687,58 @@ open_ports() {
     iptables -F 2>/dev/null
     iptables -X 2>/dev/null
     netfilter-persistent save 2>/dev/null
-    echo -e "${green}æ”¾å¼€é˜²ç«å¢™ç«¯å£æˆåŠŸï¼${plain}"
+    echo -e "${green}Firewall ports opened successfully!${plain}"
 }
 
 show_usage() {
-    echo "rcon ç®¡ç†è„šæœ¬ä½¿ç”¨æ–¹æ³•: "
+    echo "rcon management script usage: "
     echo "------------------------------------------"
-    echo "rcon              - æ˜¾ç¤ºç®¡ç†èœå• (åŠŸèƒ½æ›´å¤š)"
-    echo "rcon start        - å¯åŠ¨ rcon"
-    echo "rcon stop         - åœæ­¢ rcon"
-    echo "rcon restart      - é‡å¯ rcon"
-    echo "rcon status       - æŸ¥çœ‹ rcon çŠ¶æ€"
-    echo "rcon enable       - è®¾ç½® rcon å¼€æœºè‡ªå¯"
-    echo "rcon disable      - å–æ¶ˆ rcon å¼€æœºè‡ªå¯"
-    echo "rcon log          - æŸ¥çœ‹ rcon æ—¥å¿—"
-    echo "rcon x25519       - ç”Ÿæˆ x25519 å¯†é’¥"
-    echo "rcon generate     - ç”Ÿæˆ rcon é…ç½®æ–‡ä»¶"
-    echo "rcon install      - å®‰è£… rcon"
-    echo "rcon uninstall    - å¸è½½ rcon"
-    echo "rcon version      - æŸ¥çœ‹ rcon ç‰ˆæœ¬"
+    echo "rcon              - Show management menu (more features)"
+    echo "rcon start        - Start rcon"
+    echo "rcon stop         - Stop rcon"
+    echo "rcon restart      - Restart rcon"
+    echo "rcon status       - Check rcon status"
+    echo "rcon enable       - Enable rcon on boot"
+    echo "rcon disable      - Disable rcon on boot"
+    echo "rcon log          - Check rcon logs"
+    echo "rcon x25519       - Generate x25519 key"
+    echo "rcon generate     - Generate rcon configuration file"
+    echo "rcon install      - Install rcon"
+    echo "rcon uninstall    - Uninstall rcon"
+    echo "rcon version      - Check rcon version"
     echo "------------------------------------------"
 }
 
 show_menu() {
     echo -e "
-  ${green}rcon åŽç«¯ç®¡ç†è„šæœ¬ï¼Œ${plain}${red}ä¸é€‚ç”¨äºŽdocker${plain}
+  ${green}rcon Management Script, ${plain}${red}NOT applicable to docker${plain}
 --- https://github.com/tavut846/Rcon ---
-  ${green}0.${plain} ä¿®æ”¹é…ç½®
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-  ${green}1.${plain} å®‰è£… rcon
-  ${green}2.${plain} æ›´æ–° rcon
-  ${green}3.${plain} å¸è½½ rcon
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-  ${green}4.${plain} å¯åŠ¨ rcon
-  ${green}5.${plain} åœæ­¢ rcon
-  ${green}6.${plain} é‡å¯ rcon
-  ${green}7.${plain} æŸ¥çœ‹ rcon çŠ¶æ€
-  ${green}8.${plain} æŸ¥çœ‹ rcon æ—¥å¿—
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-  ${green}9.${plain} è®¾ç½® rcon å¼€æœºè‡ªå¯
-  ${green}10.${plain} å–æ¶ˆ rcon å¼€æœºè‡ªå¯
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-  ${green}11.${plain} ä¸€é”®å®‰è£… bbr (æœ€æ–°å†…æ ¸)
-  ${green}12.${plain} æŸ¥çœ‹ rcon ç‰ˆæœ¬
-  ${green}13.${plain} ç”Ÿæˆ X25519 å¯†é’¥
-  ${green}14.${plain} å‡çº§ rcon ç»´æŠ¤è„šæœ¬
-  ${green}15.${plain} ç”Ÿæˆ rcon é…ç½®æ–‡ä»¶
-  ${green}16.${plain} æ”¾è¡Œ VPS çš„æ‰€æœ‰ç½‘ç»œç«¯å£
-  ${green}17.${plain} é€€å‡ºè„šæœ¬
+  ${green}0.${plain} Modify configuration
+------------------------------------------
+  ${green}1.${plain} Install rcon
+  ${green}2.${plain} Update rcon
+  ${green}3.${plain} Uninstall rcon
+------------------------------------------
+  ${green}4.${plain} Start rcon
+  ${green}5.${plain} Stop rcon
+  ${green}6.${plain} Restart rcon
+  ${green}7.${plain} Check rcon status
+  ${green}8.${plain} Check rcon logs
+------------------------------------------
+  ${green}9.${plain} Enable rcon on boot
+  ${green}10.${plain} Disable rcon on boot
+------------------------------------------
+  ${green}11.${plain} One-click install BBR (latest kernel)
+  ${green}12.${plain} Check rcon version
+  ${green}13.${plain} Generate X25519 key
+  ${green}14.${plain} Upgrade rcon maintenance script
+  ${green}15.${plain} Generate rcon configuration file
+  ${green}16.${plain} Open all network ports on VPS
+  ${green}17.${plain} Exit script
  "
- #åŽç»­æ›´æ–°å¯åŠ å…¥ä¸Šæ–¹å­—ç¬¦ä¸²ä¸­
+ # Subsequent updates can be added above
     show_status
-    echo && read -rp "è¯·è¾“å…¥é€‰æ‹© [0-17]: " num
+    echo && read -rp "Please enter selection [0-17]: " num
 
     case "${num}" in
         0) config ;;
@@ -759,7 +759,7 @@ show_menu() {
         15) generate_config_file ;;
         16) open_ports ;;
         17) exit ;;
-        *) echo -e "${red}è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­— [0-16]${plain}" ;;
+        *) echo -e "${red}Please enter a correct number [0-17]${plain}" ;;
     esac
 }
 

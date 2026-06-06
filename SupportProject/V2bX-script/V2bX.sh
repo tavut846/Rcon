@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -6,7 +6,7 @@ yellow='\033[0;33m'
 plain='\033[0m'
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "${red}é”™è¯¯: ${plain} å¿…é¡»ä½¿ç”¨rootç”¨æˆ·è¿è¡Œæ­¤è„šæœ¬ï¼\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "${red}Error: ${plain} must be root to run this script\n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -28,7 +28,7 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat|rocky|alma|oracle linu
 elif cat /proc/version | grep -Eqi "arch"; then
     release="arch"
 else
-    echo -e "${red}æœªæ£€æµ‹åˆ°ç³»ç»Ÿç‰ˆæœ¬ï¼Œè¯·è”ç³»è„šæœ¬ä½œè€…ï¼${plain}\n" && exit 1
+    echo -e "${red}Unknown system version, please contact the script author!${plain}\n" && exit 1
 fi
 
 # os version
@@ -41,33 +41,32 @@ fi
 
 if [[ x"${release}" == x"centos" ]]; then
     if [[ ${os_version} -le 6 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ CentOS 7 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use CentOS 7 or higher!${plain}\n" && exit 1
     fi
     if [[ ${os_version} -eq 7 ]]; then
-        echo -e "${red}æ³¨æ„ï¼š CentOS 7 æ— æ³•ä½¿ç”¨hysteria1/2åè®®ï¼${plain}\n"
+        echo -e "${red}Note: CentOS 7 cannot use hysteria1/2 protocol!${plain}\n"
     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ Ubuntu 16 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use Ubuntu 16 or higher!${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
-        echo -e "${red}è¯·ä½¿ç”¨ Debian 8 æˆ–æ›´é«˜ç‰ˆæœ¬çš„ç³»ç»Ÿï¼${plain}\n" && exit 1
+        echo -e "${red}Please use Debian 8 or higher!${plain}\n" && exit 1
     fi
 fi
 
-# æ£€æŸ¥ç³»ç»Ÿæ˜¯å¦æœ‰ IPv6 åœ°å€
 check_ipv6_support() {
     if ip -6 addr | grep -q "inet6"; then
-        echo "1"  # æ”¯æŒ IPv6
+        echo "1"
     else
-        echo "0"  # ä¸æ”¯æŒ IPv6
+        echo "0"
     fi
 }
 
 confirm() {
     if [[ $# > 1 ]]; then
-        echo && read -rp "$1 [é»˜è®¤$2]: " temp
+        echo && read -rp "$1 [default $2]: " temp
         if [[ x"${temp}" == x"" ]]; then
             temp=$2
         fi
@@ -82,7 +81,7 @@ confirm() {
 }
 
 confirm_restart() {
-    confirm "æ˜¯å¦é‡å¯rcon" "y"
+    confirm "Whether to restart V2bX" "y"
     if [[ $? == 0 ]]; then
         restart
     else
@@ -91,12 +90,12 @@ confirm_restart() {
 }
 
 before_show_menu() {
-    echo && echo -n -e "${yellow}æŒ‰å›žè½¦è¿”å›žä¸»èœå•: ${plain}" && read temp
+    echo && echo -n -e "${yellow}Press Enter to return to the main menu: ${plain}" && read temp
     show_menu
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/wyx2685/rcon-script/master/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/V2bX-project/V2bX-script/master/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -108,13 +107,13 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "è¾“å…¥æŒ‡å®šç‰ˆæœ¬(é»˜è®¤æœ€æ–°ç‰ˆ): " && read version
+        echo && echo -n -e "Enter the specified version (default is the latest version): " && read version
     else
         version=$2
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/wyx2685/rcon-script/master/install.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/V2bX-project/V2bX-script/master/install.sh) $version
     if [[ $? == 0 ]]; then
-        echo -e "${green}æ›´æ–°å®Œæˆï¼Œå·²è‡ªåŠ¨é‡å¯ rconï¼Œè¯·ä½¿ç”¨ rcon log æŸ¥çœ‹è¿è¡Œæ—¥å¿—${plain}"
+        echo -e "${green}Update completed, V2bX has been automatically restarted, please use V2bX log to view the running log${plain}"
         exit
     fi
 
@@ -124,30 +123,30 @@ update() {
 }
 
 config() {
-    echo "rconåœ¨ä¿®æ”¹é…ç½®åŽä¼šè‡ªåŠ¨å°è¯•é‡å¯"
-    vi /etc/rcon/config.json
+    echo "V2bX will automatically try to restart after modifying the configuration"
+    vi /etc/V2bX/config.json
     sleep 2
     restart
     check_status
     case $? in
         0)
-            echo -e "rconçŠ¶æ€: ${green}å·²è¿è¡Œ${plain}"
+            echo -e "V2bX status: ${green}Running${plain}"
             ;;
         1)
-            echo -e "æ£€æµ‹åˆ°æ‚¨æœªå¯åŠ¨rconæˆ–rconè‡ªåŠ¨é‡å¯å¤±è´¥ï¼Œæ˜¯å¦æŸ¥çœ‹æ—¥å¿—ï¼Ÿ[Y/n]" && echo
-            read -e -rp "(é»˜è®¤: y):" yn
+            echo -e "Detected that you did not start V2bX or V2bX failed to restart automatically, do you want to view the log? [Y/n]" && echo
+            read -e -rp "(default: y):" yn
             [[ -z ${yn} ]] && yn="y"
             if [[ ${yn} == [Yy] ]]; then
                show_log
             fi
             ;;
         2)
-            echo -e "rconçŠ¶æ€: ${red}æœªå®‰è£…${plain}"
+            echo -e "V2bX status: ${red}Not installed${plain}"
     esac
 }
 
 uninstall() {
-    confirm "ç¡®å®šè¦å¸è½½ rcon å—?" "n"
+    confirm "Are you sure you want to uninstall V2bX?" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
@@ -155,21 +154,21 @@ uninstall() {
         return 0
     fi
     if [[ x"${release}" == x"alpine" ]]; then
-        service rcon stop
-        rc-update del rcon
-        rm /etc/init.d/rcon -f
+        service V2bX stop
+        rc-update del V2bX
+        rm /etc/init.d/V2bX -f
     else
-        systemctl stop rcon
-        systemctl disable rcon
-        rm /etc/systemd/system/rcon.service -f
+        systemctl stop V2bX
+        systemctl disable V2bX
+        rm /etc/systemd/system/V2bX.service -f
         systemctl daemon-reload
         systemctl reset-failed
     fi
-    rm /etc/rcon/ -rf
-    rm /usr/local/rcon/ -rf
+    rm /etc/V2bX/ -rf
+    rm /usr/local/V2bX/ -rf
 
     echo ""
-    echo -e "å¸è½½æˆåŠŸï¼Œå¦‚æžœä½ æƒ³åˆ é™¤æ­¤è„šæœ¬ï¼Œåˆ™é€€å‡ºè„šæœ¬åŽè¿è¡Œ ${green}rm /usr/bin/rcon -f${plain} è¿›è¡Œåˆ é™¤"
+    echo -e "Uninstall successful. If you want to delete this script, exit the script and run ${green}rm /usr/bin/V2bX -f${plain} to delete it."
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -181,19 +180,19 @@ start() {
     check_status
     if [[ $? == 0 ]]; then
         echo ""
-        echo -e "${green}rconå·²è¿è¡Œï¼Œæ— éœ€å†æ¬¡å¯åŠ¨ï¼Œå¦‚éœ€é‡å¯è¯·é€‰æ‹©é‡å¯${plain}"
+        echo -e "${green}V2bX is already running, no need to start it again. If you need to restart, please choose restart${plain}"
     else
         if [[ x"${release}" == x"alpine" ]]; then
-            service rcon start
+            service V2bX start
         else
-            systemctl start rcon
+            systemctl start V2bX
         fi
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            echo -e "${green}rcon å¯åŠ¨æˆåŠŸï¼Œè¯·ä½¿ç”¨ rcon log æŸ¥çœ‹è¿è¡Œæ—¥å¿—${plain}"
+            echo -e "${green}V2bX started successfully, please use V2bX log to view the running log${plain}"
         else
-            echo -e "${red}rconå¯èƒ½å¯åŠ¨å¤±è´¥ï¼Œè¯·ç¨åŽä½¿ç”¨ rcon log æŸ¥çœ‹æ—¥å¿—ä¿¡æ¯${plain}"
+            echo -e "${red}V2bX may have failed to start, please use V2bX log to view the log information later${plain}"
         fi
     fi
 
@@ -204,16 +203,16 @@ start() {
 
 stop() {
     if [[ x"${release}" == x"alpine" ]]; then
-        service rcon stop
+        service V2bX stop
     else
-        systemctl stop rcon
+        systemctl stop V2bX
     fi
     sleep 2
     check_status
     if [[ $? == 1 ]]; then
-        echo -e "${green}rcon åœæ­¢æˆåŠŸ${plain}"
+        echo -e "${green}V2bX stopped successfully${plain}"
     else
-        echo -e "${red}rconåœæ­¢å¤±è´¥ï¼Œå¯èƒ½æ˜¯å› ä¸ºåœæ­¢æ—¶é—´è¶…è¿‡äº†ä¸¤ç§’ï¼Œè¯·ç¨åŽæŸ¥çœ‹æ—¥å¿—ä¿¡æ¯${plain}"
+        echo -e "${red}V2bX failed to stop, possibly because the stop time exceeded two seconds, please check the log information later${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -223,16 +222,16 @@ stop() {
 
 restart() {
     if [[ x"${release}" == x"alpine" ]]; then
-        service rcon restart
+        service V2bX restart
     else
-        systemctl restart rcon
+        systemctl restart V2bX
     fi
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
-        echo -e "${green}rcon é‡å¯æˆåŠŸï¼Œè¯·ä½¿ç”¨ rcon log æŸ¥çœ‹è¿è¡Œæ—¥å¿—${plain}"
+        echo -e "${green}V2bX restarted successfully, please use V2bX log to view the running log${plain}"
     else
-        echo -e "${red}rconå¯èƒ½å¯åŠ¨å¤±è´¥ï¼Œè¯·ç¨åŽä½¿ç”¨ rcon log æŸ¥çœ‹æ—¥å¿—ä¿¡æ¯${plain}"
+        echo -e "${red}V2bX may have failed to start, please use V2bX log to view the log information later${plain}"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -241,9 +240,9 @@ restart() {
 
 status() {
     if [[ x"${release}" == x"alpine" ]]; then
-        service rcon status
+        service V2bX status
     else
-        systemctl status rcon --no-pager -l
+        systemctl status V2bX --no-pager -l
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -252,14 +251,14 @@ status() {
 
 enable() {
     if [[ x"${release}" == x"alpine" ]]; then
-        rc-update add rcon
+        rc-update add V2bX
     else
-        systemctl enable rcon
+        systemctl enable V2bX
     fi
     if [[ $? == 0 ]]; then
-        echo -e "${green}rcon è®¾ç½®å¼€æœºè‡ªå¯æˆåŠŸ${plain}"
+        echo -e "${green}V2bX set to start on boot successfully${plain}"
     else
-        echo -e "${red}rcon è®¾ç½®å¼€æœºè‡ªå¯å¤±è´¥${plain}"
+        echo -e "${red}V2bX failed to set start on boot${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -269,14 +268,14 @@ enable() {
 
 disable() {
     if [[ x"${release}" == x"alpine" ]]; then
-        rc-update del rcon
+        rc-update del V2bX
     else
-        systemctl disable rcon
+        systemctl disable V2bX
     fi
     if [[ $? == 0 ]]; then
-        echo -e "${green}rcon å–æ¶ˆå¼€æœºè‡ªå¯æˆåŠŸ${plain}"
+        echo -e "${green}V2bX canceled start on boot successfully${plain}"
     else
-        echo -e "${red}rcon å–æ¶ˆå¼€æœºè‡ªå¯å¤±è´¥${plain}"
+        echo -e "${red}V2bX failed to cancel start on boot${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -286,9 +285,9 @@ disable() {
 
 show_log() {
     if [[ x"${release}" == x"alpine" ]]; then
-        echo -e "${red}alpineç³»ç»Ÿæš‚ä¸æ”¯æŒæ—¥å¿—æŸ¥çœ‹${plain}\n" && exit 1
+        echo -e "${red}Alpine system does not support log viewing for now${plain}\n" && exit 1
     else
-        journalctl -u rcon.service -e --no-pager -f
+        journalctl -u V2bX.service -e --no-pager -f
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -300,31 +299,31 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/rcon -N --no-check-certificate https://raw.githubusercontent.com/wyx2685/rcon-script/master/rcon.sh
+    wget -O /usr/bin/V2bX -N --no-check-certificate https://raw.githubusercontent.com/V2bX-project/V2bX-script/master/V2bX.sh
     if [[ $? != 0 ]]; then
         echo ""
-        echo -e "${red}ä¸‹è½½è„šæœ¬å¤±è´¥ï¼Œè¯·æ£€æŸ¥æœ¬æœºèƒ½å¦è¿žæŽ¥ Github${plain}"
+        echo -e "${red}Failed to download script, please check if this machine can connect to Github${plain}"
         before_show_menu
     else
-        chmod +x /usr/bin/rcon
-        echo -e "${green}å‡çº§è„šæœ¬æˆåŠŸï¼Œè¯·é‡æ–°è¿è¡Œè„šæœ¬${plain}" && exit 0
+        chmod +x /usr/bin/V2bX
+        echo -e "${green}Script upgraded successfully, please rerun the script${plain}" && exit 0
     fi
 }
 
 # 0: running, 1: not running, 2: not installed
 check_status() {
-    if [[ ! -f /usr/local/rcon/rcon ]]; then
+    if [[ ! -f /usr/local/V2bX/V2bX ]]; then
         return 2
     fi
     if [[ x"${release}" == x"alpine" ]]; then
-        temp=$(service rcon status | awk '{print $3}')
+        temp=$(service V2bX status | awk '{print $3}')
         if [[ x"${temp}" == x"started" ]]; then
             return 0
         else
             return 1
         fi
     else
-        temp=$(systemctl status rcon | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+        temp=$(systemctl status V2bX | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
         if [[ x"${temp}" == x"running" ]]; then
             return 0
         else
@@ -335,14 +334,14 @@ check_status() {
 
 check_enabled() {
     if [[ x"${release}" == x"alpine" ]]; then
-        temp=$(rc-update show | grep rcon)
+        temp=$(rc-update show | grep V2bX)
         if [[ x"${temp}" == x"" ]]; then
             return 1
         else
             return 0
         fi
     else
-        temp=$(systemctl is-enabled rcon)
+        temp=$(systemctl is-enabled V2bX)
         if [[ x"${temp}" == x"enabled" ]]; then
             return 0
         else
@@ -355,7 +354,7 @@ check_uninstall() {
     check_status
     if [[ $? != 2 ]]; then
         echo ""
-        echo -e "${red}rconå·²å®‰è£…ï¼Œè¯·ä¸è¦é‡å¤å®‰è£…${plain}"
+        echo -e "${red}V2bX is already installed, please do not reinstall${plain}"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -369,7 +368,7 @@ check_install() {
     check_status
     if [[ $? == 2 ]]; then
         echo ""
-        echo -e "${red}è¯·å…ˆå®‰è£…rcon${plain}"
+        echo -e "${red}Please install V2bX first${plain}"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -383,39 +382,39 @@ show_status() {
     check_status
     case $? in
         0)
-            echo -e "rconçŠ¶æ€: ${green}å·²è¿è¡Œ${plain}"
+            echo -e "V2bX status: ${green}Running${plain}"
             show_enable_status
             ;;
         1)
-            echo -e "rconçŠ¶æ€: ${yellow}æœªè¿è¡Œ${plain}"
+            echo -e "V2bX status: ${yellow}Not running${plain}"
             show_enable_status
             ;;
         2)
-            echo -e "rconçŠ¶æ€: ${red}æœªå®‰è£…${plain}"
+            echo -e "V2bX status: ${red}Not installed${plain}"
     esac
 }
 
 show_enable_status() {
     check_enabled
     if [[ $? == 0 ]]; then
-        echo -e "æ˜¯å¦å¼€æœºè‡ªå¯: ${green}æ˜¯${plain}"
+        echo -e "Start on boot: ${green}Yes${plain}"
     else
-        echo -e "æ˜¯å¦å¼€æœºè‡ªå¯: ${red}å¦${plain}"
+        echo -e "Start on boot: ${red}No${plain}"
     fi
 }
 
 generate_x25519_key() {
-    echo -n "æ­£åœ¨ç”Ÿæˆ x25519 å¯†é’¥ï¼š"
-    /usr/local/rcon/rcon x25519
+    echo -n "Generating x25519 key:"
+    /usr/local/V2bX/V2bX x25519
     echo ""
     if [[ $# == 0 ]]; then
         before_show_menu
     fi
 }
 
-show_rcon_version() {
-    echo -n "rcon ç‰ˆæœ¬ï¼š"
-    /usr/local/rcon/rcon version
+show_V2bX_version() {
+    echo -n "V2bX version:"
+    /usr/local/V2bX/V2bX version
     echo ""
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -423,11 +422,11 @@ show_rcon_version() {
 }
 
 add_node_config() {
-    echo -e "${green}è¯·é€‰æ‹©èŠ‚ç‚¹æ ¸å¿ƒç±»åž‹ï¼š${plain}"
+    echo -e "${green}Please select the node core type:${plain}"
     echo -e "${green}1. xray${plain}"
     echo -e "${green}2. singbox${plain}"
     echo -e "${green}3. hysteria2${plain}"
-    read -rp "è¯·è¾“å…¥ï¼š" core_type
+    read -rp "Please enter: " core_type
     if [ "$core_type" == "1" ]; then
         core="xray"
         core_xray=true
@@ -438,23 +437,22 @@ add_node_config() {
         core="hysteria2"
         core_hysteria2=true
     else
-        echo "æ— æ•ˆçš„é€‰æ‹©ã€‚è¯·é€‰æ‹© 1 2 3ã€‚"
+        echo "Invalid choice. Please choose 1, 2, or 3."
         continue
     fi
     while true; do
-        read -rp "è¯·è¾“å…¥èŠ‚ç‚¹Node IDï¼š" NodeID
-        # åˆ¤æ–­NodeIDæ˜¯å¦ä¸ºæ­£æ•´æ•°
+        read -rp "Please enter Node ID: " NodeID
         if [[ "$NodeID" =~ ^[0-9]+$ ]]; then
-            break  # è¾“å…¥æ­£ç¡®ï¼Œé€€å‡ºå¾ªçŽ¯
+            break
         else
-            echo "é”™è¯¯ï¼šè¯·è¾“å…¥æ­£ç¡®çš„æ•°å­—ä½œä¸ºNode IDã€‚"
+            echo "Error: Please enter a correct number as Node ID."
         fi
     done
 
     if [ "$core_hysteria2" = true ] && [ "$core_xray" = false ] && [ "$core_sing" = false ]; then
         NodeType="hysteria2"
     else
-        echo -e "${yellow}è¯·é€‰æ‹©èŠ‚ç‚¹ä¼ è¾“åè®®ï¼š${plain}"
+        echo -e "${yellow}Please select the node transport protocol:${plain}"
         echo -e "${green}1. Shadowsocks${plain}"
         echo -e "${green}2. Vless${plain}"
         echo -e "${green}3. Vmess${plain}"
@@ -470,7 +468,7 @@ add_node_config() {
             echo -e "${green}7. Tuic${plain}"
             echo -e "${green}8. AnyTLS${plain}"
         fi
-        read -rp "è¯·è¾“å…¥ï¼š" NodeType
+        read -rp "Please enter: " NodeType
         case "$NodeType" in
             1 ) NodeType="shadowsocks" ;;
             2 ) NodeType="vless" ;;
@@ -485,32 +483,32 @@ add_node_config() {
     fi
     fastopen=true
     if [ "$NodeType" == "vless" ]; then
-        read -rp "è¯·é€‰æ‹©æ˜¯å¦ä¸ºrealityèŠ‚ç‚¹ï¼Ÿ(y/n)" isreality
+        read -rp "Please choose whether it is a reality node? (y/n) " isreality
     elif [ "$NodeType" == "hysteria" ] || [ "$NodeType" == "hysteria2" ] || [ "$NodeType" == "tuic" ] || [ "$NodeType" == "anytls" ]; then
         fastopen=false
         istls="y"
     fi
 
     if [[ "$isreality" != "y" && "$isreality" != "Y" &&  "$istls" != "y" ]]; then
-        read -rp "è¯·é€‰æ‹©æ˜¯å¦è¿›è¡ŒTLSé…ç½®ï¼Ÿ(y/n)" istls
+        read -rp "Please choose whether to configure TLS? (y/n) " istls
     fi
 
     certmode="none"
     certdomain="example.com"
     if [[ "$isreality" != "y" && "$isreality" != "Y" && ( "$istls" == "y" || "$istls" == "Y" ) ]]; then
-        echo -e "${yellow}è¯·é€‰æ‹©è¯ä¹¦ç”³è¯·æ¨¡å¼ï¼š${plain}"
-        echo -e "${green}1. httpæ¨¡å¼è‡ªåŠ¨ç”³è¯·ï¼ŒèŠ‚ç‚¹åŸŸåå·²æ­£ç¡®è§£æž${plain}"
-        echo -e "${green}2. dnsæ¨¡å¼è‡ªåŠ¨ç”³è¯·ï¼Œéœ€å¡«å…¥æ­£ç¡®åŸŸåæœåŠ¡å•†APIå‚æ•°${plain}"
-        echo -e "${green}3. selfæ¨¡å¼ï¼Œè‡ªç­¾è¯ä¹¦æˆ–æä¾›å·²æœ‰è¯ä¹¦æ–‡ä»¶${plain}"
-        read -rp "è¯·è¾“å…¥ï¼š" certmode
+        echo -e "${yellow}Please select the certificate application mode:${plain}"
+        echo -e "${green}1. HTTP mode automatic application, node domain name has been correctly resolved${plain}"
+        echo -e "${green}2. DNS mode automatic application, correct domain name provider API parameters need to be filled in${plain}"
+        echo -e "${green}3. self mode, self-signed certificate or provide existing certificate files${plain}"
+        read -rp "Please enter: " certmode
         case "$certmode" in
             1 ) certmode="http" ;;
             2 ) certmode="dns" ;;
             3 ) certmode="self" ;;
         esac
-        read -rp "è¯·è¾“å…¥èŠ‚ç‚¹è¯ä¹¦åŸŸå(example.com)ï¼š" certdomain
+        read -rp "Please enter the node certificate domain name (example.com): " certdomain
         if [ "$certmode" != "http" ]; then
-            echo -e "${red}è¯·æ‰‹åŠ¨ä¿®æ”¹é…ç½®æ–‡ä»¶åŽé‡å¯rconï¼${plain}"
+            echo -e "${red}Please manually modify the configuration file and restart V2bX!${plain}"
         fi
     fi
     ipv6_support=$(check_ipv6_support)
@@ -540,9 +538,9 @@ add_node_config() {
                 "CertMode": "$certmode",
                 "RejectUnknownSni": false,
                 "CertDomain": "$certdomain",
-                "CertFile": "/etc/rcon/fullchain.cer",
-                "KeyFile": "/etc/rcon/cert.key",
-                "Email": "rcon@github.com",
+                "CertFile": "/etc/V2bX/fullchain.cer",
+                "KeyFile": "/etc/V2bX/cert.key",
+                "Email": "V2bX@github.com",
                 "Provider": "cloudflare",
                 "DNSEnv": {
                     "EnvName": "env1"
@@ -570,9 +568,9 @@ EOF
                 "CertMode": "$certmode",
                 "RejectUnknownSni": false,
                 "CertDomain": "$certdomain",
-                "CertFile": "/etc/rcon/fullchain.cer",
-                "KeyFile": "/etc/rcon/cert.key",
-                "Email": "rcon@github.com",
+                "CertFile": "/etc/V2bX/fullchain.cer",
+                "KeyFile": "/etc/V2bX/cert.key",
+                "Email": "V2bX@github.com",
                 "Provider": "cloudflare",
                 "DNSEnv": {
                     "EnvName": "env1"
@@ -589,7 +587,7 @@ EOF
             "ApiKey": "$ApiKey",
             "NodeID": $NodeID,
             "NodeType": "$NodeType",
-            "Hysteria2ConfigPath": "/etc/rcon/hy2config.yaml",
+            "Hysteria2ConfigPath": "/etc/V2bX/hy2config.yaml",
             "Timeout": 30,
             "ListenIP": "",
             "SendIP": "0.0.0.0",
@@ -599,9 +597,9 @@ EOF
                 "CertMode": "$certmode",
                 "RejectUnknownSni": false,
                 "CertDomain": "$certdomain",
-                "CertFile": "/etc/rcon/fullchain.cer",
-                "KeyFile": "/etc/rcon/cert.key",
-                "Email": "rcon@github.com",
+                "CertFile": "/etc/V2bX/fullchain.cer",
+                "KeyFile": "/etc/V2bX/cert.key",
+                "Email": "V2bX@github.com",
                 "Provider": "cloudflare",
                 "DNSEnv": {
                     "EnvName": "env1"
@@ -615,14 +613,14 @@ EOF
 }
 
 generate_config_file() {
-    echo -e "${yellow}rcon é…ç½®æ–‡ä»¶ç”Ÿæˆå‘å¯¼${plain}"
-    echo -e "${red}è¯·é˜…è¯»ä»¥ä¸‹æ³¨æ„äº‹é¡¹ï¼š${plain}"
-    echo -e "${red}1. ç›®å‰è¯¥åŠŸèƒ½æ­£å¤„æµ‹è¯•é˜¶æ®µ${plain}"
-    echo -e "${red}2. ç”Ÿæˆçš„é…ç½®æ–‡ä»¶ä¼šä¿å­˜åˆ° /etc/rcon/config.json${plain}"
-    echo -e "${red}3. åŽŸæ¥çš„é…ç½®æ–‡ä»¶ä¼šä¿å­˜åˆ° /etc/rcon/config.json.bak${plain}"
-    echo -e "${red}4. ç›®å‰ä»…éƒ¨åˆ†æ”¯æŒTLS${plain}"
-    echo -e "${red}5. ä½¿ç”¨æ­¤åŠŸèƒ½ç”Ÿæˆçš„é…ç½®æ–‡ä»¶ä¼šè‡ªå¸¦å®¡è®¡ï¼Œç¡®å®šç»§ç»­ï¼Ÿ(y/n)${plain}"
-    read -rp "è¯·è¾“å…¥ï¼š" continue_prompt
+    echo -e "${yellow}V2bX configuration file generation wizard${plain}"
+    echo -e "${red}Please read the following notes:${plain}"
+    echo -e "${red}1. Currently, this feature is in the testing phase${plain}"
+    echo -e "${red}2. The generated configuration file will be saved to /etc/V2bX/config.json${plain}"
+    echo -e "${red}3. The original configuration file will be saved to /etc/V2bX/config.json.bak${plain}"
+    echo -e "${red}4. Currently only partially supports TLS${plain}"
+    echo -e "${red}5. The configuration file generated using this feature will come with auditing. Are you sure you want to continue? (y/n)${plain}"
+    read -rp "Please enter: " continue_prompt
     if [[ "$continue_prompt" =~ ^[Nn][Oo]? ]]; then
         exit 0
     fi
@@ -636,45 +634,42 @@ generate_config_file() {
     
     while true; do
         if [ "$first_node" = true ]; then
-            read -rp "è¯·è¾“å…¥æœºåœºç½‘å€(https://example.com)ï¼š" ApiHost
-            read -rp "è¯·è¾“å…¥é¢æ¿å¯¹æŽ¥API Keyï¼š" ApiKey
-            read -rp "æ˜¯å¦è®¾ç½®å›ºå®šçš„æœºåœºç½‘å€å’ŒAPI Keyï¼Ÿ(y/n)" fixed_api
+            read -rp "Please enter the panel URL (https://example.com): " ApiHost
+            read -rp "Please enter the panel API Key: " ApiKey
+            read -rp "Whether to set a fixed panel URL and API Key? (y/n) " fixed_api
             if [ "$fixed_api" = "y" ] || [ "$fixed_api" = "Y" ]; then
                 fixed_api_info=true
-                echo -e "${red}æˆåŠŸå›ºå®šåœ°å€${plain}"
+                echo -e "${red}Successfully fixed the address${plain}"
             fi
             first_node=false
             add_node_config
         else
-            read -rp "æ˜¯å¦ç»§ç»­æ·»åŠ èŠ‚ç‚¹é…ç½®ï¼Ÿ(å›žè½¦ç»§ç»­ï¼Œè¾“å…¥næˆ–noé€€å‡º)" continue_adding_node
+            read -rp "Whether to continue adding node configurations? (Enter to continue, enter n or no to exit) " continue_adding_node
             if [[ "$continue_adding_node" =~ ^[Nn][Oo]? ]]; then
                 break
             elif [ "$fixed_api_info" = false ]; then
-                read -rp "è¯·è¾“å…¥æœºåœºç½‘å€ï¼š" ApiHost
-                read -rp "è¯·è¾“å…¥é¢æ¿å¯¹æŽ¥API Keyï¼š" ApiKey
+                read -rp "Please enter the panel URL: " ApiHost
+                read -rp "Please enter the panel API Key: " ApiKey
             fi
             add_node_config
         fi
     done
 
-    # åˆå§‹åŒ–æ ¸å¿ƒé…ç½®æ•°ç»„
     cores_config="["
 
-    # æ£€æŸ¥å¹¶æ·»åŠ xrayæ ¸å¿ƒé…ç½®
     if [ "$core_xray" = true ]; then
         cores_config+="
     {
         \"Type\": \"xray\",
         \"Log\": {
             \"Level\": \"error\",
-            \"ErrorPath\": \"/etc/rcon/error.log\"
+            \"ErrorPath\": \"/etc/V2bX/error.log\"
         },
-        \"OutboundConfigPath\": \"/etc/rcon/custom_outbound.json\",
-        \"RouteConfigPath\": \"/etc/rcon/route.json\"
+        \"OutboundConfigPath\": \"/etc/V2bX/custom_outbound.json\",
+        \"RouteConfigPath\": \"/etc/V2bX/route.json\"
     },"
     fi
 
-    # æ£€æŸ¥å¹¶æ·»åŠ singæ ¸å¿ƒé…ç½®
     if [ "$core_sing" = true ]; then
         cores_config+="
     {
@@ -688,11 +683,10 @@ generate_config_file() {
             \"Server\": \"time.apple.com\",
             \"ServerPort\": 0
         },
-        \"OriginalPath\": \"/etc/rcon/sing_origin.json\"
+        \"OriginalPath\": \"/etc/V2bX/sing_origin.json\"
     },"
     fi
 
-    # æ£€æŸ¥å¹¶æ·»åŠ hysteria2æ ¸å¿ƒé…ç½®
     if [ "$core_hysteria2" = true ]; then
         cores_config+="
     {
@@ -703,20 +697,16 @@ generate_config_file() {
     },"
     fi
 
-    # ç§»é™¤æœ€åŽä¸€ä¸ªé€—å·å¹¶å…³é—­æ•°ç»„
     cores_config+="]"
     cores_config=$(echo "$cores_config" | sed 's/},]$/}]/')
 
-    # åˆ‡æ¢åˆ°é…ç½®æ–‡ä»¶ç›®å½•
-    cd /etc/rcon
+    cd /etc/V2bX
     
-    # å¤‡ä»½æ—§çš„é…ç½®æ–‡ä»¶
     mv config.json config.json.bak
     nodes_config_str="${nodes_config[*]}"
     formatted_nodes_config="${nodes_config_str%,}"
 
-    # åˆ›å»º config.json æ–‡ä»¶
-    cat <<EOF > /etc/rcon/config.json
+    cat <<EOF > /etc/V2bX/config.json
 {
     "Log": {
         "Level": "error",
@@ -727,8 +717,7 @@ generate_config_file() {
 }
 EOF
     
-    # åˆ›å»º custom_outbound.json æ–‡ä»¶
-    cat <<EOF > /etc/rcon/custom_outbound.json
+    cat <<EOF > /etc/V2bX/custom_outbound.json
     [
         {
             "tag": "IPv4_out",
@@ -751,8 +740,7 @@ EOF
     ]
 EOF
     
-    # åˆ›å»º route.json æ–‡ä»¶
-    cat <<EOF > /etc/rcon/route.json
+    cat <<EOF > /etc/V2bX/route.json
     {
         "domainStrategy": "AsIs",
         "rules": [
@@ -818,8 +806,7 @@ EOF
     if [ "$ipv6_support" -eq 1 ]; then
         dnsstrategy="prefer_ipv4"
     fi
-    # åˆ›å»º sing_origin.json æ–‡ä»¶
-    cat <<EOF > /etc/rcon/sing_origin.json
+    cat <<EOF > /etc/V2bX/sing_origin.json
 {
   "dns": {
     "servers": [
@@ -893,8 +880,7 @@ EOF
 }
 EOF
 
-    # åˆ›å»º hy2config.yaml æ–‡ä»¶           
-    cat <<EOF > /etc/rcon/hy2config.yaml
+    cat <<EOF > /etc/V2bX/hy2config.yaml
 quic:
   initStreamReceiveWindow: 8388608
   maxStreamReceiveWindow: 8388608
@@ -916,12 +902,11 @@ acl:
 masquerade:
   type: 404
 EOF
-    echo -e "${green}rcon é…ç½®æ–‡ä»¶ç”Ÿæˆå®Œæˆï¼Œæ­£åœ¨é‡æ–°å¯åŠ¨ rcon æœåŠ¡${plain}"
+    echo -e "${green}V2bX configuration file generation completed, restarting V2bX service${plain}"
     restart 0
     before_show_menu
 }
 
-# æ”¾å¼€é˜²ç«å¢™ç«¯å£
 open_ports() {
     systemctl stop firewalld.service 2>/dev/null
     systemctl disable firewalld.service 2>/dev/null
@@ -935,60 +920,59 @@ open_ports() {
     iptables -F 2>/dev/null
     iptables -X 2>/dev/null
     netfilter-persistent save 2>/dev/null
-    echo -e "${green}æ”¾å¼€é˜²ç«å¢™ç«¯å£æˆåŠŸï¼${plain}"
+    echo -e "${green}Successfully opened firewall ports!${plain}"
 }
 
 show_usage() {
-    echo "rcon ç®¡ç†è„šæœ¬ä½¿ç”¨æ–¹æ³•: "
+    echo "V2bX management script usage: "
     echo "------------------------------------------"
-    echo "rcon              - æ˜¾ç¤ºç®¡ç†èœå• (åŠŸèƒ½æ›´å¤š)"
-    echo "rcon start        - å¯åŠ¨ rcon"
-    echo "rcon stop         - åœæ­¢ rcon"
-    echo "rcon restart      - é‡å¯ rcon"
-    echo "rcon status       - æŸ¥çœ‹ rcon çŠ¶æ€"
-    echo "rcon enable       - è®¾ç½® rcon å¼€æœºè‡ªå¯"
-    echo "rcon disable      - å–æ¶ˆ rcon å¼€æœºè‡ªå¯"
-    echo "rcon log          - æŸ¥çœ‹ rcon æ—¥å¿—"
-    echo "rcon x25519       - ç”Ÿæˆ x25519 å¯†é’¥"
-    echo "rcon generate     - ç”Ÿæˆ rcon é…ç½®æ–‡ä»¶"
-    echo "rcon update       - æ›´æ–° rcon"
-    echo "rcon update x.x.x - å®‰è£… rcon æŒ‡å®šç‰ˆæœ¬"
-    echo "rcon install      - å®‰è£… rcon"
-    echo "rcon uninstall    - å¸è½½ rcon"
-    echo "rcon version      - æŸ¥çœ‹ rcon ç‰ˆæœ¬"
+    echo "V2bX              - Show management menu (more features)"
+    echo "V2bX start        - Start V2bX"
+    echo "V2bX stop         - Stop V2bX"
+    echo "V2bX restart      - Restart V2bX"
+    echo "V2bX status       - Check V2bX status"
+    echo "V2bX enable       - Set V2bX to start on boot"
+    echo "V2bX disable      - Cancel V2bX start on boot"
+    echo "V2bX log          - View V2bX logs"
+    echo "V2bX x25519       - Generate x25519 key"
+    echo "V2bX generate     - Generate V2bX configuration file"
+    echo "V2bX update       - Update V2bX"
+    echo "V2bX update x.x.x - Install specified version of V2bX"
+    echo "V2bX install      - Install V2bX"
+    echo "V2bX uninstall    - Uninstall V2bX"
+    echo "V2bX version      - Check V2bX version"
     echo "------------------------------------------"
 }
 
 show_menu() {
     echo -e "
-  ${green}rcon åŽç«¯ç®¡ç†è„šæœ¬ï¼Œ${plain}${red}ä¸é€‚ç”¨äºŽdocker${plain}
---- https://github.com/wyx2685/rcon ---
-  ${green}0.${plain} ä¿®æ”¹é…ç½®
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-  ${green}1.${plain} å®‰è£… rcon
-  ${green}2.${plain} æ›´æ–° rcon
-  ${green}3.${plain} å¸è½½ rcon
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-  ${green}4.${plain} å¯åŠ¨ rcon
-  ${green}5.${plain} åœæ­¢ rcon
-  ${green}6.${plain} é‡å¯ rcon
-  ${green}7.${plain} æŸ¥çœ‹ rcon çŠ¶æ€
-  ${green}8.${plain} æŸ¥çœ‹ rcon æ—¥å¿—
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-  ${green}9.${plain} è®¾ç½® rcon å¼€æœºè‡ªå¯
-  ${green}10.${plain} å–æ¶ˆ rcon å¼€æœºè‡ªå¯
-â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
-  ${green}11.${plain} ä¸€é”®å®‰è£… bbr (æœ€æ–°å†…æ ¸)
-  ${green}12.${plain} æŸ¥çœ‹ rcon ç‰ˆæœ¬
-  ${green}13.${plain} ç”Ÿæˆ X25519 å¯†é’¥
-  ${green}14.${plain} å‡çº§ rcon ç»´æŠ¤è„šæœ¬
-  ${green}15.${plain} ç”Ÿæˆ rcon é…ç½®æ–‡ä»¶
-  ${green}16.${plain} æ”¾è¡Œ VPS çš„æ‰€æœ‰ç½‘ç»œç«¯å£
-  ${green}17.${plain} é€€å‡ºè„šæœ¬
+  ${green}V2bX backend management script, ${plain}${red}not suitable for docker${plain}
+--- https://github.com/V2bX-project/V2bX ---
+  ${green}0.${plain} Modify configuration
+--------------------------------
+  ${green}1.${plain} Install V2bX
+  ${green}2.${plain} Update V2bX
+  ${green}3.${plain} Uninstall V2bX
+--------------------------------
+  ${green}4.${plain} Start V2bX
+  ${green}5.${plain} Stop V2bX
+  ${green}6.${plain} Restart V2bX
+  ${green}7.${plain} Check V2bX status
+  ${green}8.${plain} Check V2bX logs
+--------------------------------
+  ${green}9.${plain} Set V2bX to start on boot
+  ${green}10.${plain} Cancel V2bX start on boot
+--------------------------------
+  ${green}11.${plain} One-click install BBR (latest kernel)
+  ${green}12.${plain} Check V2bX version
+  ${green}13.${plain} Generate X25519 key
+  ${green}14.${plain} Upgrade V2bX maintenance script
+  ${green}15.${plain} Generate V2bX configuration file
+  ${green}16.${plain} Open all network ports of VPS
+  ${green}17.${plain} Exit script
  "
- #åŽç»­æ›´æ–°å¯åŠ å…¥ä¸Šæ–¹å­—ç¬¦ä¸²ä¸­
     show_status
-    echo && read -rp "è¯·è¾“å…¥é€‰æ‹© [0-17]: " num
+    echo && read -rp "Please enter choice [0-17]: " num
 
     case "${num}" in
         0) config ;;
@@ -1003,16 +987,15 @@ show_menu() {
         9) check_install && enable ;;
         10) check_install && disable ;;
         11) install_bbr ;;
-        12) check_install && show_rcon_version ;;
+        12) check_install && show_V2bX_version ;;
         13) check_install && generate_x25519_key ;;
         14) update_shell ;;
         15) generate_config_file ;;
         16) open_ports ;;
         17) exit ;;
-        *) echo -e "${red}è¯·è¾“å…¥æ­£ç¡®çš„æ•°å­— [0-16]${plain}" ;;
+        *) echo -e "${red}Please enter a correct number [0-17]${plain}" ;;
     esac
 }
-
 
 if [[ $# > 0 ]]; then
     case $1 in
@@ -1029,11 +1012,10 @@ if [[ $# > 0 ]]; then
         "install") check_uninstall 0 && install 0 ;;
         "uninstall") check_install 0 && uninstall 0 ;;
         "x25519") check_install 0 && generate_x25519_key 0 ;;
-        "version") check_install 0 && show_rcon_version 0 ;;
+        "version") check_install 0 && show_V2bX_version 0 ;;
         "update_shell") update_shell ;;
         *) show_usage
     esac
 else
     show_menu
 fi
-
