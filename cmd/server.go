@@ -6,10 +6,10 @@ import (
 	"runtime"
 	"syscall"
 
-	"github.com/FNode/Rcon/conf"
-	vCore "github.com/FNode/Rcon/core"
-	"github.com/FNode/Rcon/limiter"
-	"github.com/FNode/Rcon/node"
+	"github.com/tavut846/Rcon/conf"
+	vCore "github.com/tavut846/Rcon/core"
+	"github.com/tavut846/Rcon/limiter"
+	"github.com/tavut846/Rcon/node"
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 )

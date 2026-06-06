@@ -4,11 +4,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/common/counter"
-	"github.com/FNode/Rcon/common/format"
-	vCore "github.com/FNode/Rcon/core"
-	"github.com/FNode/Rcon/core/xray/app/dispatcher"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/common/counter"
+	"github.com/tavut846/Rcon/common/format"
+	vCore "github.com/tavut846/Rcon/core"
+	"github.com/tavut846/Rcon/core/xray/app/dispatcher"
 	"github.com/xtls/xray-core/common/protocol"
 	"github.com/xtls/xray-core/proxy"
 )

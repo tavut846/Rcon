@@ -5,8 +5,8 @@ import (
 	"net"
 	"strings"
 
-	"github.com/FNode/Rcon/common/format"
-	"github.com/FNode/Rcon/limiter"
+	"github.com/tavut846/Rcon/common/format"
+	"github.com/tavut846/Rcon/limiter"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )

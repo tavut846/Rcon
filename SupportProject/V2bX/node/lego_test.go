@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/FNode/Rcon/conf"
+	"github.com/tavut846/Rcon/conf"
 )
 
 var l *Lego

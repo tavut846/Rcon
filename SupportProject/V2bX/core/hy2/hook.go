@@ -3,9 +3,9 @@
 import (
 	"sync"
 
-	"github.com/FNode/Rcon/common/counter"
-	"github.com/FNode/Rcon/common/format"
-	"github.com/FNode/Rcon/limiter"
+	"github.com/tavut846/Rcon/common/counter"
+	"github.com/tavut846/Rcon/common/format"
+	"github.com/tavut846/Rcon/limiter"
 	"github.com/apernet/hysteria/core/v2/server"
 	"go.uber.org/zap"
 )

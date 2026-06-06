@@ -2,7 +2,7 @@
 
 package rcon.core.app.dispatcher;
 option csharp_namespace = "rcon.core.app.dispatcher";
-option go_package = "github.com/FNode/Rcon/core/xray/app/dispatcher";
+option go_package = "github.com/tavut846/Rcon/core/xray/app/dispatcher";
 option java_package = "com.rcon.core.app.dispatcher";
 option java_multiple_files = true;
 

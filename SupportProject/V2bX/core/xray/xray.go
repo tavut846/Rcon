@@ -7,10 +7,10 @@ import (
 
 	"encoding/json/v2"
 
-	"github.com/FNode/Rcon/conf"
-	vCore "github.com/FNode/Rcon/core"
-	"github.com/FNode/Rcon/core/xray/app/dispatcher"
-	_ "github.com/FNode/Rcon/core/xray/distro/all"
+	"github.com/tavut846/Rcon/conf"
+	vCore "github.com/tavut846/Rcon/core"
+	"github.com/tavut846/Rcon/core/xray/app/dispatcher"
+	_ "github.com/tavut846/Rcon/core/xray/distro/all"
 	log "github.com/sirupsen/logrus"
 	"github.com/xtls/xray-core/app/proxyman"
 	"github.com/xtls/xray-core/app/stats"

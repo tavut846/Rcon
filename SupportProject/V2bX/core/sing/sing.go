@@ -9,8 +9,8 @@ import (
 	"github.com/sagernet/sing-box/include"
 	"github.com/sagernet/sing-box/log"
 
-	"github.com/FNode/Rcon/conf"
-	vCore "github.com/FNode/Rcon/core"
+	"github.com/tavut846/Rcon/conf"
+	vCore "github.com/tavut846/Rcon/core"
 	box "github.com/sagernet/sing-box"
 	"github.com/sagernet/sing-box/adapter"
 	"github.com/sagernet/sing-box/option"

@@ -96,7 +96,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/rcon.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/rcon.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -112,7 +112,7 @@ update() {
     else
         version=$2
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/install.sh) $version
+    bash <(curl -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh) $version
     if [[ $? == 0 ]]; then
         echo -e "${green}æ›´æ–°å®Œæˆï¼Œå·²è‡ªåŠ¨é‡å¯ rconï¼Œè¯·ä½¿ç”¨ rcon log æŸ¥çœ‹è¿è¡Œæ—¥å¿—${plain}"
         exit
@@ -300,7 +300,7 @@ install_bbr() {
 }
 
 update_shell() {
-    wget -O /usr/bin/rcon -N --no-check-certificate https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/rcon.sh
+    wget -O /usr/bin/rcon -N --no-check-certificate https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/rcon.sh
     if [[ $? != 0 ]]; then
         echo ""
         echo -e "${red}ä¸‹è½½è„šæœ¬å¤±è´¥ï¼Œè¯·æ£€æŸ¥æœ¬æœºèƒ½å¦è¿žæŽ¥ Github${plain}"
@@ -712,7 +712,7 @@ show_usage() {
 show_menu() {
     echo -e "
   ${green}rcon åŽç«¯ç®¡ç†è„šæœ¬ï¼Œ${plain}${red}ä¸é€‚ç”¨äºŽdocker${plain}
---- https://github.com/wyx2685/rcon ---
+--- https://github.com/tavut846/Rcon ---
   ${green}0.${plain} ä¿®æ”¹é…ç½®
 â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”â€”
   ${green}1.${plain} å®‰è£… rcon

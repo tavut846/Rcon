@@ -4,11 +4,11 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/common/task"
-	"github.com/FNode/Rcon/conf"
-	vCore "github.com/FNode/Rcon/core"
-	"github.com/FNode/Rcon/limiter"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/common/task"
+	"github.com/tavut846/Rcon/conf"
+	vCore "github.com/tavut846/Rcon/core"
+	"github.com/tavut846/Rcon/limiter"
 	log "github.com/sirupsen/logrus"
 )
 

@@ -20,8 +20,8 @@ import (
 	"github.com/go-acme/lego/v4/providers/dns"
 	"github.com/go-acme/lego/v4/registration"
 
-	"github.com/FNode/Rcon/common/file"
-	"github.com/FNode/Rcon/conf"
+	"github.com/tavut846/Rcon/common/file"
+	"github.com/tavut846/Rcon/conf"
 	"github.com/go-acme/lego/v4/certcrypto"
 	"github.com/go-acme/lego/v4/lego"
 )

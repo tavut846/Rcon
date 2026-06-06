@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/conf"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/conf"
 	"github.com/apernet/hysteria/core/v2/server"
 	"github.com/apernet/hysteria/extras/v2/correctnet"
 	"github.com/apernet/hysteria/extras/v2/masq"

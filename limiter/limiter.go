@@ -7,9 +7,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/common/format"
-	"github.com/FNode/Rcon/conf"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/common/format"
+	"github.com/tavut846/Rcon/conf"
 	"github.com/juju/ratelimit"
 )
 

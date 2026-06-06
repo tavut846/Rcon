@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/FNode/Rcon/common/exec"
+	"github.com/tavut846/Rcon/common/exec"
 )
 
 const (

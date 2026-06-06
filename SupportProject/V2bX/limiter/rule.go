@@ -3,7 +3,7 @@
 import (
 	"regexp"
 
-	"github.com/FNode/Rcon/api/panel"
+	"github.com/tavut846/Rcon/api/panel"
 )
 
 func (l *Limiter) CheckDomainRule(destination string) (reject bool) {

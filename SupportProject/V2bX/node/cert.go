@@ -11,7 +11,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/FNode/Rcon/common/file"
+	"github.com/tavut846/Rcon/common/file"
 	log "github.com/sirupsen/logrus"
 )
 

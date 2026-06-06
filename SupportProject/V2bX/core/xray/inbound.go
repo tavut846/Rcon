@@ -11,8 +11,8 @@ import (
 
 	"encoding/json"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/conf"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/conf"
 	"github.com/xtls/xray-core/common/net"
 	"github.com/xtls/xray-core/core"
 	coreConf "github.com/xtls/xray-core/infra/conf"

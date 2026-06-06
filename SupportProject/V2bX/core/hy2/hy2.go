@@ -1,8 +1,8 @@
 ﻿package hy2
 
 import (
-	"github.com/FNode/Rcon/conf"
-	vCore "github.com/FNode/Rcon/core"
+	"github.com/tavut846/Rcon/conf"
+	vCore "github.com/tavut846/Rcon/core"
 	"go.uber.org/zap"
 )
 

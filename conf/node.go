@@ -9,7 +9,7 @@ import (
 
 	"encoding/json"
 
-	"github.com/FNode/Rcon/common/json5"
+	"github.com/tavut846/Rcon/common/json5"
 )
 
 type NodeConfig struct {

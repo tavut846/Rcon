@@ -9,7 +9,7 @@ import (
 
 	"encoding/json"
 
-	"github.com/FNode/Rcon/api/panel"
+	"github.com/tavut846/Rcon/api/panel"
 	log "github.com/sirupsen/logrus"
 	coreConf "github.com/xtls/xray-core/infra/conf"
 )

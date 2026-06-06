@@ -3,8 +3,8 @@
 import (
 	"time"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/common/format"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/common/format"
 )
 
 func (l *Limiter) AddDynamicSpeedLimit(tag string, userInfo *panel.UserInfo, limitNum int, expire int64) error {

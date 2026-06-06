@@ -4,9 +4,9 @@ import (
 	"encoding/base64"
 	"errors"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/common/counter"
-	"github.com/FNode/Rcon/core"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/common/counter"
+	"github.com/tavut846/Rcon/core"
 	"github.com/sagernet/sing-box/option"
 	"github.com/sagernet/sing-box/protocol/anytls"
 	"github.com/sagernet/sing-box/protocol/hysteria"

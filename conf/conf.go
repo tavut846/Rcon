@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/FNode/Rcon/common/json5"
+	"github.com/tavut846/Rcon/common/json5"
 
 	"encoding/json/v2"
 )

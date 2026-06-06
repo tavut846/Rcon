@@ -3,10 +3,10 @@
 import (
 	"time"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/common/task"
-	vCore "github.com/FNode/Rcon/core"
-	"github.com/FNode/Rcon/limiter"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/common/task"
+	vCore "github.com/tavut846/Rcon/core"
+	"github.com/tavut846/Rcon/limiter"
 	log "github.com/sirupsen/logrus"
 )
 

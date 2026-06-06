@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/conf"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/conf"
 	"github.com/xtls/xray-core/core"
 	"github.com/xtls/xray-core/features/inbound"
 	"github.com/xtls/xray-core/features/outbound"

@@ -10,9 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/FNode/Rcon/common/counter"
-	"github.com/FNode/Rcon/common/rate"
-	"github.com/FNode/Rcon/limiter"
+	"github.com/tavut846/Rcon/common/counter"
+	"github.com/tavut846/Rcon/common/rate"
+	"github.com/tavut846/Rcon/limiter"
 
 	"github.com/xtls/xray-core/app/dispatcher"
 	"github.com/xtls/xray-core/common"

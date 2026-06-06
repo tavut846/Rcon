@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/FNode/Rcon/cmd"
+	"github.com/tavut846/Rcon/cmd"
 )
 
 func main() {

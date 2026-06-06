@@ -1,4 +1,4 @@
-﻿module github.com/FNode/Rcon
+﻿module github.com/tavut846/Rcon
 
 go 1.25
 

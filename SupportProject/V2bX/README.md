@@ -57,7 +57,7 @@ wget -N https://raw.githubusercontent.com/wyx2685/rcon-script/master/install.sh 
 ## æž„å»º
 ``` bash
 # é€šè¿‡-tagsé€‰é¡¹æŒ‡å®šè¦ç¼–è¯‘çš„å†…æ ¸ï¼Œ å¯é€‰ xrayï¼Œ sing, hysteria2
-GOEXPERIMENT=jsonv2 go build -v -o build_assets/rcon -tags "sing xray hysteria2 with_quic with_grpc with_utls with_wireguard with_acme with_gvisor" -trimpath -ldflags "-X 'github.com/FNode/Rcon/cmd.version=$version' -s -w -buildid="
+GOEXPERIMENT=jsonv2 go build -v -o build_assets/rcon -tags "sing xray hysteria2 with_quic with_grpc with_utls with_wireguard with_acme with_gvisor" -trimpath -ldflags "-X 'github.com/tavut846/Rcon/cmd.version=$version' -s -w -buildid="
 ```
 
 ## é…ç½®æ–‡ä»¶åŠè¯¦ç»†ä½¿ç”¨æ•™ç¨‹

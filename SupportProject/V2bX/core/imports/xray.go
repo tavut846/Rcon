@@ -2,5 +2,5 @@
 
 package imports
 
-import _ "github.com/FNode/Rcon/core/xray"
+import _ "github.com/tavut846/Rcon/core/xray"
 

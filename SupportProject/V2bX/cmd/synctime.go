@@ -3,7 +3,7 @@
 import (
 	"fmt"
 
-	"github.com/FNode/Rcon/common/systime"
+	"github.com/tavut846/Rcon/common/systime"
 	"github.com/beevik/ntp"
 	"github.com/spf13/cobra"
 )

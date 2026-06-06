@@ -6,12 +6,12 @@ import (
 	"net"
 	"sync"
 
-	"github.com/FNode/Rcon/common/format"
-	"github.com/FNode/Rcon/common/rate"
+	"github.com/tavut846/Rcon/common/format"
+	"github.com/tavut846/Rcon/common/rate"
 
-	"github.com/FNode/Rcon/limiter"
+	"github.com/tavut846/Rcon/limiter"
 
-	"github.com/FNode/Rcon/common/counter"
+	"github.com/tavut846/Rcon/common/counter"
 	"github.com/sagernet/sing-box/adapter"
 	"github.com/sagernet/sing-box/log"
 	N "github.com/sagernet/sing/common/network"

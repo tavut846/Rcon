@@ -3,7 +3,7 @@
 import (
 	"strconv"
 
-	"github.com/FNode/Rcon/api/panel"
+	"github.com/tavut846/Rcon/api/panel"
 	log "github.com/sirupsen/logrus"
 )
 

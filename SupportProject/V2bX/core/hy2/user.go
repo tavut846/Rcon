@@ -4,9 +4,9 @@ import (
 	"net"
 	"sync"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/common/counter"
-	vCore "github.com/FNode/Rcon/core"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/common/counter"
+	vCore "github.com/tavut846/Rcon/core"
 	"github.com/apernet/hysteria/core/v2/server"
 )
 

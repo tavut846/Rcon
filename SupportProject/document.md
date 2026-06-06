@@ -8,7 +8,7 @@ This folder contains the original projects and the dashboard server used for FNo
 rcon is the original core project for FNode. It is a multi-core node server based on Xray and Sing-box, providing support for various protocols like Vmess, Vless, Trojan, Shadowsocks, and Hysteria 1/2. It is designed to work as a backend for the V2board/Xboard panel system.
 
 ### [rcon-script](./rcon-script)
-This project contains the original scripts for managing FNode/rcon. It includes:
+This project contains the original scripts for managing tavut846/rcon. It includes:
 - `install.sh`: One-click installation script.
 - `rcon.sh`: Main management script for the service.
 - `rcon.service`: Systemd service definition.

@@ -3,7 +3,7 @@
 import (
 	"errors"
 
-	"github.com/FNode/Rcon/conf"
+	"github.com/tavut846/Rcon/conf"
 )
 
 var (

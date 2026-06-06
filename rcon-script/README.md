@@ -1,11 +1,11 @@
 # rcon-script
 
-Management and installation scripts for [rcon](https://github.com/FNode/Rcon).
+Management and installation scripts for [rcon](https://github.com/tavut846/Rcon).
 
 ## One-click Install
 
 ```bash
-wget -N https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/install.sh && bash install.sh
+wget -N https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh && bash install.sh
 ```
 
 ## Usage

@@ -3,7 +3,7 @@
 import (
 	log "github.com/sirupsen/logrus"
 
-	_ "github.com/FNode/Rcon/core/imports"
+	_ "github.com/tavut846/Rcon/core/imports"
 	"github.com/spf13/cobra"
 )
 

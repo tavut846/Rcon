@@ -3,8 +3,8 @@
 import (
 	"strings"
 
-	"github.com/FNode/Rcon/api/panel"
-	"github.com/FNode/Rcon/conf"
+	"github.com/tavut846/Rcon/api/panel"
+	"github.com/tavut846/Rcon/conf"
 	"github.com/apernet/hysteria/core/v2/server"
 	"github.com/spf13/viper"
 	"go.uber.org/zap"

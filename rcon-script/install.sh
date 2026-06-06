@@ -129,20 +129,20 @@ install_rcon() {
     cd /usr/local/rcon/
 
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/FNode/Rcon/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/tavut846/Rcon/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}检测 rcon 版本失败，可能是超出 Github API 限制，请稍后再试，或手动指定 rcon 版本安装${plain}"
             exit 1
         fi
         echo -e "检测到 rcon 最新版本：${last_version}，开始安装"
-        wget --no-check-certificate -N --progress=bar -O /usr/local/rcon/rcon-linux.zip https://github.com/FNode/Rcon/releases/download/${last_version}/rcon-linux-${arch}.zip
+        wget --no-check-certificate -N --progress=bar -O /usr/local/rcon/rcon-linux.zip https://github.com/tavut846/Rcon/releases/download/${last_version}/rcon-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
             echo -e "${red}下载 rcon 失败，请确保你的服务器能够下载 Github 的文件${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/FNode/Rcon/releases/download/${last_version}/rcon-linux-${arch}.zip"
+        url="https://github.com/tavut846/Rcon/releases/download/${last_version}/rcon-linux-${arch}.zip"
         echo -e "开始安装 rcon $1"
         wget --no-check-certificate -N --progress=bar -O /usr/local/rcon/rcon-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
@@ -212,7 +212,7 @@ EOF
     if [[ ! -f /etc/rcon/config.json ]]; then
         cp config.json /etc/rcon/
         echo -e ""
-        echo -e "全新安装，请先参看教程：https://github.com/FNode/Rcon，配置必要的内容"
+        echo -e "全新安装，请先参看教程：https://github.com/tavut846/Rcon，配置必要的内容"
         first_install=true
     else
         if [[ x"${release}" == x"alpine" ]]; then
@@ -226,7 +226,7 @@ EOF
         if [[ $? == 0 ]]; then
             echo -e "${green}rcon 重启成功${plain}"
         else
-            echo -e "${red}rcon 可能启动失败，请稍后使用 rcon log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/FNode/Rcon/wiki${plain}"
+            echo -e "${red}rcon 可能启动失败，请稍后使用 rcon log 查看日志信息，若无法启动，则可能更改了配置格式，请前往 wiki 查看：https://github.com/tavut846/Rcon/wiki${plain}"
         fi
         first_install=false
     fi
@@ -243,7 +243,7 @@ EOF
     if [[ ! -f /etc/rcon/custom_inbound.json ]]; then
         cp custom_inbound.json /etc/rcon/
     fi
-    curl -o /usr/bin/rcon -Ls https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/rcon.sh
+    curl -o /usr/bin/rcon -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/rcon.sh
     chmod +x /usr/bin/rcon
     if [ ! -L /usr/bin/rcon ]; then
         ln -s /usr/bin/rcon /usr/bin/rcon
@@ -274,7 +274,7 @@ EOF
     if [[ $first_install == true ]]; then
         read -rp "检测到你为第一次安装rcon,是否自动直接生成配置文件？(y/n): " if_generate
         if [[ $if_generate == [Yy] ]]; then
-            curl -o ./initconfig.sh -Ls https://raw.githubusercontent.com/FNode/Rcon/master/rcon-script/initconfig.sh
+            curl -o ./initconfig.sh -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/initconfig.sh
             source initconfig.sh
             rm initconfig.sh -f
             generate_config_file
