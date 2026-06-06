@@ -1,6 +1,6 @@
 module github.com/tavut846/Rcon
 
-go 1.25.5
+go 1.26.4
 
 require (
 	github.com/beevik/ntp v1.4.4-0.20240716062501-06ef196b89ec
