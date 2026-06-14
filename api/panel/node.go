@@ -32,6 +32,7 @@ type NodeInfo struct {
 	VAllss      *VAllssNode
 	Shadowsocks *ShadowsocksNode
 	Trojan      *TrojanNode
+	AnyTLS      *AnyTLSNode
 	Common      *CommonNode
 }
 
@@ -113,6 +114,11 @@ type TrojanNode struct {
 	CommonNode
 	Network         string          `json:"network"`
 	NetworkSettings json.RawMessage `json:"networkSettings"`
+}
+
+type AnyTLSNode struct {
+	CommonNode
+	PaddingScheme string `json:"padding_scheme"`
 }
 
 type RawDNS struct {
@@ -201,6 +207,15 @@ func (c *Client) GetNodeInfo() (node *NodeInfo, err error) {
 		}
 		cm = &rsp.CommonNode
 		node.Trojan = rsp
+		node.Security = Tls
+	case "anytls":
+		rsp := &AnyTLSNode{}
+		err = json.Unmarshal(r.Body(), rsp)
+		if err != nil {
+			return nil, fmt.Errorf("decode anytls params error: %s", err)
+		}
+		cm = &rsp.CommonNode
+		node.AnyTLS = rsp
 		node.Security = Tls
 	}
 

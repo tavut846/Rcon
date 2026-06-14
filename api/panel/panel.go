@@ -63,7 +63,8 @@ func New(c *conf.ApiConfig) (*Client, error) {
 		"vmess",
 		"trojan",
 		"shadowsocks",
-		"vless":
+		"vless",
+		"anytls":
 	default:
 		return nil, fmt.Errorf("unsupported Node type: %s", c.NodeType)
 	}
