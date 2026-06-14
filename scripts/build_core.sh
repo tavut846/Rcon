@@ -1,52 +1,54 @@
 #!/bin/bash
+set -e
 
-# scripts/build_core.sh
-# Multi-layer sync and build script
+# deps/xray-core  — git submodule, NEVER committed to; tracks upstream XTLS/Xray-core
+#                   manual-updates branch holds local patches (anytls, etc.)
+# deps/rcon-core  — gitignored working copy; produced by this script
+#                   go.mod replace directive points here
 
-CORE_DIR="deps/xray-core"
+CORE_SRC="$(cd "$(dirname "$0")/.." && pwd)/deps/xray-core"
+CORE_BUILD="$(cd "$(dirname "$0")/.." && pwd)/deps/rcon-core"
 BINARY_NAME="rcon"
 
-if [ ! -d "$CORE_DIR" ]; then
-    echo "Core directory not found. Please run ./scripts/setup_core.sh first."
-    exit 1
+# ── First-run: initialise deps/rcon-core ─────────────────────────────────────
+if [ ! -d "$CORE_BUILD/.git" ]; then
+    echo "=== First run: creating deps/rcon-core ==="
+    git clone "$CORE_SRC" "$CORE_BUILD"
+    cd "$CORE_BUILD"
+    # Point 'origin' at the real upstream so we can fetch new releases
+    git remote set-url origin https://github.com/XTLS/Xray-core
+    # Second upstream: wyx2685 feature fork
+    git remote add features https://github.com/wyx2685/Xray-core || true
+    # Local patches source (manual-updates branch lives here)
+    git remote add patches "$CORE_SRC" || true
+    cd -
 fi
 
-cd "$CORE_DIR"
+cd "$CORE_BUILD"
 
-echo "=== Layer 1: Syncing with Official Xray (Foundation) ==="
+echo "=== Layer 1: Syncing with Official Xray-core ==="
 git fetch origin
 git checkout main
-git reset --hard origin/main # Always start with the absolute latest official
+git reset --hard origin/main
 
-echo "=== Layer 2: Auto-Merging Features (wyx2685 Plugin) ==="
+echo "=== Layer 2: Merging wyx2685 features ==="
 git fetch features
-git merge features/main --no-edit
-if [ $? -ne 0 ]; then
-    echo "!!! MERGE CONFLICT (Features) !!!"
-    echo "The latest Xray version is incompatible with the feature fork."
+git merge features/main --no-edit || {
+    echo "!!! MERGE CONFLICT (features/main) — resolve in deps/rcon-core then re-run"
     git merge --abort
     exit 1
-fi
+}
 
-echo "=== Layer 3: Merging Manual Updates (Customization) ==="
-git merge manual-updates --no-edit
-if [ $? -ne 0 ]; then
-    echo "!!! MERGE CONFLICT (Manual Updates) !!!"
-    echo "Your custom changes conflict with the new core/features code."
-    echo "Please resolve conflicts in $CORE_DIR manually, commit to 'manual-updates', and try again."
-    # We don't abort here so you can fix it
+echo "=== Layer 3: Applying local patches (manual-updates) ==="
+git fetch patches
+git merge patches/manual-updates --no-edit || {
+    echo "!!! MERGE CONFLICT (manual-updates) — update deps/xray-core manual-updates branch then re-run"
+    git merge --abort
     exit 1
-fi
+}
 
-echo "=== Step 4: Building Rcon Project ==="
-cd ../..
-# Ensure dependencies are tidy
-go mod tidy
-go build -o "$BINARY_NAME" main.go
+echo "=== Layer 4: Building Rcon ==="
+cd "$(dirname "$0")/.."
+GOEXPERIMENT=jsonv2 go build -o "$BINARY_NAME" main.go
 
-if [ $? -eq 0 ]; then
-    echo "SUCCESS: Build complete with latest Xray + Features + Customizations."
-else
-    echo "ERROR: Project build failed."
-    exit 1
-fi
+echo "SUCCESS: $BINARY_NAME built with Xray + features + rcon patches."
