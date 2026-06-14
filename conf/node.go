@@ -120,15 +120,13 @@ type Options struct {
 
 func (o *Options) UnmarshalJSON(data []byte) error {
 	type opt Options
+	// Pre-initialize so JSON merges into defaults rather than zero values.
+	o.XrayOptions = NewXrayOptions()
 	err := json.Unmarshal(data, (*opt)(o))
 	if err != nil {
 		return err
 	}
-	switch o.Core {
-	case "xray":
-		o.XrayOptions = NewXrayOptions()
-		return json.Unmarshal(data, o.XrayOptions)
-	default:
+	if o.Core != "xray" {
 		o.Core = ""
 		o.RawOptions = data
 	}

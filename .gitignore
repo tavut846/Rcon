@@ -1,4 +1,5 @@
 ﻿example/config.yml
+example/temp/*
 example/main
 example/XrayR
 example/XrayR*

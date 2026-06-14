@@ -295,6 +295,22 @@ show_log() {
     fi
 }
 
+clear_log() {
+    echo -e "${yellow}Clearing rcon logs...${plain}"
+    if [[ -f /etc/rcon/error.log ]]; then
+        > /etc/rcon/error.log
+        echo -e "${green}Log file /etc/rcon/error.log cleared${plain}"
+    fi
+    if [[ x"${release}" != x"alpine" ]]; then
+        journalctl --rotate 2>/dev/null
+        journalctl --vacuum-time=1s 2>/dev/null
+        echo -e "${green}System journal logs cleared${plain}"
+    fi
+    if [[ $# == 0 ]]; then
+        before_show_menu
+    fi
+}
+
 install_bbr() {
     bash <(curl -L -s https://github.com/ylx2016/Linux-NetSpeed/raw/master/tcpx.sh)
 }
@@ -701,6 +717,7 @@ show_usage() {
     echo "rcon enable       - Enable rcon on boot"
     echo "rcon disable      - Disable rcon on boot"
     echo "rcon log          - Check rcon logs"
+    echo "rcon clearlog     - Clear rcon logs"
     echo "rcon x25519       - Generate x25519 key"
     echo "rcon generate     - Generate rcon configuration file"
     echo "rcon install      - Install rcon"
@@ -734,11 +751,12 @@ show_menu() {
   ${green}14.${plain} Upgrade rcon maintenance script
   ${green}15.${plain} Generate rcon configuration file
   ${green}16.${plain} Open all network ports on VPS
+  ${green}18.${plain} Clear rcon logs
   ${green}17.${plain} Exit script
  "
  # Subsequent updates can be added above
     show_status
-    echo && read -rp "Please enter selection [0-17]: " num
+    echo && read -rp "Please enter selection [0-18]: " num
 
     case "${num}" in
         0) config ;;
@@ -759,7 +777,8 @@ show_menu() {
         15) generate_config_file ;;
         16) open_ports ;;
         17) exit ;;
-        *) echo -e "${red}Please enter a correct number [0-17]${plain}" ;;
+        18) check_install && clear_log ;;
+        *) echo -e "${red}Please enter a correct number [0-18]${plain}" ;;
     esac
 }
 
@@ -773,6 +792,7 @@ if [[ $# > 0 ]]; then
         "enable") check_install 0 && enable 0 ;;
         "disable") check_install 0 && disable 0 ;;
         "log") check_install 0 && show_log 0 ;;
+        "clearlog") check_install 0 && clear_log 0 ;;
         "update") check_install 0 && update 0 $2 ;;
         "config") config $* ;;
         "generate") generate_config_file ;;

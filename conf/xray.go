@@ -1,5 +1,7 @@
 ﻿package conf
 
+import "encoding/json"
+
 type XrayConfig struct {
 	LogConfig          *XrayLogConfig        `json:"Log"`
 	AssetPath          string                `json:"AssetPath"`
@@ -59,11 +61,11 @@ type XrayOptions struct {
 }
 
 type FallBackConfigForXray struct {
-	SNI              string `json:"SNI"`
-	Alpn             string `json:"Alpn"`
-	Path             string `json:"Path"`
-	Dest             string `json:"Dest"`
-	ProxyProtocolVer uint64 `json:"ProxyProtocolVer"`
+	SNI              string          `json:"SNI"`
+	Alpn             string          `json:"Alpn"`
+	Path             string          `json:"Path"`
+	Dest             json.RawMessage `json:"Dest"`
+	ProxyProtocolVer uint64          `json:"ProxyProtocolVer"`
 }
 
 func NewXrayOptions() *XrayOptions {

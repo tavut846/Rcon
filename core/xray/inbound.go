@@ -15,6 +15,7 @@ import (
 
 	"github.com/tavut846/Rcon/api/panel"
 	"github.com/tavut846/Rcon/conf"
+	log "github.com/sirupsen/logrus"
 	"github.com/xtls/xray-core/common/net"
 	"github.com/xtls/xray-core/core"
 	coreConf "github.com/xtls/xray-core/infra/conf"
@@ -29,6 +30,7 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 	case "vmess", "vless":
 		err = buildV2ray(option, nodeInfo, in)
 		network = nodeInfo.VAllss.Network
+		logXhttpRealityHint(nodeInfo)
 	case "trojan":
 		err = buildTrojan(option, nodeInfo, in)
 		if nodeInfo.Trojan.Network != "" {
@@ -171,6 +173,7 @@ func buildV2ray(config *conf.Options, nodeInfo *panel.NodeInfo, inbound *coreCon
 			if err != nil {
 				return err
 			}
+			log.Infof("[vless] Fallback enabled with %d config(s)", len(fallbackConfigs))
 			s, err := json.Marshal(&coreConf.VLessInboundConfig{
 				Decryption: "none",
 				Fallbacks:  fallbackConfigs,
@@ -256,6 +259,26 @@ func buildV2ray(config *conf.Options, nodeInfo *panel.NodeInfo, inbound *coreCon
 	return nil
 }
 
+func logXhttpRealityHint(nodeInfo *panel.NodeInfo) {
+	if nodeInfo.Type != "vless" {
+		return
+	}
+	v := nodeInfo.VAllss
+	if (v.Network != "splithttp" && v.Network != "xhttp") || nodeInfo.Security != panel.Reality {
+		return
+	}
+	if v.NetworkSettings != nil {
+		var cfg struct {
+			DownloadSettings *struct{} `json:"downloadSettings"`
+		}
+		if json.Unmarshal(v.NetworkSettings, &cfg) == nil && cfg.DownloadSettings != nil {
+			log.Warn("[vless/xhttp+reality] downloadSettings detected — connections that fail Reality or arrive without VLESS framing will log \"invalid request version\"; ensure the download endpoint is reachable and uses the same protocol chain")
+			return
+		}
+	}
+	log.Info("[vless/xhttp+reality] node started; unexpected \"invalid request version\" errors typically indicate non-VLESS traffic (scanners) or a misconfigured client")
+}
+
 func buildTrojan(config *conf.Options, nodeInfo *panel.NodeInfo, inbound *coreConf.InboundDetourConfig) error {
 	inbound.Protocol = "trojan"
 	v := nodeInfo.Trojan
@@ -265,6 +288,7 @@ func buildTrojan(config *conf.Options, nodeInfo *panel.NodeInfo, inbound *coreCo
 		if err != nil {
 			return err
 		}
+		log.Infof("[trojan] Fallback enabled with %d config(s)", len(fallbackConfigs))
 		s, err := json.Marshal(&coreConf.TrojanServerConfig{
 			Fallbacks: fallbackConfigs,
 		})
@@ -354,19 +378,14 @@ func buildVlessFallbacks(fallbackConfigs []conf.FallBackConfigForXray) ([]*coreC
 	}
 	vlessFallBacks := make([]*coreConf.VLessInboundFallback, len(fallbackConfigs))
 	for i, c := range fallbackConfigs {
-		if c.Dest == "" {
-			return nil, fmt.Errorf("dest is required for fallback fialed")
-		}
-		var dest json.RawMessage
-		dest, err := json.Marshal(c.Dest)
-		if err != nil {
-			return nil, fmt.Errorf("marshal dest %s config fialed: %s", dest, err)
+		if len(c.Dest) == 0 {
+			return nil, fmt.Errorf("dest is required for fallback config[%d]", i)
 		}
 		vlessFallBacks[i] = &coreConf.VLessInboundFallback{
 			Name: c.SNI,
 			Alpn: c.Alpn,
 			Path: c.Path,
-			Dest: dest,
+			Dest: json.RawMessage(c.Dest),
 			Xver: c.ProxyProtocolVer,
 		}
 	}
@@ -377,24 +396,16 @@ func buildTrojanFallbacks(fallbackConfigs []conf.FallBackConfigForXray) ([]*core
 	if fallbackConfigs == nil {
 		return nil, fmt.Errorf("you must provide FallBackConfigs")
 	}
-
 	trojanFallBacks := make([]*coreConf.TrojanInboundFallback, len(fallbackConfigs))
 	for i, c := range fallbackConfigs {
-
-		if c.Dest == "" {
-			return nil, fmt.Errorf("dest is required for fallback fialed")
-		}
-
-		var dest json.RawMessage
-		dest, err := json.Marshal(c.Dest)
-		if err != nil {
-			return nil, fmt.Errorf("marshal dest %s config fialed: %s", dest, err)
+		if len(c.Dest) == 0 {
+			return nil, fmt.Errorf("dest is required for fallback config[%d]", i)
 		}
 		trojanFallBacks[i] = &coreConf.TrojanInboundFallback{
 			Name: c.SNI,
 			Alpn: c.Alpn,
 			Path: c.Path,
-			Dest: dest,
+			Dest: json.RawMessage(c.Dest),
 			Xver: c.ProxyProtocolVer,
 		}
 	}

@@ -79,8 +79,12 @@
         "EnableTFO": false,
         "DisableIVCheck": false,
         "DisableSniffing": false,
-        "EnableFallback": false,
-        "FallBackConfigs": []
+        "EnableFallback": true,
+        "FallBackConfigs": [
+          {
+            "dest": 443
+          }
+        ]
       },
       "CertConfig": {
         "CertMode": "none",
