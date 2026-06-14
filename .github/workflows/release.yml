@@ -1,4 +1,4 @@
-﻿name: Build and Release
+name: Build and Release
 
 on:
   workflow_dispatch:
@@ -25,7 +25,52 @@ on:
 
 jobs:
 
+  # Runs once to compute the version and pre-create the GitHub release so that
+  # parallel build jobs can upload to it without racing to create it.
+  prepare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - name: Checkout codebase
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version
+        id: version
+        run: |
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_OUTPUT
+          elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_OUTPUT
+          else
+            git fetch --tags
+            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+            LATEST_TAG=${LATEST_TAG#v}
+            MAJOR=$(echo $LATEST_TAG | cut -d. -f1)
+            MINOR=$(echo $LATEST_TAG | cut -d. -f2)
+            PATCH=$(echo $LATEST_TAG | cut -d. -f3)
+            echo "version=${MAJOR}.${MINOR}.$((PATCH + 1))" >> $GITHUB_OUTPUT
+          fi
+
+      # Create the release once here so build jobs only need to upload.
+      # Skipped for pull_request and pure release events (release already exists).
+      - name: Create GitHub release
+        if: >
+          github.event_name == 'workflow_dispatch' ||
+          (github.event_name == 'push' &&
+            (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')))
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: Release ${{ steps.version.outputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   build:
+    needs: prepare
     permissions:
       contents: write
     strategy:
@@ -134,37 +179,24 @@ jobs:
         run: |
           GOEXPERIMENT=jsonv2 go mod tidy
           go mod download
-      - name: Get version
-        run: |
-          if [[ "${{ github.event_name }}" == "release" ]]; then
-            echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
-          elif [[ "${{ github.ref }}" == refs/tags/* ]]; then
-            echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
-          else
-            git fetch --tags
-            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
-            LATEST_TAG=${LATEST_TAG#v}
-            MAJOR=$(echo $LATEST_TAG | cut -d. -f1)
-            MINOR=$(echo $LATEST_TAG | cut -d. -f2)
-            PATCH=$(echo $LATEST_TAG | cut -d. -f3)
-            echo "version=${MAJOR}.${MINOR}.$((PATCH + 1))" >> $GITHUB_ENV
-          fi
+
       - name: Build rcon
         run: |
-          echo "version: $version"
+          echo "version: ${{ needs.prepare.outputs.version }}"
           mkdir -p build_assets
-          GOEXPERIMENT=jsonv2 go build -v -o build_assets/rcon -tags "sing xray hysteria2 with_quic with_grpc with_utls with_wireguard with_acme with_gvisor" -trimpath -ldflags "-X 'github.com/tavut846/Rcon/cmd.version=$version' -s -w -buildid= -checklinkname=0"
+          GOEXPERIMENT=jsonv2 go build -v -o build_assets/rcon -tags "sing xray hysteria2 with_quic with_grpc with_utls with_wireguard with_acme with_gvisor" -trimpath -ldflags "-X 'github.com/tavut846/Rcon/cmd.version=${{ needs.prepare.outputs.version }}' -s -w -buildid= -checklinkname=0"
 
       - name: Build Mips softfloat rcon
         if: matrix.goarch == 'mips' || matrix.goarch == 'mipsle'
         run: |
-          echo "version: $version"
-          GOEXPERIMENT=jsonv2 GOMIPS=softfloat go build -v -o build_assets/rcon_softfloat -tags "sing xray hysteria2 with_quic with_grpc with_utls with_wireguard with_acme with_gvisor" -trimpath -ldflags "-X 'github.com/tavut846/Rcon/cmd.version=$version' -s -w -buildid= -checklinkname=0"
+          GOEXPERIMENT=jsonv2 GOMIPS=softfloat go build -v -o build_assets/rcon_softfloat -tags "sing xray hysteria2 with_quic with_grpc with_utls with_wireguard with_acme with_gvisor" -trimpath -ldflags "-X 'github.com/tavut846/Rcon/cmd.version=${{ needs.prepare.outputs.version }}' -s -w -buildid= -checklinkname=0"
+
       - name: Rename Windows rcon
         if: matrix.goos == 'windows'
         run: |
           cd ./build_assets || exit 1
           mv rcon rcon.exe
+
       - name: Prepare to release
         run: |
           cp ${GITHUB_WORKSPACE}/README.md ./build_assets/README.md
@@ -178,6 +210,7 @@ jobs:
             echo -e "Downloading ${DOWNLOAD_URL}..."
             curl -L "${DOWNLOAD_URL}" -o ./build_assets/${FILE_NAME}
           done
+
       - name: Create ZIP archive
         shell: bash
         run: |
@@ -191,23 +224,25 @@ jobs:
           do
             openssl dgst -$METHOD $FILE | sed 's/([^)]*)//g' >>$DGST
           done
+
       - name: Change the name
         run: |
           mv build_assets rcon-$ASSET_NAME
+
       - name: Upload files to Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: rcon-${{ steps.get_filename.outputs.ASSET_NAME }}
           path: |
             ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}/*
+
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         if: github.event_name == 'release' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')))
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}.zip*
-          tag: ${{ env.version }}
+          tag: ${{ needs.prepare.outputs.version }}
           file_glob: true
           overwrite: true
-          release_name: "Release ${{ env.version }}"
-
+          release_name: "Release ${{ needs.prepare.outputs.version }}"
