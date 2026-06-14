@@ -16,5 +16,4 @@ example/cert
 output/*
 .idea/*
 newrcon.sh
-deps/rcon-core/
 

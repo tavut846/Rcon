@@ -1,0 +1,2273 @@
+From 01c2e217a8d21aa2aec544d99dedcfe5f895f10b Mon Sep 17 00:00:00 2001
+From: Pandaa Xi <tavut846@gmail.com>
+Date: Mon, 15 Jun 2026 01:32:45 +0800
+Subject: [PATCH 2/2] feat: add AnyTLS protocol support (inbound + outbound)
+
+- proxy/anytls: full inbound (server.go) and outbound (client.go) handlers
+- proxy/anytls/session: session mux, stream, padding, pipe, client pool
+- proxy/anytls/account.go: MemoryAccount + Validator keyed by sha256(password)
+- proxy/anytls/config.pb.go: hand-crafted protobuf (Account, ClientConfig, ServerConfig)
+- infra/conf/anytls.go: JSON config builder for anytls inbound/outbound
+- infra/conf/xray.go: register "anytls" in inbound/outbound loader maps
+- main/distro/all/all.go: import proxy/anytls to trigger init()
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+---
+ infra/conf/anytls.go                |  78 +++++
+ infra/conf/xray.go                  |   2 +
+ main/distro/all/all.go              |   1 +
+ proxy/anytls/account.go             | 109 ++++++
+ proxy/anytls/client.go              | 168 +++++++++
+ proxy/anytls/config.pb.go           | 230 +++++++++++++
+ proxy/anytls/config.proto           |  24 ++
+ proxy/anytls/server.go              | 219 ++++++++++++
+ proxy/anytls/session/client_pool.go | 223 ++++++++++++
+ proxy/anytls/session/frame.go       |  44 +++
+ proxy/anytls/session/padding.go     | 120 +++++++
+ proxy/anytls/session/pipe.go        | 251 ++++++++++++++
+ proxy/anytls/session/session.go     | 516 ++++++++++++++++++++++++++++
+ proxy/anytls/session/stream.go      | 141 ++++++++
+ 14 files changed, 2126 insertions(+)
+ create mode 100644 infra/conf/anytls.go
+ create mode 100644 proxy/anytls/account.go
+ create mode 100644 proxy/anytls/client.go
+ create mode 100644 proxy/anytls/config.pb.go
+ create mode 100644 proxy/anytls/config.proto
+ create mode 100644 proxy/anytls/server.go
+ create mode 100644 proxy/anytls/session/client_pool.go
+ create mode 100644 proxy/anytls/session/frame.go
+ create mode 100644 proxy/anytls/session/padding.go
+ create mode 100644 proxy/anytls/session/pipe.go
+ create mode 100644 proxy/anytls/session/session.go
+ create mode 100644 proxy/anytls/session/stream.go
+
+diff --git a/infra/conf/anytls.go b/infra/conf/anytls.go
+new file mode 100644
+index 00000000..a0568cbc
+--- /dev/null
++++ b/infra/conf/anytls.go
+@@ -0,0 +1,78 @@
++package conf
++
++import (
++	"github.com/xtls/xray-core/common/protocol"
++	"github.com/xtls/xray-core/common/serial"
++	"github.com/xtls/xray-core/common/task"
++	"github.com/xtls/xray-core/proxy/anytls"
++	"google.golang.org/protobuf/proto"
++)
++
++// AnyTLSUserConfig is the JSON representation of a single user for anytls inbound.
++type AnyTLSUserConfig struct {
++	Password string `json:"password"`
++	Level    uint32 `json:"level"`
++	Email    string `json:"email"`
++}
++
++// AnyTLSServerConfig is the JSON representation of an anytls inbound.
++type AnyTLSServerConfig struct {
++	Users         []*AnyTLSUserConfig `json:"users"`
++	Clients       []*AnyTLSUserConfig `json:"clients"` // alias for users
++	PaddingScheme string              `json:"paddingScheme"`
++}
++
++func (c *AnyTLSServerConfig) Build() (proto.Message, error) {
++	config := new(anytls.ServerConfig)
++	config.PaddingScheme = c.PaddingScheme
++
++	// allow "clients" as an alias for "users"
++	users := c.Users
++	if len(c.Clients) > 0 {
++		users = c.Clients
++	}
++
++	if len(users) > 0 {
++		config.Users = make([]*protocol.User, len(users))
++		buildUser := func(idx int) error {
++			u := users[idx]
++			acc := &anytls.Account{Password: u.Password}
++			config.Users[idx] = &protocol.User{
++				Email:   u.Email,
++				Level:   u.Level,
++				Account: serial.ToTypedMessage(acc),
++			}
++			return nil
++		}
++		if err := task.ParallelForN(len(users), buildUser); err != nil {
++			return nil, err
++		}
++	}
++
++	return config, nil
++}
++
++// AnyTLSClientConfig is the JSON representation of an anytls outbound.
++type AnyTLSClientConfig struct {
++	Address  *Address `json:"address"`
++	Port     uint16   `json:"port"`
++	Password string   `json:"password"`
++	Level    uint32   `json:"level"`
++	Email    string   `json:"email"`
++}
++
++func (c *AnyTLSClientConfig) Build() (proto.Message, error) {
++	acc := &anytls.Account{Password: c.Password}
++	config := &anytls.ClientConfig{
++		Server: &protocol.ServerEndpoint{
++			Address: c.Address.Build(),
++			Port:    uint32(c.Port),
++			User: &protocol.User{
++				Email:   c.Email,
++				Level:   c.Level,
++				Account: serial.ToTypedMessage(acc),
++			},
++		},
++	}
++	return config, nil
++}
+diff --git a/infra/conf/xray.go b/infra/conf/xray.go
+index 3e6e4371..66a6f219 100644
+--- a/infra/conf/xray.go
++++ b/infra/conf/xray.go
+@@ -30,6 +30,7 @@ var (
+ 		"trojan":        func() interface{} { return new(TrojanServerConfig) },
+ 		"wireguard":     func() interface{} { return &WireGuardConfig{IsClient: false} },
+ 		"hysteria":      func() interface{} { return new(HysteriaServerConfig) },
++		"anytls":        func() interface{} { return new(AnyTLSServerConfig) },
+ 		"tun":           func() interface{} { return new(TunConfig) },
+ 	}, "protocol", "settings")
+ 
+@@ -46,6 +47,7 @@ var (
+ 		"vmess":       func() interface{} { return new(VMessOutboundConfig) },
+ 		"trojan":      func() interface{} { return new(TrojanClientConfig) },
+ 		"hysteria":    func() interface{} { return new(HysteriaClientConfig) },
++		"anytls":      func() interface{} { return new(AnyTLSClientConfig) },
+ 		"dns":         func() interface{} { return new(DNSOutboundConfig) },
+ 		"wireguard":   func() interface{} { return &WireGuardConfig{IsClient: true} },
+ 	}, "protocol", "settings")
+diff --git a/main/distro/all/all.go b/main/distro/all/all.go
+index accb7b07..9c805cd7 100644
+--- a/main/distro/all/all.go
++++ b/main/distro/all/all.go
+@@ -43,6 +43,7 @@ import (
+ 	_ "github.com/xtls/xray-core/proxy/loopback"
+ 	_ "github.com/xtls/xray-core/proxy/shadowsocks"
+ 	_ "github.com/xtls/xray-core/proxy/socks"
++	_ "github.com/xtls/xray-core/proxy/anytls"
+ 	_ "github.com/xtls/xray-core/proxy/trojan"
+ 	_ "github.com/xtls/xray-core/proxy/vless/inbound"
+ 	_ "github.com/xtls/xray-core/proxy/vless/outbound"
+diff --git a/proxy/anytls/account.go b/proxy/anytls/account.go
+new file mode 100644
+index 00000000..fa14ec12
+--- /dev/null
++++ b/proxy/anytls/account.go
+@@ -0,0 +1,109 @@
++package anytls
++
++import (
++	"crypto/sha256"
++	"encoding/hex"
++	"sync"
++
++	"google.golang.org/protobuf/proto"
++
++	"github.com/xtls/xray-core/common/errors"
++	"github.com/xtls/xray-core/common/protocol"
++)
++
++// MemoryAccount holds the parsed Account ready for use at runtime.
++type MemoryAccount struct {
++	Password       string
++	PasswordSha256 []byte // raw 32-byte sha256(password)
++}
++
++func (a *Account) AsAccount() (protocol.Account, error) {
++	sum := sha256.Sum256([]byte(a.Password))
++	return &MemoryAccount{
++		Password:       a.Password,
++		PasswordSha256: sum[:],
++	}, nil
++}
++
++func (m *MemoryAccount) Equals(other protocol.Account) bool {
++	o, ok := other.(*MemoryAccount)
++	if !ok {
++		return false
++	}
++	return m.Password == o.Password
++}
++
++func (m *MemoryAccount) ToProto() proto.Message {
++	return &Account{Password: m.Password}
++}
++
++// Validator stores the set of valid users for the inbound server,
++// keyed by hex-encoded sha256(password).
++type Validator struct {
++	mu    sync.RWMutex
++	users map[string]*protocol.MemoryUser
++}
++
++func NewValidator() *Validator {
++	return &Validator{users: make(map[string]*protocol.MemoryUser)}
++}
++
++func (v *Validator) Add(u *protocol.MemoryUser) error {
++	acc, ok := u.Account.(*MemoryAccount)
++	if !ok {
++		return errors.New("user account is not an anytls.MemoryAccount")
++	}
++	key := hex.EncodeToString(acc.PasswordSha256)
++	v.mu.Lock()
++	v.users[key] = u
++	v.mu.Unlock()
++	return nil
++}
++
++func (v *Validator) Del(email string) error {
++	v.mu.Lock()
++	defer v.mu.Unlock()
++	for k, u := range v.users {
++		if u.Email == email {
++			delete(v.users, k)
++			return nil
++		}
++	}
++	return errors.New("user not found: " + email)
++}
++
++// Get looks up a user by the raw 32-byte sha256 of their password.
++func (v *Validator) Get(sha256Bytes []byte) *protocol.MemoryUser {
++	key := hex.EncodeToString(sha256Bytes)
++	v.mu.RLock()
++	u := v.users[key]
++	v.mu.RUnlock()
++	return u
++}
++
++func (v *Validator) GetByEmail(email string) *protocol.MemoryUser {
++	v.mu.RLock()
++	defer v.mu.RUnlock()
++	for _, u := range v.users {
++		if u.Email == email {
++			return u
++		}
++	}
++	return nil
++}
++
++func (v *Validator) GetAll() []*protocol.MemoryUser {
++	v.mu.RLock()
++	defer v.mu.RUnlock()
++	all := make([]*protocol.MemoryUser, 0, len(v.users))
++	for _, u := range v.users {
++		all = append(all, u)
++	}
++	return all
++}
++
++func (v *Validator) GetCount() int64 {
++	v.mu.RLock()
++	defer v.mu.RUnlock()
++	return int64(len(v.users))
++}
+diff --git a/proxy/anytls/client.go b/proxy/anytls/client.go
+new file mode 100644
+index 00000000..55eb0880
+--- /dev/null
++++ b/proxy/anytls/client.go
+@@ -0,0 +1,168 @@
++package anytls
++
++import (
++	"context"
++	"encoding/binary"
++	"sync"
++	"time"
++
++	M "github.com/sagernet/sing/common/metadata"
++	"github.com/xtls/xray-core/common"
++	"github.com/xtls/xray-core/common/buf"
++	"github.com/xtls/xray-core/common/errors"
++	"github.com/xtls/xray-core/common/net"
++	"github.com/xtls/xray-core/common/protocol"
++	"github.com/xtls/xray-core/common/retry"
++	"github.com/xtls/xray-core/common/session"
++	"github.com/xtls/xray-core/common/signal"
++	"github.com/xtls/xray-core/common/singbridge"
++	"github.com/xtls/xray-core/common/task"
++	core "github.com/xtls/xray-core/core"
++	"github.com/xtls/xray-core/features/policy"
++	"github.com/xtls/xray-core/transport"
++	"github.com/xtls/xray-core/transport/internet"
++	anysession "github.com/xtls/xray-core/proxy/anytls/session"
++)
++
++func init() {
++	common.Must(common.RegisterConfig((*ClientConfig)(nil), func(ctx context.Context, config interface{}) (interface{}, error) {
++		return NewClient(ctx, config.(*ClientConfig))
++	}))
++}
++
++// Client is an outbound handler for the AnyTLS protocol.
++// It maintains a pool of AnyTLS sessions per server destination.
++type Client struct {
++	server        *protocol.ServerSpec
++	policyManager policy.Manager
++
++	poolMu sync.Mutex
++	pool   *anysession.Client // single server, single pool
++}
++
++func NewClient(ctx context.Context, config *ClientConfig) (*Client, error) {
++	if config.Server == nil {
++		return nil, errors.New("no server specified in anytls client config")
++	}
++	server, err := protocol.NewServerSpecFromPB(config.Server)
++	if err != nil {
++		return nil, errors.New("failed to parse server spec").Base(err)
++	}
++	v := core.MustFromContext(ctx)
++	return &Client{
++		server:        server,
++		policyManager: v.GetFeature(policy.ManagerType()).(policy.Manager),
++	}, nil
++}
++
++// Process implements proxy.Outbound.
++func (c *Client) Process(ctx context.Context, link *transport.Link, dialer internet.Dialer) error {
++	outbounds := session.OutboundsFromContext(ctx)
++	ob := outbounds[len(outbounds)-1]
++	if !ob.Target.IsValid() {
++		return errors.New("target not specified")
++	}
++	ob.Name = "anytls"
++	destination := ob.Target
++
++	user := c.server.User
++	account, ok := user.Account.(*MemoryAccount)
++	if !ok {
++		return errors.New("anytls: user account is not a MemoryAccount")
++	}
++
++	sessionPolicy := c.policyManager.ForLevel(user.Level)
++	ctx, cancel := context.WithCancel(ctx)
++	timer := signal.CancelAfterInactivity(ctx, cancel, sessionPolicy.Timeouts.ConnectionIdle)
++
++	pool := c.getPool(ctx, account, dialer)
++
++	stream, err := pool.CreateStream(ctx)
++	if err != nil {
++		return errors.New("anytls: failed to create stream").Base(err)
++	}
++	defer stream.Close()
++
++	errors.LogInfo(ctx, "anytls: tunnelling request to ", destination, " via ", c.server.Destination.NetAddr())
++
++	// Write SOCKS destination address to the stream.
++	if err := M.SocksaddrSerializer.WriteAddrPort(stream, singbridge.ToSocksaddr(destination)); err != nil {
++		return errors.New("anytls: failed to write destination address").Base(err)
++	}
++
++	postRequest := func() error {
++		defer timer.SetTimeout(sessionPolicy.Timeouts.DownlinkOnly)
++		if err := buf.Copy(link.Reader, buf.NewWriter(stream), buf.UpdateActivity(timer)); err != nil {
++			return errors.New("anytls: failed to forward request").Base(err)
++		}
++		return nil
++	}
++
++	getResponse := func() error {
++		defer timer.SetTimeout(sessionPolicy.Timeouts.UplinkOnly)
++		if err := buf.Copy(buf.NewReader(stream), link.Writer, buf.UpdateActivity(timer)); err != nil {
++			return errors.New("anytls: failed to forward response").Base(err)
++		}
++		return nil
++	}
++
++	responseDoneAndCloseWriter := task.OnSuccess(getResponse, task.Close(link.Writer))
++	if err := task.Run(ctx, postRequest, responseDoneAndCloseWriter); err != nil {
++		return errors.New("anytls: connection ends").Base(err)
++	}
++	return nil
++}
++
++// getPool returns (or lazily creates) the session pool for this client.
++// In the current design, one Client == one server == one pool.
++func (c *Client) getPool(ctx context.Context, account *MemoryAccount, dialer internet.Dialer) *anysession.Client {
++	c.poolMu.Lock()
++	defer c.poolMu.Unlock()
++	if c.pool != nil {
++		return c.pool
++	}
++
++	server := c.server
++	dialOut := func(dialCtx context.Context) (net.Conn, error) {
++		var conn net.Conn
++		err := retry.ExponentialBackoff(5, 100).On(func() error {
++			rawConn, err := dialer.Dial(dialCtx, server.Destination)
++			if err != nil {
++				return err
++			}
++			conn = rawConn
++			return nil
++		})
++		if err != nil {
++			return nil, errors.New("anytls: failed to dial server").Base(err)
++		}
++
++		// Send auth header: sha256(password)[32] + padding_len[2] + padding[n]
++		paddingF := anysession.DefaultPaddingFactory.Load()
++		var paddingLen int
++		if pads := paddingF.GenerateRecordPayloadSizes(0); len(pads) > 0 {
++			paddingLen = pads[0]
++		}
++
++		authBuf := make([]byte, 32+2+paddingLen)
++		copy(authBuf[:32], account.PasswordSha256)
++		binary.BigEndian.PutUint16(authBuf[32:34], uint16(paddingLen))
++		// padding bytes are already zero
++
++		if _, err := conn.Write(authBuf); err != nil {
++			conn.Close()
++			return nil, errors.New("anytls: failed to send auth header").Base(err)
++		}
++		return conn, nil
++	}
++
++	c.pool = anysession.NewClient(
++		ctx,
++		dialOut,
++		anysession.DefaultPaddingForClient(),
++		30*time.Second, // idleSessionCheckInterval
++		60*time.Second, // idleSessionTimeout
++		1,              // minIdleSession
++	)
++	return c.pool
++}
+diff --git a/proxy/anytls/config.pb.go b/proxy/anytls/config.pb.go
+new file mode 100644
+index 00000000..6d726905
+--- /dev/null
++++ b/proxy/anytls/config.pb.go
+@@ -0,0 +1,230 @@
++// Code generated by protoc-gen-go. DO NOT EDIT.
++// versions:
++// 	protoc-gen-go v1.36.11
++// 	protoc        v6.33.5
++// source: proxy/anytls/config.proto
++
++package anytls
++
++import (
++	protocol "github.com/xtls/xray-core/common/protocol"
++	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
++	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
++	reflect "reflect"
++	sync "sync"
++	unsafe "unsafe"
++)
++
++const (
++	_ = protoimpl.EnforceVersion(20 - protoimpl.MinVersion)
++	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
++)
++
++type Account struct {
++	state         protoimpl.MessageState `protogen:"open.v1"`
++	Password      string                 `protobuf:"bytes,1,opt,name=password,proto3" json:"password,omitempty"`
++	unknownFields protoimpl.UnknownFields
++	sizeCache     protoimpl.SizeCache
++}
++
++func (x *Account) Reset() {
++	*x = Account{}
++	mi := &file_proxy_anytls_config_proto_msgTypes[0]
++	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
++	ms.StoreMessageInfo(mi)
++}
++
++func (x *Account) String() string {
++	return protoimpl.X.MessageStringOf(x)
++}
++
++func (*Account) ProtoMessage() {}
++
++func (x *Account) ProtoReflect() protoreflect.Message {
++	mi := &file_proxy_anytls_config_proto_msgTypes[0]
++	if x != nil {
++		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
++		if ms.LoadMessageInfo() == nil {
++			ms.StoreMessageInfo(mi)
++		}
++		return ms
++	}
++	return mi.MessageOf(x)
++}
++
++func (*Account) Descriptor() ([]byte, []int) {
++	return file_proxy_anytls_config_proto_rawDescGZIP(), []int{0}
++}
++
++func (x *Account) GetPassword() string {
++	if x != nil {
++		return x.Password
++	}
++	return ""
++}
++
++type ClientConfig struct {
++	state         protoimpl.MessageState   `protogen:"open.v1"`
++	Server        *protocol.ServerEndpoint `protobuf:"bytes,1,opt,name=server,proto3" json:"server,omitempty"`
++	unknownFields protoimpl.UnknownFields
++	sizeCache     protoimpl.SizeCache
++}
++
++func (x *ClientConfig) Reset() {
++	*x = ClientConfig{}
++	mi := &file_proxy_anytls_config_proto_msgTypes[1]
++	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
++	ms.StoreMessageInfo(mi)
++}
++
++func (x *ClientConfig) String() string {
++	return protoimpl.X.MessageStringOf(x)
++}
++
++func (*ClientConfig) ProtoMessage() {}
++
++func (x *ClientConfig) ProtoReflect() protoreflect.Message {
++	mi := &file_proxy_anytls_config_proto_msgTypes[1]
++	if x != nil {
++		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
++		if ms.LoadMessageInfo() == nil {
++			ms.StoreMessageInfo(mi)
++		}
++		return ms
++	}
++	return mi.MessageOf(x)
++}
++
++func (*ClientConfig) Descriptor() ([]byte, []int) {
++	return file_proxy_anytls_config_proto_rawDescGZIP(), []int{1}
++}
++
++func (x *ClientConfig) GetServer() *protocol.ServerEndpoint {
++	if x != nil {
++		return x.Server
++	}
++	return nil
++}
++
++type ServerConfig struct {
++	state         protoimpl.MessageState `protogen:"open.v1"`
++	Users         []*protocol.User       `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
++	PaddingScheme string                 `protobuf:"bytes,2,opt,name=padding_scheme,json=paddingScheme,proto3" json:"padding_scheme,omitempty"`
++	unknownFields protoimpl.UnknownFields
++	sizeCache     protoimpl.SizeCache
++}
++
++func (x *ServerConfig) Reset() {
++	*x = ServerConfig{}
++	mi := &file_proxy_anytls_config_proto_msgTypes[2]
++	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
++	ms.StoreMessageInfo(mi)
++}
++
++func (x *ServerConfig) String() string {
++	return protoimpl.X.MessageStringOf(x)
++}
++
++func (*ServerConfig) ProtoMessage() {}
++
++func (x *ServerConfig) ProtoReflect() protoreflect.Message {
++	mi := &file_proxy_anytls_config_proto_msgTypes[2]
++	if x != nil {
++		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
++		if ms.LoadMessageInfo() == nil {
++			ms.StoreMessageInfo(mi)
++		}
++		return ms
++	}
++	return mi.MessageOf(x)
++}
++
++func (*ServerConfig) Descriptor() ([]byte, []int) {
++	return file_proxy_anytls_config_proto_rawDescGZIP(), []int{2}
++}
++
++func (x *ServerConfig) GetUsers() []*protocol.User {
++	if x != nil {
++		return x.Users
++	}
++	return nil
++}
++
++func (x *ServerConfig) GetPaddingScheme() string {
++	if x != nil {
++		return x.PaddingScheme
++	}
++	return ""
++}
++
++var File_proxy_anytls_config_proto protoreflect.FileDescriptor
++
++// rawDesc is the binary encoding of the FileDescriptorProto for:
++//
++//	proxy/anytls/config.proto
++const file_proxy_anytls_config_proto_rawDesc = "" +
++	"\n" +
++	"\x19proxy/anytls/config.proto\x12\x11xray.proxy.anytls\x1a!common/protocol/server_spec.proto\x1a" +
++	"\x1acommon/protocol/user.proto\"%\n" +
++	"\aAccount\x12\x1a\n" +
++	"\bpassword\x18\x01 \x01(\tR\bpassword\"L\n" +
++	"\fClientConfig\x12<\n" +
++	"\x06server\x18\x01 \x01(\v2$.xray.common.protocol.ServerEndpointR\x06server\"g\n" +
++	"\fServerConfig\x120\n" +
++	"\x05users\x18\x01 \x03(\v2\x1a.xray.common.protocol.UserR\x05users\x12%\n" +
++	"\x0epadding_scheme\x18\x02 \x01(\tR\rpaddingSchemeB" +
++	"U\n\x15com.xray.proxy.anytlsP\x01Z&github.com/xtls/xray-core/proxy/anytls\xaa\x02\x11Xray.Proxy.AnyTlsb\x06proto3"
++
++var (
++	file_proxy_anytls_config_proto_rawDescOnce sync.Once
++	file_proxy_anytls_config_proto_rawDescData []byte
++)
++
++func file_proxy_anytls_config_proto_rawDescGZIP() []byte {
++	file_proxy_anytls_config_proto_rawDescOnce.Do(func() {
++		file_proxy_anytls_config_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proxy_anytls_config_proto_rawDesc), len(file_proxy_anytls_config_proto_rawDesc)))
++	})
++	return file_proxy_anytls_config_proto_rawDescData
++}
++
++var file_proxy_anytls_config_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
++var file_proxy_anytls_config_proto_goTypes = []any{
++	(*Account)(nil),                 // 0: xray.proxy.anytls.Account
++	(*ClientConfig)(nil),            // 1: xray.proxy.anytls.ClientConfig
++	(*ServerConfig)(nil),            // 2: xray.proxy.anytls.ServerConfig
++	(*protocol.ServerEndpoint)(nil), // 3: xray.common.protocol.ServerEndpoint
++	(*protocol.User)(nil),           // 4: xray.common.protocol.User
++}
++var file_proxy_anytls_config_proto_depIdxs = []int32{
++	3, // 0: xray.proxy.anytls.ClientConfig.server:type_name -> xray.common.protocol.ServerEndpoint
++	4, // 1: xray.proxy.anytls.ServerConfig.users:type_name -> xray.common.protocol.User
++	2, // [2:2] is the sub-list for method output_type
++	2, // [2:2] is the sub-list for method input_type
++	2, // [2:2] is the sub-list for extension type_name
++	2, // [2:2] is the sub-list for extension extendee
++	0, // [0:2] is the sub-list for field type_name
++}
++
++func init() { file_proxy_anytls_config_proto_init() }
++func file_proxy_anytls_config_proto_init() {
++	if File_proxy_anytls_config_proto != nil {
++		return
++	}
++	type x struct{}
++	out := protoimpl.TypeBuilder{
++		File: protoimpl.DescBuilder{
++			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
++			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proxy_anytls_config_proto_rawDesc), len(file_proxy_anytls_config_proto_rawDesc)),
++			NumEnums:      0,
++			NumMessages:   3,
++			NumExtensions: 0,
++			NumServices:   0,
++		},
++		GoTypes:           file_proxy_anytls_config_proto_goTypes,
++		DependencyIndexes: file_proxy_anytls_config_proto_depIdxs,
++		MessageInfos:      file_proxy_anytls_config_proto_msgTypes,
++	}.Build()
++	File_proxy_anytls_config_proto = out.File
++	file_proxy_anytls_config_proto_goTypes = nil
++	file_proxy_anytls_config_proto_depIdxs = nil
++}
+diff --git a/proxy/anytls/config.proto b/proxy/anytls/config.proto
+new file mode 100644
+index 00000000..78155d91
+--- /dev/null
++++ b/proxy/anytls/config.proto
+@@ -0,0 +1,24 @@
++syntax = "proto3";
++
++package xray.proxy.anytls;
++
++option csharp_namespace = "Xray.Proxy.AnyTls";
++option go_package = "github.com/xtls/xray-core/proxy/anytls";
++option java_package = "com.xray.proxy.anytls";
++option java_multiple_files = true;
++
++import "common/protocol/user.proto";
++import "common/protocol/server_spec.proto";
++
++message Account {
++  string password = 1;
++}
++
++message ClientConfig {
++  xray.common.protocol.ServerEndpoint server = 1;
++}
++
++message ServerConfig {
++  repeated xray.common.protocol.User users = 1;
++  string padding_scheme = 2;
++}
+diff --git a/proxy/anytls/server.go b/proxy/anytls/server.go
+new file mode 100644
+index 00000000..fd7f265b
+--- /dev/null
++++ b/proxy/anytls/server.go
+@@ -0,0 +1,219 @@
++package anytls
++
++import (
++	"context"
++	"encoding/binary"
++	"io"
++	"strings"
++	"time"
++
++	M "github.com/sagernet/sing/common/metadata"
++	"github.com/xtls/xray-core/common"
++	"github.com/xtls/xray-core/common/buf"
++	"github.com/xtls/xray-core/common/errors"
++	"github.com/xtls/xray-core/common/log"
++	"github.com/xtls/xray-core/common/net"
++	"github.com/xtls/xray-core/common/protocol"
++	"github.com/xtls/xray-core/common/session"
++	"github.com/xtls/xray-core/common/signal"
++	"github.com/xtls/xray-core/common/singbridge"
++	"github.com/xtls/xray-core/common/task"
++	"github.com/xtls/xray-core/core"
++	"github.com/xtls/xray-core/features/policy"
++	"github.com/xtls/xray-core/features/routing"
++	anysession "github.com/xtls/xray-core/proxy/anytls/session"
++	"github.com/xtls/xray-core/transport/internet/stat"
++)
++
++func init() {
++	common.Must(common.RegisterConfig((*ServerConfig)(nil), func(ctx context.Context, config interface{}) (interface{}, error) {
++		return NewServer(ctx, config.(*ServerConfig))
++	}))
++}
++
++// Server is an inbound handler for the AnyTLS protocol.
++type Server struct {
++	policyManager policy.Manager
++	validator     *Validator
++}
++
++func NewServer(ctx context.Context, config *ServerConfig) (*Server, error) {
++	v := core.MustFromContext(ctx)
++	s := &Server{
++		policyManager: v.GetFeature(policy.ManagerType()).(policy.Manager),
++		validator:     NewValidator(),
++	}
++
++	if config.PaddingScheme != "" {
++		if !anysession.UpdatePaddingScheme([]byte(config.PaddingScheme)) {
++			return nil, errors.New("invalid padding_scheme in server config")
++		}
++	}
++
++	for _, u := range config.Users {
++		mu, err := u.ToMemoryUser()
++		if err != nil {
++			return nil, errors.New("failed to parse anytls user").Base(err)
++		}
++		if err := s.validator.Add(mu); err != nil {
++			return nil, errors.New("failed to add anytls user").Base(err)
++		}
++	}
++
++	return s, nil
++}
++
++func (s *Server) AddUser(ctx context.Context, u *protocol.MemoryUser) error {
++	return s.validator.Add(u)
++}
++
++func (s *Server) RemoveUser(ctx context.Context, email string) error {
++	return s.validator.Del(email)
++}
++
++func (s *Server) GetUser(ctx context.Context, email string) *protocol.MemoryUser {
++	return s.validator.GetByEmail(email)
++}
++
++func (s *Server) GetUsers(ctx context.Context) []*protocol.MemoryUser {
++	return s.validator.GetAll()
++}
++
++func (s *Server) GetUsersCount(ctx context.Context) int64 {
++	return s.validator.GetCount()
++}
++
++func (s *Server) Network() []net.Network {
++	return []net.Network{net.Network_TCP, net.Network_UNIX}
++}
++
++// Process implements proxy.Inbound. TLS is handled by xray's transport layer.
++func (s *Server) Process(ctx context.Context, network net.Network, conn stat.Connection, dispatcher routing.Dispatcher) error {
++	sessionPolicy := s.policyManager.ForLevel(0)
++	if err := conn.SetReadDeadline(time.Now().Add(sessionPolicy.Timeouts.Handshake)); err != nil {
++		return errors.New("unable to set read deadline").Base(err).AtWarning()
++	}
++
++	// Authentication: sha256(password)[32] + padding_len[2] + padding[n]
++	var passwordBuf [32]byte
++	if _, err := io.ReadFull(conn, passwordBuf[:]); err != nil {
++		return errors.New("failed to read auth header").Base(err)
++	}
++
++	user := s.validator.Get(passwordBuf[:])
++	if user == nil {
++		log.Record(&log.AccessMessage{
++			From:   conn.RemoteAddr(),
++			To:     "",
++			Status: log.AccessRejected,
++			Reason: errors.New("invalid password"),
++		})
++		return errors.New("anytls: invalid auth from " + conn.RemoteAddr().String())
++	}
++
++	var lenBuf [2]byte
++	if _, err := io.ReadFull(conn, lenBuf[:]); err != nil {
++		return errors.New("failed to read padding length").Base(err)
++	}
++	if paddingLen := binary.BigEndian.Uint16(lenBuf[:]); paddingLen > 0 {
++		if _, err := io.ReadFull(conn, make([]byte, paddingLen)); err != nil {
++			return errors.New("failed to discard auth padding").Base(err)
++		}
++	}
++
++	if err := conn.SetReadDeadline(time.Time{}); err != nil {
++		return errors.New("unable to clear read deadline").Base(err).AtWarning()
++	}
++
++	inbound := session.InboundFromContext(ctx)
++	inbound.Name = "anytls"
++	inbound.User = user
++	sessionPolicy = s.policyManager.ForLevel(user.Level)
++
++	sess := anysession.NewServerSession(conn, func(stream *anysession.Stream) {
++		defer stream.Close()
++		if err := s.handleStream(ctx, stream, dispatcher, sessionPolicy); err != nil {
++			if errors.Cause(err) != io.EOF {
++				errors.LogInfoInner(ctx, err, "anytls: stream ended")
++			}
++		}
++	}, anysession.DefaultPaddingForClient())
++	sess.Run()
++	return nil
++}
++
++func (s *Server) handleStream(
++	ctx context.Context,
++	stream *anysession.Stream,
++	dispatcher routing.Dispatcher,
++	sessionPolicy policy.Session,
++) error {
++	// Each stream begins with a SOCKS5 address (sing SocksaddrSerializer format).
++	dest, err := M.SocksaddrSerializer.ReadAddrPort(stream)
++	if err != nil {
++		stream.HandshakeFailure(err) //nolint:errcheck
++		return errors.New("failed to read destination address").Base(err)
++	}
++
++	var xrayDest net.Destination
++	if strings.Contains(dest.Fqdn, "udp-over-tcp.arpa") {
++		// UDP-over-TCP magic domain
++		xrayDest = net.Destination{
++			Network: net.Network_UDP,
++			Address: net.DomainAddress(dest.Fqdn),
++			Port:    net.Port(dest.Port),
++		}
++	} else {
++		xrayDest, err = singbridge.ToDestination(dest, net.Network_TCP)
++		if err != nil {
++			stream.HandshakeFailure(err) //nolint:errcheck
++			return err
++		}
++	}
++
++	inbound := session.InboundFromContext(ctx)
++	ctx = log.ContextWithAccessMessage(ctx, &log.AccessMessage{
++		From:   stream.RemoteAddr(),
++		To:     xrayDest,
++		Status: log.AccessAccepted,
++		Reason: "",
++		Email:  inbound.User.Email,
++	})
++	errors.LogInfo(ctx, "anytls: tunnelling to ", xrayDest)
++
++	ctx, cancel := context.WithCancel(ctx)
++	timer := signal.CancelAfterInactivity(ctx, cancel, sessionPolicy.Timeouts.ConnectionIdle)
++	ctx = policy.ContextWithBufferPolicy(ctx, sessionPolicy.Buffer)
++
++	link, err := dispatcher.Dispatch(ctx, xrayDest)
++	if err != nil {
++		stream.HandshakeFailure(err) //nolint:errcheck
++		return errors.New("failed to dispatch to ", xrayDest).Base(err)
++	}
++
++	stream.HandshakeSuccess() //nolint:errcheck
++
++	requestDone := func() error {
++		defer timer.SetTimeout(sessionPolicy.Timeouts.DownlinkOnly)
++		if err := buf.Copy(buf.NewReader(stream), link.Writer, buf.UpdateActivity(timer)); err != nil {
++			return errors.New("failed to forward request").Base(err)
++		}
++		return nil
++	}
++
++	responseDone := func() error {
++		defer timer.SetTimeout(sessionPolicy.Timeouts.UplinkOnly)
++		if err := buf.Copy(link.Reader, buf.NewWriter(stream), buf.UpdateActivity(timer)); err != nil {
++			return errors.New("failed to forward response").Base(err)
++		}
++		return nil
++	}
++
++	requestDonePost := task.OnSuccess(requestDone, task.Close(link.Writer))
++	if err := task.Run(ctx, requestDonePost, responseDone); err != nil {
++		common.Interrupt(link.Reader)  //nolint:errcheck
++		common.Interrupt(link.Writer)  //nolint:errcheck
++		return errors.New("anytls: stream closed").Base(err)
++	}
++	return nil
++}
+diff --git a/proxy/anytls/session/client_pool.go b/proxy/anytls/session/client_pool.go
+new file mode 100644
+index 00000000..f8449732
+--- /dev/null
++++ b/proxy/anytls/session/client_pool.go
+@@ -0,0 +1,223 @@
++package session
++
++import (
++	"container/heap"
++	"context"
++	"fmt"
++	"io"
++	"net"
++	"sync"
++	"sync/atomic"
++	"time"
++
++	"github.com/xtls/xray-core/common/errors"
++)
++
++// sessionHeap is a max-heap of Sessions ordered by descending seq (highest-seq first).
++type sessionHeap []*Session
++
++func (h sessionHeap) Len() int           { return len(h) }
++func (h sessionHeap) Less(i, j int) bool { return h[i].seq > h[j].seq }
++func (h sessionHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
++func (h *sessionHeap) Push(x any)        { *h = append(*h, x.(*Session)) }
++func (h *sessionHeap) Pop() any {
++	old := *h
++	n := len(old)
++	x := old[n-1]
++	*h = old[:n-1]
++	return x
++}
++
++// Client manages a pool of AnyTLS sessions and multiplexes streams over them.
++type Client struct {
++	die       context.Context
++	dieCancel context.CancelFunc
++
++	dialOut func(ctx context.Context) (net.Conn, error)
++
++	sessionCounter atomic.Uint64
++
++	idleSession     sessionHeap
++	idleSessionLock sync.Mutex
++
++	sessions     map[uint64]*Session
++	sessionsLock sync.Mutex
++
++	padding *atomicPaddingFactory
++
++	idleSessionTimeout time.Duration
++	minIdleSession     int
++}
++
++func NewClient(
++	ctx context.Context,
++	dialOut func(ctx context.Context) (net.Conn, error),
++	padding *atomicPaddingFactory,
++	idleSessionCheckInterval, idleSessionTimeout time.Duration,
++	minIdleSession int,
++) *Client {
++	c := &Client{
++		sessions:           make(map[uint64]*Session),
++		dialOut:            dialOut,
++		padding:            padding,
++		idleSessionTimeout: idleSessionTimeout,
++		minIdleSession:     minIdleSession,
++	}
++	if idleSessionCheckInterval <= 5*time.Second {
++		idleSessionCheckInterval = 30 * time.Second
++	}
++	if c.idleSessionTimeout <= 5*time.Second {
++		c.idleSessionTimeout = 30 * time.Second
++	}
++	heap.Init(&c.idleSession)
++	c.die, c.dieCancel = context.WithCancel(ctx)
++	go c.idleCleanupLoop(idleSessionCheckInterval)
++	return c
++}
++
++// CreateStream returns a net.Conn that tunnels through an AnyTLS session.
++// It writes the SOCKS destination address on the stream before returning.
++func (c *Client) CreateStream(ctx context.Context) (net.Conn, error) {
++	select {
++	case <-c.die.Done():
++		return nil, io.ErrClosedPipe
++	default:
++	}
++
++	session := c.popIdleSession()
++	if session == nil {
++		var err error
++		session, err = c.createSession(ctx)
++		if session == nil {
++			return nil, fmt.Errorf("anytls: failed to create session: %w", err)
++		}
++	}
++
++	stream, err := session.OpenStream()
++	if err != nil {
++		session.Close()
++		return nil, fmt.Errorf("anytls: failed to open stream: %w", err)
++	}
++
++	stream.dieHook = func() {
++		if !session.IsClosed() {
++			select {
++			case <-c.die.Done():
++				go session.Close()
++			default:
++				c.idleSessionLock.Lock()
++				session.idleSince = time.Now()
++				heap.Push(&c.idleSession, session)
++				c.idleSessionLock.Unlock()
++			}
++		}
++	}
++
++	return stream, nil
++}
++
++func (c *Client) popIdleSession() *Session {
++	c.idleSessionLock.Lock()
++	defer c.idleSessionLock.Unlock()
++	if len(c.idleSession) == 0 {
++		return nil
++	}
++	return heap.Pop(&c.idleSession).(*Session)
++}
++
++func (c *Client) createSession(ctx context.Context) (*Session, error) {
++	conn, err := c.dialOut(ctx)
++	if err != nil {
++		return nil, err
++	}
++
++	session := NewClientSession(conn, c.padding)
++	seq := c.sessionCounter.Add(1)
++	session.seq = seq
++
++	session.dieHook = func() {
++		c.idleSessionLock.Lock()
++		for i, s := range c.idleSession {
++			if s.seq == seq {
++				heap.Remove(&c.idleSession, i)
++				break
++			}
++		}
++		c.idleSessionLock.Unlock()
++
++		c.sessionsLock.Lock()
++		delete(c.sessions, seq)
++		c.sessionsLock.Unlock()
++	}
++
++	c.sessionsLock.Lock()
++	c.sessions[seq] = session
++	c.sessionsLock.Unlock()
++
++	session.Run()
++	return session, nil
++}
++
++func (c *Client) Close() error {
++	c.dieCancel()
++
++	c.sessionsLock.Lock()
++	toClose := make([]*Session, 0, len(c.sessions))
++	for _, s := range c.sessions {
++		toClose = append(toClose, s)
++	}
++	c.sessions = make(map[uint64]*Session)
++	c.sessionsLock.Unlock()
++
++	for _, s := range toClose {
++		s.Close()
++	}
++	return nil
++}
++
++func (c *Client) idleCleanupLoop(interval time.Duration) {
++	ticker := time.NewTicker(interval)
++	defer ticker.Stop()
++	for {
++		select {
++		case <-c.die.Done():
++			return
++		case <-ticker.C:
++			c.idleCleanup()
++		}
++	}
++}
++
++func (c *Client) idleCleanup() {
++	expTime := time.Now().Add(-c.idleSessionTimeout)
++
++	c.idleSessionLock.Lock()
++	var keep, remove []*Session
++	active := 0
++	for _, s := range c.idleSession {
++		if active < c.minIdleSession {
++			s.idleSince = time.Now()
++			keep = append(keep, s)
++			active++
++		} else if s.idleSince.Before(expTime) {
++			remove = append(remove, s)
++		} else {
++			keep = append(keep, s)
++			active++
++		}
++	}
++	c.idleSession = keep
++	heap.Init(&c.idleSession)
++	c.idleSessionLock.Unlock()
++
++	for _, s := range remove {
++		errors.LogDebug(context.Background(), "anytls: closing idle session ", s.seq)
++		s.Close()
++	}
++}
++
++// DefaultPaddingForClient returns the package-level default padding factory
++// wrapped in a pointer suitable for Client/Session use.
++func DefaultPaddingForClient() *atomicPaddingFactory {
++	return &DefaultPaddingFactory
++}
+diff --git a/proxy/anytls/session/frame.go b/proxy/anytls/session/frame.go
+new file mode 100644
+index 00000000..b9fb6e18
+--- /dev/null
++++ b/proxy/anytls/session/frame.go
+@@ -0,0 +1,44 @@
++package session
++
++import "encoding/binary"
++
++const (
++	cmdWaste               byte = 0
++	cmdSYN                 byte = 1
++	cmdPSH                 byte = 2
++	cmdFIN                 byte = 3
++	cmdSettings            byte = 4
++	cmdAlert               byte = 5
++	cmdUpdatePaddingScheme byte = 6
++	// protocol version 2
++	cmdSYNACK         byte = 7
++	cmdHeartRequest   byte = 8
++	cmdHeartResponse  byte = 9
++	cmdServerSettings byte = 10
++)
++
++const headerOverHeadSize = 1 + 4 + 2 // cmd + streamId + length
++
++type frame struct {
++	cmd  byte
++	sid  uint32
++	data []byte
++}
++
++func newFrame(cmd byte, sid uint32) frame {
++	return frame{cmd: cmd, sid: sid}
++}
++
++type rawHeader [headerOverHeadSize]byte
++
++func (h rawHeader) Cmd() byte {
++	return h[0]
++}
++
++func (h rawHeader) StreamID() uint32 {
++	return binary.BigEndian.Uint32(h[1:])
++}
++
++func (h rawHeader) Length() uint16 {
++	return binary.BigEndian.Uint16(h[5:])
++}
+diff --git a/proxy/anytls/session/padding.go b/proxy/anytls/session/padding.go
+new file mode 100644
+index 00000000..d86cc576
+--- /dev/null
++++ b/proxy/anytls/session/padding.go
+@@ -0,0 +1,120 @@
++package session
++
++import (
++	"crypto/md5"
++	"crypto/rand"
++	"fmt"
++	"math/big"
++	"strconv"
++	"strings"
++	"sync/atomic"
++	"unsafe"
++)
++
++const CheckMark = -1
++
++var defaultPaddingScheme = []byte(`stop=8
++0=30-30
++1=100-400
++2=400-500,c,500-1000,c,500-1000,c,500-1000,c,500-1000
++3=9-9,500-1000
++4=500-1000
++5=500-1000
++6=500-1000
++7=500-1000`)
++
++type PaddingFactory struct {
++	scheme    map[string]string
++	RawScheme []byte
++	Stop      uint32
++	Md5       string
++}
++
++// atomicPaddingFactory holds a *PaddingFactory via atomic pointer.
++type atomicPaddingFactory struct {
++	p unsafe.Pointer
++}
++
++func (a *atomicPaddingFactory) Load() *PaddingFactory {
++	return (*PaddingFactory)(atomic.LoadPointer(&a.p))
++}
++
++func (a *atomicPaddingFactory) Store(v *PaddingFactory) {
++	atomic.StorePointer(&a.p, unsafe.Pointer(v))
++}
++
++var DefaultPaddingFactory atomicPaddingFactory
++
++func init() {
++	UpdatePaddingScheme(defaultPaddingScheme)
++}
++
++func UpdatePaddingScheme(rawScheme []byte) bool {
++	if p := NewPaddingFactory(rawScheme); p != nil {
++		DefaultPaddingFactory.Store(p)
++		return true
++	}
++	return false
++}
++
++func NewPaddingFactory(rawScheme []byte) *PaddingFactory {
++	p := &PaddingFactory{
++		RawScheme: rawScheme,
++		Md5:       fmt.Sprintf("%x", md5.Sum(rawScheme)),
++	}
++	scheme := stringMapFromBytes(rawScheme)
++	if len(scheme) == 0 {
++		return nil
++	}
++	if stop, err := strconv.Atoi(scheme["stop"]); err == nil {
++		p.Stop = uint32(stop)
++	} else {
++		return nil
++	}
++	p.scheme = scheme
++	return p
++}
++
++func (p *PaddingFactory) GenerateRecordPayloadSizes(pkt uint32) (pktSizes []int) {
++	s, ok := p.scheme[strconv.Itoa(int(pkt))]
++	if !ok {
++		return
++	}
++	for _, sRange := range strings.Split(s, ",") {
++		parts := strings.Split(sRange, "-")
++		if len(parts) == 2 {
++			mn, err1 := strconv.ParseInt(parts[0], 10, 64)
++			mx, err2 := strconv.ParseInt(parts[1], 10, 64)
++			if err1 != nil || err2 != nil {
++				continue
++			}
++			if mn > mx {
++				mn, mx = mx, mn
++			}
++			if mn <= 0 || mx <= 0 {
++				continue
++			}
++			if mn == mx {
++				pktSizes = append(pktSizes, int(mn))
++			} else {
++				i, _ := rand.Int(rand.Reader, big.NewInt(mx-mn))
++				pktSizes = append(pktSizes, int(i.Int64()+mn))
++			}
++		} else if sRange == "c" {
++			pktSizes = append(pktSizes, CheckMark)
++		}
++	}
++	return
++}
++
++func stringMapFromBytes(b []byte) map[string]string {
++	m := make(map[string]string)
++	for _, line := range strings.Split(string(b), "\n") {
++		v := strings.SplitN(line, "=", 2)
++		if len(v) == 2 {
++			m[v[0]] = v[1]
++		}
++	}
++	return m
++}
++
+diff --git a/proxy/anytls/session/pipe.go b/proxy/anytls/session/pipe.go
+new file mode 100644
+index 00000000..73a98c96
+--- /dev/null
++++ b/proxy/anytls/session/pipe.go
+@@ -0,0 +1,251 @@
++package session
++
++import (
++	"io"
++	"os"
++	"sync"
++	"time"
++)
++
++type onceError struct {
++	sync.Mutex
++	err error
++}
++
++func (a *onceError) Store(err error) {
++	a.Lock()
++	defer a.Unlock()
++	if a.err != nil {
++		return
++	}
++	a.err = err
++}
++
++func (a *onceError) Load() error {
++	a.Lock()
++	defer a.Unlock()
++	return a.err
++}
++
++type pipe struct {
++	wrMu sync.Mutex
++	wrCh chan []byte
++	rdCh chan int
++
++	once sync.Once
++	done chan struct{}
++	rerr onceError
++	werr onceError
++
++	readDeadline pipeDeadline
++}
++
++func (p *pipe) read(b []byte) (n int, err error) {
++	select {
++	case <-p.done:
++		return 0, p.readCloseError()
++	case <-p.readDeadline.wait():
++		return 0, os.ErrDeadlineExceeded
++	default:
++	}
++	select {
++	case bw := <-p.wrCh:
++		nr := copy(b, bw)
++		p.rdCh <- nr
++		return nr, nil
++	case <-p.done:
++		return 0, p.readCloseError()
++	case <-p.readDeadline.wait():
++		return 0, os.ErrDeadlineExceeded
++	}
++}
++
++func (p *pipe) closeRead(err error) error {
++	if err == nil {
++		err = io.ErrClosedPipe
++	}
++	p.rerr.Store(err)
++	p.once.Do(func() { close(p.done) })
++	return nil
++}
++
++func (p *pipe) write(b []byte) (n int, err error) {
++	select {
++	case <-p.done:
++		return 0, p.writeCloseError()
++	default:
++		p.wrMu.Lock()
++		defer p.wrMu.Unlock()
++	}
++	for once := true; once || len(b) > 0; once = false {
++		select {
++		case p.wrCh <- b:
++			nw := <-p.rdCh
++			b = b[nw:]
++			n += nw
++		case <-p.done:
++			return n, p.writeCloseError()
++		}
++	}
++	return n, nil
++}
++
++func (p *pipe) closeWrite(err error) error {
++	if err == nil {
++		err = io.EOF
++	}
++	p.werr.Store(err)
++	p.once.Do(func() { close(p.done) })
++	return nil
++}
++
++func (p *pipe) readCloseError() error {
++	rerr := p.rerr.Load()
++	if werr := p.werr.Load(); rerr == nil && werr != nil {
++		return werr
++	}
++	return io.ErrClosedPipe
++}
++
++func (p *pipe) writeCloseError() error {
++	werr := p.werr.Load()
++	if rerr := p.rerr.Load(); werr == nil && rerr != nil {
++		return rerr
++	}
++	return io.ErrClosedPipe
++}
++
++type PipeReader struct{ pipe }
++
++func (r *PipeReader) Read(data []byte) (n int, err error) {
++	return r.pipe.read(data)
++}
++
++func (r *PipeReader) Close() error {
++	return r.pipe.closeRead(nil)
++}
++
++func (r *PipeReader) SetReadDeadline(t time.Time) error {
++	if isClosedChan(r.done) {
++		return io.ErrClosedPipe
++	}
++	r.readDeadline.set(t)
++	return nil
++}
++
++type PipeWriter struct{ r PipeReader }
++
++func (w *PipeWriter) Write(data []byte) (n int, err error) {
++	return w.r.pipe.write(data)
++}
++
++func (w *PipeWriter) Close() error {
++	return w.r.pipe.closeWrite(nil)
++}
++
++func newPipe() (*PipeReader, *PipeWriter) {
++	pw := &PipeWriter{r: PipeReader{pipe: pipe{
++		wrCh:         make(chan []byte),
++		rdCh:         make(chan int),
++		done:         make(chan struct{}),
++		readDeadline: makePipeDeadline(),
++	}}}
++	return &pw.r, pw
++}
++
++type pipeDeadline struct {
++	mu     sync.Mutex
++	timer  *time.Timer
++	cancel chan struct{}
++}
++
++func makePipeDeadline() pipeDeadline {
++	return pipeDeadline{cancel: make(chan struct{})}
++}
++
++func (d *pipeDeadline) set(t time.Time) {
++	d.mu.Lock()
++	defer d.mu.Unlock()
++	if d.timer != nil && !d.timer.Stop() {
++		<-d.cancel
++	}
++	d.timer = nil
++	closed := isClosedChan(d.cancel)
++	if t.IsZero() {
++		if closed {
++			d.cancel = make(chan struct{})
++		}
++		return
++	}
++	if dur := time.Until(t); dur > 0 {
++		if closed {
++			d.cancel = make(chan struct{})
++		}
++		d.timer = time.AfterFunc(dur, func() {
++			close(d.cancel)
++		})
++		return
++	}
++	if !closed {
++		close(d.cancel)
++	}
++}
++
++func (d *pipeDeadline) wait() chan struct{} {
++	d.mu.Lock()
++	defer d.mu.Unlock()
++	return d.cancel
++}
++
++type writeDeadline struct {
++	mu     sync.Mutex
++	timer  *time.Timer
++	cancel chan struct{}
++}
++
++func makeWriteDeadline() writeDeadline {
++	return writeDeadline{cancel: make(chan struct{})}
++}
++
++func (d *writeDeadline) set(t time.Time) {
++	d.mu.Lock()
++	defer d.mu.Unlock()
++	if d.timer != nil && !d.timer.Stop() {
++		<-d.cancel
++	}
++	d.timer = nil
++	closed := isClosedChan(d.cancel)
++	if t.IsZero() {
++		if closed {
++			d.cancel = make(chan struct{})
++		}
++		return
++	}
++	if dur := time.Until(t); dur > 0 {
++		if closed {
++			d.cancel = make(chan struct{})
++		}
++		d.timer = time.AfterFunc(dur, func() {
++			close(d.cancel)
++		})
++		return
++	}
++	if !closed {
++		close(d.cancel)
++	}
++}
++
++func (d *writeDeadline) wait() chan struct{} {
++	d.mu.Lock()
++	defer d.mu.Unlock()
++	return d.cancel
++}
++
++func isClosedChan(c <-chan struct{}) bool {
++	select {
++	case <-c:
++		return true
++	default:
++		return false
++	}
++}
+diff --git a/proxy/anytls/session/session.go b/proxy/anytls/session/session.go
+new file mode 100644
+index 00000000..9f16bf0c
+--- /dev/null
++++ b/proxy/anytls/session/session.go
+@@ -0,0 +1,516 @@
++package session
++
++import (
++	"context"
++	"crypto/md5"
++	"encoding/binary"
++	"fmt"
++	"io"
++	"net"
++	"runtime/debug"
++	"slices"
++	"strconv"
++	"strings"
++	"sync"
++	"sync/atomic"
++	"time"
++
++	"github.com/xtls/xray-core/common/errors"
++)
++
++const programVersionName = "xray-anytls/0.0.1"
++
++// atomicUint32 is a simple atomic uint32 wrapper.
++type atomicUint32 struct{ v uint32 }
++
++func (a *atomicUint32) Add(delta uint32) uint32 { return atomic.AddUint32(&a.v, delta) }
++func (a *atomicUint32) Load() uint32            { return atomic.LoadUint32(&a.v) }
++
++type Session struct {
++	conn     net.Conn
++	connLock sync.Mutex
++
++	streams    map[uint32]*Stream
++	streamId   atomicUint32
++	streamLock sync.RWMutex
++
++	dieOnce sync.Once
++	die     chan struct{}
++	dieHook func()
++
++	synDone     func()
++	synDoneLock sync.Mutex
++
++	// pool fields
++	seq       uint64
++	idleSince time.Time
++	padding   *atomicPaddingFactory
++
++	peerVersion byte
++
++	// client-only fields
++	isClient    bool
++	sendPadding bool
++	buffering   bool
++	buffer      []byte
++	pktCounter  atomicUint32
++
++	// server-only field
++	onNewStream func(stream *Stream)
++}
++
++func NewClientSession(conn net.Conn, padding *atomicPaddingFactory) *Session {
++	s := &Session{
++		conn:        conn,
++		isClient:    true,
++		sendPadding: true,
++		padding:     padding,
++	}
++	s.die = make(chan struct{})
++	s.streams = make(map[uint32]*Stream)
++	return s
++}
++
++func NewServerSession(conn net.Conn, onNewStream func(stream *Stream), padding *atomicPaddingFactory) *Session {
++	s := &Session{
++		conn:        conn,
++		onNewStream: onNewStream,
++		padding:     padding,
++	}
++	s.die = make(chan struct{})
++	s.streams = make(map[uint32]*Stream)
++	return s
++}
++
++func (s *Session) IsClosed() bool {
++	select {
++	case <-s.die:
++		return true
++	default:
++		return false
++	}
++}
++
++func (s *Session) Close() error {
++	var once bool
++	s.dieOnce.Do(func() {
++		close(s.die)
++		once = true
++	})
++	if once {
++		if s.dieHook != nil {
++			s.dieHook()
++			s.dieHook = nil
++		}
++		s.streamLock.Lock()
++		for _, stream := range s.streams {
++			stream.closeLocally()
++		}
++		s.streams = make(map[uint32]*Stream)
++		s.streamLock.Unlock()
++		return s.conn.Close()
++	}
++	return io.ErrClosedPipe
++}
++
++// Run starts the session. For the client it sends initial settings and starts the recv loop.
++func (s *Session) Run() {
++	if !s.isClient {
++		s.recvLoop()
++		return
++	}
++
++	settings := map[string]string{
++		"v":           "2",
++		"client":      programVersionName,
++		"padding-md5": s.padding.Load().Md5,
++	}
++	f := newFrame(cmdSettings, 0)
++	f.data = []byte(mapToSettingsStr(settings))
++	s.buffering = true
++	s.writeControlFrame(f) //nolint:errcheck
++	go s.recvLoop()
++}
++
++// OpenStream opens a new stream on this Session (client side).
++func (s *Session) OpenStream() (*Stream, error) {
++	if s.IsClosed() {
++		return nil, io.ErrClosedPipe
++	}
++
++	sid := s.streamId.Add(1)
++	stream := newStream(sid, s)
++
++	if sid >= 2 && s.peerVersion >= 2 {
++		s.synDoneLock.Lock()
++		if s.synDone != nil {
++			s.synDone()
++		}
++		s.synDone = newDeadlineWatcher(3*time.Second, func() { s.Close() })
++		s.synDoneLock.Unlock()
++	}
++
++	if _, err := s.writeControlFrame(newFrame(cmdSYN, sid)); err != nil {
++		return nil, err
++	}
++
++	s.buffering = false
++
++	s.streamLock.Lock()
++	defer s.streamLock.Unlock()
++	select {
++	case <-s.die:
++		return nil, io.ErrClosedPipe
++	default:
++		s.streams[sid] = stream
++		return stream, nil
++	}
++}
++
++func (s *Session) recvLoop() error {
++	defer func() {
++		if r := recover(); r != nil {
++			errors.LogError(context.Background(), fmt.Sprintf("[anytls BUG] %v\n%s", r, string(debug.Stack())))
++		}
++	}()
++	defer s.Close()
++
++	var receivedSettingsFromClient bool
++	var hdr rawHeader
++
++	for {
++		if s.IsClosed() {
++			return io.ErrClosedPipe
++		}
++
++		if _, err := io.ReadFull(s.conn, hdr[:]); err != nil {
++			return err
++		}
++
++		sid := hdr.StreamID()
++		switch hdr.Cmd() {
++
++		case cmdPSH:
++			if hdr.Length() > 0 {
++				buf := make([]byte, hdr.Length())
++				if _, err := io.ReadFull(s.conn, buf); err != nil {
++					return err
++				}
++				s.streamLock.RLock()
++				stream, ok := s.streams[sid]
++				s.streamLock.RUnlock()
++				if ok {
++					stream.pipeW.Write(buf) //nolint:errcheck
++				}
++			}
++
++		case cmdSYN:
++			if !s.isClient && !receivedSettingsFromClient {
++				f := newFrame(cmdAlert, 0)
++				f.data = []byte("client did not send its settings")
++				s.writeControlFrame(f) //nolint:errcheck
++				return nil
++			}
++			s.streamLock.Lock()
++			if _, ok := s.streams[sid]; !ok {
++				stream := newStream(sid, s)
++				s.streams[sid] = stream
++				go func() {
++					if s.onNewStream != nil {
++						s.onNewStream(stream)
++					} else {
++						stream.Close()
++					}
++				}()
++			}
++			s.streamLock.Unlock()
++
++		case cmdSYNACK:
++			s.synDoneLock.Lock()
++			if s.synDone != nil {
++				s.synDone()
++				s.synDone = nil
++			}
++			s.synDoneLock.Unlock()
++			if hdr.Length() > 0 {
++				buf := make([]byte, hdr.Length())
++				if _, err := io.ReadFull(s.conn, buf); err != nil {
++					return err
++				}
++				s.streamLock.RLock()
++				stream, ok := s.streams[sid]
++				s.streamLock.RUnlock()
++				if ok {
++					stream.closeWithError(fmt.Errorf("remote: %s", string(buf)))
++				}
++			}
++
++		case cmdFIN:
++			s.streamLock.Lock()
++			stream, ok := s.streams[sid]
++			delete(s.streams, sid)
++			s.streamLock.Unlock()
++			if ok {
++				stream.closeLocally()
++			}
++
++		case cmdWaste:
++			if hdr.Length() > 0 {
++				buf := make([]byte, hdr.Length())
++				if _, err := io.ReadFull(s.conn, buf); err != nil {
++					return err
++				}
++			}
++
++		case cmdSettings:
++			if hdr.Length() > 0 {
++				buf := make([]byte, hdr.Length())
++				if _, err := io.ReadFull(s.conn, buf); err != nil {
++					return err
++				}
++				if !s.isClient {
++					receivedSettingsFromClient = true
++					m := settingsStrToMap(string(buf))
++					paddingF := s.padding.Load()
++					if m["padding-md5"] != paddingF.Md5 {
++						f := newFrame(cmdUpdatePaddingScheme, 0)
++						f.data = paddingF.RawScheme
++						if _, err := s.writeControlFrame(f); err != nil {
++							return err
++						}
++					}
++					if v, err := strconv.Atoi(m["v"]); err == nil && v >= 2 {
++						s.peerVersion = byte(v)
++						f := newFrame(cmdServerSettings, 0)
++						f.data = []byte("v=2")
++						if _, err := s.writeControlFrame(f); err != nil {
++							return err
++						}
++					}
++				}
++			}
++
++		case cmdAlert:
++			if hdr.Length() > 0 {
++				buf := make([]byte, hdr.Length())
++				if _, err := io.ReadFull(s.conn, buf); err != nil {
++					return err
++				}
++				if s.isClient {
++					errors.LogWarning(context.Background(), "[anytls Alert from server] "+string(buf))
++				}
++			}
++			return nil
++
++		case cmdUpdatePaddingScheme:
++			if hdr.Length() > 0 {
++				rawScheme := make([]byte, hdr.Length())
++				if _, err := io.ReadFull(s.conn, rawScheme); err != nil {
++					return err
++				}
++				if s.isClient {
++					if UpdatePaddingScheme(rawScheme) {
++						errors.LogInfo(context.Background(), fmt.Sprintf("[anytls] Update padding succeed: %x", md5.Sum(rawScheme)))
++					} else {
++						errors.LogWarning(context.Background(), fmt.Sprintf("[anytls] Update padding failed: %x", md5.Sum(rawScheme)))
++					}
++				}
++			}
++
++		case cmdHeartRequest:
++			if _, err := s.writeControlFrame(newFrame(cmdHeartResponse, sid)); err != nil {
++				return err
++			}
++
++		case cmdHeartResponse:
++			// no-op
++
++		case cmdServerSettings:
++			if hdr.Length() > 0 {
++				buf := make([]byte, hdr.Length())
++				if _, err := io.ReadFull(s.conn, buf); err != nil {
++					return err
++				}
++				if s.isClient {
++					m := settingsStrToMap(string(buf))
++					if v, err := strconv.Atoi(m["v"]); err == nil {
++						s.peerVersion = byte(v)
++					}
++				}
++			}
++		}
++	}
++}
++
++func (s *Session) streamClosed(sid uint32) error {
++	if s.IsClosed() {
++		return io.ErrClosedPipe
++	}
++	_, err := s.writeControlFrame(newFrame(cmdFIN, sid))
++	s.streamLock.Lock()
++	delete(s.streams, sid)
++	s.streamLock.Unlock()
++	return err
++}
++
++func (s *Session) writeDataFrame(sid uint32, data []byte) (int, error) {
++	dataLen := len(data)
++	buf := make([]byte, headerOverHeadSize+dataLen)
++	buf[0] = cmdPSH
++	binary.BigEndian.PutUint32(buf[1:5], sid)
++	binary.BigEndian.PutUint16(buf[5:7], uint16(dataLen))
++	copy(buf[7:], data)
++	_, err := s.writeConn(buf)
++	if err != nil {
++		return 0, err
++	}
++	return dataLen, nil
++}
++
++func (s *Session) writeControlFrame(f frame) (int, error) {
++	dataLen := len(f.data)
++	buf := make([]byte, headerOverHeadSize+dataLen)
++	buf[0] = f.cmd
++	binary.BigEndian.PutUint32(buf[1:5], f.sid)
++	binary.BigEndian.PutUint16(buf[5:7], uint16(dataLen))
++	copy(buf[7:], f.data)
++
++	s.conn.SetWriteDeadline(time.Now().Add(5 * time.Second))
++	_, err := s.writeConn(buf)
++	s.conn.SetWriteDeadline(time.Time{})
++
++	if err != nil {
++		s.Close()
++		return 0, err
++	}
++	return dataLen, nil
++}
++
++func (s *Session) writeConn(b []byte) (n int, err error) {
++	s.connLock.Lock()
++	defer s.connLock.Unlock()
++
++	if s.buffering {
++		s.buffer = slices.Concat(s.buffer, b)
++		return len(b), nil
++	} else if len(s.buffer) > 0 {
++		b = slices.Concat(s.buffer, b)
++		s.buffer = nil
++	}
++
++	if s.sendPadding {
++		pkt := s.pktCounter.Add(1)
++		paddingF := s.padding.Load()
++		if pkt < paddingF.Stop {
++			pktSizes := paddingF.GenerateRecordPayloadSizes(pkt)
++			for _, l := range pktSizes {
++				remainLen := len(b)
++				if l == CheckMark {
++					if remainLen == 0 {
++						break
++					}
++					continue
++				}
++				if remainLen > l {
++					if _, err = s.conn.Write(b[:l]); err != nil {
++						return 0, err
++					}
++					n += l
++					b = b[l:]
++				} else if remainLen > 0 {
++					paddingLen := l - remainLen - headerOverHeadSize
++					if paddingLen > 0 {
++						pad := make([]byte, headerOverHeadSize+paddingLen)
++						pad[0] = cmdWaste
++						binary.BigEndian.PutUint32(pad[1:5], 0)
++						binary.BigEndian.PutUint16(pad[5:7], uint16(paddingLen))
++						b = slices.Concat(b, pad)
++					}
++					if _, err = s.conn.Write(b); err != nil {
++						return 0, err
++					}
++					n += remainLen
++					b = nil
++				} else {
++					pad := make([]byte, headerOverHeadSize+l)
++					pad[0] = cmdWaste
++					binary.BigEndian.PutUint16(pad[5:7], uint16(l))
++					if _, err = s.conn.Write(pad); err != nil {
++						return 0, err
++					}
++					b = nil
++				}
++			}
++			if len(b) == 0 {
++				return
++			}
++			n2, err := s.conn.Write(b)
++			return n + n2, err
++		}
++		s.sendPadding = false
++	}
++
++	return s.conn.Write(b)
++}
++
++func newDeadlineWatcher(d time.Duration, onTimeout func()) (cancel func()) {
++	t := time.NewTimer(d)
++	ch := make(chan struct{})
++	go func() {
++		defer t.Stop()
++		select {
++		case <-ch:
++		case <-t.C:
++			onTimeout()
++		}
++	}()
++	var once sync.Once
++	return func() { once.Do(func() { close(ch) }) }
++}
++
++func mapToSettingsStr(m map[string]string) string {
++	var b strings.Builder
++	first := true
++	for k, v := range m {
++		if !first {
++			b.WriteByte('\n')
++		}
++		b.WriteString(k)
++		b.WriteByte('=')
++		b.WriteString(v)
++		first = false
++	}
++	return b.String()
++}
++
++func settingsStrToMap(s string) map[string]string {
++	m := make(map[string]string)
++	for _, line := range splitLines(s) {
++		idx := -1
++		for i, c := range line {
++			if c == '=' {
++				idx = i
++				break
++			}
++		}
++		if idx >= 0 {
++			m[line[:idx]] = line[idx+1:]
++		}
++	}
++	return m
++}
++
++func splitLines(s string) []string {
++	var lines []string
++	start := 0
++	for i := 0; i < len(s); i++ {
++		if s[i] == '\n' {
++			lines = append(lines, s[start:i])
++			start = i + 1
++		}
++	}
++	if start < len(s) {
++		lines = append(lines, s[start:])
++	}
++	return lines
++}
+diff --git a/proxy/anytls/session/stream.go b/proxy/anytls/session/stream.go
+new file mode 100644
+index 00000000..5b32cbcf
+--- /dev/null
++++ b/proxy/anytls/session/stream.go
+@@ -0,0 +1,141 @@
++package session
++
++import (
++	"io"
++	"net"
++	"os"
++	"sync"
++	"time"
++)
++
++// Stream implements net.Conn over a Session multiplexed connection.
++type Stream struct {
++	id uint32
++
++	sess *Session
++
++	pipeR         *PipeReader
++	pipeW         *PipeWriter
++	writeDeadline writeDeadline
++
++	dieOnce sync.Once
++	dieHook func()
++	dieErr  error
++
++	reportOnce sync.Once
++}
++
++func newStream(id uint32, sess *Session) *Stream {
++	s := new(Stream)
++	s.id = id
++	s.sess = sess
++	s.pipeR, s.pipeW = newPipe()
++	s.writeDeadline = makeWriteDeadline()
++	return s
++}
++
++func (s *Stream) Read(b []byte) (n int, err error) {
++	n, err = s.pipeR.Read(b)
++	if n == 0 && s.dieErr != nil {
++		err = s.dieErr
++	}
++	return
++}
++
++func (s *Stream) Write(b []byte) (n int, err error) {
++	select {
++	case <-s.writeDeadline.wait():
++		return 0, os.ErrDeadlineExceeded
++	default:
++	}
++	if s.dieErr != nil {
++		return 0, s.dieErr
++	}
++	return s.sess.writeDataFrame(s.id, b)
++}
++
++func (s *Stream) Close() error {
++	return s.closeWithError(io.ErrClosedPipe)
++}
++
++func (s *Stream) closeLocally() {
++	var once bool
++	s.dieOnce.Do(func() {
++		s.dieErr = net.ErrClosed
++		s.pipeR.Close()
++		once = true
++	})
++	if once && s.dieHook != nil {
++		s.dieHook()
++		s.dieHook = nil
++	}
++}
++
++func (s *Stream) closeWithError(err error) error {
++	var once bool
++	s.dieOnce.Do(func() {
++		s.dieErr = err
++		s.pipeR.Close()
++		once = true
++	})
++	if once {
++		if s.dieHook != nil {
++			s.dieHook()
++			s.dieHook = nil
++		}
++		return s.sess.streamClosed(s.id)
++	}
++	return s.dieErr
++}
++
++func (s *Stream) SetReadDeadline(t time.Time) error {
++	return s.pipeR.SetReadDeadline(t)
++}
++
++func (s *Stream) SetWriteDeadline(t time.Time) error {
++	s.writeDeadline.set(t)
++	return nil
++}
++
++func (s *Stream) SetDeadline(t time.Time) error {
++	s.SetWriteDeadline(t)
++	return s.SetReadDeadline(t)
++}
++
++func (s *Stream) LocalAddr() net.Addr {
++	if ts, ok := s.sess.conn.(interface{ LocalAddr() net.Addr }); ok {
++		return ts.LocalAddr()
++	}
++	return nil
++}
++
++func (s *Stream) RemoteAddr() net.Addr {
++	if ts, ok := s.sess.conn.(interface{ RemoteAddr() net.Addr }); ok {
++		return ts.RemoteAddr()
++	}
++	return nil
++}
++
++// HandshakeSuccess notifies the client (v2+) that the outbound TCP handshake succeeded.
++func (s *Stream) HandshakeSuccess() error {
++	var once bool
++	s.reportOnce.Do(func() { once = true })
++	if once && s.sess.peerVersion >= 2 {
++		_, err := s.sess.writeControlFrame(newFrame(cmdSYNACK, s.id))
++		return err
++	}
++	return nil
++}
++
++// HandshakeFailure notifies the client (v2+) that the outbound TCP handshake failed.
++func (s *Stream) HandshakeFailure(err error) error {
++	var once bool
++	s.reportOnce.Do(func() { once = true })
++	if once && err != nil && s.sess.peerVersion >= 2 {
++		f := newFrame(cmdSYNACK, s.id)
++		f.data = []byte(err.Error())
++		_, werr := s.sess.writeControlFrame(f)
++		return werr
++	}
++	return nil
++}
+-- 
+2.52.0.windows.1
+

@@ -118,6 +118,18 @@ jobs:
         with:
           go-version: '1.26.4'
 
+      - name: Merge wyx2685 features + rcon patches into xray-core
+        run: |
+          cd deps/xray-core
+          git config user.email "ci@rcon"
+          git config user.name  "Rcon CI"
+          git remote add features https://github.com/wyx2685/Xray-core
+          git fetch features
+          git merge features/main --no-edit
+          for patch in "${GITHUB_WORKSPACE}/scripts/patches"/*.patch; do
+            git am --3way "$patch"
+          done
+
       - name: Get project dependencies
         run: |
           go mod download
