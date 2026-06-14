@@ -129,8 +129,12 @@ jobs:
             echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_ENV
           else
             git fetch --tags
-            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.1")
-            echo "version=$LATEST_TAG" >> $GITHUB_ENV
+            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+            LATEST_TAG=${LATEST_TAG#v}
+            MAJOR=$(echo $LATEST_TAG | cut -d. -f1)
+            MINOR=$(echo $LATEST_TAG | cut -d. -f2)
+            PATCH=$(echo $LATEST_TAG | cut -d. -f3)
+            echo "version=${MAJOR}.${MINOR}.$((PATCH + 1))" >> $GITHUB_ENV
           fi
       - name: Build rcon
         run: |
