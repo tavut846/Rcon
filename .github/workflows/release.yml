@@ -125,13 +125,14 @@ jobs:
           git config user.name  "Rcon CI"
           git remote add features https://github.com/wyx2685/Xray-core
           git fetch features
-          git merge features/main --no-edit
+          git merge -X theirs features/main --no-edit
           for patch in "${GITHUB_WORKSPACE}/scripts/patches"/*.patch; do
-            git am --3way "$patch"
+            git am "$patch"
           done
 
       - name: Get project dependencies
         run: |
+          GOEXPERIMENT=jsonv2 go mod tidy
           go mod download
       - name: Get version
         run: |

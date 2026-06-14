@@ -28,8 +28,8 @@ git reset --hard origin/main
 echo "=== Layer 2: Merging wyx2685 features ==="
 git remote add features https://github.com/wyx2685/Xray-core 2>/dev/null || true
 git fetch features
-git merge features/main --no-edit || {
-    echo "!!! MERGE CONFLICT (features/main)"
+git merge -X theirs features/main --no-edit || {
+    echo "!!! MERGE FAILED (features/main)"
     git merge --abort; exit 1
 }
 
@@ -37,7 +37,7 @@ echo "=== Layer 3: Applying rcon custom patches ==="
 for patch in "$PATCHES_DIR"/*.patch; do
     [ -f "$patch" ] || continue
     echo "  applying: $(basename "$patch")"
-    git am --3way "$patch" || {
+    git am "$patch" || {
         echo "!!! PATCH FAILED: $patch"
         echo "    Rebase deps/xray-core manual-updates branch then re-run scripts/export_patches.sh"
         git am --abort; exit 1

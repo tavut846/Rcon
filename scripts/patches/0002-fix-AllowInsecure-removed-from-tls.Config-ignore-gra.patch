@@ -1,0 +1,42 @@
+From 21be03207c859bbd6472e8f1f3fa480ffd9c40ae Mon Sep 17 00:00:00 2001
+From: Rcon Build <rcon-build@local>
+Date: Mon, 15 Jun 2026 02:12:27 +0800
+Subject: [PATCH 2/2] =?UTF-8?q?fix:=20AllowInsecure=20removed=20from=20tls?=
+ =?UTF-8?q?.Config=20=E2=80=94=20ignore=20gracefully?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+wyx2685 keeps allowInsecure=true for panel compat, but upstream removed
+the AllowInsecure field from tls.Config. Silently ignore it so existing
+panel configs keep working. Panels should migrate to pinnedPeerCertSha256
+/ verifyPeerCertByName.
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+---
+ infra/conf/transport_internet.go | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/infra/conf/transport_internet.go b/infra/conf/transport_internet.go
+index 8cc0bfea..56f37938 100644
+--- a/infra/conf/transport_internet.go
++++ b/infra/conf/transport_internet.go
+@@ -696,13 +696,8 @@ func (c *TLSConfig) Build() (proto.Message, error) {
+ 	config.MasterKeyLog = c.MasterKeyLog
+ 
+ 	if c.AllowInsecure {
+-		//we won't remove it
+-		//if time.Now().After(time.Date(2026, 6, 1, 0, 0, 0, 0, time.UTC)) {
+-		//	return nil, errors.PrintRemovedFeatureError(`"allowInsecure"`, `"pinnedPeerCertSha256"`)
+-		//} else {
+-			//errors.LogWarning(context.Background(), `"allowInsecure" will be removed automatically after 2026-06-01, please use "pinnedPeerCertSha256"(pcs) and "verifyPeerCertByName"(vcn) instead, PLEASE CONTACT YOUR SERVICE PROVIDER (AIRPORT)`)
+-			config.AllowInsecure = true
+-		//}
++		// AllowInsecure was removed from tls.Config in upstream; silently ignore for panel compat.
++		// Panels should migrate to pinnedPeerCertSha256 / verifyPeerCertByName instead.
+ 	}
+ 	if c.PinnedPeerCertSha256 != "" {
+ 		for v := range strings.SplitSeq(c.PinnedPeerCertSha256, ",") {
+-- 
+2.52.0.windows.1
+

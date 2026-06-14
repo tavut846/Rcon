@@ -380,7 +380,7 @@ func buildAnyTLS(_ *conf.Options, nodeInfo *panel.NodeInfo, inbound *coreConf.In
 	a := nodeInfo.AnyTLS
 	settings := &coreConf.AnyTLSServerConfig{}
 	if a.PaddingScheme != "" {
-		settings.PaddingScheme = a.PaddingScheme
+		settings.PaddingScheme = strings.Split(a.PaddingScheme, "\n")
 	}
 	s, err := json.Marshal(settings)
 	if err != nil {

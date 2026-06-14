@@ -1,11 +1,18 @@
-From 7abe5445f9f860d4a6d46fdbc677d9ad74ffbe3b Mon Sep 17 00:00:00 2001
-From: Pandaa Xi <tavut846@gmail.com>
-Date: Mon, 15 Jun 2026 01:32:32 +0800
+From 0389699ee6b6b4d6cd69f2b6ad959b360523be37 Mon Sep 17 00:00:00 2001
+From: Rcon Build <rcon-build@local>
+Date: Mon, 15 Jun 2026 02:11:41 +0800
 Subject: [PATCH 1/2] =?UTF-8?q?chore:=20toolchain=20compat=20=E2=80=94=20p?=
- =?UTF-8?q?in=20go=201.26.4,=20stub=20missing=20MLKEM=20curves?=
+ =?UTF-8?q?in=20go=201.26.4,=20stub=20MLKEM=20curve=20IDs?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+
+go 1.26 is a pre-release toolchain string not accepted by all go
+versions in CI. Pin to 1.26.4.
+
+tls.X25519MLKEM768 / SecP256r1MLKEM768 / SecP384r1MLKEM1024 constants
+were added in a newer Go toolchain than what CI uses; replace with
+their numeric CurveID values so the code compiles on go 1.26.4.
 
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ---
@@ -14,7 +21,7 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/go.mod b/go.mod
-index c5b21f68..e05bacbe 100644
+index 8f6b809c..c2540643 100644
 --- a/go.mod
 +++ b/go.mod
 @@ -1,6 +1,6 @@
@@ -26,7 +33,7 @@ index c5b21f68..e05bacbe 100644
  require (
  	github.com/apernet/quic-go v0.59.1-0.20260425001925-6c6cc9bcb716
 diff --git a/transport/internet/tls/config.go b/transport/internet/tls/config.go
-index 9c860469..328fbd66 100644
+index 9c860469..854d4a58 100644
 --- a/transport/internet/tls/config.go
 +++ b/transport/internet/tls/config.go
 @@ -523,9 +523,9 @@ func ParseCurveName(curveNames []string) []tls.CurveID {
@@ -36,9 +43,9 @@ index 9c860469..328fbd66 100644
 -		"x25519mlkem768":     tls.X25519MLKEM768,
 -		"secp256r1mlkem768":  tls.SecP256r1MLKEM768,
 -		"secp384r1mlkem1024": tls.SecP384r1MLKEM1024,
-+		"x25519mlkem768":     tls.X25519, // tls.X25519MLKEM768,
-+		// "secp256r1mlkem768":  tls.SecP256r1MLKEM768,
-+		// "secp384r1mlkem1024": tls.SecP384r1MLKEM1024,
++		"x25519mlkem768":     0x11ec, // tls.X25519MLKEM768 — stub for toolchain compat
++		"secp256r1mlkem768":  0x11eb, // tls.SecP256r1MLKEM768
++		"secp384r1mlkem1024": 0x11ea, // tls.SecP384r1MLKEM1024
  	}
  
  	var curveIDs []tls.CurveID
