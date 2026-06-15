@@ -429,6 +429,81 @@ generate_x25519_key() {
     fi
 }
 
+show_node_status() {
+    local config_file="/etc/rcon/config.json"
+
+    if [[ ! -f "$config_file" ]]; then
+        echo -e "${red}Config file not found: $config_file${plain}"
+        if [[ $# == 0 ]]; then
+            before_show_menu
+        fi
+        return 1
+    fi
+
+    echo ""
+    echo -e "${green}======== Node Status ========${plain}"
+
+    if command -v python3 &>/dev/null; then
+        python3 -c "
+import json, sys
+try:
+    cfg = json.load(open('/etc/rcon/config.json'))
+except Exception as e:
+    print('Error reading config: ' + str(e))
+    sys.exit(1)
+nodes = cfg.get('Nodes', [])
+if not nodes:
+    print('  No nodes configured.')
+    sys.exit(0)
+for i, n in enumerate(nodes, 1):
+    nid   = str(n.get('NodeID', 'N/A'))
+    ntype = str(n.get('NodeType', 'N/A'))
+    opts  = n.get('XrayOptions', {})
+    fb_on = opts.get('EnableFallback', False)
+    fb_cfgs = opts.get('FallBackConfigs') or []
+    fb_dest = str(fb_cfgs[0].get('Dest', 'N/A')) if fb_cfgs else 'N/A'
+    print('  Node %d:' % i)
+    print('    Node Type    : ' + ntype)
+    print('    Node ID      : ' + nid)
+    print('    Fallback     : ' + ('Enabled' if fb_on else 'Disabled'))
+    print('    Fallback Dest: ' + fb_dest)
+    if i < len(nodes):
+        print('')
+"
+    else
+        echo -e "${yellow}python3 not found, showing raw fields:${plain}"
+        grep -E '"NodeID"|"NodeType"|"EnableFallback"' "$config_file"
+    fi
+
+    echo -e "${green}-----------------------------${plain}"
+
+    local iface
+    iface=$(ip route 2>/dev/null | grep "^default" | awk '{print $5}' | head -1)
+    if [[ -n "$iface" ]]; then
+        local rx tx rx_fmt tx_fmt
+        rx=$(awk -v dev="${iface}:" '$1==dev{print $2}' /proc/net/dev 2>/dev/null)
+        tx=$(awk -v dev="${iface}:" '$1==dev{print $10}' /proc/net/dev 2>/dev/null)
+        if [[ -n "$rx" && -n "$tx" ]]; then
+            rx_fmt=$(numfmt --to=iec "$rx" 2>/dev/null || echo "${rx} B")
+            tx_fmt=$(numfmt --to=iec "$tx" 2>/dev/null || echo "${tx} B")
+            echo -e "  Interface    : ${yellow}${iface}${plain} (since boot)"
+            echo -e "  Data Down    : ${green}${rx_fmt}${plain}"
+            echo -e "  Data Up      : ${green}${tx_fmt}${plain}"
+        else
+            echo -e "  ${yellow}Network stats not available${plain}"
+        fi
+    else
+        echo -e "  ${yellow}Could not detect network interface${plain}"
+    fi
+
+    echo -e "${green}=============================${plain}"
+    echo ""
+
+    if [[ $# == 0 ]]; then
+        before_show_menu
+    fi
+}
+
 show_rcon_version() {
     echo -n "rcon version: "
     /usr/local/rcon/rcon version
@@ -725,6 +800,7 @@ show_usage() {
     echo "rcon install      - Install rcon"
     echo "rcon uninstall    - Uninstall rcon"
     echo "rcon version      - Check rcon version"
+    echo "rcon node         - Show node status"
     echo "------------------------------------------"
 }
 
@@ -754,11 +830,12 @@ show_menu() {
   ${green}15.${plain} Generate rcon configuration file
   ${green}16.${plain} Open all network ports on VPS
   ${green}18.${plain} Clear rcon logs
+  ${green}19.${plain} Show node status
   ${green}17.${plain} Exit script
  "
  # Subsequent updates can be added above
     show_status
-    echo && read -rp "Please enter selection [0-18]: " num
+    echo && read -rp "Please enter selection [0-19]: " num
 
     case "${num}" in
         0) config ;;
@@ -780,7 +857,8 @@ show_menu() {
         16) open_ports ;;
         17) exit ;;
         18) check_install && clear_log ;;
-        *) echo -e "${red}Please enter a correct number [0-18]${plain}" ;;
+        19) check_install && show_node_status ;;
+        *) echo -e "${red}Please enter a correct number [0-19]${plain}" ;;
     esac
 }
 
@@ -802,6 +880,7 @@ if [[ $# > 0 ]]; then
         "uninstall") check_install 0 && uninstall 0 ;;
         "x25519") check_install 0 && generate_x25519_key 0 ;;
         "version") check_install 0 && show_rcon_version 0 ;;
+        "node") check_install 0 && show_node_status 0 ;;
         "update_shell") update_shell ;;
         *) show_usage
     esac
