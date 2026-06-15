@@ -452,12 +452,14 @@ add_node_config() {
     echo -e "${green}1. Shadowsocks${plain}"
     echo -e "${green}2. Vless${plain}"
     echo -e "${green}3. Vmess${plain}"
+    echo -e "${green}4. AnyTLS${plain}"
     echo -e "${green}6. Trojan${plain}"
     read -rp "Please enter: " NodeType
     case "$NodeType" in
         1 ) NodeType="shadowsocks" ;;
         2 ) NodeType="vless" ;;
         3 ) NodeType="vmess" ;;
+        4 ) NodeType="anytls" ;;
         6 ) NodeType="trojan" ;;
         * ) NodeType="shadowsocks" ;;
     esac
@@ -468,7 +470,7 @@ add_node_config() {
         read -rp "Is this a Reality node? (y/n) " isreality
     fi
 
-    if [[ "$NodeType" != "shadowsocks" && "$isreality" != "y" && "$isreality" != "Y" ]]; then
+    if [[ "$NodeType" != "shadowsocks" && "$NodeType" != "anytls" && "$isreality" != "y" && "$isreality" != "Y" ]]; then
         read -rp "Do you want to configure TLS? (y/n) " istls
     fi
 
