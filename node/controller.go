@@ -93,6 +93,7 @@ func (c *Controller) Start() error {
 	}
 	log.WithField("tag", c.tag).Infof("Added %d new users", added)
 	c.info = node
+	c.updateStatusFile(node)
 	c.startTasks(node)
 	return nil
 }
@@ -118,6 +119,9 @@ func (c *Controller) Close() error {
 	err := c.server.DelNode(c.tag)
 	if err != nil {
 		return fmt.Errorf("del node error: %s", err)
+	}
+	if c.info != nil {
+		c.removeFromStatusFile(c.info.Id)
 	}
 	return nil
 }

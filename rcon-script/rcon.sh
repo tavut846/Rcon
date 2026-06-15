@@ -431,6 +431,7 @@ generate_x25519_key() {
 
 show_node_status() {
     local config_file="/etc/rcon/config.json"
+    local status_file="/etc/rcon/node_status.json"
 
     if [[ ! -f "$config_file" ]]; then
         echo -e "${red}Config file not found: $config_file${plain}"
@@ -445,90 +446,101 @@ show_node_status() {
 
     if command -v python3 &>/dev/null; then
         python3 -c "
-import json, sys
-try:
-    cfg = json.load(open('/etc/rcon/config.json'))
-except Exception as e:
-    print('Error reading config: ' + str(e))
-    sys.exit(1)
-nodes = cfg.get('Nodes', [])
-if not nodes:
-    print('  No nodes configured.')
-    sys.exit(0)
-for i, n in enumerate(nodes, 1):
-    nid   = str(n.get('NodeID', 'N/A'))
-    ntype = str(n.get('NodeType', 'N/A'))
-    opts  = n.get('XrayOptions', {})
-    fb_on = opts.get('EnableFallback', False)
-    fb_cfgs = opts.get('FallBackConfigs') or []
-    fb_dest = str(fb_cfgs[0].get('Dest', 'N/A')) if fb_cfgs else 'N/A'
-    print('  Node %d:' % i)
-    print('    Node Type    : ' + ntype)
-    print('    Node ID      : ' + nid)
-    print('    Fallback     : ' + ('Enabled' if fb_on else 'Disabled'))
-    print('    Fallback Dest: ' + fb_dest)
-    if i < len(nodes):
-        print('')
+import json, sys, os
+
+# Per-port active connection counts via /proc/net/tcp*
+def port_conns():
+    counts = {}
+    for f in ['/proc/net/tcp', '/proc/net/tcp6']:
+        try:
+            for line in open(f).readlines()[1:]:
+                parts = line.split()
+                if len(parts) < 4:
+                    continue
+                state = parts[3]
+                if state != '01':   # 01 = ESTABLISHED
+                    continue
+                local = parts[1]
+                port = int(local.rsplit(':', 1)[-1], 16)
+                counts[port] = counts.get(port, 0) + 1
+        except Exception:
+            pass
+    return counts
+
+conns = port_conns()
+
+# Try to read live status written by rcon from panel API data
+status_file = '/etc/rcon/node_status.json'
+if os.path.exists(status_file):
+    try:
+        live = json.load(open(status_file))
+    except Exception:
+        live = []
+else:
+    live = []
+
+# Fall back to config.json for node list when status file is absent
+cfg = json.load(open('/etc/rcon/config.json'))
+cfg_nodes = cfg.get('Nodes', [])
+
+if live:
+    # Sort by node_id so display order is stable
+    live.sort(key=lambda n: n.get('node_id', 0))
+    for i, n in enumerate(live, 1):
+        nid      = str(n.get('node_id', 'N/A'))
+        ntype    = str(n.get('node_type', 'N/A'))
+        port     = n.get('port', 0)
+        network  = str(n.get('network', 'N/A'))
+        security = str(n.get('security', 'none'))
+        has_dl   = n.get('has_download_settings', False)
+        dl_dest  = n.get('download_dest', '')
+        active   = conns.get(port, 0)
+
+        # Determine role label
+        if network in ('splithttp', 'xhttp') and has_dl:
+            role = 'Upload stream  (xHTTP -> ' + dl_dest + ')'
+        elif network in ('splithttp', 'xhttp'):
+            role = 'xHTTP'
+        elif security == 'reality':
+            role = 'Download stream (Reality)'
+        else:
+            role = ''
+
+        print('  Node %d:' % i)
+        print('    Node Type    : ' + ntype)
+        print('    Node ID      : ' + nid)
+        print('    Port         : ' + str(port))
+        print('    Network      : ' + network)
+        print('    Security     : ' + security)
+        if role:
+            print('    Role         : ' + role)
+        print('    Connections  : ' + str(active))
+        if i < len(live):
+            print('')
+else:
+    # No live status yet (rcon not started or old version) — show config.json only
+    if not cfg_nodes:
+        print('  No nodes configured.')
+        sys.exit(0)
+    for i, n in enumerate(cfg_nodes, 1):
+        nid   = str(n.get('NodeID', 'N/A'))
+        ntype = str(n.get('NodeType', 'N/A'))
+        opts  = n.get('XrayOptions', {}) or {}
+        fb_on = opts.get('EnableFallback', False)
+        fb_cfgs = opts.get('FallBackConfigs') or []
+        fb_dest = str(fb_cfgs[0].get('Dest', 'N/A')) if fb_cfgs else 'N/A'
+        print('  Node %d:' % i)
+        print('    Node Type    : ' + ntype)
+        print('    Node ID      : ' + nid)
+        print('    Fallback     : ' + ('Enabled' if fb_on else 'Disabled'))
+        print('    Fallback Dest: ' + fb_dest)
+        print('    (stream info available after rcon starts)')
+        if i < len(cfg_nodes):
+            print('')
 "
     else
         echo -e "${yellow}python3 not found, showing raw fields:${plain}"
         grep -E '"NodeID"|"NodeType"|"EnableFallback"' "$config_file"
-    fi
-
-    echo -e "${green}-----------------------------${plain}"
-
-    # Per-port connection table (stream type + active connections)
-    local rcon_pid
-    rcon_pid=$(systemctl show rcon -p MainPID --value 2>/dev/null)
-    if [[ -n "$rcon_pid" && "$rcon_pid" != "0" ]]; then
-        local ports
-        ports=$(ss -tlnp 2>/dev/null | awk -v pid="pid=$rcon_pid," '$0 ~ pid {
-            split($4, a, ":"); print a[length(a)]
-        }' | sort -un)
-        if [[ -n "$ports" ]]; then
-            echo -e "  ${yellow}Ports & Connections:${plain}"
-            while IFS= read -r port; do
-                local conns stream_hint
-                conns=$(ss -tn state established 2>/dev/null | awk -v p=":$port" '$0 ~ p {c++} END {print c+0}')
-                # Detect stream type from recent journal entries for this port
-                stream_hint=$(journalctl -u rcon.service -n 500 --no-pager 2>/dev/null | \
-                    grep -i "xhttp\|xray-core\|splithttp\|reality\|vless" | \
-                    grep -i "$port" | tail -1)
-                if journalctl -u rcon.service -n 500 --no-pager 2>/dev/null | \
-                        grep -qi "xhttp+reality.*port.*$port\|port.*$port.*xhttp+reality"; then
-                    stream_hint="xHTTP+Reality (split)"
-                elif journalctl -u rcon.service -n 500 --no-pager 2>/dev/null | \
-                        grep -qi "downloadSettings detected"; then
-                    stream_hint="xHTTP (split-upload)"
-                else
-                    stream_hint=""
-                fi
-                if [[ -n "$stream_hint" ]]; then
-                    echo -e "    Port ${yellow}${port}${plain}: ${green}${conns}${plain} conn(s)  [${stream_hint}]"
-                else
-                    echo -e "    Port ${yellow}${port}${plain}: ${green}${conns}${plain} conn(s)"
-                fi
-            done <<< "$ports"
-        fi
-    fi
-
-    # Split-transport (xHTTP upload + Reality download) detection
-    echo -e "${green}-----------------------------${plain}"
-    echo -e "  ${yellow}Split Transport Check:${plain}"
-    local split_log
-    split_log=$(journalctl -u rcon.service -n 1000 --no-pager 2>/dev/null | \
-        grep -i "xhttp+reality\|downloadSettings" | tail -5)
-    if echo "$split_log" | grep -qi "downloadSettings detected"; then
-        echo -e "  ${green}[OK]${plain} xHTTP+Reality split mode is ACTIVE"
-        echo -e "       Upload  path : xHTTP inbound"
-        echo -e "       Download path: Reality inbound (via downloadSettings)"
-    elif echo "$split_log" | grep -qi "xhttp+reality"; then
-        echo -e "  ${yellow}[WARN]${plain} xHTTP+Reality nodes started but split mode NOT confirmed"
-        echo -e "         Ensure the xHTTP node on the panel has 'downloadSettings'"
-        echo -e "         pointing to the Reality node port."
-    else
-        echo -e "  ${yellow}[-]${plain} No xHTTP+Reality split transport detected in recent logs"
-        echo -e "      (Run 'rcon log' to inspect startup messages)"
     fi
 
     echo -e "${green}-----------------------------${plain}"
