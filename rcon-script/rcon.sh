@@ -477,6 +477,62 @@ for i, n in enumerate(nodes, 1):
 
     echo -e "${green}-----------------------------${plain}"
 
+    # Per-port connection table (stream type + active connections)
+    local rcon_pid
+    rcon_pid=$(systemctl show rcon -p MainPID --value 2>/dev/null)
+    if [[ -n "$rcon_pid" && "$rcon_pid" != "0" ]]; then
+        local ports
+        ports=$(ss -tlnp 2>/dev/null | awk -v pid="pid=$rcon_pid," '$0 ~ pid {
+            split($4, a, ":"); print a[length(a)]
+        }' | sort -un)
+        if [[ -n "$ports" ]]; then
+            echo -e "  ${yellow}Ports & Connections:${plain}"
+            while IFS= read -r port; do
+                local conns stream_hint
+                conns=$(ss -tn state established 2>/dev/null | awk -v p=":$port" '$0 ~ p {c++} END {print c+0}')
+                # Detect stream type from recent journal entries for this port
+                stream_hint=$(journalctl -u rcon.service -n 500 --no-pager 2>/dev/null | \
+                    grep -i "xhttp\|xray-core\|splithttp\|reality\|vless" | \
+                    grep -i "$port" | tail -1)
+                if journalctl -u rcon.service -n 500 --no-pager 2>/dev/null | \
+                        grep -qi "xhttp+reality.*port.*$port\|port.*$port.*xhttp+reality"; then
+                    stream_hint="xHTTP+Reality (split)"
+                elif journalctl -u rcon.service -n 500 --no-pager 2>/dev/null | \
+                        grep -qi "downloadSettings detected"; then
+                    stream_hint="xHTTP (split-upload)"
+                else
+                    stream_hint=""
+                fi
+                if [[ -n "$stream_hint" ]]; then
+                    echo -e "    Port ${yellow}${port}${plain}: ${green}${conns}${plain} conn(s)  [${stream_hint}]"
+                else
+                    echo -e "    Port ${yellow}${port}${plain}: ${green}${conns}${plain} conn(s)"
+                fi
+            done <<< "$ports"
+        fi
+    fi
+
+    # Split-transport (xHTTP upload + Reality download) detection
+    echo -e "${green}-----------------------------${plain}"
+    echo -e "  ${yellow}Split Transport Check:${plain}"
+    local split_log
+    split_log=$(journalctl -u rcon.service -n 1000 --no-pager 2>/dev/null | \
+        grep -i "xhttp+reality\|downloadSettings" | tail -5)
+    if echo "$split_log" | grep -qi "downloadSettings detected"; then
+        echo -e "  ${green}[OK]${plain} xHTTP+Reality split mode is ACTIVE"
+        echo -e "       Upload  path : xHTTP inbound"
+        echo -e "       Download path: Reality inbound (via downloadSettings)"
+    elif echo "$split_log" | grep -qi "xhttp+reality"; then
+        echo -e "  ${yellow}[WARN]${plain} xHTTP+Reality nodes started but split mode NOT confirmed"
+        echo -e "         Ensure the xHTTP node on the panel has 'downloadSettings'"
+        echo -e "         pointing to the Reality node port."
+    else
+        echo -e "  ${yellow}[-]${plain} No xHTTP+Reality split transport detected in recent logs"
+        echo -e "      (Run 'rcon log' to inspect startup messages)"
+    fi
+
+    echo -e "${green}-----------------------------${plain}"
+
     local iface
     iface=$(ip route 2>/dev/null | grep "^default" | awk '{print $5}' | head -1)
     if [[ -n "$iface" ]]; then
