@@ -48,7 +48,10 @@ jobs:
             echo "version=$(echo $GITHUB_REF | cut -d / -f 3)" >> $GITHUB_OUTPUT
           else
             git fetch --tags
-            LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "0.0.0")
+            LATEST_TAG=$(git tag -l | grep -E '^[v]?[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n1)
+            if [ -z "$LATEST_TAG" ]; then
+              LATEST_TAG="0.0.0"
+            fi
             LATEST_TAG=${LATEST_TAG#v}
             MAJOR=$(echo $LATEST_TAG | cut -d. -f1)
             MINOR=$(echo $LATEST_TAG | cut -d. -f2)
