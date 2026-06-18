@@ -82,6 +82,7 @@ type TlsSettings struct {
 	Mldsa65Seed string     `json:"mldsa65Seed"`
 	Xver        uint64     `json:"xver,string"`
 	Ech         *EchConfig `json:"ech"`
+	Alpn        []string   `json:"alpn"`
 }
 
 type EchConfig struct {

@@ -108,6 +108,16 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 			break // disable
 		default:
 			in.StreamSetting.Security = "tls"
+			// Pick ALPN: panel-specified wins; otherwise xhttp/splithttp gets h2-only
+			// (http/1.1 is unreliable for the persistent xhttp download stream).
+			var alpn coreConf.StringList
+			if nodeInfo.VAllss != nil && len(nodeInfo.VAllss.TlsSettings.Alpn) > 0 {
+				alpn = coreConf.StringList(nodeInfo.VAllss.TlsSettings.Alpn)
+			} else if network == "xhttp" || network == "splithttp" {
+				alpn = coreConf.StringList{"h2"}
+			} else {
+				alpn = coreConf.StringList{"h2", "http/1.1"}
+			}
 			tlsCfg := &coreConf.TLSConfig{
 				Certs: []*coreConf.TLSCertConfig{
 					{
@@ -117,7 +127,7 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 					},
 				},
 				RejectUnknownSNI: option.CertConfig.RejectUnknownSni,
-				ALPN:             &coreConf.StringList{"h2", "http/1.1"},
+				ALPN:             &alpn,
 			}
 			if nodeInfo.VAllss != nil {
 				if keys := extractECHServerKeys(nodeInfo.VAllss.TlsSettings.Ech); keys != "" {
