@@ -835,6 +835,95 @@ EOF
     before_show_menu
 }
 
+# Toggle IP ban scanning (Anti-Scan)
+toggle_anti_scan() {
+    local config_file="/etc/rcon/config.json"
+    if [[ ! -f "${config_file}" ]]; then
+        echo -e "${red}Configuration file ${config_file} not found!${plain}"
+        return 1
+    fi
+
+    # Detect python command
+    local py_cmd
+    if command -v python3 &>/dev/null; then
+        py_cmd="python3"
+    elif command -v python &>/dev/null; then
+        py_cmd="python"
+    else
+        echo -e "${red}Python is required to modify JSON configuration files!${plain}"
+        return 1
+    fi
+
+    # Check current state
+    local current_state
+    current_state=$(${py_cmd} -c "
+import json
+try:
+    with open('${config_file}', 'r') as f:
+        data = json.load(f)
+    enabled = any(node.get('LimitConfig', {}).get('EnableAntiScan', False) for node in data.get('Nodes', []))
+    print('true' if enabled else 'false')
+except Exception:
+    print('error')
+" 2>/dev/null)
+
+    if [[ "${current_state}" == "error" ]]; then
+        echo -e "${red}Failed to parse configuration file!${plain}"
+        return 1
+    fi
+
+    echo -e "Current Anti-Scan status: $([[ "${current_state}" == "true" ]] && echo -e "${green}Enabled${plain}" || echo -e "${red}Disabled${plain}")"
+    echo && echo -n -e "Do you want to $([[ "${current_state}" == "true" ]] && echo "disable" || echo "enable") Anti-Scan? [y/n]: " && read -r choice
+    if [[ "${choice}" == "y" || "${choice}" == "Y" ]]; then
+        local target_state
+        if [[ "${current_state}" == "true" ]]; then
+            target_state="False"
+        else
+            target_state="True"
+        fi
+
+        ${py_cmd} -c "
+import json
+with open('${config_file}', 'r') as f:
+    data = json.load(f)
+for node in data.get('Nodes', []):
+    if 'LimitConfig' not in node:
+        node['LimitConfig'] = {}
+    node['LimitConfig']['EnableAntiScan'] = ${target_state}
+    if ${target_state} and 'AntiScanConfig' not in node['LimitConfig']:
+        node['LimitConfig']['AntiScanConfig'] = {
+            'Threshold': 3,
+            'Window': 10,
+            'BanDuration': 3600,
+            'LogPath': 'banned.log'
+        }
+with open('${config_file}', 'w') as f:
+    json.dump(data, f, indent=2)
+"
+        echo -e "${green}Anti-Scan status updated successfully!${plain}"
+        restart 0
+    else
+        echo -e "Cancelled."
+    fi
+
+    if [[ $# == 0 ]]; then
+        before_show_menu
+    fi
+}
+
+# View banned IP logs (Anti-Scan)
+view_banned_ips() {
+    if [[ ! -f /usr/local/rcon/rcon ]]; then
+        echo -e "${red}rcon is not installed!${plain}"
+        return 1
+    fi
+    /usr/local/rcon/rcon banned
+
+    if [[ $# == 0 ]]; then
+        before_show_menu
+    fi
+}
+
 # Open firewall ports
 open_ports() {
     systemctl stop firewalld.service 2>/dev/null
@@ -870,6 +959,8 @@ show_usage() {
     echo "rcon uninstall    - Uninstall rcon"
     echo "rcon version      - Check rcon version"
     echo "rcon node         - Show node status"
+    echo "rcon antiscan     - Toggle IP ban scanning (Anti-Scan)"
+    echo "rcon banned       - View banned IP logs"
     echo "------------------------------------------"
 }
 
@@ -900,11 +991,13 @@ show_menu() {
   ${green}16.${plain} Open all network ports on VPS
   ${green}18.${plain} Clear rcon logs
   ${green}19.${plain} Show node status
+  ${green}20.${plain} Toggle IP ban scanning (Anti-Scan)
+  ${green}21.${plain} View banned IP logs
   ${green}17.${plain} Exit script
  "
  # Subsequent updates can be added above
     show_status
-    echo && read -rp "Please enter selection [0-19]: " num
+    echo && read -rp "Please enter selection [0-21]: " num
 
     case "${num}" in
         0) config ;;
@@ -927,7 +1020,9 @@ show_menu() {
         17) exit ;;
         18) check_install && clear_log ;;
         19) check_install && show_node_status ;;
-        *) echo -e "${red}Please enter a correct number [0-19]${plain}" ;;
+        20) check_install && toggle_anti_scan ;;
+        21) check_install && view_banned_ips ;;
+        *) echo -e "${red}Please enter a correct number [0-21]${plain}" ;;
     esac
 }
 
@@ -950,6 +1045,8 @@ if [[ $# > 0 ]]; then
         "x25519") check_install 0 && generate_x25519_key 0 ;;
         "version") check_install 0 && show_rcon_version 0 ;;
         "node") check_install 0 && show_node_status 0 ;;
+        "antiscan") check_install 0 && toggle_anti_scan 0 ;;
+        "banned") check_install 0 && view_banned_ips 0 ;;
         "update_shell") update_shell ;;
         *) show_usage
     esac
