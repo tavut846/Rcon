@@ -130,7 +130,7 @@ install_rcon() {
 
     if  [ $# == 0 ] ;then
         if [[ "${RCON_PRE_RELEASE}" == "true" ]]; then
-            last_version=$(curl -Ls "https://api.github.com/repos/tavut846/Rcon/releases" | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
+            last_version=$(curl -Ls "https://api.github.com/repos/tavut846/Rcon/releases" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/' | sort -V | tail -n 1)
         else
             last_version=$(curl -Ls "https://api.github.com/repos/tavut846/Rcon/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         fi
