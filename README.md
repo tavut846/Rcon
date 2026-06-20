@@ -22,7 +22,7 @@ wget -N https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/insta
 
 **2. Pre-release version**
 ```bash
-wget -N https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh && RCON_PRE_RELEASE=true bash install.sh
+wget -N https://raw.githubusercontent.com/tavut846/Rcon/refs/heads/dev/rcon-script/install.sh && RCON_PRE_RELEASE=true bash install.sh
 ```
 
 ## Build
