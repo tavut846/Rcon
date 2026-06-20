@@ -6,6 +6,7 @@ on:
     branches:
       - dev
       - dev_new
+      - stable
     paths:
       - "**/*.go"
       - "go.mod"
