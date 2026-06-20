@@ -129,12 +129,20 @@ install_rcon() {
     cd /usr/local/rcon/
 
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/tavut846/Rcon/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        if [[ "${RCON_PRE_RELEASE}" == "true" ]]; then
+            last_version=$(curl -Ls "https://api.github.com/repos/tavut846/Rcon/releases" | grep '"tag_name":' | head -n 1 | sed -E 's/.*"([^"]+)".*/\1/')
+        else
+            last_version=$(curl -Ls "https://api.github.com/repos/tavut846/Rcon/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        fi
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}Failed to detect rcon version, possibly due to GitHub API limits. Please try again later or manually specify a version for installation.${plain}"
             exit 1
         fi
-        echo -e "Latest rcon version detected: ${last_version}, starting installation..."
+        if [[ "${RCON_PRE_RELEASE}" == "true" ]]; then
+            echo -e "Latest pre-release version detected: ${last_version}, starting installation..."
+        else
+            echo -e "Latest stable version detected: ${last_version}, starting installation..."
+        fi
         wget --no-check-certificate -N --progress=bar -O /usr/local/rcon/rcon-linux.zip https://github.com/tavut846/Rcon/releases/download/${last_version}/rcon-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Failed to download rcon, please ensure your server can download files from GitHub.${plain}"

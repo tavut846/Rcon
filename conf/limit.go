@@ -9,7 +9,17 @@ type LimitConfig struct {
 	IpRecorderConfig        *IpReportConfig          `json:"IpRecorderConfig"`
 	EnableDynamicSpeedLimit bool                     `json:"EnableDynamicSpeedLimit"`
 	DynamicSpeedLimitConfig *DynamicSpeedLimitConfig `json:"DynamicSpeedLimitConfig"`
+	EnableAntiScan          bool                     `json:"EnableAntiScan"`
+	AntiScanConfig          *AntiScanConfig          `json:"AntiScanConfig"`
 }
+
+type AntiScanConfig struct {
+	Threshold   int    `json:"Threshold"`
+	Window      int    `json:"Window"`
+	BanDuration int    `json:"BanDuration"`
+	LogPath     string `json:"LogPath"`
+}
+
 
 type RecorderConfig struct {
 	Url     string `json:"Url"`

@@ -1,7 +1,7 @@
-From 21be03207c859bbd6472e8f1f3fa480ffd9c40ae Mon Sep 17 00:00:00 2001
+From b731cf2680ddee9cd7c2513cf46d02755ed9ceb8 Mon Sep 17 00:00:00 2001
 From: Rcon Build <rcon-build@local>
 Date: Mon, 15 Jun 2026 02:12:27 +0800
-Subject: [PATCH 2/2] =?UTF-8?q?fix:=20AllowInsecure=20removed=20from=20tls?=
+Subject: [PATCH 2/3] =?UTF-8?q?fix:=20AllowInsecure=20removed=20from=20tls?=
  =?UTF-8?q?.Config=20=E2=80=94=20ignore=20gracefully?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -18,10 +18,10 @@ Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
  1 file changed, 2 insertions(+), 7 deletions(-)
 
 diff --git a/infra/conf/transport_internet.go b/infra/conf/transport_internet.go
-index 8cc0bfea..56f37938 100644
+index 207a9447..e607f2e1 100644
 --- a/infra/conf/transport_internet.go
 +++ b/infra/conf/transport_internet.go
-@@ -696,13 +696,8 @@ func (c *TLSConfig) Build() (proto.Message, error) {
+@@ -731,13 +731,8 @@ func (c *TLSConfig) Build() (proto.Message, error) {
  	config.MasterKeyLog = c.MasterKeyLog
  
  	if c.AllowInsecure {

@@ -1,4 +1,4 @@
-﻿package dispatcher
+package dispatcher
 
 //go:generate go run github.com/xtls/xray-core/common/errors/errorgen
 
@@ -290,6 +290,22 @@ func (d *DefaultDispatcher) Dispatch(ctx context.Context, destination net.Destin
 	inbound, outbound, l, err := d.getLink(ctx, destination.Network)
 	if err != nil {
 		return nil, err
+	}
+	if l != nil && l.EnableAntiScan && l.ScanDetector != nil {
+		sessionInbound := session.InboundFromContext(ctx)
+		if sessionInbound != nil && sessionInbound.Source.Address != nil {
+			clientIP := sessionInbound.Source.Address.IP().String()
+			destStr := destination.Address.String()
+			if l.ScanDetector.RecordAndCheck(clientIP, destStr) {
+				l.ScanDetector.Ban(clientIP)
+				errors.LogInfo(ctx, "AntiScan: IP ", clientIP, " banned for scanning")
+				common.Close(inbound.Writer)
+				common.Close(outbound.Writer)
+				common.Interrupt(inbound.Reader)
+				common.Interrupt(outbound.Reader)
+				return nil, errors.New("AntiScan: blocked scanner IP ", clientIP)
+			}
+		}
 	}
 	if !sniffingRequest.Enabled {
 		go d.routedDispatch(ctx, outbound, destination, l, "")

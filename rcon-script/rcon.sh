@@ -108,9 +108,22 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
-        echo && echo -n -e "Enter the specified version (default latest): " && read version
+        echo && echo -n -e "Enter target type (1: stable/latest, 2: pre-release/pre, or input a custom version): " && read choice
+        if [[ "${choice}" == "1" || -z "${choice}" ]]; then
+            version=""
+            export RCON_PRE_RELEASE="false"
+        elif [[ "${choice}" == "2" ]]; then
+            version=""
+            export RCON_PRE_RELEASE="true"
+        else
+            version="${choice}"
+        fi
     else
         version=$2
+        if [[ "${version}" == "pre" ]]; then
+            version=""
+            export RCON_PRE_RELEASE="true"
+        fi
     fi
     bash <(curl -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh) $version
     if [[ $? == 0 ]]; then

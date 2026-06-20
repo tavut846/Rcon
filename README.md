@@ -15,8 +15,14 @@ Network course
 
 ### One-click Install
 
+**1. Stable / Latest version**
 ```bash
 wget -N https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh && bash install.sh
+```
+
+**2. Pre-release version**
+```bash
+wget -N https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh && RCON_PRE_RELEASE=true bash install.sh
 ```
 
 ## Build

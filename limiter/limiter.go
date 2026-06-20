@@ -1,4 +1,4 @@
-﻿package limiter
+package limiter
 
 import (
 	"errors"
@@ -30,6 +30,8 @@ type Limiter struct {
 	UserLimitInfo *sync.Map      // Key: TagUUID value: UserLimitInfo
 	SpeedLimiter  *sync.Map      // key: TagUUID, value: *ratelimit.Bucket
 	AliveList     map[int]int    // Key: Uid, value: alive_ip
+	EnableAntiScan bool
+	ScanDetector   *ScanDetector
 }
 
 type UserLimitInfo struct {
@@ -43,12 +45,16 @@ type UserLimitInfo struct {
 
 func AddLimiter(tag string, l *conf.LimitConfig, users []panel.UserInfo, aliveList map[int]int) *Limiter {
 	info := &Limiter{
-		SpeedLimit:    l.SpeedLimit,
-		UserOnlineIP:  new(sync.Map),
-		UserLimitInfo: new(sync.Map),
-		SpeedLimiter:  new(sync.Map),
-		AliveList:     aliveList,
-		OldUserOnline: new(sync.Map),
+		SpeedLimit:     l.SpeedLimit,
+		UserOnlineIP:   new(sync.Map),
+		UserLimitInfo:  new(sync.Map),
+		SpeedLimiter:   new(sync.Map),
+		AliveList:      aliveList,
+		OldUserOnline:  new(sync.Map),
+		EnableAntiScan: l.EnableAntiScan,
+	}
+	if l.EnableAntiScan {
+		info.ScanDetector = NewScanDetector(l.AntiScanConfig)
 	}
 	uuidmap := make(map[string]int)
 	for i := range users {
@@ -126,6 +132,10 @@ func (l *Limiter) UpdateDynamicSpeedLimit(tag, uuid string, limit int, expire ti
 func (l *Limiter) CheckLimit(taguuid string, ip string, isTcp bool, noSSUDP bool) (Bucket *ratelimit.Bucket, Reject bool) {
 	// check if ipv4 mapped ipv6
 	ip = strings.TrimPrefix(ip, "::ffff:")
+
+	if l.EnableAntiScan && l.ScanDetector != nil && l.ScanDetector.IsBanned(ip) {
+		return nil, true
+	}
 
 	// check and gen speed limit Bucket
 	nodeLimit := l.SpeedLimit

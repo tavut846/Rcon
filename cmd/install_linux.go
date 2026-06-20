@@ -1,4 +1,4 @@
-﻿package cmd
+package cmd
 
 import (
 	"fmt"
@@ -9,15 +9,23 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var targetVersion string
+var (
+	targetVersion string
+	preRelease    bool
+)
 
 var (
 	updateCommand = cobra.Command{
 		Use:   "update",
 		Short: "Update rcon version",
 		Run: func(_ *cobra.Command, _ []string) {
+			if preRelease {
+				os.Setenv("RCON_PRE_RELEASE", "true")
+			} else {
+				os.Setenv("RCON_PRE_RELEASE", "false")
+			}
 			exec.RunCommandStd("bash",
-				"<(curl -Ls https://raw.githubusercontents.com/InazumaV/rcon-script/master/install.sh)",
+				"<(curl -Ls https://raw.githubusercontent.com/tavut846/Rcon/master/rcon-script/install.sh)",
 				targetVersion)
 		},
 		Args: cobra.NoArgs,
@@ -31,6 +39,7 @@ var (
 
 func init() {
 	updateCommand.PersistentFlags().StringVar(&targetVersion, "version", "", "update target version")
+	updateCommand.PersistentFlags().BoolVar(&preRelease, "pre", false, "update to latest pre-release version")
 	command.AddCommand(&updateCommand)
 	command.AddCommand(&uninstallCommand)
 }
