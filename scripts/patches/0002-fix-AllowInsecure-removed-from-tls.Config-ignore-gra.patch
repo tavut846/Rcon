@@ -7,36 +7,25 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-wyx2685 keeps allowInsecure=true for panel compat, but upstream removed
-the AllowInsecure field from tls.Config. Silently ignore it so existing
-panel configs keep working. Panels should migrate to pinnedPeerCertSha256
-/ verifyPeerCertByName.
+wyx2685 now returns an error for allowInsecure, but existing panel
+configs still send it. Silently ignore so panels keep working.
+Panels should migrate to pinnedPeerCertSha256 / verifyPeerCertByName.
 
 Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
 ---
- infra/conf/transport_internet.go | 9 ++-------
- 1 file changed, 2 insertions(+), 7 deletions(-)
+ infra/conf/transport_internet.go | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/infra/conf/transport_internet.go b/infra/conf/transport_internet.go
 index 207a9447..e607f2e1 100644
 --- a/infra/conf/transport_internet.go
 +++ b/infra/conf/transport_internet.go
-@@ -731,13 +731,8 @@ func (c *TLSConfig) Build() (proto.Message, error) {
+@@ -731,6 +731,7 @@ func (c *TLSConfig) Build() (proto.Message, error) {
  	config.MasterKeyLog = c.MasterKeyLog
- 
+
  	if c.AllowInsecure {
--		//we won't remove it
--		//if time.Now().After(time.Date(2026, 6, 1, 0, 0, 0, 0, time.UTC)) {
--		//	return nil, errors.PrintRemovedFeatureError(`"allowInsecure"`, `"pinnedPeerCertSha256"`)
--		//} else {
--			//errors.LogWarning(context.Background(), `"allowInsecure" will be removed automatically after 2026-06-01, please use "pinnedPeerCertSha256"(pcs) and "verifyPeerCertByName"(vcn) instead, PLEASE CONTACT YOUR SERVICE PROVIDER (AIRPORT)`)
--			config.AllowInsecure = true
--		//}
+-		return nil, errors.PrintRemovedFeatureError(`"allowInsecure"`, `"pinnedPeerCertSha256"(pcs) and "verifyPeerCertByName"(vcn)`)
 +		// AllowInsecure was removed from tls.Config in upstream; silently ignore for panel compat.
 +		// Panels should migrate to pinnedPeerCertSha256 / verifyPeerCertByName instead.
  	}
  	if c.PinnedPeerCertSha256 != "" {
- 		for v := range strings.SplitSeq(c.PinnedPeerCertSha256, ",") {
--- 
-2.52.0.windows.1
-
