@@ -5,12 +5,12 @@
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 15224 nodes · 29676 edges · 911 communities detected
+- 15224 nodes · 29676 edges · 915 communities detected
 - Extraction: 78% EXTRACTED · 22% INFERRED · 0% AMBIGUOUS · INFERRED: 6403 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1ebb0d5b`
+- Built from commit: `932a3f1a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -341,9 +341,9 @@
 - [[_COMMUNITY_Community 323|Community 323]]
 - [[_COMMUNITY_Community 324|Community 324]]
 - [[_COMMUNITY_Community 325|Community 325]]
+- [[_COMMUNITY_Community 326|Community 326]]
 - [[_COMMUNITY_Community 327|Community 327]]
 - [[_COMMUNITY_Community 328|Community 328]]
-- [[_COMMUNITY_Community 329|Community 329]]
 - [[_COMMUNITY_Community 330|Community 330]]
 - [[_COMMUNITY_Community 331|Community 331]]
 - [[_COMMUNITY_Community 332|Community 332]]
@@ -451,6 +451,7 @@
 - [[_COMMUNITY_Community 434|Community 434]]
 - [[_COMMUNITY_Community 435|Community 435]]
 - [[_COMMUNITY_Community 436|Community 436]]
+- [[_COMMUNITY_Community 437|Community 437]]
 - [[_COMMUNITY_Community 438|Community 438]]
 - [[_COMMUNITY_Community 439|Community 439]]
 - [[_COMMUNITY_Community 440|Community 440]]
@@ -486,7 +487,6 @@
 - [[_COMMUNITY_Community 470|Community 470]]
 - [[_COMMUNITY_Community 471|Community 471]]
 - [[_COMMUNITY_Community 472|Community 472]]
-- [[_COMMUNITY_Community 473|Community 473]]
 - [[_COMMUNITY_Community 474|Community 474]]
 - [[_COMMUNITY_Community 475|Community 475]]
 - [[_COMMUNITY_Community 476|Community 476]]
@@ -546,10 +546,10 @@
 - [[_COMMUNITY_Community 530|Community 530]]
 - [[_COMMUNITY_Community 531|Community 531]]
 - [[_COMMUNITY_Community 532|Community 532]]
+- [[_COMMUNITY_Community 533|Community 533]]
 - [[_COMMUNITY_Community 534|Community 534]]
 - [[_COMMUNITY_Community 535|Community 535]]
 - [[_COMMUNITY_Community 536|Community 536]]
-- [[_COMMUNITY_Community 537|Community 537]]
 - [[_COMMUNITY_Community 538|Community 538]]
 - [[_COMMUNITY_Community 539|Community 539]]
 - [[_COMMUNITY_Community 540|Community 540]]
@@ -593,7 +593,6 @@
 - [[_COMMUNITY_Community 578|Community 578]]
 - [[_COMMUNITY_Community 579|Community 579]]
 - [[_COMMUNITY_Community 580|Community 580]]
-- [[_COMMUNITY_Community 581|Community 581]]
 - [[_COMMUNITY_Community 582|Community 582]]
 - [[_COMMUNITY_Community 583|Community 583]]
 - [[_COMMUNITY_Community 584|Community 584]]
@@ -642,6 +641,7 @@
 - [[_COMMUNITY_Community 627|Community 627]]
 - [[_COMMUNITY_Community 628|Community 628]]
 - [[_COMMUNITY_Community 629|Community 629]]
+- [[_COMMUNITY_Community 630|Community 630]]
 - [[_COMMUNITY_Community 631|Community 631]]
 - [[_COMMUNITY_Community 632|Community 632]]
 - [[_COMMUNITY_Community 633|Community 633]]
@@ -703,9 +703,9 @@
 - [[_COMMUNITY_Community 689|Community 689]]
 - [[_COMMUNITY_Community 690|Community 690]]
 - [[_COMMUNITY_Community 691|Community 691]]
-- [[_COMMUNITY_Community 695|Community 695]]
-- [[_COMMUNITY_Community 696|Community 696]]
-- [[_COMMUNITY_Community 697|Community 697]]
+- [[_COMMUNITY_Community 692|Community 692]]
+- [[_COMMUNITY_Community 693|Community 693]]
+- [[_COMMUNITY_Community 694|Community 694]]
 - [[_COMMUNITY_Community 698|Community 698]]
 - [[_COMMUNITY_Community 699|Community 699]]
 - [[_COMMUNITY_Community 700|Community 700]]
@@ -746,11 +746,11 @@
 - [[_COMMUNITY_Community 735|Community 735]]
 - [[_COMMUNITY_Community 736|Community 736]]
 - [[_COMMUNITY_Community 737|Community 737]]
+- [[_COMMUNITY_Community 738|Community 738]]
+- [[_COMMUNITY_Community 739|Community 739]]
 - [[_COMMUNITY_Community 740|Community 740]]
 - [[_COMMUNITY_Community 741|Community 741]]
 - [[_COMMUNITY_Community 742|Community 742]]
-- [[_COMMUNITY_Community 743|Community 743]]
-- [[_COMMUNITY_Community 744|Community 744]]
 - [[_COMMUNITY_Community 745|Community 745]]
 - [[_COMMUNITY_Community 746|Community 746]]
 - [[_COMMUNITY_Community 747|Community 747]]
@@ -788,11 +788,11 @@
 - [[_COMMUNITY_Community 779|Community 779]]
 - [[_COMMUNITY_Community 780|Community 780]]
 - [[_COMMUNITY_Community 781|Community 781]]
+- [[_COMMUNITY_Community 782|Community 782]]
 - [[_COMMUNITY_Community 783|Community 783]]
 - [[_COMMUNITY_Community 784|Community 784]]
 - [[_COMMUNITY_Community 785|Community 785]]
 - [[_COMMUNITY_Community 786|Community 786]]
-- [[_COMMUNITY_Community 787|Community 787]]
 - [[_COMMUNITY_Community 788|Community 788]]
 - [[_COMMUNITY_Community 789|Community 789]]
 - [[_COMMUNITY_Community 790|Community 790]]
@@ -842,17 +842,17 @@
 - [[_COMMUNITY_Community 834|Community 834]]
 - [[_COMMUNITY_Community 835|Community 835]]
 - [[_COMMUNITY_Community 836|Community 836]]
+- [[_COMMUNITY_Community 837|Community 837]]
 - [[_COMMUNITY_Community 838|Community 838]]
 - [[_COMMUNITY_Community 839|Community 839]]
 - [[_COMMUNITY_Community 840|Community 840]]
 - [[_COMMUNITY_Community 841|Community 841]]
-- [[_COMMUNITY_Community 842|Community 842]]
-- [[_COMMUNITY_Community 848|Community 848]]
-- [[_COMMUNITY_Community 850|Community 850]]
-- [[_COMMUNITY_Community 851|Community 851]]
-- [[_COMMUNITY_Community 852|Community 852]]
+- [[_COMMUNITY_Community 843|Community 843]]
+- [[_COMMUNITY_Community 844|Community 844]]
+- [[_COMMUNITY_Community 845|Community 845]]
+- [[_COMMUNITY_Community 846|Community 846]]
+- [[_COMMUNITY_Community 847|Community 847]]
 - [[_COMMUNITY_Community 853|Community 853]]
-- [[_COMMUNITY_Community 854|Community 854]]
 - [[_COMMUNITY_Community 855|Community 855]]
 - [[_COMMUNITY_Community 856|Community 856]]
 - [[_COMMUNITY_Community 857|Community 857]]
@@ -880,9 +880,9 @@
 - [[_COMMUNITY_Community 879|Community 879]]
 - [[_COMMUNITY_Community 880|Community 880]]
 - [[_COMMUNITY_Community 881|Community 881]]
+- [[_COMMUNITY_Community 882|Community 882]]
 - [[_COMMUNITY_Community 883|Community 883]]
 - [[_COMMUNITY_Community 884|Community 884]]
-- [[_COMMUNITY_Community 885|Community 885]]
 - [[_COMMUNITY_Community 886|Community 886]]
 - [[_COMMUNITY_Community 887|Community 887]]
 - [[_COMMUNITY_Community 888|Community 888]]
@@ -902,17 +902,17 @@
 - [[_COMMUNITY_Community 902|Community 902]]
 - [[_COMMUNITY_Community 903|Community 903]]
 - [[_COMMUNITY_Community 904|Community 904]]
-- [[_COMMUNITY_Community 933|Community 933]]
-- [[_COMMUNITY_Community 934|Community 934]]
-- [[_COMMUNITY_Community 940|Community 940]]
-- [[_COMMUNITY_Community 941|Community 941]]
-- [[_COMMUNITY_Community 942|Community 942]]
+- [[_COMMUNITY_Community 905|Community 905]]
+- [[_COMMUNITY_Community 906|Community 906]]
+- [[_COMMUNITY_Community 907|Community 907]]
+- [[_COMMUNITY_Community 936|Community 936]]
+- [[_COMMUNITY_Community 937|Community 937]]
 - [[_COMMUNITY_Community 943|Community 943]]
-- [[_COMMUNITY_Community 965|Community 965]]
-- [[_COMMUNITY_Community 969|Community 969]]
-- [[_COMMUNITY_Community 971|Community 971]]
+- [[_COMMUNITY_Community 944|Community 944]]
+- [[_COMMUNITY_Community 945|Community 945]]
+- [[_COMMUNITY_Community 946|Community 946]]
+- [[_COMMUNITY_Community 968|Community 968]]
 - [[_COMMUNITY_Community 972|Community 972]]
-- [[_COMMUNITY_Community 973|Community 973]]
 - [[_COMMUNITY_Community 974|Community 974]]
 - [[_COMMUNITY_Community 975|Community 975]]
 - [[_COMMUNITY_Community 976|Community 976]]
@@ -926,6 +926,10 @@
 - [[_COMMUNITY_Community 984|Community 984]]
 - [[_COMMUNITY_Community 985|Community 985]]
 - [[_COMMUNITY_Community 986|Community 986]]
+- [[_COMMUNITY_Community 987|Community 987]]
+- [[_COMMUNITY_Community 988|Community 988]]
+- [[_COMMUNITY_Community 989|Community 989]]
+- [[_COMMUNITY_Community 991|Community 991]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Must()` - 418 edges
@@ -946,900 +950,876 @@
   SupportProject/V2bX/api/panel/panel.go → deps/xray-core/main/commands/base/command.go
 - `buildAnyTLSUser()` --calls--> `ToTypedMessage()`  [INFERRED]
   core/xray/anytls.go → deps/xray-core/common/serial/typed_message.go
+- `buildInbound()` --calls--> `Errorf()`  [INFERRED]
+  SupportProject/V2bX/core/xray/inbound.go → deps/xray-core/main/commands/base/command.go
 - `buildInbound()` --calls--> `ParseAddress()`  [INFERRED]
   SupportProject/V2bX/core/xray/inbound.go → deps/xray-core/common/net/address.go
-- `buildInbound()` --calls--> `marshal()`  [INFERRED]
-  SupportProject/V2bX/core/xray/inbound.go → deps/xray-core/transport/internet/finalmask/xicmp/client.go
 
-## Communities (1319 total, 430 thin omitted)
+## Communities (1323 total, 438 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.04
-Nodes (73): newFrameWriter(), FromBytes(), CopyOnceTimeout(), NewBufferedWriter(), ClassicNameServer, buildReqMsgs(), Fqdn(), genEDNS0Options() (+65 more)
+Cohesion: 0.02
+Nodes (20): GiftCardController, PlanController, synctimeHandle(), CheckOrder, CheckTicket, Kernel, UserController, OrderHandleJob (+12 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.02
-Nodes (17): empty(), general.php, ResetUser, subscribe_template(), Client, up(), PluginConfigService, ClashMeta (+9 more)
+Cohesion: 0.04
+Nodes (65): newFrameWriter(), FromBytes(), CopyOnceTimeout(), NewBufferedWriter(), cachedReader, init(), sniffer(), trackOnlineIP() (+57 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.07
-Nodes (125): _(), a(), ac(), ae(), an(), at(), b(), bc() (+117 more)
+Nodes (130): aa(), Al(), ao(), as(), Au(), ba(), bi(), Bl() (+122 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.02
-Nodes (21): PluginController, SystemController, TicketController, ClientController, HookList, ResetLog, Handler, UserAliveSyncJob (+13 more)
+Cohesion: 0.07
+Nodes (125): _(), a(), ac(), ae(), an(), at(), b(), bc() (+117 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.02
-Nodes (21): ConfigController, ThemeController, Plugin, MailLinkService, RegisterService, AppController, admin_setting(), ApplyRuntimeSettings (+13 more)
+Nodes (18): empty(), RegisterService, general.php, ResetUser, Client, up(), InviteCode, CommController (+10 more)
 
 ### Community 5 - "Community 5"
 Cohesion: 0.04
-Nodes (35): parseQuery(), DNSRule, Handler, outboundConn, ownLinkVerifier, doLog(), GetSeverity(), LogError() (+27 more)
+Nodes (14): AppController, ThemeController, AppController, BackupDatabase, XboardUpdate, admin_setting(), ApplyRuntimeSettings, seedDefaults() (+6 more)
 
 ### Community 6 - "Community 6"
-Cohesion: 0.07
-Nodes (101): "assets/umi.js"(), Al(), ao(), as(), Au(), ba(), Bl(), bo() (+93 more)
+Cohesion: 0.04
+Nodes (45): ReplayFilter[T], SniffUTP(), CleanupExpiredOnlineStatus, CleanupOnlineStatus, configFileLoader, LoadConfig(), CacheController, LogError() (+37 more)
 
 ### Community 7 - "Community 7"
-Cohesion: 0.03
-Nodes (16): synctimeHandle(), CheckOrder, CheckServer, CheckTicket, Kernel, UserController, OrderHandleJob, StatServerJob (+8 more)
+Cohesion: 0.04
+Nodes (41): NewReadVReader(), RCodeError, sortIPs(), TcpRaceDial(), tcpTryDial(), result, Reader, State (+33 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.03
-Nodes (11): UserController, UserUpdate, LoginService, Plugin, CommController, PaymentController, AbstractPlugin, HookManager (+3 more)
+Nodes (16): AddInboundRequest, AddInboundResponse, AddOutboundRequest, AddOutboundResponse, AlterInboundRequest, AlterInboundResponse, AlterOutboundResponse, file_app_proxyman_command_command_proto_init() (+8 more)
 
 ### Community 9 - "Community 9"
 Cohesion: 0.03
-Nodes (14): file_app_stats_command_command_proto_init(), file_app_stats_command_command_proto_rawDescGZIP(), GetAllOnlineUsersRequest, GetAllOnlineUsersResponse, GetStatsOnlineIpListResponse, GetStatsRequest, GetStatsResponse, GetUsersStatsRequest (+6 more)
+Nodes (15): AddRuleRequest, AddRuleResponse, BalancerMsg, file_app_router_command_command_proto_init(), file_app_router_command_command_proto_rawDescGZIP(), GetBalancerInfoRequest, ListRuleRequest, ListRuleResponse (+7 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.11
-Nodes (63): TestDNSRules(), TestTCPDNSTunnel(), TestUDP2TCPDNSTunnel(), TestUDPDNSTunnel(), NewIPOrDomain(), SinglePortRange(), TestCommanderAddRemoveUser(), TestCommanderListenConfigurationItem() (+55 more)
+Cohesion: 0.03
+Nodes (11): UserController, UserUpdate, LoginService, Plugin, CommController, PaymentController, AbstractPlugin, HookManager (+3 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.03
-Nodes (14): AddRuleResponse, BalancerMsg, file_app_router_command_command_proto_init(), file_app_router_command_command_proto_rawDescGZIP(), GetBalancerInfoRequest, GetBalancerInfoResponse, ListRuleRequest, ListRuleResponse (+6 more)
+Nodes (19): SystemController, TicketController, ClientController, HookList, ResetLog, Handler, UserAliveSyncJob, RequestLog (+11 more)
 
 ### Community 12 - "Community 12"
-Cohesion: 0.03
-Nodes (15): AddInboundRequest, AddInboundResponse, AddOutboundResponse, AddUserOperation, AlterInboundResponse, AlterOutboundResponse, file_app_proxyman_command_command_proto_init(), file_app_proxyman_command_command_proto_rawDescGZIP() (+7 more)
+Cohesion: 0.04
+Nodes (53): ConnectionInput(), ConnectionInputMulti(), ConnectionLocalAddr(), ConnectionOnClose(), ConnectionOutput(), ConnectionOutputMulti(), ConnectionOutputMultiUDP(), ConnectionRemoteAddr() (+45 more)
 
 ### Community 13 - "Community 13"
-Cohesion: 0.09
-Nodes (85): ae(), An(), at(), Be(), bn(), bt(), ce(), changePassword() (+77 more)
+Cohesion: 0.03
+Nodes (13): file_app_stats_command_command_proto_init(), file_app_stats_command_command_proto_rawDescGZIP(), GetAllOnlineUsersRequest, GetAllOnlineUsersResponse, GetStatsOnlineIpListResponse, GetStatsResponse, GetUsersStatsResponse, OnlineIPEntry (+5 more)
 
 ### Community 14 - "Community 14"
-Cohesion: 0.06
-Nodes (7): AppController, BackupDatabase, XboardUpdate, seedDefaults(), up(), PluginManager, ThemeService
+Cohesion: 0.08
+Nodes (50): _(), a(), b(), c(), cancel(), changePassword(), check(), checkLogin() (+42 more)
 
 ### Community 15 - "Community 15"
-Cohesion: 0.04
-Nodes (36): NewReadVReader(), RCodeError, Dialer, checkAddressPortStrategy(), DestIpAddress(), Dial(), DialSystem(), InitSystemDialer() (+28 more)
+Cohesion: 0.05
+Nodes (50): TestHTTPResponse(), TestBytesReaderMultiBuffer(), TestBytesReaderWriteTo(), TestPacketReader_ReadMultiBuffer(), TestReadAtMost(), TestReadBuffer(), TestReadByte(), TestReaderInterface() (+42 more)
 
 ### Community 16 - "Community 16"
-Cohesion: 0.04
-Nodes (33): sortIPs(), TcpRaceDial(), tcpTryDial(), result, IPAddress(), Destination, DestinationFromAddr(), ParseDestination() (+25 more)
+Cohesion: 0.12
+Nodes (59): NewIPOrDomain(), SinglePortRange(), TestCommanderAddRemoveUser(), TestCommanderListenConfigurationItem(), TestCommanderListHandlers(), TestCommanderRemoveHandler(), TestCommanderStats(), CloseAllServers() (+51 more)
 
 ### Community 17 - "Community 17"
-Cohesion: 0.06
-Nodes (33): ReplayFilter[T], Client, NewClient(), SniffUTP(), CleanupExpiredOnlineStatus, CleanupOnlineStatus, XtlsRead(), Cause() (+25 more)
+Cohesion: 0.1
+Nodes (78): ae(), An(), at(), Be(), bn(), bt(), ce(), Cn() (+70 more)
 
 ### Community 18 - "Community 18"
-Cohesion: 0.05
-Nodes (36): consoleLogWriter, fileLogWriter, generalLogger, GeneralMessage, Handler, HandlerCreator, HandlerCreatorOptions, Instance (+28 more)
+Cohesion: 0.04
+Nodes (51): Errorf(), Conf, FakeUDP(), atomicDownload(), Ensure(), ensureFile(), extractPortFromAddr(), formatAddress() (+43 more)
 
 ### Community 19 - "Community 19"
 Cohesion: 0.06
-Nodes (28): executeBalancerOverride(), executeInboundUserCount(), executeInboundUser(), executeRemoveUsers(), executeAddInbounds(), executeListInbounds(), executeRemoveInbounds(), executeRestartLogger() (+20 more)
+Nodes (32): executeBalancerOverride(), executeInboundUserCount(), executeInboundUser(), executeRemoveUsers(), executeAddInbounds(), executeListInbounds(), executeRemoveInbounds(), executeRestartLogger() (+24 more)
 
 ### Community 20 - "Community 20"
 Cohesion: 0.05
-Nodes (37): TestHTTPResponse(), TestBytesReaderMultiBuffer(), TestBytesReaderWriteTo(), TestPacketReader_ReadMultiBuffer(), TestReadAtMost(), TestReadBuffer(), TestReadByte(), TestReaderInterface() (+29 more)
+Nodes (36): consoleLogWriter, fileLogWriter, generalLogger, GeneralMessage, Handler, HandlerCreator, HandlerCreatorOptions, Instance (+28 more)
 
 ### Community 21 - "Community 21"
-Cohesion: 0.05
-Nodes (32): Client, RCodeFromError(), generateRandomTag(), toNetIP(), DNS, asyncQueryAll(), init(), logDecision() (+24 more)
+Cohesion: 0.04
+Nodes (12): CheckServer, CheckTrafficExceeded, Server, ServerObserver, ServerRouteObserver, NodeResource, ServerController, TrojanTidalabController (+4 more)
 
 ### Community 22 - "Community 22"
 Cohesion: 0.05
-Nodes (49): Errorf(), Conf, TransportProtocol, FakeUDP(), atomicDownload(), Ensure(), ensureFile(), additionalTagNames() (+41 more)
+Nodes (32): TestBlackholeHTTPResponse(), TestServiceTestRoute(), NewDNSClient(), NewOutboundHandlerSelector(), NewOutboundManager(), OutboundHandlerSelector, OutboundHandlerSelectorMockRecorder, OutboundManagerMockRecorder (+24 more)
 
 ### Community 23 - "Community 23"
-Cohesion: 0.05
-Nodes (20): Config, file_transport_internet_finalmask_salamander_config_proto_init(), file_transport_internet_finalmask_salamander_config_proto_rawDescGZIP(), init(), NewGeckoConnClient(), NewGeckoConnServer(), NewSalamanderConnClient(), NewSalamanderConnServer() (+12 more)
+Cohesion: 0.06
+Nodes (28): closeSubscribers(), NewCacheController(), ClassicNameServer, buildReqMsgs(), Fqdn(), genEDNS0Options(), parseResponse(), Test_buildReqMsgs() (+20 more)
 
 ### Community 24 - "Community 24"
 Cohesion: 0.05
-Nodes (15): ConnTracker, formatInt36(), NewConnTracker(), RateLimitedReadCloser, RateLimitedWriter, TestConnTrackerCheckDeviceGateMergesFreshGlobalDevices(), TestConnTrackerCloseByIDClosesTrackedConnection(), TestConnTrackerRateLimitHonorsContextCancellation() (+7 more)
+Nodes (20): Config, file_transport_internet_finalmask_salamander_config_proto_init(), file_transport_internet_finalmask_salamander_config_proto_rawDescGZIP(), init(), NewGeckoConnClient(), NewGeckoConnServer(), NewSalamanderConnClient(), NewSalamanderConnServer() (+12 more)
 
 ### Community 25 - "Community 25"
 Cohesion: 0.05
-Nodes (35): init(), Listen(), Listener, getStatCounter(), NewAlwaysOnInboundHandler(), ConnectionAuthenticator, ConnHandler, CreateConnectionAuthenticator() (+27 more)
+Nodes (25): LogDebug(), GetInbound, GetOutbound, Inbound, InboundState, Outbound, OutboundState, CopyRawConnIfExist() (+17 more)
 
 ### Community 26 - "Community 26"
 Cohesion: 0.05
-Nodes (6): OrderController, OrderResource, OrderService, PlanService, OrderController, main()
+Nodes (15): ConnTracker, formatInt36(), NewConnTracker(), RateLimitedReadCloser, RateLimitedWriter, TestConnTrackerCheckDeviceGateMergesFreshGlobalDevices(), TestConnTrackerCloseByIDClosesTrackedConnection(), TestConnTrackerRateLimitHonorsContextCancellation() (+7 more)
 
 ### Community 27 - "Community 27"
-Cohesion: 0.04
-Nodes (6): GiftCardController, GiftCardCode, GiftCardTemplate, GiftCardUsage, Rule, GiftCardController
+Cohesion: 0.06
+Nodes (44): Bandwidth, CustomSockoptConfig, CustomTransform, CustomTransformArg, FinalMask, FragmentMask, HappyEyeballsConfig, HeaderCustomTCP (+36 more)
 
 ### Community 28 - "Community 28"
+Cohesion: 0.05
+Nodes (32): Client, NewClient(), FromContext(), MustFromContext(), TestFromContextPanic(), ToBackgroundDetachedContext(), toContext(), CreateObject() (+24 more)
+
+### Community 29 - "Community 29"
+Cohesion: 0.05
+Nodes (6): OrderController, OrderResource, OrderService, PlanService, OrderController, main()
+
+### Community 30 - "Community 30"
+Cohesion: 0.05
+Nodes (5): ResetTraffic, TelegramController, NodeRegistry, NodeEventHandlers, NodeWorker
+
+### Community 31 - "Community 31"
 Cohesion: 0.06
 Nodes (25): Capabilities, NeedsGeoIP(), NeedsGeoSite(), Kernel, ComputeHash(), UserDiff(), TLSCert, buildAnyTLSUser() (+17 more)
 
-### Community 29 - "Community 29"
-Cohesion: 0.06
-Nodes (43): Bandwidth, CustomSockoptConfig, CustomTransform, CustomTransformArg, FinalMask, FragmentMask, HappyEyeballsConfig, HeaderCustomTCP (+35 more)
-
-### Community 30 - "Community 30"
-Cohesion: 0.15
-Nodes (62): $(), a(), ae(), at(), b(), Be(), ce(), cn() (+54 more)
-
-### Community 31 - "Community 31"
+### Community 32 - "Community 32"
 Cohesion: 0.05
 Nodes (21): closeWriteConn, Config, newPackedDirectionalConn(), file_transport_internet_finalmask_sudoku_config_proto_init(), file_transport_internet_finalmask_sudoku_config_proto_rawDescGZIP(), init(), drainPending(), newHintStreamDecoder() (+13 more)
 
-### Community 32 - "Community 32"
+### Community 33 - "Community 33"
 Cohesion: 0.05
 Nodes (14): BroadcastServiceProvider, Channel, channelMessage, Counter, ipEntry, NoopManager, NewOnlineMap(), OnlineMap (+6 more)
 
-### Community 33 - "Community 33"
+### Community 34 - "Community 34"
 Cohesion: 0.06
 Nodes (28): TestHTTPResponseJSON(), TestDnsProxyConfig(), TestDnsProxyConfigLegacyCompatibility(), TestDnsProxyConfigRejectsMixedLegacyAndNewFields(), TestDokodemoConfig(), TestFreedomConfig(), loadJSON(), runMultiTestCase() (+20 more)
 
-### Community 34 - "Community 34"
-Cohesion: 0.08
-Nodes (56): fileInstance, fileKernelConfig, fileLogConfig, fileMachineConfig, fileNodeConfig, filePanelConfig, fileRootConfig, fileRuntimeConfig (+48 more)
-
 ### Community 35 - "Community 35"
 Cohesion: 0.08
-Nodes (23): AEADAuthenticator, NewAesGcm(), GenerateAEADNonceWithSize(), GenerateEmptyBytes(), GenerateIncreasingNonce(), GenerateStaticBytes(), NewAuthenticationReader(), NewAuthenticationWriter() (+15 more)
+Nodes (56): fileInstance, fileKernelConfig, fileLogConfig, fileMachineConfig, fileNodeConfig, filePanelConfig, fileRootConfig, fileRuntimeConfig (+48 more)
 
 ### Community 36 - "Community 36"
 Cohesion: 0.12
 Nodes (43): byteMetrics, captureWriter, caseResult, directionResult, protocolCase, analyzePackedChunks(), analyzePureChunks(), analyzeTCPRelay() (+35 more)
 
 ### Community 37 - "Community 37"
-Cohesion: 0.07
-Nodes (30): ConnectionInput(), ConnectionInputMulti(), ConnectionLocalAddr(), ConnectionOnClose(), ConnectionOutput(), ConnectionOutputMulti(), ConnectionOutputMultiUDP(), ConnectionRemoteAddr() (+22 more)
+Cohesion: 0.04
+Nodes (6): subscribe_template(), Clash, Egern, Stash, Surfboard, Surge
 
 ### Community 38 - "Community 38"
-Cohesion: 0.06
-Nodes (18): TestBlackholeHTTPResponse(), TestClientWorkerClose(), TestClientWorkerEOF(), TestIncrementalPickerFailure(), Server, handle(), NewServer(), NewServerWorker() (+10 more)
-
-### Community 39 - "Community 39"
 Cohesion: 0.1
 Nodes (40): Authority(), CommonName(), DNSNames(), Generate(), KeyUsage(), MustGenerate(), NotAfter(), NotBefore() (+32 more)
 
-### Community 40 - "Community 40"
+### Community 39 - "Community 39"
 Cohesion: 0.05
 Nodes (16): file_common_net_address_proto_init(), file_common_net_address_proto_rawDescGZIP(), init(), file_common_net_destination_proto_init(), file_common_net_destination_proto_rawDescGZIP(), init(), Endpoint, IPOrDomain (+8 more)
 
+### Community 40 - "Community 40"
+Cohesion: 0.07
+Nodes (37): TestArrayNetworkList(), TestDomainParsing(), TestEnvPort(), TestIntPort(), TestInvalidAddressJson(), TestInvalidNetworkJson(), TestInvalidUserJson(), TestIPParsing() (+29 more)
+
 ### Community 41 - "Community 41"
 Cohesion: 0.06
-Nodes (4): ResetTraffic, NodeRegistry, NodeEventHandlers, NodeWorker
+Nodes (24): Client, RCodeFromError(), FakeDNSServer, IPOption, LocalNameServer, NewFakeDNSServer(), NewLocalDNSClient(), NewLocalNameServer() (+16 more)
 
 ### Community 42 - "Community 42"
 Cohesion: 0.06
-Nodes (24): FromContext(), MustFromContext(), TestFromContextPanic(), ToBackgroundDetachedContext(), toContext(), CreateObject(), Dial(), DialUDP() (+16 more)
+Nodes (28): init(), Listen(), Listener, getStatCounter(), NewAlwaysOnInboundHandler(), ConnectionAuthenticator, ConnHandler, CreateConnectionAuthenticator() (+20 more)
 
 ### Community 43 - "Community 43"
-Cohesion: 0.06
-Nodes (23): ParseHost(), ParseXForwardedFor(), RemoveHopByHopHeaders(), TestApplyTrustedXForwardedFor(), TestHopByHopHeadersRemoving(), TestParseHost(), TestParseXForwardedFor(), readRequest() (+15 more)
-
-### Community 44 - "Community 44"
-Cohesion: 0.07
-Nodes (18): ContextWithID(), IDFromContext(), ID, SessionKey, Dial(), dialgRPC(), getGrpcClient(), init() (+10 more)
-
-### Community 45 - "Community 45"
 Cohesion: 0.05
 Nodes (9): Config, file_proxy_vless_inbound_config_proto_init(), file_proxy_vless_inbound_config_proto_rawDescGZIP(), file_proxy_vmess_inbound_config_proto_init(), file_proxy_vmess_inbound_config_proto_rawDescGZIP(), init(), DefaultConfig, DetourConfig (+1 more)
 
-### Community 46 - "Community 46"
-Cohesion: 0.08
-Nodes (46): applyStreamSettings(), buildConfig(), buildHTTP(), buildHysteria(), buildInbound(), buildRealitySettings(), buildShadowsocks(), buildSocks() (+38 more)
-
-### Community 47 - "Community 47"
-Cohesion: 0.08
-Nodes (23): LogDebug(), GetInbound, GetOutbound, Inbound, InboundState, Outbound, OutboundState, CopyRawConnIfExist() (+15 more)
-
-### Community 48 - "Community 48"
+### Community 44 - "Community 44"
 Cohesion: 0.05
 Nodes (7): StatController, CheckCommission, CommissionLog, ComissionLogResource, InviteCodeResource, StatisticalService, InviteController
 
-### Community 49 - "Community 49"
+### Community 45 - "Community 45"
 Cohesion: 0.08
-Nodes (35): TestArrayNetworkList(), TestDomainParsing(), TestEnvPort(), TestIntPort(), TestInvalidAddressJson(), TestInvalidNetworkJson(), TestInvalidUserJson(), TestIPParsing() (+27 more)
+Nodes (32): TransportProtocol, Duration, WSClient, marshal(), buildRouting(), TestBuildConfig_AllProtocols_ValidJSON(), TestBuildConfig_OutboundPriority(), TestBuildConfig_Shadowsocks_MultiUser() (+24 more)
 
-### Community 50 - "Community 50"
+### Community 46 - "Community 46"
+Cohesion: 0.07
+Nodes (41): getNotices(), getSubscribe(), getUserConfig(), getUserInfo(), getUserStats(), setNextPeriod(), generateInviteCode(), getCommissionConfig() (+33 more)
+
+### Community 47 - "Community 47"
 Cohesion: 0.07
 Nodes (22): Lru, NewLru(), TestGetKeyFromValue(), TestLruRemoveOld(), TestLruReplaceValue(), TestPeekKeyFromValue(), lruElement, init() (+14 more)
 
-### Community 51 - "Community 51"
-Cohesion: 0.1
-Nodes (32): a(), c(), cancel(), check(), checkout(), checkoutByStripe(), close(), config() (+24 more)
-
-### Community 52 - "Community 52"
+### Community 48 - "Community 48"
 Cohesion: 0.1
 Nodes (34): byteLayout, codec, decodeBytes(), newCodec(), pickPaddingChance(), decodePackedBytes(), newPackedEncoder(), newPackedReaderWriter() (+26 more)
 
-### Community 53 - "Community 53"
-Cohesion: 0.05
-Nodes (12): file_transport_internet_finalmask_header_custom_config_proto_init(), file_transport_internet_finalmask_header_custom_config_proto_rawDescGZIP(), init(), Expr, ExprArg, ExprArg_Bytes, ExprArg_Expr, ExprArg_Metadata (+4 more)
+### Community 49 - "Community 49"
+Cohesion: 0.09
+Nodes (44): applyStreamSettings(), buildConfig(), buildHTTP(), buildHysteria(), buildInbound(), buildRealitySettings(), buildShadowsocks(), buildSocks() (+36 more)
 
-### Community 54 - "Community 54"
-Cohesion: 0.14
-Nodes (48): ai(), Ar(), Bn(), br(), c(), ci(), di(), Dr() (+40 more)
+### Community 50 - "Community 50"
+Cohesion: 0.07
+Nodes (17): doLog(), GetSeverity(), LogInfoInner(), New(), ExportOption, ExportOptionHolder, hasInnerError, hasSeverity (+9 more)
 
-### Community 55 - "Community 55"
+### Community 51 - "Community 51"
 Cohesion: 0.06
-Nodes (5): j(), setState(), v(), w(), x()
+Nodes (12): file_transport_internet_finalmask_header_custom_config_proto_init(), file_transport_internet_finalmask_header_custom_config_proto_rawDescGZIP(), init(), Expr, ExprArg_Bytes, ExprArg_Expr, ExprArg_Metadata, ExprArg_U64 (+4 more)
 
-### Community 56 - "Community 56"
-Cohesion: 0.08
-Nodes (25): Observer, init(), New(), ConfigFromStreamSettings(), KeyLogWriterFromConfig(), UClient(), ApplyECH(), ConvertToGoECHKeys() (+17 more)
-
-### Community 57 - "Community 57"
+### Community 52 - "Community 52"
 Cohesion: 0.07
 Nodes (10): Server, ServerGroup, GroupController, Content, Inbound, Outbound, ExportIDToError(), NewID() (+2 more)
 
-### Community 59 - "Community 59"
-Cohesion: 0.08
-Nodes (10): _(), b(), D(), e(), g(), k(), m(), q() (+2 more)
+### Community 54 - "Community 54"
+Cohesion: 0.16
+Nodes (46): an(), at(), bt(), ct(), dt(), et(), fi(), ft() (+38 more)
 
-### Community 60 - "Community 60"
+### Community 55 - "Community 55"
+Cohesion: 0.08
+Nodes (12): ContextWithID(), IDFromContext(), ID, SessionKey, connID, dsWorker, tcpWorker, udpConn (+4 more)
+
+### Community 56 - "Community 56"
 Cohesion: 0.06
 Nodes (8): BridgeConfig, Config, file_app_reverse_config_proto_init(), file_app_reverse_config_proto_rawDescGZIP(), init(), Control, Control_State, PortalConfig
 
-### Community 61 - "Community 61"
+### Community 57 - "Community 57"
 Cohesion: 0.07
 Nodes (22): BufferedReader, AddToStatCounter(), Copy(), copyInternal(), CountSize(), IsReadError(), IsWriteError(), BenchmarkCopy() (+14 more)
 
-### Community 62 - "Community 62"
+### Community 58 - "Community 58"
 Cohesion: 0.06
 Nodes (23): init(), init(), init(), init(), init(), init(), init(), init() (+15 more)
 
-### Community 63 - "Community 63"
-Cohesion: 0.06
-Nodes (33): extractPortFromAddr(), formatAddress(), runMasqTCPServer(), Hysteria2node, masqHandlerLogWrapper, serverConfig, serverConfigOutboundDirectToOutbound(), serverConfigOutboundHTTPToOutbound() (+25 more)
+### Community 59 - "Community 59"
+Cohesion: 0.09
+Nodes (17): generateRandomTag(), toNetIP(), DNS, asyncQueryAll(), init(), logDecision(), makeGroups(), mergeQueryErrors() (+9 more)
 
-### Community 64 - "Community 64"
+### Community 60 - "Community 60"
 Cohesion: 0.07
-Nodes (36): generateInviteCode(), getCommissionConfig(), getInviteData(), getInviteDetails(), transferCommission(), withdrawCommission(), fetchServerNodes(), cancelOrder() (+28 more)
+Nodes (16): deviceNet, gvisorNet, kernelTun, packet, promiscuousModeHandler, CalculateInterfaceName(), createForwarder(), createGVisorTun() (+8 more)
 
-### Community 65 - "Community 65"
+### Community 61 - "Community 61"
 Cohesion: 0.11
 Nodes (25): CreateAuthID(), NewAuthIDDecoder(), NewAuthIDDecoderHolder(), NewAuthIDDecoderItem(), NewCipherFromKey(), TestCreateAuthID(), TestCreateAuthIDAndDecode(), TestCreateAuthIDAndDecode2() (+17 more)
 
-### Community 66 - "Community 66"
-Cohesion: 0.09
-Nodes (20): NewClientSession(), TestInvalidRequest(), TestMuxRequest(), TestRequestSerialization(), toAccount(), NewServerSession(), NewSessionHistory(), parseSecurityType() (+12 more)
+### Community 62 - "Community 62"
+Cohesion: 0.11
+Nodes (21): AEADAuthenticator, NewAesGcm(), GenerateAEADNonceWithSize(), GenerateEmptyBytes(), GenerateIncreasingNonce(), GenerateStaticBytes(), NewAuthenticationReader(), NewAuthenticationWriter() (+13 more)
 
-### Community 67 - "Community 67"
+### Community 63 - "Community 63"
 Cohesion: 0.06
 Nodes (7): Account, AuthType, ClientConfig, file_proxy_socks_config_proto_init(), file_proxy_socks_config_proto_rawDescGZIP(), init(), ServerConfig
 
-### Community 68 - "Community 68"
+### Community 64 - "Community 64"
+Cohesion: 0.07
+Nodes (6): MailTemplateController, MailLinkService, SendEmailJob, MailLog, MailTemplate, MailService
+
+### Community 65 - "Community 65"
 Cohesion: 0.13
 Nodes (41): assertMapValue(), TestApplyTransport_Empty(), TestApplyTransport_TCP(), TestApplyTransport_WS_MaxEarlyData(), TestBuildConfig(), TestBuildConfig_AllProtocols_ValidJSON(), TestBuildConfig_OutboundPriority(), TestBuildInbound_AnyTLS() (+33 more)
 
-### Community 69 - "Community 69"
+### Community 66 - "Community 66"
+Cohesion: 0.08
+Nodes (18): ParseHost(), ParseXForwardedFor(), RemoveHopByHopHeaders(), TestApplyTrustedXForwardedFor(), TestHopByHopHeadersRemoving(), TestParseHost(), TestParseXForwardedFor(), readRequest() (+10 more)
+
+### Community 67 - "Community 67"
 Cohesion: 0.06
 Nodes (8): ClientConfig, Config, file_proxy_hysteria_config_proto_init(), file_proxy_hysteria_config_proto_rawDescGZIP(), file_transport_internet_hysteria_config_proto_init(), file_transport_internet_hysteria_config_proto_rawDescGZIP(), init(), ServerConfig
 
-### Community 70 - "Community 70"
+### Community 68 - "Community 68"
 Cohesion: 0.06
 Nodes (5): Config, file_transport_internet_reality_config_proto_init(), file_transport_internet_reality_config_proto_rawDescGZIP(), init(), LimitFallback
 
-### Community 71 - "Community 71"
+### Community 69 - "Community 69"
+Cohesion: 0.25
+Nodes (41): $(), a(), ae(), b(), c(), cn(), D(), di() (+33 more)
+
+### Community 70 - "Community 70"
 Cohesion: 0.08
 Nodes (8): readAll(), TestReaderWriter(), APIMetrics, Client, drainAndClose(), New(), TestECHDial(), TestECHDialFail()
 
-### Community 72 - "Community 72"
+### Community 71 - "Community 71"
 Cohesion: 0.1
 Nodes (30): BenchmarkNewBuffer(), BenchmarkNewBufferStack(), BenchmarkWrite2(), BenchmarkWrite32(), BenchmarkWrite8(), BenchmarkWriteByte2(), BenchmarkWriteByte8(), TestBufferByte() (+22 more)
 
+### Community 72 - "Community 72"
+Cohesion: 0.07
+Nodes (5): ServerV2, ServerMachine, ServerMachineLoadHistory, MachineController, ServerHandshakeTest
+
 ### Community 73 - "Community 73"
-Cohesion: 0.09
-Nodes (21): Duration, TestDurationJSON(), testWithDuration, WSClient, marshal(), buildRouting(), TestBuildConfig_AllProtocols_ValidJSON(), TestBuildConfig_OutboundPriority() (+13 more)
+Cohesion: 0.12
+Nodes (16): LogDebugInner(), NewConnClient(), PunchPacketEvent, realmConnClient, realmConnServer, NewConnServer(), addrPortStrings(), candidatePunchAddrs() (+8 more)
 
 ### Community 74 - "Community 74"
 Cohesion: 0.08
 Nodes (9): ConnExpire, Handler, HandlerSelector, Manager, init(), ManagerType(), New(), shouldEnablePadding() (+1 more)
 
 ### Community 75 - "Community 75"
+Cohesion: 0.13
+Nodes (16): Compact(), MergeBytes(), MergeMulti(), ReadAllToBytes(), ReadFrom(), ReleaseMulti(), SplitBytes(), SplitFirst() (+8 more)
+
+### Community 76 - "Community 76"
 Cohesion: 0.11
 Nodes (21): AttributeMatcher, Condition, NewConditionChan(), NewDomainMatcher(), NewInboundTagMatcher(), NewIPMatcher(), NewNetworkMatcher(), NewPortMatcher() (+13 more)
 
 ### Community 77 - "Community 77"
-Cohesion: 0.08
-Nodes (5): MailTemplateController, SendEmailJob, MailLog, MailTemplate, MailService
+Cohesion: 0.11
+Nodes (14): Address, NewStringList(), parseIntPort(), parseJSONStringPort(), ParseRangeString(), parseStringPort(), splitFromSecondDash(), Int32Range (+6 more)
 
-### Community 78 - "Community 78"
+### Community 79 - "Community 79"
 Cohesion: 0.09
 Nodes (24): Lego, checkPath(), EncodePrivate(), NewLego(), NewLegoUser(), registerUser(), User, decodeWeakRaw() (+16 more)
 
-### Community 79 - "Community 79"
+### Community 80 - "Community 80"
 Cohesion: 0.11
 Nodes (11): fetchInput(), NewClientWorker(), writeFirstPayload(), ClientManager, ClientStrategy, ClientWorker, ClientWorkerFactory, DialingWorkerFactory (+3 more)
 
-### Community 80 - "Community 80"
-Cohesion: 0.08
-Nodes (12): closeSubscribers(), NewCacheController(), CacheController, migrationEntry, isActive(), NewQUICNameServer(), TestQUICNameServer(), TestQUICNameServerWithIPv4Override() (+4 more)
-
 ### Community 81 - "Community 81"
-Cohesion: 0.12
-Nodes (13): Address, NewStringList(), parseIntPort(), parseJSONStringPort(), parseStringPort(), splitFromSecondDash(), Int32Range, Network (+5 more)
-
-### Community 82 - "Community 82"
 Cohesion: 0.06
 Nodes (6): Account, ClientConfig, file_proxy_tuic_config_proto_init(), file_proxy_tuic_config_proto_rawDescGZIP(), init(), ServerConfig
 
-### Community 83 - "Community 83"
-Cohesion: 0.08
-Nodes (7): Account, CipherType, ClientConfig, file_proxy_shadowsocks_config_proto_init(), file_proxy_shadowsocks_config_proto_rawDescGZIP(), init(), ServerConfig
-
-### Community 84 - "Community 84"
-Cohesion: 0.07
-Nodes (6): CheckTrafficExceeded, NodeUserSyncJob, ServerObserver, ServerRouteObserver, UserObserver, NodeSyncService
-
-### Community 85 - "Community 85"
+### Community 82 - "Community 82"
 Cohesion: 0.1
-Nodes (18): TestServiceTestRoute(), NewDNSClient(), NewOutboundHandlerSelector(), NewOutboundManager(), OutboundHandlerSelector, OutboundHandlerSelectorMockRecorder, OutboundManagerMockRecorder, TestInterfaces() (+10 more)
+Nodes (6): UpdateService, snapshot, Tracker, calcAliveIPsHash(), copyTrafficMap(), New()
 
-### Community 86 - "Community 86"
+### Community 83 - "Community 83"
 Cohesion: 0.11
 Nodes (19): Authenticator, Conn, HeaderReader, HeaderWriter, formResponseHeader(), init(), NewAuthenticator(), NewConn() (+11 more)
 
-### Community 87 - "Community 87"
-Cohesion: 0.13
-Nodes (13): cloneVars(), stateEntry, stateStore, matchUDPItems(), udpStateKey(), udpCustomClient, udpCustomClientConn, udpCustomServer (+5 more)
-
-### Community 88 - "Community 88"
-Cohesion: 0.1
-Nodes (18): fa(), ia(), ls(), no(), ns(), o(), os(), Qa() (+10 more)
-
-### Community 89 - "Community 89"
-Cohesion: 0.11
-Nodes (6): UpdateService, snapshot, Tracker, calcAliveIPsHash(), copyTrafficMap(), New()
-
-### Community 90 - "Community 90"
+### Community 84 - "Community 84"
 Cohesion: 0.09
 Nodes (17): CertConfig, Config, configBaseDir(), envFirst(), Load(), normalizeBaseURL(), ValidateStartupLayout(), KernelConfig (+9 more)
 
-### Community 91 - "Community 91"
+### Community 85 - "Community 85"
 Cohesion: 0.12
 Nodes (15): acmeFingerprint(), atomicWriteFile(), NewManager(), pemEqual(), resolveModeFor(), generateSelfSignedPair(), TestACMEFingerprint(), TestACMEFingerprintEnvOrderStable() (+7 more)
 
-### Community 92 - "Community 92"
+### Community 86 - "Community 86"
 Cohesion: 0.07
 Nodes (6): Config, file_core_config_proto_init(), file_core_config_proto_rawDescGZIP(), init(), InboundHandlerConfig, OutboundHandlerConfig
 
-### Community 93 - "Community 93"
-Cohesion: 0.08
-Nodes (4): ServerMachine, ServerMachineLoadHistory, MachineController, ServerHandshakeTest
+### Community 87 - "Community 87"
+Cohesion: 0.12
+Nodes (15): NewClientSession(), TestInvalidRequest(), TestMuxRequest(), TestRequestSerialization(), toAccount(), NewServerSession(), NewSessionHistory(), parseSecurityType() (+7 more)
 
-### Community 94 - "Community 94"
-Cohesion: 0.15
-Nodes (23): AddressFamilyByte(), isValidDomain(), maybeIPPrefix(), NewAddressParser(), PortThenAddress(), readPort(), BenchmarkAddressReadingDomain(), BenchmarkAddressReadingIPv4() (+15 more)
-
-### Community 95 - "Community 95"
+### Community 88 - "Community 88"
 Cohesion: 0.13
 Nodes (21): CloseServer(), BuildXray(), RunXrayProtobuf(), genTestBinaryPath(), GetSourcePath(), InitializeServerConfig(), readFrom(), readFrom2() (+13 more)
 
-### Community 96 - "Community 96"
+### Community 89 - "Community 89"
 Cohesion: 0.09
 Nodes (3): TrafficResetController, TrafficResetLog, TrafficResetService
 
-### Community 97 - "Community 97"
-Cohesion: 0.1
-Nodes (12): ConnectionID, TestDialAndListen(), Listener, init(), ListenKCP(), NewListener(), Writer, Hub (+4 more)
-
-### Community 98 - "Community 98"
-Cohesion: 0.15
-Nodes (15): Compact(), MergeBytes(), MergeMulti(), ReadAllToBytes(), ReadFrom(), ReleaseMulti(), SplitBytes(), SplitFirst() (+7 more)
-
-### Community 99 - "Community 99"
+### Community 90 - "Community 90"
 Cohesion: 0.08
 Nodes (4): PlanController, PlanResource, GiftCardService, PlanController
 
-### Community 100 - "Community 100"
+### Community 91 - "Community 91"
+Cohesion: 0.11
+Nodes (12): ConnectionID, TestDialAndListen(), Listener, init(), ListenKCP(), NewListener(), Writer, Hub (+4 more)
+
+### Community 92 - "Community 92"
 Cohesion: 0.12
 Nodes (9): cacheEntry, cacheList, cacheNode, successUserCache, successUserEntry, newCacheList(), NewUserCache(), UserCache (+1 more)
 
-### Community 101 - "Community 101"
+### Community 93 - "Community 93"
 Cohesion: 0.07
 Nodes (13): init(), init(), CreateTransportConfig(), RegisterProtocolConfigCreator(), ConfigCreator, init(), appendToPath(), init() (+5 more)
 
-### Community 102 - "Community 102"
+### Community 94 - "Community 94"
 Cohesion: 0.13
 Nodes (19): addressRequest, Client, ConnectRequest, ConnectResponse, ConnectResponseRequest, ErrorResponse, EventStream, HeartbeatRequest (+11 more)
 
-### Community 103 - "Community 103"
-Cohesion: 0.1
-Nodes (9): RegisterHandlerServiceServer(), init(), NewRoutingServer(), NewStatsServer(), TestGetStats(), TestQueryStats(), LoggerServer, routingServer (+1 more)
+### Community 95 - "Community 95"
+Cohesion: 0.14
+Nodes (20): UClient(), ApplyECH(), ConvertToGoECHKeys(), dnsQuery(), ECHCacheKey(), QueryRecord(), ECHConfigCache, echConfigRecord (+12 more)
 
-### Community 104 - "Community 104"
-Cohesion: 0.17
-Nodes (4): Service, computeConfigHash(), mergeUsers(), subtractUsers()
-
-### Community 105 - "Community 105"
+### Community 96 - "Community 96"
 Cohesion: 0.11
 Nodes (14): AEADChunkSizeParser, NewChunkStreamReader(), NewChunkStreamReaderWithChunkCount(), NewChunkStreamWriter(), TestChunkStreamIO(), ChunkSizeDecoder, ChunkSizeEncoder, ChunkStreamReader (+6 more)
 
-### Community 106 - "Community 106"
+### Community 97 - "Community 97"
+Cohesion: 0.13
+Nodes (18): BehaviorSeedLimitedDrainer, drainReadN(), NewBehaviorSeedLimitedDrainer(), NewNopDrainer(), WithError(), NopDrainer, FullReader, DecodeUDPPacket() (+10 more)
+
+### Community 98 - "Community 98"
 Cohesion: 0.09
 Nodes (8): file_common_protocol_server_spec_proto_init(), file_common_protocol_server_spec_proto_rawDescGZIP(), init(), ServerEndpoint, User, file_common_protocol_user_proto_init(), file_common_protocol_user_proto_rawDescGZIP(), init()
 
-### Community 107 - "Community 107"
+### Community 99 - "Community 99"
 Cohesion: 0.11
 Nodes (12): RegisterStatsServiceServer(), _StatsService_GetAllOnlineUsers_Handler(), _StatsService_GetStats_Handler(), _StatsService_GetStatsOnline_Handler(), _StatsService_GetStatsOnlineIpList_Handler(), _StatsService_GetSysStats_Handler(), _StatsService_GetUsersStats_Handler(), _StatsService_QueryStats_Handler() (+4 more)
 
-### Community 108 - "Community 108"
+### Community 100 - "Community 100"
 Cohesion: 0.08
 Nodes (5): Config, file_transport_internet_finalmask_noise_config_proto_init(), file_transport_internet_finalmask_noise_config_proto_rawDescGZIP(), init(), Item
 
-### Community 109 - "Community 109"
-Cohesion: 0.14
-Nodes (18): ackPoint, bytesFromBandwidthAndTimeDelta(), maxExtraAckedEventFunc(), newBandwidthSample(), newBandwidthSampler(), newCongestionEventSample(), newConnectionStateOnSentPacket(), newMaxAckHeightTracker() (+10 more)
-
-### Community 111 - "Community 111"
+### Community 102 - "Community 102"
 Cohesion: 0.15
 Nodes (4): NewSendingWindow(), NewSendingWorker(), SendingWindow, SendingWorker
 
-### Community 112 - "Community 112"
+### Community 103 - "Community 103"
 Cohesion: 0.11
 Nodes (3): XboardInstall, GeoLoader, ManageController
 
-### Community 113 - "Community 113"
+### Community 104 - "Community 104"
 Cohesion: 0.08
 Nodes (6): Account, ClientConfig, file_proxy_anytls_config_proto_init(), file_proxy_anytls_config_proto_rawDescGZIP(), init(), ServerConfig
 
-### Community 114 - "Community 114"
+### Community 105 - "Community 105"
 Cohesion: 0.07
 Nodes (18): ApiConfig, BrutalOptions, CoreConfig, FallBack, FallBackConfigForSing, NewHysteria2Config(), Hysteria2Config, Hysteria2LogConfig (+10 more)
 
-### Community 115 - "Community 115"
+### Community 106 - "Community 106"
 Cohesion: 0.11
 Nodes (11): _RoutingService_AddRule_Handler(), _RoutingService_GetBalancerInfo_Handler(), _RoutingService_ListRule_Handler(), _RoutingService_OverrideBalancerTarget_Handler(), _RoutingService_RemoveRule_Handler(), _RoutingService_SubscribeRoutingStats_Handler(), _RoutingService_TestRoute_Handler(), RoutingServiceClient (+3 more)
 
-### Community 116 - "Community 116"
-Cohesion: 0.14
-Nodes (18): BehaviorSeedLimitedDrainer, drainReadN(), NewBehaviorSeedLimitedDrainer(), NewNopDrainer(), WithError(), NopDrainer, FullReader, DecodeUDPPacket() (+10 more)
+### Community 107 - "Community 107"
+Cohesion: 0.11
+Nodes (17): InitLogger(), ctxKey, ConfigUpdated(), Core(), formatMsg(), ForNode(), FromContext(), FullRestart() (+9 more)
 
-### Community 117 - "Community 117"
+### Community 108 - "Community 108"
+Cohesion: 0.12
+Nodes (19): DecodeBodyAddons(), DecodeHeaderAddons(), EncodeBodyAddons(), EncodeHeaderAddons(), NewLengthPacketReader(), NewLengthPacketWriter(), NewMultiLengthPacketWriter(), DecodeRequestHeader() (+11 more)
+
+### Community 109 - "Community 109"
 Cohesion: 0.09
 Nodes (5): Account, file_proxy_vless_account_proto_init(), file_proxy_vless_account_proto_rawDescGZIP(), init(), Reverse
 
-### Community 118 - "Community 118"
-Cohesion: 0.1
-Nodes (8): AEADCipher, Cipher, createAesGcm(), createChaCha20Poly1305(), createXChaCha20Poly1305(), passwordToCipherKey(), MemoryAccount, NoneCipher
-
-### Community 119 - "Community 119"
+### Community 110 - "Community 110"
 Cohesion: 0.21
 Nodes (18): countingConn, NewUdpmaskManager(), layerMask, recordedPacketWrite, scriptedPacketConn, mustSendRecv(), newScriptedPacketConn(), newStandaloneEchoUDPConfig() (+10 more)
 
-### Community 120 - "Community 120"
-Cohesion: 0.17
-Nodes (29): aa(), bi(), ca(), da(), Ei(), fi(), gi(), Il() (+21 more)
+### Community 111 - "Community 111"
+Cohesion: 0.16
+Nodes (20): collectSavedUDPSizes(), measureItem(), measureUDPItems(), measureUDPItemsWithFallback(), newStateStore(), matchUDPItems(), NewConnClientUDP(), NewConnClientUDPStandalone() (+12 more)
 
-### Community 122 - "Community 122"
+### Community 113 - "Community 113"
 Cohesion: 0.13
-Nodes (14): BuildLocalEchoReply(), ParseEchoRequest(), ProtocolLabel(), RewriteChecksum(), checksumPayloadV4(), checksumPayloadV6(), TestBuildLocalEchoReply(), TestParseEchoRequest() (+6 more)
+Nodes (14): _HandlerService_AddInbound_Handler(), _HandlerService_AddOutbound_Handler(), _HandlerService_AlterInbound_Handler(), _HandlerService_AlterOutbound_Handler(), _HandlerService_GetInboundUsers_Handler(), _HandlerService_GetInboundUsersCount_Handler(), _HandlerService_ListInbounds_Handler(), _HandlerService_ListOutbounds_Handler() (+6 more)
 
-### Community 123 - "Community 123"
-Cohesion: 0.12
-Nodes (17): InitLogger(), ctxKey, ConfigUpdated(), Core(), formatMsg(), ForNode(), FromContext(), FullRestart() (+9 more)
+### Community 114 - "Community 114"
+Cohesion: 0.11
+Nodes (8): init(), NewRoutingServer(), NewStatsServer(), TestGetStats(), TestQueryStats(), LoggerServer, routingServer, service
 
-### Community 124 - "Community 124"
+### Community 115 - "Community 115"
+Cohesion: 0.18
+Nodes (3): Service, mergeUsers(), subtractUsers()
+
+### Community 116 - "Community 116"
 Cohesion: 0.17
 Nodes (18): StackNew(), WriteAllBytes(), ClientHandshake(), DecodeUDPPacket(), EncodeUDPPacket(), hasAuthMethod(), ReadUntilNull(), ReadUsernamePassword() (+10 more)
 
-### Community 125 - "Community 125"
-Cohesion: 0.11
-Nodes (15): collectSavedUDPSizes(), measureUDPItems(), measureUDPItemsWithFallback(), newStateStore(), mustSendRecvUDP(), TestStateStoreExpiresEntries(), TestStateStoreIsolatesKeys(), TestStateUDPResponseReusesPriorCapturedValues() (+7 more)
+### Community 117 - "Community 117"
+Cohesion: 0.1
+Nodes (6): CipherType, ClientConfig, file_proxy_shadowsocks_config_proto_init(), file_proxy_shadowsocks_config_proto_rawDescGZIP(), init(), ServerConfig
 
-### Community 126 - "Community 126"
-Cohesion: 0.23
-Nodes (28): an(), bt(), er(), et(), gn(), ht(), In(), it() (+20 more)
+### Community 118 - "Community 118"
+Cohesion: 0.14
+Nodes (16): ackPoint, bytesFromBandwidthAndTimeDelta(), maxExtraAckedEventFunc(), newBandwidthSample(), newCongestionEventSample(), newConnectionStateOnSentPacket(), newSendTimeState(), sentPacketToSendTimeState() (+8 more)
 
-### Community 128 - "Community 128"
+### Community 120 - "Community 120"
 Cohesion: 0.12
 Nodes (17): validateHTTPS(), GeodataAssetConfig, GeodataConfig, CopyFile(), getAssetFileLocation(), OpenAsset(), ReadAsset(), ReadCert() (+9 more)
 
-### Community 129 - "Community 129"
+### Community 121 - "Community 121"
+Cohesion: 0.12
+Nodes (11): ACAutomatonMatcherGroup, acEdge, acNode, acValue, NewACAutomatonMatcherGroup(), TestACAutomatonMatcherGroup(), TestACAutomatonMatcherGroupAsIndexMatcher(), TestACAutomatonMatcherGroupSubstr() (+3 more)
+
+### Community 122 - "Community 122"
 Cohesion: 0.1
 Nodes (6): Config, file_proxy_blackhole_config_proto_init(), file_proxy_blackhole_config_proto_rawDescGZIP(), init(), HTTPResponse, NoneResponse
 
-### Community 130 - "Community 130"
+### Community 123 - "Community 123"
 Cohesion: 0.11
 Nodes (6): ClientConfig, file_proxy_http_config_proto_init(), file_proxy_http_config_proto_rawDescGZIP(), file_transport_internet_headers_http_config_proto_init(), init(), Header
 
-### Community 132 - "Community 132"
+### Community 124 - "Community 124"
+Cohesion: 0.12
+Nodes (9): AEADCipher, Cipher, createAesGcm(), createChaCha20Poly1305(), createXChaCha20Poly1305(), hkdfSHA1(), passwordToCipherKey(), MemoryAccount (+1 more)
+
+### Community 126 - "Community 126"
 Cohesion: 0.14
 Nodes (12): Net, checkHeader(), checkResponse(), convertToFullAddr(), dnsPacketRoundTrip(), dnsStreamRoundTrip(), equalASCIIName(), isDomainName() (+4 more)
 
-### Community 133 - "Community 133"
+### Community 127 - "Community 127"
 Cohesion: 0.1
 Nodes (5): Certificate, Certificate_Usage, file_transport_internet_tls_config_proto_init(), file_transport_internet_tls_config_proto_rawDescGZIP(), init()
 
-### Community 134 - "Community 134"
-Cohesion: 0.12
-Nodes (5): AutoConvertToTicket, CheckAutoReply, ChatMessage, ChatSession, LiveChatService
-
-### Community 135 - "Community 135"
-Cohesion: 0.17
-Nodes (16): httpServerConn, httpSession, getTLSConfig(), init(), ListenXH(), Listener, QListener, requestHandler (+8 more)
-
-### Community 136 - "Community 136"
-Cohesion: 0.14
-Nodes (13): _HandlerService_AddInbound_Handler(), _HandlerService_AddOutbound_Handler(), _HandlerService_AlterInbound_Handler(), _HandlerService_AlterOutbound_Handler(), _HandlerService_GetInboundUsers_Handler(), _HandlerService_GetInboundUsersCount_Handler(), _HandlerService_ListInbounds_Handler(), _HandlerService_ListOutbounds_Handler() (+5 more)
-
-### Community 137 - "Community 137"
-Cohesion: 0.11
-Nodes (15): init(), ConfigCreator, TConfig, CreateObject(), RegisterConfig(), TestObjectCreation(), YConfig, Outbound (+7 more)
-
-### Community 138 - "Community 138"
-Cohesion: 0.1
-Nodes (12): NewAttackDefense(), hkdfSHA1(), DefenseConfig, defenseShardDB, DefenseStats, failureRecord, getSubkey(), getTCPData() (+4 more)
-
-### Community 139 - "Community 139"
-Cohesion: 0.24
-Nodes (22): evalContext, evaluateBinaryU64Op(), evaluateExpr(), evaluateExprArg(), evaluateItem(), evaluatePack(), evaluatePad(), evaluateShift() (+14 more)
-
-### Community 140 - "Community 140"
-Cohesion: 0.19
-Nodes (16): DecodeRDataTXT(), EncodeRDataTXT(), MessageFromWireFormat(), newMessageBuilder(), NewName(), ParseName(), readMessage(), readName() (+8 more)
-
-### Community 142 - "Community 142"
+### Community 128 - "Community 128"
 Cohesion: 0.14
 Nodes (21): LoadRoot(), TestLoad_AutoTLS_NoDomain(), TestLoad_AutoTLS_WithDomain(), TestLoad_CustomCert(), TestLoad_CustomIntervals(), TestLoad_Defaults(), TestLoad_InvalidKernelType(), TestLoad_InvalidNodeID() (+13 more)
 
-### Community 143 - "Community 143"
+### Community 129 - "Community 129"
+Cohesion: 0.12
+Nodes (5): AutoConvertToTicket, CheckAutoReply, ChatMessage, ChatSession, LiveChatService
+
+### Community 130 - "Community 130"
+Cohesion: 0.11
+Nodes (15): init(), init(), New(), Handler, ConfigCreator, TConfig, CreateObject(), RegisterConfig() (+7 more)
+
+### Community 131 - "Community 131"
+Cohesion: 0.18
+Nodes (14): AEAD, CreatPadding(), DecodeHeader(), DecodeLength(), EncodeHeader(), EncodeLength(), IncreaseNonce(), NewAEAD() (+6 more)
+
+### Community 132 - "Community 132"
+Cohesion: 0.19
+Nodes (16): DecodeRDataTXT(), EncodeRDataTXT(), MessageFromWireFormat(), newMessageBuilder(), NewName(), ParseName(), readMessage(), readName() (+8 more)
+
+### Community 136 - "Community 136"
 Cohesion: 0.19
 Nodes (25): applyMultiplex(), applyProxyProtocol(), applyTransport(), buildAnyTLS(), buildHTTP(), buildHysteria(), buildInbound(), buildMieru() (+17 more)
 
-### Community 145 - "Community 145"
+### Community 137 - "Community 137"
+Cohesion: 0.08
+Nodes (25): serverConfig, serverConfigACL, serverConfigACME, serverConfigAuth, serverConfigAuthHTTP, serverConfigBandwidth, serverConfigMasquerade, serverConfigMasqueradeFile (+17 more)
+
+### Community 139 - "Community 139"
 Cohesion: 0.11
 Nodes (5): Config, file_app_log_config_proto_init(), file_app_log_config_proto_rawDescGZIP(), init(), LogType
 
-### Community 146 - "Community 146"
+### Community 140 - "Community 140"
 Cohesion: 0.1
 Nodes (5): Config, file_app_observatory_burst_config_proto_init(), file_app_observatory_burst_config_proto_rawDescGZIP(), init(), HealthPingConfig
 
-### Community 147 - "Community 147"
-Cohesion: 0.12
-Nodes (15): NewServerSpec(), NewServerSpecFromPB(), ServerSpec, Client, init(), NewClient(), Client, init() (+7 more)
-
-### Community 148 - "Community 148"
+### Community 141 - "Community 141"
 Cohesion: 0.23
 Nodes (21): BenchmarkIPMatcher4CN(), BenchmarkIPMatcher6US(), buildIPMatcher(), sortIPStrings(), TestIPCustomReverseMatcher(), TestIPMatcher(), TestIPMatcher4CN(), TestIPMatcher6US() (+13 more)
 
-### Community 149 - "Community 149"
+### Community 142 - "Community 142"
 Cohesion: 0.13
 Nodes (7): Address, DomainAddress(), isAlphaNum(), AddressFamily, domainAddress, ipv4Address, ipv6Address
 
-### Community 150 - "Community 150"
-Cohesion: 0.19
-Nodes (13): AEAD, CreatPadding(), DecodeHeader(), DecodeLength(), EncodeHeader(), EncodeLength(), IncreaseNonce(), NewAEAD() (+5 more)
-
-### Community 151 - "Community 151"
+### Community 143 - "Community 143"
 Cohesion: 0.14
 Nodes (6): AckList, NewAckList(), NewReceivingWindow(), NewReceivingWorker(), ReceivingWindow, ReceivingWorker
 
-### Community 153 - "Community 153"
-Cohesion: 0.18
-Nodes (17): ConfigFromStreamSettings(), getGetCertificateFunc(), getNewGetCertificateFunc(), isCertificateExpired(), IsFromMitm(), issueCertificate(), ParseCertificate(), ParseCurveName() (+9 more)
+### Community 144 - "Community 144"
+Cohesion: 0.15
+Nodes (4): GeneralMultiIPMatcher, HeuristicIPMatcher, HeuristicMultiIPMatcher, prefixKeyFromIP()
 
-### Community 154 - "Community 154"
+### Community 145 - "Community 145"
 Cohesion: 0.1
 Nodes (9): NewScanDetector(), Limiter, AddLimiter(), DeleteLimiter(), GetLimiter(), Init(), LimiterMetrics, UserIpList (+1 more)
 
-### Community 155 - "Community 155"
+### Community 146 - "Community 146"
+Cohesion: 0.18
+Nodes (25): Be(), ce(), Cr(), De(), En(), Fe(), ge(), He() (+17 more)
+
+### Community 147 - "Community 147"
+Cohesion: 0.21
+Nodes (24): "assets/umi.js"(), ai(), Ar(), br(), ci(), Dr(), Gr(), hr() (+16 more)
+
+### Community 148 - "Community 148"
 Cohesion: 0.13
 Nodes (4): SingBox, buildUserMap(), New(), recycleOldBox()
 
-### Community 156 - "Community 156"
-Cohesion: 0.08
-Nodes (11): DNSConfig, GrpcNetworkConfig, HttpNetworkConfig, HttpRequest, HttpupgradeNetworkConfig, getInboundOptions(), Sing, New() (+3 more)
-
-### Community 157 - "Community 157"
+### Community 149 - "Community 149"
 Cohesion: 0.12
 Nodes (6): file_app_observatory_command_command_proto_init(), file_app_observatory_command_command_proto_rawDescGZIP(), init(), Config, GetOutboundStatusRequest, GetOutboundStatusResponse
 
-### Community 160 - "Community 160"
+### Community 152 - "Community 152"
 Cohesion: 0.13
 Nodes (9): Config, InboundDetourConfig, DefaultLogConfig(), LogConfig, MuxConfig, OutboundDetourConfig, SniffingConfig, StatsConfig (+1 more)
 
-### Community 161 - "Community 161"
+### Community 153 - "Community 153"
 Cohesion: 0.12
 Nodes (5): file_common_net_port_proto_init(), file_common_net_port_proto_rawDescGZIP(), init(), PortList, PortRange
 
-### Community 162 - "Community 162"
-Cohesion: 0.21
-Nodes (14): Instance, resolution, Server, AddInboundHandler(), addInboundHandlers(), AddOutboundHandler(), addOutboundHandlers(), getFeature() (+6 more)
-
-### Community 163 - "Community 163"
+### Community 154 - "Community 154"
 Cohesion: 0.2
 Nodes (18): executeTypedMessageToJson(), isNullValue(), isValueKind(), JSONMarshalWithoutEscape(), marshalInterface(), marshalIString(), marshalKnownType(), marshalMap() (+10 more)
 
-### Community 164 - "Community 164"
+### Community 156 - "Community 156"
 Cohesion: 0.12
 Nodes (5): file_proxy_wireguard_config_proto_init(), file_proxy_wireguard_config_proto_rawDescGZIP(), init(), DeviceConfig_DomainStrategy, PeerConfig
 
-### Community 165 - "Community 165"
+### Community 157 - "Community 157"
 Cohesion: 0.1
 Nodes (3): AddressPortStrategy, file_transport_internet_config_proto_rawDescGZIP(), SocketConfig_TProxyMode
 
-### Community 166 - "Community 166"
+### Community 158 - "Community 158"
 Cohesion: 0.14
 Nodes (5): TestDSLTCPClientRejectsMismatchedResponseSequence(), TestDSLTCPHandshakeReusesCapturedValue(), pipe, pipeOption, state
 
-### Community 167 - "Community 167"
+### Community 159 - "Community 159"
 Cohesion: 0.16
-Nodes (4): GeneralMultiIPMatcher, HeuristicIPMatcher, HeuristicMultiIPMatcher, prefixKeyFromIP()
+Nodes (18): newBandwidthSampler(), newMaxAckHeightTracker(), bdpFromRttAndBandwidth(), configForProfile(), formatSpeed(), GetInitialPacketSize(), minCongestionWindowForMaxDatagramSize(), NewBbrSender() (+10 more)
 
-### Community 168 - "Community 168"
+### Community 160 - "Community 160"
 Cohesion: 0.14
 Nodes (4): KnowledgeController, Knowledge, KnowledgeResource, KnowledgeController
 
-### Community 169 - "Community 169"
-Cohesion: 0.11
-Nodes (3): l(), login(), reply()
-
-### Community 170 - "Community 170"
-Cohesion: 0.22
-Nodes (6): cachedReader, init(), sniffer(), trackOnlineIP(), WrapLink(), DefaultDispatcher
-
-### Community 171 - "Community 171"
+### Community 162 - "Community 162"
 Cohesion: 0.19
 Nodes (13): Combine(), backupFile(), clean(), newClient(), newDownloader(), swapAll(), swapOne(), tempFile() (+5 more)
 
-### Community 172 - "Community 172"
+### Community 163 - "Community 163"
 Cohesion: 0.11
 Nodes (6): getInbound(), handlerServer, InboundOperation, OutboundOperation, MemoryUser, ToProtoUser()
 
-### Community 173 - "Community 173"
+### Community 164 - "Community 164"
 Cohesion: 0.15
 Nodes (9): client, init(), NewClient(), clientManager, Dial(), init(), dialerConf, UDPReader (+1 more)
 
-### Community 174 - "Community 174"
+### Community 165 - "Community 165"
 Cohesion: 0.22
 Nodes (5): session, discardBytes(), readMultiBufferExact(), readText(), LogWarning()
 
-### Community 175 - "Community 175"
-Cohesion: 0.18
-Nodes (15): BenchmarkDomainMatcher(), BenchmarkFullMatcher(), benchmarkMatch(), benchmarkMatchAny(), benchmarkMatcherType(), BenchmarkSubstrMatcher(), prepareMatchers(), buildable (+7 more)
-
-### Community 176 - "Community 176"
+### Community 166 - "Community 166"
 Cohesion: 0.13
 Nodes (7): Session, init(), NewSessionManager(), TestSessionManagerAdd(), TestSessionManagerClose(), SessionManager, XUDP
 
-### Community 177 - "Community 177"
+### Community 167 - "Community 167"
+Cohesion: 0.23
+Nodes (14): Instance, resolution, Server, AddInboundHandler(), addInboundHandlers(), AddOutboundHandler(), addOutboundHandlers(), getFeature() (+6 more)
+
+### Community 168 - "Community 168"
 Cohesion: 0.16
 Nodes (13): init(), DecodeJSONConfig(), DecodeJSONConfigStrict(), DecodeTOMLConfig(), DecodeYAMLConfig(), findOffset(), LoadJSONConfig(), LoadTOMLConfig() (+5 more)
 
-### Community 178 - "Community 178"
-Cohesion: 0.15
-Nodes (9): NewConnClientTCP(), NewConnServerTCP(), tcpStateKey(), writeSequence(), writeSequenceWithContext(), tcpCustomClient, tcpCustomClientConn, tcpCustomServer (+1 more)
+### Community 169 - "Community 169"
+Cohesion: 0.17
+Nodes (11): NewConnClientTCP(), NewConnServerTCP(), readSequence(), readSequenceWithContext(), tcpStateKey(), writeSequence(), writeSequenceWithContext(), tcpCustomClient (+3 more)
 
-### Community 180 - "Community 180"
+### Community 171 - "Community 171"
 Cohesion: 0.14
 Nodes (3): CouponController, Coupon, CouponService
 
-### Community 181 - "Community 181"
-Cohesion: 0.11
-Nodes (7): NewMachinePanelControlPlane(), MachinePanelControlPlane, TestNodeSpecFromPanelValidated_AllowsTargetsFromCustomConfigOutbounds(), TestNodeSpecFromPanelValidated_RejectsDuplicateTagsAcrossSources(), NodeSpecFromPanelValidated(), TestNodeSpecFromPanelValidated(), UserSpecsFromPanel()
-
-### Community 182 - "Community 182"
+### Community 172 - "Community 172"
 Cohesion: 0.09
 Nodes (18): BrutalConfig, CertConfig, CustomRouteRule, HandshakeResponse, MachineBaseConfig, MachineNode, MachineNodesResponse, MultiplexConfig (+10 more)
 
-### Community 183 - "Community 183"
+### Community 173 - "Community 173"
 Cohesion: 0.14
 Nodes (11): RegisterGRPCServiceServerX(), ServerDesc(), GRPCServiceClient, GRPCServiceClientX, GRPCServiceServer, _GRPCService_Tun_Handler(), _GRPCService_TunMulti_Handler(), NewGRPCServiceClient() (+3 more)
 
-### Community 184 - "Community 184"
+### Community 174 - "Community 174"
 Cohesion: 0.12
 Nodes (5): Asset, Config, file_app_geodata_config_proto_init(), file_app_geodata_config_proto_rawDescGZIP(), init()
 
-### Community 185 - "Community 185"
+### Community 175 - "Community 175"
+Cohesion: 0.08
+Nodes (3): AlterOutboundRequest, ListInboundsResponse, ListOutboundsResponse
+
+### Community 176 - "Community 176"
 Cohesion: 0.14
 Nodes (6): Outbound, Portal, NewPortal(), NewStaticMuxPicker(), PortalWorker, StaticMuxPicker
 
-### Community 186 - "Community 186"
+### Community 177 - "Community 177"
 Cohesion: 0.13
 Nodes (12): Curve25519Genkey(), genCurve25519(), executeMLKEM768(), genMLKEM768(), init(), executeVLESSEnc(), generateDotConfig(), init() (+4 more)
 
-### Community 187 - "Community 187"
+### Community 178 - "Community 178"
 Cohesion: 0.13
 Nodes (7): isClosedChan(), MakePipeDeadline(), Pipe(), onceError, PipeDeadline, PipeReader, PipeWriter
 
-### Community 188 - "Community 188"
+### Community 179 - "Community 179"
 Cohesion: 0.11
 Nodes (4): Config, file_transport_internet_finalmask_fragment_config_proto_init(), file_transport_internet_finalmask_fragment_config_proto_rawDescGZIP(), init()
 
-### Community 189 - "Community 189"
+### Community 180 - "Community 180"
+Cohesion: 0.29
+Nodes (18): evalContext, evaluateBinaryU64Op(), evaluateExpr(), evaluateExprArg(), evaluateItem(), evaluatePack(), evaluatePad(), evaluateShift() (+10 more)
+
+### Community 181 - "Community 181"
 Cohesion: 0.12
 Nodes (3): NewBrutalSender(), BrutalSender, pktInfo
 
-### Community 190 - "Community 190"
+### Community 182 - "Community 182"
 Cohesion: 0.18
 Nodes (13): CmdOnlySegment, Command, Segment, NewAckSegment(), NewCmdOnlySegment(), NewDataSegment(), ReadSegment(), Test1ByteDataSegment() (+5 more)
 
-### Community 191 - "Community 191"
+### Community 183 - "Community 183"
+Cohesion: 0.2
+Nodes (14): ConfigFromStreamSettings(), getGetCertificateFunc(), getNewGetCertificateFunc(), isCertificateExpired(), IsFromMitm(), issueCertificate(), ParseCertificate(), ParseCurveName() (+6 more)
+
+### Community 184 - "Community 184"
 Cohesion: 0.15
 Nodes (7): connEntry, Dispatcher, DialDispatcher(), handleInput(), NewDispatcher(), dispatcherConn, ResponseCallback
 
-### Community 192 - "Community 192"
+### Community 185 - "Community 185"
 Cohesion: 0.15
 Nodes (7): Config, file_app_dispatcher_config_proto_init(), file_app_dispatcher_config_proto_rawDescGZIP(), file_config_proto_init(), file_config_proto_rawDescGZIP(), init(), SessionConfig
 
-### Community 193 - "Community 193"
-Cohesion: 0.18
-Nodes (14): DecodeBodyAddons(), DecodeHeaderAddons(), EncodeBodyAddons(), EncodeHeaderAddons(), NewLengthPacketReader(), NewLengthPacketWriter(), NewMultiLengthPacketWriter(), DecodeRequestHeader() (+6 more)
+### Community 186 - "Community 186"
+Cohesion: 0.2
+Nodes (13): isValidDomain(), maybeIPPrefix(), PortThenAddress(), readPort(), WithAddressTypeParser(), writePort(), AddressOption, addressParser (+5 more)
 
-### Community 194 - "Community 194"
-Cohesion: 0.15
-Nodes (13): MatcherGroupForAll, MatcherGroupForDomain, MatcherGroupForFull, MatcherGroupForRegex, MatcherGroupForSubstr, CompositeMatches(), CompositeMatchesReverse(), MatcherSetForAll (+5 more)
-
-### Community 195 - "Community 195"
+### Community 187 - "Community 187"
 Cohesion: 0.16
 Nodes (5): DomainMatcher, FullMatcher, ToDomain(), SubstrMatcher, Type
 
-### Community 197 - "Community 197"
+### Community 188 - "Community 188"
+Cohesion: 0.15
+Nodes (13): MatcherGroupForAll, MatcherGroupForDomain, MatcherGroupForFull, MatcherGroupForRegex, MatcherGroupForSubstr, CompositeMatches(), CompositeMatchesReverse(), MatcherSetForAll (+5 more)
+
+### Community 190 - "Community 190"
 Cohesion: 0.15
 Nodes (10): DefaultSystemDialer, FakePacketConn, PacketConnWrapper, SimpleSystemDialer, RegisterDialerController(), resolveSrcAddr(), UseAlternativeSystemDialer(), WithAdapter() (+2 more)
 
-### Community 198 - "Community 198"
+### Community 191 - "Community 191"
+Cohesion: 0.19
+Nodes (8): evaluateUDPItemsWithContext(), newEvalContextWithAddrs(), TestMetadataAliasesExposeDstNames(), TestMetadataAliasesExposeSrcAndDstNames(), TestMetadataEvaluatorRejectsUnknownName(), TestMetadataTCPHandshakeUsesEndpointPorts(), TestMetadataUDPStandaloneWriteUsesRemotePort(), udpCustomStandaloneClientConn
+
+### Community 192 - "Community 192"
 Cohesion: 0.12
 Nodes (4): Config, file_transport_internet_finalmask_realm_config_proto_init(), file_transport_internet_finalmask_realm_config_proto_rawDescGZIP(), init()
 
-### Community 199 - "Community 199"
+### Community 193 - "Community 193"
 Cohesion: 0.12
 Nodes (4): Config, file_transport_internet_grpc_config_proto_init(), file_transport_internet_grpc_config_proto_rawDescGZIP(), init()
 
-### Community 200 - "Community 200"
-Cohesion: 0.19
-Nodes (15): bdpFromRttAndBandwidth(), configForProfile(), formatSpeed(), GetInitialPacketSize(), minCongestionWindowForMaxDatagramSize(), NewBbrSender(), ParseProfile(), scaleByteWindowForDatagramSize() (+7 more)
+### Community 194 - "Community 194"
+Cohesion: 0.16
+Nodes (12): ContextWithDatagram(), ContextWithValidator(), DatagramFromContext(), init(), ValidatorFromContext(), datagramKey, init(), Listen() (+4 more)
 
-### Community 201 - "Community 201"
+### Community 195 - "Community 195"
 Cohesion: 0.1
 Nodes (3): Staff, AuthController, AuthService
 
-### Community 202 - "Community 202"
+### Community 196 - "Community 196"
+Cohesion: 0.14
+Nodes (17): BrutalConfig, cloneCustomRouteRules(), cloneRouteAction(), cloneRouteMatch(), CustomRouteRule, MultiplexConfig, NodeSpec, OutboundConfig (+9 more)
+
+### Community 197 - "Community 197"
 Cohesion: 0.14
 Nodes (3): closeTrackingWriter, ipCounter, LimitDispatcher
 
-### Community 204 - "Community 204"
+### Community 199 - "Community 199"
 Cohesion: 0.16
 Nodes (18): AnyTlsNode, BaseConfig, CommonNode, EchConfig, EncSettings, Hysteria2Node, HysteriaNode, intervalToTime() (+10 more)
 
-### Community 205 - "Community 205"
+### Community 200 - "Community 200"
 Cohesion: 0.14
 Nodes (5): Config, file_app_commander_config_proto_init(), file_app_commander_config_proto_rawDescGZIP(), init(), ReflectionConfig
 
-### Community 206 - "Community 206"
+### Community 201 - "Community 201"
 Cohesion: 0.14
 Nodes (5): file_app_dns_fakedns_fakedns_proto_init(), file_app_dns_fakedns_fakedns_proto_rawDescGZIP(), init(), FakeDnsPool, FakeDnsPoolMulti
 
-### Community 207 - "Community 207"
+### Community 202 - "Community 202"
+Cohesion: 0.15
+Nodes (12): NewServerSpec(), NewServerSpecFromPB(), ServerSpec, Client, init(), NewClient(), Client, init() (+4 more)
+
+### Community 203 - "Community 203"
 Cohesion: 0.14
 Nodes (5): ChannelConfig, Config, file_app_stats_config_proto_init(), file_app_stats_config_proto_rawDescGZIP(), init()
 
-### Community 208 - "Community 208"
+### Community 204 - "Community 204"
 Cohesion: 0.18
 Nodes (4): BufferedWriter, BufferToBytesWriter, noOpWriter, SequentialWriter
 
-### Community 209 - "Community 209"
+### Community 205 - "Community 205"
 Cohesion: 0.15
 Nodes (5): file_common_protocol_headers_proto_init(), file_common_protocol_headers_proto_rawDescGZIP(), init(), SecurityConfig, SecurityType
 
-### Community 210 - "Community 210"
+### Community 206 - "Community 206"
 Cohesion: 0.19
 Nodes (12): EnvFlag, GetAssetLocation(), GetCertLocation(), LineSeparator(), GetConfDirPath(), GetConfigurationPath(), getExecutableDir(), NewEnvFlag() (+4 more)
 
-### Community 211 - "Community 211"
+### Community 207 - "Community 207"
 Cohesion: 0.18
 Nodes (11): executeUUID(), init(), UUID, New(), ParseBytes(), ParseString(), TestEquals(), TestNewUUID() (+3 more)
 
-### Community 213 - "Community 213"
+### Community 208 - "Community 208"
+Cohesion: 0.13
+Nodes (7): NewAttackDefense(), getSubkey(), getTCPData(), getUDPData(), putSubkey(), Validator, ValidatorStats
+
+### Community 209 - "Community 209"
+Cohesion: 0.15
+Nodes (6): New(), NewExisted(), ownership, Free(), HunkReaderWriter, MultiHunkReaderWriter
+
+### Community 211 - "Community 211"
 Cohesion: 0.19
 Nodes (12): CipherSuiteTLS13, AEADAESGCMTLS13(), hkdfExpandLabel(), readShortQuicVarint(), SniffQUIC(), TestSniffFakeQUICPacketWithInvalidPacketNumberLength(), TestSniffFakeQUICPacketWithTooShortData(), TestSniffQUIC() (+4 more)
 
-### Community 214 - "Community 214"
+### Community 212 - "Community 212"
 Cohesion: 0.26
 Nodes (18): messagesEqual(), mustParseName(), namesEqual(), questionsEqual(), rrsEqual(), TestDecodeRDataTXT(), TestEncodeRDataTXT(), TestMessageFromWireFormat() (+10 more)
 
-### Community 215 - "Community 215"
+### Community 213 - "Community 213"
 Cohesion: 0.13
 Nodes (4): Config, file_transport_internet_kcp_config_proto_init(), file_transport_internet_kcp_config_proto_rawDescGZIP(), init()
 
-### Community 216 - "Community 216"
+### Community 214 - "Community 214"
 Cohesion: 0.15
 Nodes (6): TestMust(), DefaultDialerClient, DialerClient, NewH1Conn(), H1Conn, WaitReadCloser
 
-### Community 217 - "Community 217"
+### Community 215 - "Community 215"
 Cohesion: 0.12
 Nodes (3): PaymentController, source_base_url(), PaymentService
 
-### Community 218 - "Community 218"
-Cohesion: 0.14
-Nodes (16): BrutalConfig, cloneCustomRouteRules(), cloneRouteAction(), cloneRouteMatch(), CustomRouteRule, MultiplexConfig, NodeSpec, OutboundConfig (+8 more)
-
-### Community 219 - "Community 219"
+### Community 217 - "Community 217"
 Cohesion: 0.17
 Nodes (4): New(), machineNodePush, nodeHandle, Orchestrator
 
-### Community 221 - "Community 221"
+### Community 219 - "Community 219"
+Cohesion: 0.17
+Nodes (5): CloseIfExists(), ActivityTimer, ActivityUpdater, ConnectionHandler, Handler
+
+### Community 220 - "Community 220"
 Cohesion: 0.17
 Nodes (11): Domain_Attribute_BoolValue, Domain_Attribute_IntValue, DomainRule_Custom, DomainRule_Geosite, file_common_geodata_geodat_proto_init(), init(), IPRule_Custom, IPRule_Geoip (+3 more)
 
 ### Community 222 - "Community 222"
-Cohesion: 0.13
-Nodes (6): FullMatcherGroup, LinearValueMatcher, NewFullMatcherGroup(), TestEmptyFullMatcherGroup(), TestFullMatcherGroup(), NewLinearValueMatcher()
+Cohesion: 0.15
+Nodes (5): AttackDefense, DefenseConfig, defenseShardDB, DefenseStats, failureRecord
 
 ### Community 223 - "Community 223"
-Cohesion: 0.17
-Nodes (10): TrojanClientConfig, TrojanInboundFallback, TrojanServerConfig, TrojanServerTarget, TrojanUserConfig, WebSocketConfig, Xdns, PrintDeprecatedFeatureWarning() (+2 more)
-
-### Community 225 - "Community 225"
-Cohesion: 0.16
-Nodes (6): New(), NewExisted(), ownership, Free(), HunkReaderWriter, MultiHunkReaderWriter
-
-### Community 227 - "Community 227"
 Cohesion: 0.14
 Nodes (6): toNetIpAddr(), netBind, netBindClient, netBindServer, netEndpoint, netReadInfo
 
-### Community 228 - "Community 228"
+### Community 224 - "Community 224"
 Cohesion: 0.12
 Nodes (7): Inbound, init(), NewServer(), packetToMultiBuffer(), seconds(), udpPacketReader, udpPacketWriter
 
-### Community 230 - "Community 230"
+### Community 227 - "Community 227"
 Cohesion: 0.18
 Nodes (11): NewTcpListener(), UnwrapTcpMask(), headerConn, headerManagerConn, headerSize, tcpListener, Tcpmask, TcpMaskConn (+3 more)
 
-### Community 231 - "Community 231"
+### Community 228 - "Community 228"
 Cohesion: 0.22
 Nodes (6): record, clientIDToAddr(), NewConnServer(), clientIDToAddr(), NewConnServer(), xicmpConnServer
 
-### Community 232 - "Community 232"
+### Community 229 - "Community 229"
 Cohesion: 0.15
 Nodes (5): Hunk, MultiHunk, file_transport_internet_grpc_encoding_stream_proto_init(), file_transport_internet_grpc_encoding_stream_proto_rawDescGZIP(), init()
 
-### Community 233 - "Community 233"
+### Community 230 - "Community 230"
 Cohesion: 0.13
 Nodes (4): Config, file_transport_internet_websocket_config_proto_init(), file_transport_internet_websocket_config_proto_rawDescGZIP(), init()
 
-### Community 238 - "Community 238"
+### Community 236 - "Community 236"
 Cohesion: 0.18
 Nodes (9): fakeRoundTripper, NewXmuxManager(), TestCMaxReuseTimes(), TestDefault(), TestMaxConcurrency(), TestMaxConnections(), XmuxClient, XmuxConn (+1 more)
 
-### Community 239 - "Community 239"
+### Community 237 - "Community 237"
 Cohesion: 0.14
 Nodes (16): _cacheLoginStatus(), checkLoginStatus(), checkUserLoginStatus(), _clearAllAuthData(), forceLogout(), getUserInfo(), getWebsiteConfig(), handleLoginSuccess() (+8 more)
 
-### Community 240 - "Community 240"
-Cohesion: 0.18
-Nodes (5): CloseIfExists(), ActivityTimer, ActivityUpdater, ConnectionHandler, Handler
-
-### Community 241 - "Community 241"
+### Community 238 - "Community 238"
 Cohesion: 0.22
 Nodes (4): Bridge, NewBridge(), NewBridgeWorker(), BridgeWorker
 
-### Community 242 - "Community 242"
-Cohesion: 0.14
-Nodes (3): Handler, isMuxAndNotXUDP(), Reverse
+### Community 239 - "Community 239"
+Cohesion: 0.16
+Nodes (7): readerOnly, Server, init(), isTimeout(), NewServer(), parseBasicAuth(), readResponseAndHandle100Continue()
 
-### Community 243 - "Community 243"
+### Community 240 - "Community 240"
+Cohesion: 0.2
+Nodes (14): Buffer, Manager, TestPolicy(), BufferPolicyFromContext(), defaultBufferPolicy(), init(), ManagerType(), SessionDefault() (+6 more)
+
+### Community 242 - "Community 242"
 Cohesion: 0.2
 Nodes (8): newHostMapping(), readSystemHosts(), readSystemHostsFrom(), resolveQueryStrategy(), DNSConfig, HostAddress, HostsWrapper, NameServerConfig
 
-### Community 244 - "Community 244"
+### Community 243 - "Community 243"
 Cohesion: 0.14
 Nodes (8): DomainMatcherSet, AddMatcherToSet(), NewDomainMatcherSet(), TestDomainMatcherSet(), TestEmptyDomainMatcherSet(), TestSimpleMatcherSet(), TestSubstrMatcherSet(), trieNode2
+
+### Community 244 - "Community 244"
+Cohesion: 0.14
+Nodes (6): FullMatcherGroup, LinearValueMatcher, NewFullMatcherGroup(), TestEmptyFullMatcherGroup(), TestFullMatcherGroup(), NewLinearValueMatcher()
 
 ### Community 245 - "Community 245"
 Cohesion: 0.17
@@ -1857,11 +1837,11 @@ Nodes (13): executeConvertConfigsToProtobuf(), GetFormat(), GetFormatByExtension
 Cohesion: 0.14
 Nodes (4): Config, file_proxy_dokodemo_config_proto_init(), file_proxy_dokodemo_config_proto_rawDescGZIP(), init()
 
-### Community 250 - "Community 250"
+### Community 249 - "Community 249"
 Cohesion: 0.14
 Nodes (4): Config, file_proxy_tun_config_proto_init(), file_proxy_tun_config_proto_rawDescGZIP(), init()
 
-### Community 252 - "Community 252"
+### Community 251 - "Community 251"
 Cohesion: 0.2
 Nodes (10): Conn, Interface, Client(), copyConfig(), GeneraticUClient(), GetFingerprint(), init(), Server() (+2 more)
 
@@ -1870,36 +1850,28 @@ Cohesion: 0.26
 Nodes (13): SetExitStatus(), errWriter, Execute(), Sort(), buildCommandText(), buildText(), capitalize(), Help() (+5 more)
 
 ### Community 255 - "Community 255"
-Cohesion: 0.2
-Nodes (8): baseTCPNameServer(), NewTCPLocalNameServer(), NewTCPNameServer(), TestTCPLocalNameServer(), TestTCPLocalNameServerWithCache(), TestTCPLocalNameServerWithIPv4Override(), TestTCPLocalNameServerWithIPv6Override(), TCPNameServer
-
-### Community 256 - "Community 256"
 Cohesion: 0.17
 Nodes (5): file_app_log_command_config_proto_init(), file_app_log_command_config_proto_rawDescGZIP(), init(), RestartLoggerRequest, RestartLoggerResponse
 
-### Community 257 - "Community 257"
-Cohesion: 0.22
-Nodes (13): Buffer, Manager, BufferPolicyFromContext(), defaultBufferPolicy(), init(), ManagerType(), SessionDefault(), policyKey (+5 more)
+### Community 256 - "Community 256"
+Cohesion: 0.15
+Nodes (4): file_app_policy_config_proto_init(), file_app_policy_config_proto_rawDescGZIP(), init(), Policy_Stats
 
 ### Community 258 - "Community 258"
-Cohesion: 0.16
-Nodes (6): file_app_router_config_proto_init(), init(), isRoutingRule_TargetTag, RoutingRule_BalancingTag, RoutingRule_Tag, WebhookConfig
-
-### Community 259 - "Community 259"
 Cohesion: 0.28
 Nodes (12): cutReversePrefix(), parseCIDR(), parseCustomDomainRule(), parseCustomIPRule(), ParseDomainRule(), ParseDomainRules(), parseGeoIPRule(), parseGeoSiteRule() (+4 more)
 
-### Community 260 - "Community 260"
+### Community 259 - "Community 259"
 Cohesion: 0.22
 Nodes (11): isTCPSocket(), isUDPSocket(), applyInboundSocketOptions(), applyOutboundSocketOptions(), setReuseAddr(), setReusePort(), applyInboundSocketOptions(), applyOutboundSocketOptions() (+3 more)
+
+### Community 261 - "Community 261"
+Cohesion: 0.2
+Nodes (9): TrojanClientConfig, TrojanInboundFallback, TrojanServerConfig, TrojanServerTarget, TrojanUserConfig, WebSocketConfig, PrintDeprecatedFeatureWarning(), PrintNonRemovalDeprecatedFeatureWarning() (+1 more)
 
 ### Community 262 - "Community 262"
 Cohesion: 0.25
 Nodes (9): compositeResult, protocolSniffer, protocolSnifferWithMetadata, Sniffer, CompositeResult(), NewSniffer(), SnifferIsProtoSubsetOf, SnifferResultComposite (+1 more)
-
-### Community 263 - "Community 263"
-Cohesion: 0.15
-Nodes (5): beginWithHTTPMethod(), SniffHTTP(), TestHTTPHeaders(), SniffHeader, Version
 
 ### Community 264 - "Community 264"
 Cohesion: 0.2
@@ -1926,88 +1898,88 @@ Cohesion: 0.17
 Nodes (5): Packet, NewUploadQueue(), Test_regression_readzero(), uploadHeap, uploadQueue
 
 ### Community 271 - "Community 271"
-Cohesion: 0.14
-Nodes (5): LocalControlPlane, NodeSpecFromStandalone(), NodeSpecFromStandaloneValidated(), TestNodeSpecFromStandalone(), UserSpecsFromStandalone()
-
-### Community 272 - "Community 272"
 Cohesion: 0.15
 Nodes (11): if(), getAvailableApiUrl(), initApiAvailabilityChecker(), shouldCheckApiAvailability(), calculateThemeColors(), detectBrowser(), getApiBaseUrl(), hexToRgb() (+3 more)
 
 ### Community 274 - "Community 274"
 Cohesion: 0.17
-Nodes (4): file_app_policy_config_proto_init(), file_app_policy_config_proto_rawDescGZIP(), init(), Policy_Buffer
+Nodes (13): NewLocalControlPlane(), TestLocalControlPlaneInitial(), pullResult, cfgKernelType(), computeConfigHash(), containsString(), hasUsableTLSConfig(), New() (+5 more)
 
-### Community 276 - "Community 276"
-Cohesion: 0.2
-Nodes (12): computeUserHash(), newTestService(), TestApplyUserDeltaAddPreparesLimiterBeforeKernelUpdate(), TestApplyUserUpdatePreparesLimiterBeforeKernelUpdate(), TestApplyUserUpdateRestoresStateWhenKernelAndRestartFail(), TestValidateNodeRuntimeAllowsSelfManagedTLSBeforeFilesExist(), TestValidateNodeRuntimeAllowsSingboxRealityWithRequiredFields(), TestValidateNodeRuntimeRejectsRealityWithoutPrivateKey() (+4 more)
-
-### Community 277 - "Community 277"
+### Community 275 - "Community 275"
 Cohesion: 0.16
 Nodes (6): NewLinearAnyMatcher(), FullMatcherSet, LinearAnyMatcher, NewFullMatcherSet(), TestEmptyFullMatcherSet(), TestFullMatcherSet()
 
-### Community 278 - "Community 278"
-Cohesion: 0.17
-Nodes (4): file_proxy_dns_config_proto_init(), file_proxy_dns_config_proto_rawDescGZIP(), init(), DNSRuleConfig
+### Community 276 - "Community 276"
+Cohesion: 0.16
+Nodes (5): beginWithHTTPMethod(), SniffHTTP(), TestHTTPHeaders(), SniffHeader, Version
 
-### Community 279 - "Community 279"
+### Community 277 - "Community 277"
 Cohesion: 0.17
 Nodes (4): packet, newUdpConnectionHandler(), udpConn, udpConnectionHandler
 
-### Community 280 - "Community 280"
+### Community 278 - "Community 278"
 Cohesion: 0.17
 Nodes (4): Net, netTun, convertToFullAddr(), CreateNetTUN()
 
-### Community 281 - "Community 281"
+### Community 279 - "Community 279"
 Cohesion: 0.17
 Nodes (6): NewProxyInbound(), NewProxyOutbound(), ProxyInbound, ProxyInboundMockRecorder, ProxyOutbound, ProxyOutboundMockRecorder
 
-### Community 282 - "Community 282"
+### Community 280 - "Community 280"
 Cohesion: 0.17
 Nodes (4): Config, file_transport_internet_finalmask_mkcp_aes128gcm_config_proto_init(), file_transport_internet_finalmask_mkcp_aes128gcm_config_proto_rawDescGZIP(), init()
 
-### Community 283 - "Community 283"
+### Community 281 - "Community 281"
 Cohesion: 0.17
 Nodes (4): Config, file_transport_internet_finalmask_xdns_config_proto_init(), file_transport_internet_finalmask_xdns_config_proto_rawDescGZIP(), init()
 
-### Community 284 - "Community 284"
+### Community 282 - "Community 282"
 Cohesion: 0.17
 Nodes (4): Config, file_transport_internet_finalmask_xicmp_config_proto_init(), file_transport_internet_finalmask_xicmp_config_proto_rawDescGZIP(), init()
 
-### Community 286 - "Community 286"
+### Community 284 - "Community 284"
+Cohesion: 0.13
+Nodes (4): LocalControlPlane, NodeSpecFromStandaloneValidated(), TestNodeSpecFromStandalone(), UserSpecsFromStandalone()
+
+### Community 285 - "Community 285"
 Cohesion: 0.15
 Nodes (11): Authenticator, authenticatorContextKey, AuthenticatorFromContext(), ContextWithAuthenticator(), ContextWithServerSettings(), ServerSettingsFromContext(), init(), Listen() (+3 more)
 
-### Community 288 - "Community 288"
+### Community 287 - "Community 287"
 Cohesion: 0.14
 Nodes (3): getActiveNavForRoute(), getFourthNavItem(), getThirdNavItem()
 
-### Community 289 - "Community 289"
+### Community 288 - "Community 288"
 Cohesion: 0.26
 Nodes (8): CompactDomainMatcher, CompactDomainMatcherFactory, buildDomainRulesKey(), newDomainMatcherFactory(), parseDomain(), DomainMatcher, DomainMatcherFactory, MphDomainMatcherFactory
 
-### Community 290 - "Community 290"
+### Community 289 - "Community 289"
 Cohesion: 0.24
 Nodes (3): NewConnClient(), packet, xicmpConnClient
 
-### Community 291 - "Community 291"
+### Community 290 - "Community 290"
 Cohesion: 0.2
 Nodes (5): NewTun(), open(), procyield(), setinterface(), WindowsTun
 
-### Community 292 - "Community 292"
+### Community 291 - "Community 291"
 Cohesion: 0.28
 Nodes (9): Defragger, FragUDPMessage(), ParseUDPMessage(), ReadTCPRequest(), ReadTCPResponse(), varintPut(), WriteTCPRequest(), WriteTCPResponse() (+1 more)
 
-### Community 293 - "Community 293"
-Cohesion: 0.18
-Nodes (12): NewLocalControlPlane(), TestLocalControlPlaneInitial(), pullResult, cfgKernelType(), containsString(), hasUsableTLSConfig(), New(), newService() (+4 more)
+### Community 292 - "Community 292"
+Cohesion: 0.22
+Nodes (12): computeUserHash(), newTestService(), TestApplyUserDeltaAddPreparesLimiterBeforeKernelUpdate(), TestApplyUserUpdatePreparesLimiterBeforeKernelUpdate(), TestApplyUserUpdateRestoresStateWhenKernelAndRestartFail(), TestValidateNodeRuntimeAllowsSelfManagedTLSBeforeFilesExist(), TestValidateNodeRuntimeAllowsSingboxRealityWithRequiredFields(), TestValidateNodeRuntimeRejectsRealityWithoutPrivateKey() (+4 more)
 
-### Community 294 - "Community 294"
+### Community 293 - "Community 293"
 Cohesion: 0.21
 Nodes (4): ConnReader, ConnWriter, PacketReader, PacketWriter
 
-### Community 295 - "Community 295"
+### Community 294 - "Community 294"
 Cohesion: 0.31
 Nodes (11): AllAttrsMatcher, AttributeMatcher, checkFile(), decodeVarint(), find(), loadFile(), loadIP(), loadSite() (+3 more)
+
+### Community 295 - "Community 295"
+Cohesion: 0.31
+Nodes (11): benchmarkIndexMatcher(), BenchmarkLinearIndexMatcher(), BenchmarkMphIndexMatcher(), BenchmarkDomainMatcher(), BenchmarkFullMatcher(), benchmarkMatch(), benchmarkMatchAny(), benchmarkMatcherType() (+3 more)
 
 ### Community 296 - "Community 296"
 Cohesion: 0.27
@@ -2015,347 +1987,355 @@ Nodes (6): MemHash(), nextPow2(), RollingHash(), strhash(), MphMatcherGroup, mph
 
 ### Community 297 - "Community 297"
 Cohesion: 0.18
-Nodes (6): benchmarkIndexMatcher(), BenchmarkLinearIndexMatcher(), BenchmarkMphIndexMatcher(), NewLinearIndexMatcher(), TestLinearIndexMatcher(), LinearIndexMatcher
-
-### Community 298 - "Community 298"
-Cohesion: 0.18
 Nodes (4): Account, file_proxy_vmess_account_proto_init(), file_proxy_vmess_account_proto_rawDescGZIP(), init()
 
-### Community 299 - "Community 299"
+### Community 298 - "Community 298"
 Cohesion: 0.25
 Nodes (11): FragmentWriter, buildFinalRule(), GenerateRandomBytes(), getDefaultFinalRule(), init(), isValidAddress(), NewPacketReader(), NewPacketWriter() (+3 more)
 
-### Community 300 - "Community 300"
-Cohesion: 0.3
-Nodes (11): addrLifetime6, ifAliasReq4, ifAliasReq6, ioctlPtr(), NewTun(), open(), procyield(), setinterface() (+3 more)
-
-### Community 301 - "Community 301"
+### Community 299 - "Community 299"
 Cohesion: 0.29
 Nodes (11): evaluateUDPItems(), TestEvaluatorArithmeticAndBitwiseProduceExpectedBytes(), TestEvaluatorBeXorProducesExpectedBytes(), TestEvaluatorConcatPreservesOrder(), TestEvaluatorLittleEndianProducesExpectedBytes(), TestEvaluatorPadAndTruncateShapeBytes(), TestEvaluatorRejectsInvalidArgType(), TestEvaluatorRejectsInvalidShapingAndArithmetic() (+3 more)
 
-### Community 302 - "Community 302"
+### Community 300 - "Community 300"
 Cohesion: 0.18
 Nodes (4): Config, file_transport_internet_finalmask_mkcp_original_config_proto_init(), file_transport_internet_finalmask_mkcp_original_config_proto_rawDescGZIP(), init()
 
-### Community 303 - "Community 303"
+### Community 301 - "Community 301"
 Cohesion: 0.23
 Nodes (7): NewConnection(), NewUpdater(), nowMillisec(), ConnMetadata, RoundTripInfo, State, Updater
 
-### Community 304 - "Community 304"
+### Community 302 - "Community 302"
 Cohesion: 0.3
 Nodes (10): PaddingMethod, absInt(), ApplyPaddingToCookie(), ApplyPaddingToQuery(), ApplyPaddingToResponseCookie(), GeneratePadding(), GenerateTokenishPaddingBase62(), randStringFromCharset() (+2 more)
 
-### Community 305 - "Community 305"
+### Community 303 - "Community 303"
 Cohesion: 0.18
 Nodes (4): file_transport_internet_splithttp_config_proto_init(), file_transport_internet_splithttp_config_proto_rawDescGZIP(), init(), RangeConfig
 
-### Community 306 - "Community 306"
+### Community 304 - "Community 304"
 Cohesion: 0.34
 Nodes (13): CheckOK(), DialGet(), DialPacket(), dialTask(), dialWithBody(), DialWS(), HasBrowserDialer(), httpExtraFromHeadersAndCookies() (+5 more)
 
-### Community 307 - "Community 307"
-Cohesion: 0.27
-Nodes (9): buildGeoIPRulesKey(), buildOptimizedIPMatcher(), newIPSetFactory(), ipBucket, ipBucketViews, IPMatcher, IPSet, IPSetFactory (+1 more)
-
-### Community 308 - "Community 308"
+### Community 305 - "Community 305"
 Cohesion: 0.21
 Nodes (5): DynamicIPMatcher, NewDynamicIPMatcher(), newIPRegistry(), ipMatcherState, IPRegistry
 
-### Community 309 - "Community 309"
+### Community 306 - "Community 306"
+Cohesion: 0.27
+Nodes (15): Bn(), dn(), fn(), gn(), hn(), Mn(), qt(), Si() (+7 more)
+
+### Community 307 - "Community 307"
 Cohesion: 0.2
 Nodes (6): Command, Exit(), ExitIfErrors(), GetExitStatus(), init(), main()
 
+### Community 309 - "Community 309"
+Cohesion: 0.13
+Nodes (4): DNSConfig, Sing, New(), UserMap
+
 ### Community 310 - "Community 310"
-Cohesion: 0.31
-Nodes (8): Client, fillRequestHeader(), init(), NewClient(), newHTTP2Conn(), setUpHTTPTunnel(), h2Conn, http2Conn
+Cohesion: 0.2
+Nodes (4): createStack(), transportPacketBytes(), NewStack(), stackGVisor
 
 ### Community 311 - "Community 311"
+Cohesion: 0.32
+Nodes (10): BuildLocalEchoReply(), ParseEchoRequest(), ProtocolLabel(), RewriteChecksum(), checksumPayloadV4(), checksumPayloadV6(), TestBuildLocalEchoReply(), TestParseEchoRequest() (+2 more)
+
+### Community 312 - "Community 312"
 Cohesion: 0.24
 Nodes (4): LeastLoadStrategy, node, leastloadSort(), NewLeastLoadStrategy()
 
-### Community 312 - "Community 312"
+### Community 313 - "Community 313"
 Cohesion: 0.2
 Nodes (4): Config, file_app_version_config_proto_init(), file_app_version_config_proto_rawDescGZIP(), init()
 
-### Community 313 - "Community 313"
+### Community 314 - "Community 314"
 Cohesion: 0.18
 Nodes (7): SpeedTracker, NewSpeedTracker(), TestSpeedTracker_UpdateBuckets(), TestSpeedTracker_UpdateBuckets_LogCallbackMayCallLimitedUserCount(), TestSpeedTracker_UpdateBuckets_PreservesExisting(), TestSpeedTracker_UpdateBuckets_RemovesUsers(), SpeedTrackerLogCallback
 
-### Community 314 - "Community 314"
+### Community 315 - "Community 315"
 Cohesion: 0.25
 Nodes (5): NewConnClient(), NewConnServer(), NewSimple(), simple, simpleConn
 
-### Community 315 - "Community 315"
-Cohesion: 0.23
-Nodes (4): ACAutomatonMatcherGroup, acEdge, acNode, acValue
-
 ### Community 316 - "Community 316"
+Cohesion: 0.2
+Nodes (6): NewMphMatcherGroup(), TestEmptyMphMatcherGroup(), TestMphMatcherGroup(), TestMphMatcherGroupAsIndexMatcher(), MphValueMatcher, NewMphValueMatcher()
+
+### Community 317 - "Community 317"
 Cohesion: 0.2
 Nodes (4): file_common_serial_typed_message_proto_init(), file_common_serial_typed_message_proto_rawDescGZIP(), init(), TypedMessage
 
 ### Community 318 - "Community 318"
+Cohesion: 0.22
+Nodes (4): file_app_dns_config_proto_init(), file_app_dns_config_proto_rawDescGZIP(), init(), QueryStrategy
+
+### Community 319 - "Community 319"
+Cohesion: 0.34
+Nodes (11): addrLifetime6, ifAliasReq4, ifAliasReq6, ioctlPtr(), NewTun(), open(), procyield(), setinterface() (+3 more)
+
+### Community 320 - "Community 320"
 Cohesion: 0.2
 Nodes (6): NewReader(), NewWriter(), Reader, ReaderMockRecorder, Writer, WriterMockRecorder
 
-### Community 319 - "Community 319"
-Cohesion: 0.31
-Nodes (10): ClientType(), TestIPMatch(), TestLocalDomain(), TestMultiMatchPrioritizedDomain(), TestPrioritizedDomain(), TestStaticHostDomain(), TestUDPServer(), TestUDPServerIPv6() (+2 more)
-
-### Community 321 - "Community 321"
+### Community 322 - "Community 322"
 Cohesion: 0.32
 Nodes (7): chunks(), dnsResponsePayload(), encode(), NewConnClient(), nextPacket(), packet, xdnsConnClient
 
 ### Community 323 - "Community 323"
+Cohesion: 0.23
+Nodes (9): ConnRF, AddHeader(), Dial(), dialhttpUpgrade(), init(), WithDestination(), WithNextProto(), GetTLSConfigFromStreamSettings() (+1 more)
+
+### Community 324 - "Community 324"
+Cohesion: 0.3
+Nodes (9): buildGeoIPRulesKey(), buildOptimizedIPMatcher(), newIPSetFactory(), ipBucket, ipBucketViews, IPMatcher, IPSet, IPSetFactory (+1 more)
+
+### Community 325 - "Community 325"
 Cohesion: 0.33
 Nodes (4): newFrame(), Session, newStream(), NewDeadlineWatcher()
 
-### Community 325 - "Community 325"
+### Community 328 - "Community 328"
 Cohesion: 0.24
 Nodes (7): envFile(), Error2(), GetGOBIN(), GetGOPATH(), GetModuleName(), GetRuntimeEnv(), ByteSize
 
-### Community 328 - "Community 328"
+### Community 331 - "Community 331"
 Cohesion: 0.19
 Nodes (4): DefaultRouter, Route, Router, RouterType()
 
-### Community 331 - "Community 331"
+### Community 333 - "Community 333"
+Cohesion: 0.27
+Nodes (8): TestExponentialBackoff(), TestNoRetry(), TestRetryExhausted(), TestRetryMultiple(), TestRetryOnce(), Timed(), retryer, Strategy
+
+### Community 335 - "Community 335"
 Cohesion: 0.29
 Nodes (9): isPacketReader(), isPacketWriter(), NewPacketReader(), NewReader(), NewWriter(), Reader, TimeoutReader, TimeoutWrapperReader (+1 more)
 
-### Community 332 - "Community 332"
+### Community 336 - "Community 336"
 Cohesion: 0.22
 Nodes (4): Config, file_app_metrics_config_proto_init(), file_app_metrics_config_proto_rawDescGZIP(), init()
 
-### Community 334 - "Community 334"
-Cohesion: 0.26
-Nodes (7): _LoggerService_RestartLogger_Handler(), NewLoggerServiceClient(), RegisterLoggerServiceServer(), LoggerServiceClient, LoggerServiceServer, UnimplementedLoggerServiceServer, UnsafeLoggerServiceServer
+### Community 338 - "Community 338"
+Cohesion: 0.19
+Nodes (4): defaultPolicy(), Instance, init(), New()
 
-### Community 335 - "Community 335"
+### Community 339 - "Community 339"
 Cohesion: 0.26
 Nodes (7): NewObservatoryServiceClient(), _ObservatoryService_GetOutboundStatus_Handler(), RegisterObservatoryServiceServer(), ObservatoryServiceClient, ObservatoryServiceServer, UnimplementedObservatoryServiceServer, UnsafeObservatoryServiceServer
 
-### Community 336 - "Community 336"
+### Community 340 - "Community 340"
+Cohesion: 0.26
+Nodes (7): _LoggerService_RestartLogger_Handler(), NewLoggerServiceClient(), RegisterLoggerServiceServer(), LoggerServiceClient, LoggerServiceServer, UnimplementedLoggerServiceServer, UnsafeLoggerServiceServer
+
+### Community 341 - "Community 341"
 Cohesion: 0.18
 Nodes (3): NewValidator(), MemoryAccount, Validator
 
-### Community 338 - "Community 338"
+### Community 343 - "Community 343"
 Cohesion: 0.15
 Nodes (7): Builder, Provider, CanonicalNames(), List(), Register(), TestCanonicalNamesSorted(), validateRuntimeCertConfig()
 
-### Community 339 - "Community 339"
+### Community 344 - "Community 344"
 Cohesion: 0.35
 Nodes (9): NewAesCTRStream(), NewAesDecryptionStream(), NewAesEncryptionStream(), NewAesStreamMethod(), BenchmarkAESDecryption(), BenchmarkAESEncryption(), BenchmarkChaCha20(), BenchmarkChaCha20IETF() (+1 more)
 
-### Community 340 - "Community 340"
-Cohesion: 0.21
-Nodes (5): DomainMatcherGroup, NewDomainMatcherGroup(), TestDomainMatcherGroup(), TestEmptyDomainMatcherGroup(), trieNode
-
-### Community 341 - "Community 341"
-Cohesion: 0.22
-Nodes (6): NewMphMatcherGroup(), TestEmptyMphMatcherGroup(), TestMphMatcherGroup(), TestMphMatcherGroupAsIndexMatcher(), MphValueMatcher, NewMphValueMatcher()
-
-### Community 342 - "Community 342"
+### Community 345 - "Community 345"
 Cohesion: 0.29
 Nodes (7): MemoryPortList, MemoryPortRange, Port, PortFromBytes(), PortFromInt(), PortFromString(), PortListFromProto()
 
-### Community 344 - "Community 344"
+### Community 347 - "Community 347"
 Cohesion: 0.28
 Nodes (5): DNSThenOthersSniffResult, fakeDNSExtraOpts, newFakeDNSThenOthers(), fakeDNSSniffResult, ipAddressInRangeOpt
 
-### Community 345 - "Community 345"
+### Community 348 - "Community 348"
 Cohesion: 0.22
-Nodes (3): file_app_dns_config_proto_init(), file_app_dns_config_proto_rawDescGZIP(), QueryStrategy
+Nodes (3): file_proxy_dns_config_proto_init(), file_proxy_dns_config_proto_rawDescGZIP(), RuleAction
 
-### Community 347 - "Community 347"
+### Community 352 - "Community 352"
 Cohesion: 0.22
 Nodes (4): Account, file_proxy_hysteria_account_config_proto_init(), file_proxy_hysteria_account_config_proto_rawDescGZIP(), init()
 
-### Community 348 - "Community 348"
+### Community 353 - "Community 353"
 Cohesion: 0.22
 Nodes (4): Config, file_proxy_loopback_config_proto_init(), file_proxy_loopback_config_proto_rawDescGZIP(), init()
 
-### Community 349 - "Community 349"
+### Community 354 - "Community 354"
 Cohesion: 0.22
 Nodes (4): FreeBSDTun, NewTun(), procyield(), setinterface()
 
-### Community 350 - "Community 350"
+### Community 355 - "Community 355"
 Cohesion: 0.22
 Nodes (4): Addons, file_proxy_vless_encoding_addons_proto_init(), file_proxy_vless_encoding_addons_proto_rawDescGZIP(), init()
 
-### Community 352 - "Community 352"
+### Community 357 - "Community 357"
 Cohesion: 0.19
-Nodes (3): file_transport_internet_config_proto_init(), init(), HappyEyeballsConfig
+Nodes (3): file_transport_internet_config_proto_init(), init(), UdpHop
 
-### Community 353 - "Community 353"
+### Community 358 - "Community 358"
 Cohesion: 0.37
 Nodes (8): failingWrapMask, NewTcpmaskManager(), layerMaskTcp, mustSendRecvTcp(), TestConnReadWrite(), TestTCPcustomClientRejectsMismatchedServerSequence(), TestTCPcustomStaticHandshakeRoundTrip(), TestTCPWrapListenerRejectsImmediateWrapErrors()
 
-### Community 355 - "Community 355"
+### Community 359 - "Community 359"
+Cohesion: 0.28
+Nodes (7): Profile, NormalizeBBRProfile(), NormalizeType(), UseBBR(), UseBrutal(), UseConfigured(), httpHandler
+
+### Community 361 - "Community 361"
 Cohesion: 0.22
 Nodes (4): Config, file_transport_internet_tcp_config_proto_init(), file_transport_internet_tcp_config_proto_rawDescGZIP(), init()
 
-### Community 356 - "Community 356"
-Cohesion: 0.23
-Nodes (7): DeterministicDice, NewDeterministicDice(), Roll(), RollDeterministic(), RollInt63n(), RollUint16(), RollUint64()
-
-### Community 357 - "Community 357"
+### Community 362 - "Community 362"
 Cohesion: 0.27
 Nodes (4): HealthPing, NewHealthPing(), HealthPingSettings, rtt
 
-### Community 358 - "Community 358"
-Cohesion: 0.19
-Nodes (3): Selector, isSupported(), NewSelector()
-
-### Community 360 - "Community 360"
+### Community 364 - "Community 364"
 Cohesion: 0.24
 Nodes (7): Watcher, WatchConfig(), WatchConfigRoot(), applyRuntimeConfig(), main(), parseMemLimit(), runWithReload()
 
-### Community 361 - "Community 361"
+### Community 365 - "Community 365"
 Cohesion: 0.18
 Nodes (12): NeedsGeoIPRules(), NeedsGeoSiteRules(), buildConfig(), buildRoutes(), mergeRouteList(), outboundConfigToSingbox(), TestBuildRoutes_Default(), TestBuildRoutes_MultiMatch() (+4 more)
 
-### Community 362 - "Community 362"
+### Community 366 - "Community 366"
 Cohesion: 0.31
 Nodes (6): applyUserDelta(), cloneDeviceUsers(), cloneNodeSpec(), cloneUsers(), MailboxState, NodeMailbox
 
-### Community 363 - "Community 363"
+### Community 367 - "Community 367"
 Cohesion: 0.22
-Nodes (9): EventType, NewPanelControlPlane(), newPanelTestServer(), TestPanelControlPlaneInitialRejectsInvalidCustomOutbounds(), TestPanelControlPlanePollRejectsInvalidCustomOutbounds(), TestTranslateWSEventRejectsInvalidCustomOutbounds(), TestTranslateWSEventRejectsUnsupportedProtocolForKernel(), TranslateWSEvent() (+1 more)
+Nodes (5): TestNodeSpecFromPanelValidated_AllowsTargetsFromCustomConfigOutbounds(), TestNodeSpecFromPanelValidated_RejectsDuplicateTagsAcrossSources(), NodeSpecFromPanelValidated(), TestNodeSpecFromPanelValidated(), UserSpecsFromPanel()
 
-### Community 365 - "Community 365"
+### Community 370 - "Community 370"
 Cohesion: 0.21
 Nodes (8): decodeUDPMessage(), fragUDPMessage(), readUDPMessage(), destinationLen(), readDestination(), readPort(), writeDestination(), udpMessage
 
-### Community 367 - "Community 367"
+### Community 371 - "Community 371"
 Cohesion: 0.21
 Nodes (4): Balancer, BalancingPrincipleTarget, BalancingStrategy, RoundRobinStrategy
 
 ### Community 372 - "Community 372"
-Cohesion: 0.21
-Nodes (4): defaultPolicy(), Instance, init(), New()
+Cohesion: 0.32
+Nodes (6): event, buildEvent(), enrichFromSession(), NewWebhookNotifier(), ptr(), WebhookNotifier
 
-### Community 373 - "Community 373"
+### Community 377 - "Community 377"
 Cohesion: 0.26
 Nodes (7): RegisterRoutingServiceServer(), TestServiceSubscribeRoutingStats(), TestServiceSubscribeSubsetOfFields(), AsProtobufMessage(), AsRoutingContext(), AsRoutingRoute(), mapIPsToBytes()
 
-### Community 374 - "Community 374"
+### Community 378 - "Community 378"
 Cohesion: 0.21
 Nodes (3): Server, init(), NewServer()
 
-### Community 375 - "Community 375"
+### Community 379 - "Community 379"
 Cohesion: 0.21
 Nodes (3): init(), NewMultiServer(), MultiUserInbound
 
-### Community 376 - "Community 376"
-Cohesion: 0.24
-Nodes (4): NewWeightManager(), TestWeight(), WeightManager, weightScaler
-
-### Community 377 - "Community 377"
-Cohesion: 0.33
-Nodes (7): BalancingRule, parseFieldRule(), parseRule(), RouterConfig, RouterRule, StrategyConfig, WebhookRuleConfig
-
-### Community 378 - "Community 378"
-Cohesion: 0.26
-Nodes (4): file_common_log_log_proto_init(), file_common_log_log_proto_rawDescGZIP(), init(), Severity
-
-### Community 379 - "Community 379"
-Cohesion: 0.44
-Nodes (10): dirExists(), dumpConfig(), executeRun(), fileExists(), getConfigFilePath(), getConfigFormat(), getRegepxByFormat(), init() (+2 more)
-
 ### Community 380 - "Community 380"
-Cohesion: 0.3
-Nodes (5): allocStrategy, multiReader, init(), NewReadVReader(), ReadVReader
+Cohesion: 0.38
+Nodes (6): init(), isMuxAndNotXUDP(), New(), NewHandler(), newUserByEmail(), transferResponse()
 
 ### Community 381 - "Community 381"
 Cohesion: 0.24
-Nodes (3): NewService(), Service, Subscriber
+Nodes (4): NewWeightManager(), TestWeight(), WeightManager, weightScaler
+
+### Community 382 - "Community 382"
+Cohesion: 0.48
+Nodes (10): AddressFamilyByte(), NewAddressParser(), BenchmarkAddressReadingDomain(), BenchmarkAddressReadingIPv4(), BenchmarkAddressReadingIPv6(), BenchmarkAddressWritingDomain(), BenchmarkAddressWritingIPv4(), BenchmarkAddressWritingIPv6() (+2 more)
+
+### Community 383 - "Community 383"
+Cohesion: 0.33
+Nodes (7): BalancingRule, parseFieldRule(), parseRule(), RouterConfig, RouterRule, StrategyConfig, WebhookRuleConfig
+
+### Community 384 - "Community 384"
+Cohesion: 0.23
+Nodes (5): DomainMatcherGroup, NewDomainMatcherGroup(), TestDomainMatcherGroup(), TestEmptyDomainMatcherGroup(), trieNode
+
+### Community 385 - "Community 385"
+Cohesion: 0.26
+Nodes (4): file_common_log_log_proto_init(), file_common_log_log_proto_rawDescGZIP(), init(), Severity
+
+### Community 386 - "Community 386"
+Cohesion: 0.44
+Nodes (10): dirExists(), dumpConfig(), executeRun(), fileExists(), getConfigFilePath(), getConfigFormat(), getRegepxByFormat(), init() (+2 more)
 
 ### Community 387 - "Community 387"
+Cohesion: 0.3
+Nodes (5): allocStrategy, multiReader, init(), NewReadVReader(), ReadVReader
+
+### Community 388 - "Community 388"
+Cohesion: 0.27
+Nodes (5): Concat(), BenchmarkConcat(), TestConcat(), TestToString(), ToString()
+
+### Community 389 - "Community 389"
+Cohesion: 0.24
+Nodes (3): NewService(), Service, Subscriber
+
+### Community 393 - "Community 393"
 Cohesion: 0.29
 Nodes (5): LinuxTun, NewTun(), open(), setinterface(), setup()
 
-### Community 388 - "Community 388"
-Cohesion: 0.32
-Nodes (8): ReadUint16(), BenchmarkReadUint16(), BenchmarkWriteUint64(), TestReadUint16(), TestUint16Serial(), TestUint64Serial(), WriteUint16(), WriteUint64()
-
-### Community 389 - "Community 389"
+### Community 394 - "Community 394"
 Cohesion: 0.33
 Nodes (8): StartInstance(), TestXrayDial(), TestXrayDialUDP(), TestXrayDialUDPConn(), xor(), xor2(), TestXrayClose(), TestXrayDependency()
 
-### Community 391 - "Community 391"
+### Community 395 - "Community 395"
+Cohesion: 0.32
+Nodes (8): ReadUint16(), BenchmarkReadUint16(), BenchmarkWriteUint64(), TestReadUint16(), TestUint16Serial(), TestUint64Serial(), WriteUint16(), WriteUint64()
+
+### Community 397 - "Community 397"
 Cohesion: 0.27
 Nodes (5): DefaultListener, getControlFunc(), RegisterListenerController(), UnixConnWrapper, UnixListenerWrapper
 
-### Community 393 - "Community 393"
-Cohesion: 0.26
-Nodes (4): httpHandler, init(), Listen(), Listener
-
-### Community 394 - "Community 394"
-Cohesion: 0.29
-Nodes (9): ContextWithDatagram(), ContextWithValidator(), DatagramFromContext(), init(), ValidatorFromContext(), datagramKey, padding, status (+1 more)
-
-### Community 396 - "Community 396"
+### Community 400 - "Community 400"
 Cohesion: 0.23
 Nodes (3): NewGrpcUtls(), grpcUtls, grpcUtlsInfo
 
-### Community 397 - "Community 397"
+### Community 401 - "Community 401"
 Cohesion: 0.24
 Nodes (5): NewConnClient(), NewConnServer(), Header, headerConn, HeaderID
 
-### Community 399 - "Community 399"
+### Community 402 - "Community 402"
+Cohesion: 0.26
+Nodes (7): DeterministicDice, NewDeterministicDice(), Roll(), RollDeterministic(), RollInt63n(), RollUint16(), RollUint64()
+
+### Community 404 - "Community 404"
 Cohesion: 0.24
 Nodes (3): NoticeController, Notice, NoticeController
 
-### Community 402 - "Community 402"
+### Community 406 - "Community 406"
 Cohesion: 0.2
 Nodes (7): destinationAddr, newPacketDeadline(), newUDPDefragger(), newUDPPacketConn(), PacketConn, packetItem, udpDefragger
 
-### Community 403 - "Community 403"
-Cohesion: 0.33
-Nodes (5): event, buildEvent(), enrichFromSession(), ptr(), WebhookNotifier
-
-### Community 404 - "Community 404"
-Cohesion: 0.32
-Nodes (8): ConfigLoader(), FetchHTTPContent(), httpUnixToCanonical(), init(), isRemoteSource(), NewWebhookNotifier(), ResolveSocketPath(), SplitHTTPUnixURL()
-
-### Community 405 - "Community 405"
+### Community 407 - "Community 407"
 Cohesion: 0.27
 Nodes (4): init(), NewPacketWriter(), DokodemoDoor, PacketWriter
 
-### Community 406 - "Community 406"
+### Community 408 - "Community 408"
 Cohesion: 0.35
 Nodes (8): ChainedClosable, Closable, HasType, Close(), Interrupt(), Interruptible, Runnable, TestInterfaces()
 
-### Community 407 - "Community 407"
+### Community 409 - "Community 409"
 Cohesion: 0.31
 Nodes (4): init(), New(), reload(), Instance
 
-### Community 412 - "Community 412"
+### Community 414 - "Community 414"
 Cohesion: 0.24
 Nodes (3): Server, init(), NewServer()
 
-### Community 413 - "Community 413"
+### Community 415 - "Community 415"
 Cohesion: 0.25
 Nodes (5): init(), NewNoOpConnectionHeader(), NewNoOpHeader(), NoOpConnectionHeader, NoOpHeader
 
-### Community 416 - "Community 416"
+### Community 417 - "Community 417"
 Cohesion: 0.36
 Nodes (4): Writer, NewResponseWriter(), NewWriter(), writeMetaWithFrame()
 
-### Community 417 - "Community 417"
+### Community 418 - "Community 418"
+Cohesion: 0.2
+Nodes (3): NewLinearIndexMatcher(), TestLinearIndexMatcher(), LinearIndexMatcher
+
+### Community 419 - "Community 419"
 Cohesion: 0.2
 Nodes (3): NewMphIndexMatcher(), TestMphIndexMatcher(), MphIndexMatcher
 
-### Community 418 - "Community 418"
-Cohesion: 0.31
-Nodes (6): ParseRangeString(), Fragment, ParseNoise(), FreedomConfig, FreedomFinalRuleConfig, Noise
-
-### Community 419 - "Community 419"
+### Community 420 - "Community 420"
 Cohesion: 0.35
 Nodes (7): pfiocNatlook, applyInboundSocketOptions(), applyOutboundSocketOptions(), ioctl(), OriginalDst(), setReuseAddr(), setReusePort()
-
-### Community 420 - "Community 420"
-Cohesion: 0.31
-Nodes (5): Concat(), BenchmarkConcat(), TestConcat(), TestToString(), ToString()
 
 ### Community 422 - "Community 422"
 Cohesion: 0.27
@@ -2369,381 +2349,389 @@ Nodes (5): Authenticator, AuthenticatorRequest, AuthenticatorResponse, NoOpConne
 Cohesion: 0.27
 Nodes (5): RandBetween(), RandBytesBetween(), NewConnClient(), NewConnServer(), noiseConn
 
-### Community 425 - "Community 425"
-Cohesion: 0.2
-Nodes (4): ClientInstance, ParsePadding(), ServerInstance, ServerSession
-
-### Community 427 - "Community 427"
+### Community 426 - "Community 426"
 Cohesion: 0.27
 Nodes (5): IsValidTLSVersion(), ReadClientHello(), SniffTLS(), TestTLSHeaders(), SniffHeader
 
-### Community 430 - "Community 430"
+### Community 431 - "Community 431"
 Cohesion: 0.27
 Nodes (3): MemoryValidator, Validator, ProcessUUID()
 
-### Community 431 - "Community 431"
+### Community 432 - "Community 432"
 Cohesion: 0.36
 Nodes (7): executeCert(), init(), printFile(), printJSON(), writeFile(), jsonCert, stringList
 
-### Community 434 - "Community 434"
+### Community 437 - "Community 437"
 Cohesion: 0.53
 Nodes (9): TestIPAnswerPayloadRoundTrip(), answersForPayload(), computeMaxEncodedPayload(), computeMaxEncodedPayloadForType(), decodeIPAnswerPayload(), decodeResponsePayload(), ipAnswersForPayload(), payloadChunkSizeForType() (+1 more)
 
-### Community 439 - "Community 439"
+### Community 441 - "Community 441"
 Cohesion: 0.29
 Nodes (5): newDomainRegistry(), NewDynamicDomainMatcher(), domainMatcherState, DomainRegistry, DynamicDomainMatcher
 
-### Community 440 - "Community 440"
+### Community 442 - "Community 442"
 Cohesion: 0.27
 Nodes (4): Config, file_transport_internet_udp_config_proto_init(), file_transport_internet_udp_config_proto_rawDescGZIP(), init()
 
-### Community 444 - "Community 444"
+### Community 446 - "Community 446"
 Cohesion: 0.45
 Nodes (9): envFile(), GetGOBIN(), getInstalledProtocVersion(), getProjectProtocVersion(), GetRuntimeEnv(), main(), needToUpdate(), parseVersion() (+1 more)
 
-### Community 445 - "Community 445"
+### Community 447 - "Community 447"
 Cohesion: 0.18
 Nodes (10): APIMetrics, Bootstrap, ControlPlane, Event, PushClient, ReportPayload, Sink, Snapshot (+2 more)
 
-### Community 446 - "Community 446"
-Cohesion: 0.49
-Nodes (9): decodeHexSize(), decodePunchMetadata(), DecodePunchPacket(), EncodePunchPacket(), randomPaddingLength(), validPunchPacketType(), xorPunchPacket(), PunchPacket (+1 more)
+### Community 449 - "Community 449"
+Cohesion: 0.35
+Nodes (7): ConfigLoader(), FetchHTTPContent(), httpUnixToCanonical(), init(), isRemoteSource(), ResolveSocketPath(), SplitHTTPUnixURL()
 
-### Community 447 - "Community 447"
+### Community 450 - "Community 450"
 Cohesion: 0.35
 Nodes (10): LoadCustomConfig(), mapKeys(), MergeAppendList(), MergePrependList(), toMap(), toSliceOfMaps(), mergeCustomSingbox(), mergeCustomSingboxRoute() (+2 more)
 
-### Community 448 - "Community 448"
+### Community 451 - "Community 451"
+Cohesion: 0.49
+Nodes (9): decodeHexSize(), decodePunchMetadata(), DecodePunchPacket(), EncodePunchPacket(), randomPaddingLength(), validPunchPacketType(), xorPunchPacket(), PunchPacket (+1 more)
+
+### Community 452 - "Community 452"
 Cohesion: 0.2
 Nodes (3): validateRegisterForm(), isValidEmail(), validateEmail()
 
-### Community 451 - "Community 451"
-Cohesion: 0.27
-Nodes (3): file_app_proxyman_config_proto_init(), init(), OutboundConfig
+### Community 453 - "Community 453"
+Cohesion: 0.29
+Nodes (4): filterIP(), NewStaticHosts(), TestStaticHosts(), StaticHosts
 
 ### Community 455 - "Community 455"
+Cohesion: 0.27
+Nodes (3): file_app_proxyman_config_proto_init(), init(), InboundConfig
+
+### Community 460 - "Community 460"
 Cohesion: 0.47
 Nodes (8): BenchmarkMphDomainMatcher(), BenchmarkMultiGeoIPMatcher(), TestChinaSites(), TestRoutingRule(), withBackground(), withContent(), withInbound(), withOutbound()
 
-### Community 456 - "Community 456"
+### Community 461 - "Community 461"
 Cohesion: 0.29
 Nodes (3): AndroidTun, NewTun(), setinterface()
 
-### Community 457 - "Community 457"
+### Community 462 - "Community 462"
 Cohesion: 0.31
 Nodes (5): VLessInboundConfig, VLessInboundFallback, VLessOutboundConfig, VLessOutboundVnext, VLessReverseConfig
 
-### Community 463 - "Community 463"
+### Community 467 - "Community 467"
 Cohesion: 0.27
 Nodes (3): ClientConfig, file_proxy_trojan_config_proto_init(), init()
 
-### Community 464 - "Community 464"
+### Community 469 - "Community 469"
 Cohesion: 0.24
 Nodes (3): DefaultTun, NewTun(), setinterface()
 
-### Community 467 - "Community 467"
-Cohesion: 0.4
-Nodes (6): Profile, NormalizeBBRProfile(), NormalizeType(), UseBBR(), UseBrutal(), UseConfigured()
-
-### Community 470 - "Community 470"
+### Community 474 - "Community 474"
 Cohesion: 0.31
 Nodes (5): executePing(), init(), printCertificates(), printTLSConnDetail(), AccessField()
 
-### Community 471 - "Community 471"
-Cohesion: 0.22
-Nodes (5): handleTcpConnection(), NewClient(), Stack, StackOptions, StartRoutine()
-
-### Community 472 - "Community 472"
+### Community 475 - "Community 475"
 Cohesion: 0.27
 Nodes (5): ApiException, fallback(), handleTcpConnection(), proxyOutboundTCP(), proxyOutboundUoT()
 
-### Community 473 - "Community 473"
+### Community 476 - "Community 476"
 Cohesion: 0.24
 Nodes (6): init(), NewPaddingFactory(), UpdatePaddingScheme(), PaddingFactory, StringMapFromBytes(), StringMap
 
-### Community 474 - "Community 474"
+### Community 477 - "Community 477"
+Cohesion: 0.22
+Nodes (5): handleTcpConnection(), NewClient(), Stack, StackOptions, StartRoutine()
+
+### Community 478 - "Community 478"
 Cohesion: 0.31
 Nodes (3): init(), New(), Observer
 
-### Community 476 - "Community 476"
+### Community 479 - "Community 479"
+Cohesion: 0.27
+Nodes (3): extractIPFromAddr(), initLogger(), serverLogger
+
+### Community 481 - "Community 481"
 Cohesion: 0.47
 Nodes (7): FindProcess(), getExecPathFromPID(), getTransportTable(), initWin32API(), newSearcher(), readNativeUint32(), searcher
 
-### Community 477 - "Community 477"
+### Community 482 - "Community 482"
 Cohesion: 0.2
 Nodes (9): StandaloneBrutalConfig, StandaloneConfig, StandaloneCustomRouteRule, StandaloneMultiplexConfig, StandaloneNodeConfig, StandaloneRouteAction, StandaloneRouteMatch, StandaloneRouteRule (+1 more)
 
-### Community 478 - "Community 478"
+### Community 483 - "Community 483"
 Cohesion: 0.2
 Nodes (9): syncConfigPayload, syncDevicesPayload, syncNodesPayload, syncUserDeltaPayload, syncUsersPayload, WSClientConfig, WSEvent, wsMessage (+1 more)
 
-### Community 480 - "Community 480"
+### Community 485 - "Community 485"
 Cohesion: 0.31
 Nodes (4): ConfigCreator, ConfigCreatorCache, JSONConfigLoader, NewJSONConfigLoader()
 
-### Community 481 - "Community 481"
+### Community 486 - "Community 486"
 Cohesion: 0.22
 Nodes (5): useToast(), initApp(), handleUnauthorizedDomain(), isDomainAuthorized(), initPageTitle()
 
-### Community 482 - "Community 482"
+### Community 487 - "Community 487"
 Cohesion: 0.27
 Nodes (5): createPreloadLink(), getPreloadStats(), getPreloadTime(), isResourceLoaded(), markResourceLoaded()
 
-### Community 483 - "Community 483"
+### Community 488 - "Community 488"
 Cohesion: 0.39
 Nodes (7): FallBackConfigForXray, NewXrayConfig(), NewXrayOptions(), XrayConfig, XrayConnectionConfig, XrayLogConfig, XrayOptions
 
-### Community 484 - "Community 484"
+### Community 489 - "Community 489"
 Cohesion: 0.22
 Nodes (3): main(), myClient, NewMyClient()
 
-### Community 485 - "Community 485"
+### Community 490 - "Community 490"
 Cohesion: 0.56
 Nodes (7): CachedNameserver, doFetch(), fetch(), merge(), pull(), queryIP(), result
 
-### Community 492 - "Community 492"
-Cohesion: 0.53
-Nodes (5): init(), New(), NewHandler(), newUserByEmail(), transferResponse()
-
-### Community 493 - "Community 493"
+### Community 498 - "Community 498"
 Cohesion: 0.36
 Nodes (4): Reverse, init(), isDomain(), isInternalDomain()
 
-### Community 497 - "Community 497"
+### Community 500 - "Community 500"
+Cohesion: 0.36
+Nodes (5): file_app_router_config_proto_init(), init(), isRoutingRule_TargetTag, RoutingRule_BalancingTag, RoutingRule_Tag
+
+### Community 502 - "Community 502"
 Cohesion: 0.31
 Nodes (4): CryptionReader, CryptionWriter, NewCryptionReader(), NewCryptionWriter()
 
-### Community 498 - "Community 498"
+### Community 504 - "Community 504"
 Cohesion: 0.39
 Nodes (7): BenchmarkInt31(), BenchmarkInt63(), BenchmarkIntn(), BenchmarkIntn1(), BenchmarkIntn20(), BenchmarkRoll1(), BenchmarkRoll20()
 
-### Community 505 - "Community 505"
+### Community 511 - "Community 511"
 Cohesion: 0.31
 Nodes (4): Conn, getPathLocked(), Server(), UConn
 
-### Community 506 - "Community 506"
+### Community 512 - "Community 512"
+Cohesion: 0.39
+Nodes (5): Fragment, ParseNoise(), FreedomConfig, FreedomFinalRuleConfig, Noise
+
+### Community 513 - "Community 513"
 Cohesion: 0.39
 Nodes (5): NewTimestampGenerator(), NowTime(), TestGenerateRandomInt64InRange(), Timestamp, TimestampGenerator
 
-### Community 507 - "Community 507"
+### Community 514 - "Community 514"
 Cohesion: 0.36
 Nodes (5): init(), Version(), VersionStatement(), executeVersion(), printVersion()
 
-### Community 509 - "Community 509"
+### Community 516 - "Community 516"
 Cohesion: 0.33
 Nodes (5): PacketReader, PacketWriter, init(), NewPacketReader(), NewPacketWriter()
 
-### Community 510 - "Community 510"
+### Community 517 - "Community 517"
 Cohesion: 0.31
 Nodes (4): NewDialer(), NewOutboundDialer(), XrayDialer, XrayOutboundDialer
 
-### Community 511 - "Community 511"
+### Community 518 - "Community 518"
 Cohesion: 0.31
 Nodes (4): HTTPAccount, HTTPClientConfig, HTTPRemoteConfig, HTTPServerConfig
 
-### Community 512 - "Community 512"
+### Community 519 - "Community 519"
 Cohesion: 0.33
 Nodes (4): SocksAccount, SocksClientConfig, SocksRemoteConfig, SocksServerConfig
 
-### Community 513 - "Community 513"
+### Community 520 - "Community 520"
 Cohesion: 0.31
 Nodes (3): NewConnClient(), NewConnServer(), fragmentConn
 
-### Community 514 - "Community 514"
+### Community 521 - "Community 521"
 Cohesion: 0.44
 Nodes (7): executeECH(), generateECHKeySet(), init(), marshalBinary(), EchCipher, EchConfig, Extension
 
-### Community 522 - "Community 522"
-Cohesion: 0.39
-Nodes (7): entry, MaxFilter(), MinFilter(), NewWindowedFilter(), WindowedFilter, WindowedFilterTime, WindowedFilterValue
-
-### Community 524 - "Community 524"
-Cohesion: 0.36
-Nodes (5): NewRetryableWriter(), NewSegmentWriter(), RetryableWriter, SegmentWriter, SimpleSegmentWriter
-
-### Community 525 - "Community 525"
+### Community 530 - "Community 530"
 Cohesion: 0.25
 Nodes (3): Notifier, NewNotifier(), TestNotifierSignal()
 
-### Community 526 - "Community 526"
+### Community 531 - "Community 531"
+Cohesion: 0.36
+Nodes (5): NewRetryableWriter(), NewSegmentWriter(), RetryableWriter, SegmentWriter, SimpleSegmentWriter
+
+### Community 532 - "Community 532"
 Cohesion: 0.42
 Nodes (4): delayDialConn, Dial(), dialWebSocket(), init()
 
-### Community 527 - "Community 527"
+### Community 533 - "Community 533"
 Cohesion: 0.36
 Nodes (5): TestCompactDomainMatcher_PreservesCustomRuleIndices(), TestCompactDomainMatcher_PreservesMixedRuleIndices(), TestMphDomainMatcher_MatchReturnsDetachedSlice(), NewWeakCacheMap(), WeakCacheMap
 
-### Community 528 - "Community 528"
+### Community 534 - "Community 534"
 Cohesion: 0.33
 Nodes (5): NewHealthPingResult(), TestHealthPingResults(), TestHealthPingResultsIgnoreOutdated(), HealthPingStats, pingRTT
 
-### Community 531 - "Community 531"
+### Community 536 - "Community 536"
 Cohesion: 0.39
 Nodes (7): autoDetectPluginCode(), clearConfigCache(), convertToKebabCase(), getConfig(), getPluginCode(), getPluginConfig(), isPluginEnabled()
 
-### Community 532 - "Community 532"
-Cohesion: 0.5
-Nodes (6): envFile(), GetGOBIN(), GetRuntimeEnv(), main(), Run(), RunMany()
+### Community 538 - "Community 538"
+Cohesion: 0.33
+Nodes (8): EventType, NewPanelControlPlane(), newPanelTestServer(), TestPanelControlPlaneInitialRejectsInvalidCustomOutbounds(), TestPanelControlPlanePollRejectsInvalidCustomOutbounds(), TestTranslateWSEventRejectsInvalidCustomOutbounds(), TestTranslateWSEventRejectsUnsupportedProtocolForKernel(), TranslateWSEvent()
 
-### Community 535 - "Community 535"
+### Community 540 - "Community 540"
 Cohesion: 0.28
 Nodes (3): FakeDNSConfig, FakeDNSPoolElementConfig, FakeDNSPostProcessingStage
 
-### Community 538 - "Community 538"
+### Community 542 - "Community 542"
 Cohesion: 0.22
 Nodes (3): fetchKnowledgeDetail(), fetchKnowledgeList(), fetchKnowledge()
 
-### Community 541 - "Community 541"
+### Community 546 - "Community 546"
 Cohesion: 0.43
 Nodes (5): consumeComment(), isNL(), isWS(), prep(), TrimNodeReader
 
-### Community 555 - "Community 555"
+### Community 557 - "Community 557"
 Cohesion: 0.43
 Nodes (6): TestSelectLeastExpected(), TestSelectLeastExpected2(), TestSelectLeastExpectedAndBaselines(), TestSelectLeastExpectedAndBaselines2(), TestSelectLeastLoadBaselines(), TestSelectLeastLoadBaselinesNoQualified()
 
-### Community 558 - "Community 558"
-Cohesion: 0.64
-Nodes (6): equalRequestHeader(), TestTCPRequest(), TestUDPDecodingWithPayloadTooShort(), TestUDPEncodingDecoding(), TestUDPReaderWriter(), toAccount()
-
-### Community 559 - "Community 559"
+### Community 561 - "Community 561"
 Cohesion: 0.36
 Nodes (3): aes128gcmConn, NewConnClient(), NewConnServer()
 
-### Community 560 - "Community 560"
+### Community 562 - "Community 562"
+Cohesion: 0.64
+Nodes (6): equalRequestHeader(), TestTCPRequest(), TestUDPDecodingWithPayloadTooShort(), TestUDPEncodingDecoding(), TestUDPReaderWriter(), toAccount()
+
+### Community 563 - "Community 563"
 Cohesion: 0.32
 Nodes (3): ChaCha20Stream, ChaCha20Block(), NewChaCha20Stream()
 
-### Community 565 - "Community 565"
+### Community 568 - "Community 568"
 Cohesion: 0.32
 Nodes (4): ConfigureFilePostProcessingStage, init(), PostProcessConfigureFile(), RegisterConfigureFilePostProcessingStage()
 
-### Community 566 - "Community 566"
+### Community 569 - "Community 569"
 Cohesion: 0.43
 Nodes (6): AnyMatcher, IndexMatcher, Matcher, MatcherGroup, MatcherSet, ValueMatcher
 
-### Community 567 - "Community 567"
+### Community 570 - "Community 570"
 Cohesion: 0.32
 Nodes (3): BlackholeConfig, HTTPResponse, NoneResponse
 
-### Community 568 - "Community 568"
+### Community 571 - "Community 571"
 Cohesion: 0.32
 Nodes (3): Policy, PolicyConfig, SystemPolicy
 
-### Community 569 - "Community 569"
+### Community 572 - "Community 572"
 Cohesion: 0.32
 Nodes (3): BridgeConfig, PortalConfig, ReverseConfig
 
-### Community 570 - "Community 570"
+### Community 573 - "Community 573"
 Cohesion: 0.32
 Nodes (3): healthCheckSettings, strategyEmptyConfig, strategyLeastLoadConfig
 
-### Community 575 - "Community 575"
+### Community 578 - "Community 578"
 Cohesion: 0.32
 Nodes (3): NewMuxClientWorkerFactory(), MuxClientWorkerFactory, MuxClientWorkerFactoryMockRecorder
 
-### Community 576 - "Community 576"
-Cohesion: 0.46
-Nodes (6): evaluateUDPItemsWithContext(), TestMetadataAliasesExposeDstNames(), TestMetadataAliasesExposeSrcAndDstNames(), TestMetadataEvaluatorRejectsUnknownName(), TestMetadataTCPHandshakeUsesEndpointPorts(), TestMetadataUDPStandaloneWriteUsesRemotePort()
-
-### Community 578 - "Community 578"
-Cohesion: 0.5
-Nodes (5): ConnRF, AddHeader(), Dial(), dialhttpUpgrade(), init()
-
 ### Community 579 - "Community 579"
+Cohesion: 0.43
+Nodes (6): entry, MaxFilter(), MinFilter(), WindowedFilter, WindowedFilterTime, WindowedFilterValue
+
+### Community 582 - "Community 582"
 Cohesion: 0.39
 Nodes (6): AntiScanConfig, DynamicSpeedLimitConfig, IpReportConfig, LimitConfig, RecorderConfig, RedisConfig
 
-### Community 580 - "Community 580"
+### Community 583 - "Community 583"
+Cohesion: 0.61
+Nodes (6): envFile(), GetGOBIN(), GetRuntimeEnv(), main(), Run(), RunMany()
+
+### Community 584 - "Community 584"
 Cohesion: 0.43
 Nodes (7): NewNodeMailbox(), TestNodeMailboxDeltaFailedApplyNotifies(), TestNodeMailboxDevicesLatestWins(), TestNodeMailboxFullUsersOverwriteAndDeltaBeforeBaseline(), TestNodeMailboxLatestStateAndNotifyCollapse(), TestNodeMailboxReconcileNotifies(), TestNodeMailboxSeedBaselineEnablesDelta()
 
-### Community 581 - "Community 581"
+### Community 585 - "Community 585"
 Cohesion: 0.25
 Nodes (3): serverConn, serverOptions, newServerService()
 
-### Community 583 - "Community 583"
+### Community 587 - "Community 587"
 Cohesion: 0.46
 Nodes (7): getBrowserLanguage(), getStoredLanguage(), injectSiteName(), loadLocaleMessages(), reloadMessages(), setLanguage(), updatePageTitle()
 
-### Community 584 - "Community 584"
+### Community 588 - "Community 588"
 Cohesion: 0.25
 Nodes (4): setup(), setup(), setup(), useStore()
 
 ### Community 598 - "Community 598"
 Cohesion: 0.43
-Nodes (3): init(), NewMetricsHandler(), MetricsHandler
-
-### Community 599 - "Community 599"
-Cohesion: 0.43
-Nodes (3): Commander, init(), NewCommander()
+Nodes (3): init(), NewServer(), natPacketConn
 
 ### Community 600 - "Community 600"
 Cohesion: 0.43
-Nodes (3): init(), NewServer(), natPacketConn
+Nodes (3): Commander, init(), NewCommander()
 
 ### Community 601 - "Community 601"
+Cohesion: 0.43
+Nodes (3): init(), NewMetricsHandler(), MetricsHandler
+
+### Community 602 - "Community 602"
 Cohesion: 0.38
 Nodes (3): BurstObservatory, Observatory, ObservatoryType()
 
-### Community 606 - "Community 606"
+### Community 607 - "Community 607"
 Cohesion: 0.43
 Nodes (5): getDefaultPaddingScheme(), getPadding0Size(), newPaddingScheme(), parsePaddingScheme(), paddingScheme
 
-### Community 612 - "Community 612"
+### Community 614 - "Community 614"
 Cohesion: 0.67
 Nodes (5): findInodeInFile(), findPidByInode(), FindProcess(), formatLittleEndianString(), getAbsPath()
 
-### Community 613 - "Community 613"
+### Community 615 - "Community 615"
 Cohesion: 0.48
 Nodes (5): applyInboundSocketOptions(), applyOutboundSocketOptions(), OriginalDst(), setReuseAddr(), setReusePort()
 
-### Community 614 - "Community 614"
+### Community 616 - "Community 616"
 Cohesion: 0.38
 Nodes (3): AverageLatency, HasLatency, Latency
 
-### Community 615 - "Community 615"
+### Community 617 - "Community 617"
 Cohesion: 0.43
 Nodes (4): AccessMessageFromContext(), AccessMessage, AccessStatus, logKey
 
-### Community 619 - "Community 619"
+### Community 620 - "Community 620"
 Cohesion: 0.43
 Nodes (3): HysteriaClientConfig, HysteriaServerConfig, HysteriaUserConfig
 
-### Community 620 - "Community 620"
+### Community 622 - "Community 622"
 Cohesion: 0.57
 Nodes (5): BuildConfig(), init(), MergeConfigFromFiles(), mergeConfigs(), readerDecoder
 
-### Community 621 - "Community 621"
+### Community 623 - "Community 623"
 Cohesion: 0.62
 Nodes (5): addInboundUserAction(), executeAddInboundUsers(), executeInboundUserAction(), extractInboundsConfig(), extractInboundUsers()
 
-### Community 628 - "Community 628"
+### Community 630 - "Community 630"
 Cohesion: 0.29
 Nodes (4): TuicClientConfig, TuicServerConfig, TuicServerTarget, TuicUserConfig
 
-### Community 634 - "Community 634"
+### Community 631 - "Community 631"
+Cohesion: 0.48
+Nodes (3): cloneVars(), stateEntry, stateStore
+
+### Community 635 - "Community 635"
 Cohesion: 0.29
 Nodes (4): main(), myServer, NewMyServer(), GenerateKeyPair()
 
-### Community 645 - "Community 645"
+### Community 636 - "Community 636"
+Cohesion: 0.43
+Nodes (3): dns, NewHeaderDNS(), packDomainName()
+
+### Community 646 - "Community 646"
 Cohesion: 0.48
 Nodes (3): ParseWireGuardKey(), WireGuardConfig, WireGuardPeerConfig
 
-### Community 646 - "Community 646"
+### Community 647 - "Community 647"
 Cohesion: 0.52
 Nodes (6): NewWSClient(), fakeWSServer(), TestWSClient_ConnectAndReceiveDataEvents(), TestWSClient_FallbackWhenNoServer(), TestWSClient_ReconnectOnDisconnect(), TestWSClient_UserDeltaEvent()
 
-### Community 647 - "Community 647"
+### Community 648 - "Community 648"
 Cohesion: 0.33
 Nodes (4): bloomRingShard, NewDefaultShardedBloomRing(), NewShardedBloomRing(), ShardedBloomRing
 
-### Community 648 - "Community 648"
+### Community 649 - "Community 649"
 Cohesion: 0.67
 Nodes (5): CheckOCSPFileIsNotExist(), GetOCSPForCert(), GetOCSPForFile(), GetOCSPStapling(), parsePEMBundle()
-
-### Community 651 - "Community 651"
-Cohesion: 0.29
-Nodes (6): getNotices(), getSubscribe(), getUserConfig(), getUserInfo(), getUserStats(), setNextPeriod()
 
 ### Community 653 - "Community 653"
 Cohesion: 0.43
@@ -2777,10 +2765,6 @@ Nodes (3): getArgsV4Compatible(), main(), null
 Cohesion: 0.67
 Nodes (4): executeBalancerInfo(), getColumnFormats(), showBalancerInfo(), writeRow()
 
-### Community 671 - "Community 671"
-Cohesion: 0.6
-Nodes (4): serviceHandler, fetchHTTPContent(), isNil(), loadArg()
-
 ### Community 674 - "Community 674"
 Cohesion: 0.67
 Nodes (4): Alloc(), createAllocFunc(), GetPool(), init()
@@ -2793,103 +2777,107 @@ Nodes (4): testShadowsocks2022Udp(), TestShadowsocks2022UdpAES128(), TestShadows
 Cohesion: 0.33
 Nodes (3): AnyTLSClientConfig, AnyTLSServerConfig, AnyTLSUser
 
-### Community 678 - "Community 678"
+### Community 679 - "Community 679"
 Cohesion: 0.53
 Nodes (4): applyInboundSocketOptions(), applyOutboundSocketOptions(), setReuseAddr(), setReusePort()
 
-### Community 679 - "Community 679"
+### Community 680 - "Community 680"
+Cohesion: 0.6
+Nodes (4): mustSendRecvUDP(), TestStateStoreExpiresEntries(), TestStateStoreIsolatesKeys(), TestStateUDPResponseReusesPriorCapturedValues()
+
+### Community 681 - "Community 681"
 Cohesion: 0.67
 Nodes (4): domainSpec, parseDomainSpec(), parseResolver(), rrTypeFromMethod()
 
-### Community 680 - "Community 680"
+### Community 682 - "Community 682"
 Cohesion: 0.53
 Nodes (4): TestConfig_GetServiceName(), TestConfig_GetTunMultiStreamName(), TestConfig_GetTunStreamName(), TestSetUserAgent()
 
-### Community 681 - "Community 681"
+### Community 683 - "Community 683"
 Cohesion: 0.53
 Nodes (3): TestConnectionInterface(), TestConnectionReadTimeout(), NoOpCloser
 
-### Community 684 - "Community 684"
-Cohesion: 0.53
-Nodes (3): dns, NewHeaderDNS(), packDomainName()
-
-### Community 685 - "Community 685"
+### Community 686 - "Community 686"
 Cohesion: 0.6
 Nodes (4): newDirectPingClient(), newHTTPClient(), newPingClient(), pingClient
 
-### Community 686 - "Community 686"
+### Community 687 - "Community 687"
+Cohesion: 0.47
+Nodes (4): NewCore(), RegisterCore(), RegisteredCore(), NewSelector()
+
+### Community 689 - "Community 689"
 Cohesion: 0.47
 Nodes (3): fail(), jsonResponse(), success()
 
-### Community 701 - "Community 701"
-Cohesion: 0.7
-Nodes (3): init(), New(), Handler
-
 ### Community 704 - "Community 704"
+Cohesion: 0.7
+Nodes (3): Outbound, init(), NewClient()
+
+### Community 705 - "Community 705"
+Cohesion: 0.7
+Nodes (3): Client, init(), NewClient()
+
+### Community 708 - "Community 708"
 Cohesion: 0.7
 Nodes (3): mustDecodeHex(), TestChaCha20Decoding(), TestChaCha20Stream()
 
-### Community 707 - "Community 707"
+### Community 711 - "Community 711"
 Cohesion: 0.6
 Nodes (3): TestEnvFlag(), TestGetAssetLocation(), TestNormalizeEnvName()
 
-### Community 708 - "Community 708"
+### Community 712 - "Community 712"
 Cohesion: 0.8
 Nodes (3): assertSizeString(), assertSizeValue(), TestByteSizes()
 
-### Community 709 - "Community 709"
+### Community 713 - "Community 713"
 Cohesion: 0.8
 Nodes (3): main(), writeChacha20Block(), writeQuarterRound()
 
-### Community 714 - "Community 714"
+### Community 718 - "Community 718"
 Cohesion: 0.6
 Nodes (4): buildVlessUser(), buildVlessUsers(), buildVmessUser(), buildVmessUsers()
 
-### Community 721 - "Community 721"
+### Community 725 - "Community 725"
 Cohesion: 0.6
 Nodes (3): entryWrapper, newPacketNumberIndexedQueue(), packetNumberIndexedQueue
 
-### Community 724 - "Community 724"
-Cohesion: 0.6
-Nodes (3): NewCore(), RegisterCore(), RegisteredCore()
-
-### Community 732 - "Community 732"
+### Community 736 - "Community 736"
 Cohesion: 0.6
 Nodes (4): down(), restoreParentIds(), up(), updateParentIds()
 
-### Community 737 - "Community 737"
+### Community 742 - "Community 742"
 Cohesion: 0.6
 Nodes (3): Encrypt(), getEncrypUrl(), randomIv()
 
-### Community 768 - "Community 768"
+### Community 773 - "Community 773"
 Cohesion: 0.83
 Nodes (3): buildSSUser(), buildSSUsers(), getCipherFromString()
 
-### Community 818 - "Community 818"
+### Community 823 - "Community 823"
 Cohesion: 0.83
 Nodes (3): applyQueryCondition(), formatQueryValue(), getQueryOperator()
 
-### Community 840 - "Community 840"
+### Community 845 - "Community 845"
 Cohesion: 0.83
 Nodes (3): formatDate(), formatTraffic(), formatUserInfoForTicket()
 
-### Community 841 - "Community 841"
+### Community 846 - "Community 846"
 Cohesion: 0.83
 Nodes (3): getRedirectFromQuery(), handleRedirectPath(), performRedirect()
 
 ## Knowledge Gaps
 - **190 isolated node(s):** `EchConfig`, `OnlineUser`, `UserInfo`, `UserListBody`, `AliveMap` (+185 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **430 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **438 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Must()` connect `Community 20` to `Community 0`, `Community 514`, `Community 5`, `Community 518`, `Community 10`, `Community 526`, `Community 15`, `Community 17`, `Community 18`, `Community 21`, `Community 25`, `Community 32`, `Community 33`, `Community 35`, `Community 37`, `Community 38`, `Community 39`, `Community 42`, `Community 43`, `Community 44`, `Community 556`, `Community 558`, `Community 554`, `Community 49`, `Community 50`, `Community 56`, `Community 65`, `Community 66`, `Community 578`, `Community 71`, `Community 72`, `Community 74`, `Community 79`, `Community 80`, `Community 85`, `Community 598`, `Community 599`, `Community 597`, `Community 600`, `Community 86`, `Community 94`, `Community 607`, `Community 95`, `Community 97`, `Community 98`, `Community 101`, `Community 103`, `Community 105`, `Community 118`, `Community 124`, `Community 135`, `Community 137`, `Community 147`, `Community 660`, `Community 661`, `Community 148`, `Community 676`, `Community 166`, `Community 170`, `Community 173`, `Community 175`, `Community 177`, `Community 185`, `Community 701`, `Community 704`, `Community 707`, `Community 211`, `Community 213`, `Community 216`, `Community 220`, `Community 228`, `Community 231`, `Community 748`, `Community 240`, `Community 244`, `Community 246`, `Community 247`, `Community 253`, `Community 255`, `Community 769`, `Community 770`, `Community 269`, `Community 286`, `Community 297`, `Community 299`, `Community 310`, `Community 311`, `Community 319`, `Community 325`, `Community 330`, `Community 333`, `Community 851`, `Community 852`, `Community 339`, `Community 341`, `Community 367`, `Community 881`, `Community 372`, `Community 373`, `Community 374`, `Community 375`, `Community 381`, `Community 388`, `Community 389`, `Community 393`, `Community 394`, `Community 405`, `Community 407`, `Community 412`, `Community 413`, `Community 415`, `Community 416`, `Community 417`, `Community 431`, `Community 455`, `Community 474`, `Community 492`, `Community 493`?**
+- **Why does `Must()` connect `Community 15` to `Community 1`, `Community 6`, `Community 7`, `Community 521`, `Community 12`, `Community 526`, `Community 16`, `Community 20`, `Community 532`, `Community 22`, `Community 23`, `Community 28`, `Community 33`, `Community 34`, `Community 38`, `Community 40`, `Community 41`, `Community 42`, `Community 558`, `Community 47`, `Community 50`, `Community 562`, `Community 55`, `Community 59`, `Community 61`, `Community 62`, `Community 66`, `Community 70`, `Community 71`, `Community 74`, `Community 75`, `Community 80`, `Community 83`, `Community 598`, `Community 599`, `Community 600`, `Community 601`, `Community 87`, `Community 88`, `Community 91`, `Community 93`, `Community 608`, `Community 96`, `Community 114`, `Community 116`, `Community 121`, `Community 124`, `Community 130`, `Community 141`, `Community 660`, `Community 661`, `Community 158`, `Community 164`, `Community 676`, `Community 678`, `Community 168`, `Community 176`, `Community 704`, `Community 705`, `Community 194`, `Community 708`, `Community 711`, `Community 202`, `Community 207`, `Community 211`, `Community 214`, `Community 218`, `Community 219`, `Community 224`, `Community 228`, `Community 239`, `Community 240`, `Community 752`, `Community 241`, `Community 243`, `Community 246`, `Community 247`, `Community 253`, `Community 257`, `Community 774`, `Community 775`, `Community 269`, `Community 285`, `Community 295`, `Community 298`, `Community 312`, `Community 316`, `Community 323`, `Community 328`, `Community 333`, `Community 334`, `Community 337`, `Community 338`, `Community 856`, `Community 344`, `Community 371`, `Community 377`, `Community 378`, `Community 379`, `Community 380`, `Community 382`, `Community 389`, `Community 394`, `Community 395`, `Community 407`, `Community 409`, `Community 414`, `Community 415`, `Community 417`, `Community 418`, `Community 419`, `Community 432`, `Community 453`, `Community 460`, `Community 478`, `Community 498`?**
   _High betweenness centrality (0.139) - this node is a cross-community bridge._
-- **Why does `Errorf()` connect `Community 22` to `Community 5`, `Community 142`, `Community 271`, `Community 401`, `Community 19`, `Community 276`, `Community 280`, `Community 155`, `Community 28`, `Community 156`, `Community 671`, `Community 34`, `Community 36`, `Community 293`, `Community 42`, `Community 52`, `Community 309`, `Community 181`, `Community 182`, `Community 56`, `Community 444`, `Community 446`, `Community 574`, `Community 576`, `Community 63`, `Community 62`, `Community 323`, `Community 447`, `Community 325`, `Community 71`, `Community 200`, `Community 73`, `Community 204`, `Community 78`, `Community 338`, `Community 467`, `Community 214`, `Community 216`, `Community 88`, `Community 90`, `Community 91`, `Community 219`, `Community 358`, `Community 360`, `Community 104`, `Community 363`, `Community 368`, `Community 112`, `Community 114`, `Community 369`, `Community 633`, `Community 253`?**
+- **Why does `Errorf()` connect `Community 18` to `Community 128`, `Community 274`, `Community 19`, `Community 403`, `Community 148`, `Community 278`, `Community 538`, `Community 284`, `Community 28`, `Community 31`, `Community 159`, `Community 35`, `Community 36`, `Community 292`, `Community 172`, `Community 45`, `Community 48`, `Community 307`, `Community 308`, `Community 309`, `Community 58`, `Community 60`, `Community 446`, `Community 191`, `Community 577`, `Community 450`, `Community 451`, `Community 325`, `Community 70`, `Community 199`, `Community 328`, `Community 79`, `Community 212`, `Community 85`, `Community 214`, `Community 84`, `Community 343`, `Community 217`, `Community 95`, `Community 479`, `Community 739`, `Community 359`, `Community 103`, `Community 105`, `Community 364`, `Community 367`, `Community 115`, `Community 373`, `Community 374`, `Community 634`, `Community 253`?**
   _High betweenness centrality (0.052) - this node is a cross-community bridge._
-- **Why does `Must2()` connect `Community 72` to `Community 0`, `Community 129`, `Community 388`, `Community 389`, `Community 135`, `Community 138`, `Community 10`, `Community 15`, `Community 17`, `Community 20`, `Community 23`, `Community 25`, `Community 290`, `Community 35`, `Community 39`, `Community 424`, `Community 299`, `Community 43`, `Community 558`, `Community 559`, `Community 52`, `Community 314`, `Community 704`, `Community 65`, `Community 66`, `Community 321`, `Community 325`, `Community 208`, `Community 211`, `Community 86`, `Community 216`, `Community 95`, `Community 97`, `Community 98`, `Community 101`, `Community 496`, `Community 626`, `Community 116`, `Community 118`, `Community 124`?**
+- **Why does `Must2()` connect `Community 71` to `Community 1`, `Community 6`, `Community 7`, `Community 394`, `Community 395`, `Community 15`, `Community 16`, `Community 23`, `Community 24`, `Community 289`, `Community 38`, `Community 424`, `Community 298`, `Community 48`, `Community 561`, `Community 562`, `Community 315`, `Community 61`, `Community 62`, `Community 322`, `Community 708`, `Community 328`, `Community 73`, `Community 75`, `Community 204`, `Community 207`, `Community 83`, `Community 214`, `Community 87`, `Community 88`, `Community 91`, `Community 93`, `Community 97`, `Community 609`, `Community 627`, `Community 116`, `Community 503`, `Community 122`, `Community 124`?**
   _High betweenness centrality (0.048) - this node is a cross-community bridge._
 - **Are the 415 inferred relationships involving `Must()` (e.g. with `init()` and `NewCommander()`) actually correct?**
   _`Must()` has 415 INFERRED edges - model-reasoned connections that need verification._
