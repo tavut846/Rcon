@@ -116,9 +116,45 @@ type TrojanNode struct {
 	NetworkSettings json.RawMessage `json:"networkSettings"`
 }
 
+// StringArray handles both JSON string arrays and newline-separated strings
+type StringArray []string
+
+func (s *StringArray) UnmarshalJSON(data []byte) error {
+	var arr []string
+	if err := json.Unmarshal(data, &arr); err == nil {
+		*s = arr
+		return nil
+	}
+	var str string
+	if err := json.Unmarshal(data, &str); err == nil {
+		if str != "" {
+			lines := strings.Split(str, "\n")
+			var cleaned []string
+			for _, line := range lines {
+				trimmed := strings.TrimSpace(line)
+				if trimmed != "" {
+					cleaned = append(cleaned, trimmed)
+				}
+			}
+			*s = cleaned
+		} else {
+			*s = []string{}
+		}
+		return nil
+	}
+	return nil
+}
+
 type AnyTLSNode struct {
 	CommonNode
-	PaddingScheme string `json:"padding_scheme"`
+	Tls                 int             `json:"tls"`
+	TlsSettings         TlsSettings     `json:"tls_settings"`
+	TlsSettingsBack     *TlsSettings    `json:"tlsSettings"`
+	Network             string          `json:"network"`
+	NetworkSettings     json.RawMessage `json:"network_settings"`
+	NetworkSettingsBack json.RawMessage `json:"networkSettings"`
+	PaddingScheme       StringArray     `json:"padding_scheme"`
+	RealityConfig       RealityConfig   `json:"-"`
 }
 
 type RawDNS struct {
@@ -214,9 +250,17 @@ func (c *Client) GetNodeInfo() (node *NodeInfo, err error) {
 		if err != nil {
 			return nil, fmt.Errorf("decode anytls params error: %s", err)
 		}
+		if len(rsp.NetworkSettingsBack) > 0 {
+			rsp.NetworkSettings = rsp.NetworkSettingsBack
+			rsp.NetworkSettingsBack = nil
+		}
+		if rsp.TlsSettingsBack != nil {
+			rsp.TlsSettings = *rsp.TlsSettingsBack
+			rsp.TlsSettingsBack = nil
+		}
 		cm = &rsp.CommonNode
 		node.AnyTLS = rsp
-		node.Security = Tls
+		node.Security = rsp.Tls
 	}
 
 	// parse rules and dns

@@ -16,4 +16,4 @@ example/cert
 output/*
 .idea/*
 newrcon.sh
-
+graphify-out/

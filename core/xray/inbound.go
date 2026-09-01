@@ -1,4 +1,4 @@
-﻿package xray
+package xray
 
 import (
 	"crypto/rand"
@@ -43,7 +43,11 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 		network = "tcp"
 	case "anytls":
 		err = buildAnyTLS(option, nodeInfo, in)
-		network = "tcp"
+		if nodeInfo.AnyTLS.Network != "" {
+			network = nodeInfo.AnyTLS.Network
+		} else {
+			network = "tcp"
+		}
 	default:
 		return nil, fmt.Errorf("unsupported node type: %s, Only support: V2ray, Trojan, Shadowsocks, AnyTLS", nodeInfo.Type)
 	}
@@ -123,40 +127,55 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 				if keys := extractECHServerKeys(nodeInfo.VAllss.TlsSettings.Ech); keys != "" {
 					tlsCfg.ECHServerKeys = keys
 				}
+			} else if nodeInfo.AnyTLS != nil {
+				if keys := extractECHServerKeys(nodeInfo.AnyTLS.TlsSettings.Ech); keys != "" {
+					tlsCfg.ECHServerKeys = keys
+				}
 			}
 			in.StreamSetting.TLSSettings = tlsCfg
 		}
 	case panel.Reality:
 		// Reality
 		in.StreamSetting.Security = "reality"
-		v := nodeInfo.VAllss
-		dest := v.TlsSettings.Dest
-		if dest == "" {
-			dest = v.TlsSettings.ServerName
+		var tlsSettings *panel.TlsSettings
+		var realityConfig *panel.RealityConfig
+		if nodeInfo.VAllss != nil {
+			tlsSettings = &nodeInfo.VAllss.TlsSettings
+			realityConfig = &nodeInfo.VAllss.RealityConfig
+		} else if nodeInfo.AnyTLS != nil {
+			tlsSettings = &nodeInfo.AnyTLS.TlsSettings
+			realityConfig = &nodeInfo.AnyTLS.RealityConfig
+		} else {
+			return nil, fmt.Errorf("node type %s does not support reality", nodeInfo.Type)
 		}
-		xver := v.TlsSettings.Xver
+
+		dest := tlsSettings.Dest
+		if dest == "" {
+			dest = tlsSettings.ServerName
+		}
+		xver := tlsSettings.Xver
 		if xver == 0 {
-			xver = v.RealityConfig.Xver
+			xver = realityConfig.Xver
 		}
 		d, err := json.Marshal(fmt.Sprintf(
 			"%s:%s",
 			dest,
-			v.TlsSettings.ServerPort))
+			tlsSettings.ServerPort))
 		if err != nil {
 			return nil, fmt.Errorf("marshal reality dest error: %s", err)
 		}
-		mtd, _ := time.ParseDuration(v.RealityConfig.MaxTimeDiff)
+		mtd, _ := time.ParseDuration(realityConfig.MaxTimeDiff)
 		in.StreamSetting.REALITYSettings = &coreConf.REALITYConfig{
 			Dest:         d,
 			Xver:         xver,
 			Show:         false,
-			ServerNames:  []string{v.TlsSettings.ServerName},
-			PrivateKey:   v.TlsSettings.PrivateKey,
-			MinClientVer: v.RealityConfig.MinClientVer,
-			MaxClientVer: v.RealityConfig.MaxClientVer,
+			ServerNames:  []string{tlsSettings.ServerName},
+			PrivateKey:   tlsSettings.PrivateKey,
+			MinClientVer: realityConfig.MinClientVer,
+			MaxClientVer: realityConfig.MaxClientVer,
 			MaxTimeDiff:  uint64(mtd.Microseconds()),
-			ShortIds:     []string{v.TlsSettings.ShortId},
-			Mldsa65Seed:  v.TlsSettings.Mldsa65Seed,
+			ShortIds:     []string{tlsSettings.ShortId},
+			Mldsa65Seed:  tlsSettings.Mldsa65Seed,
 		}
 	default:
 		break
@@ -378,17 +397,46 @@ func buildShadowsocks(config *conf.Options, nodeInfo *panel.NodeInfo, inbound *c
 func buildAnyTLS(_ *conf.Options, nodeInfo *panel.NodeInfo, inbound *coreConf.InboundDetourConfig) error {
 	inbound.Protocol = "anytls"
 	a := nodeInfo.AnyTLS
-	settings := &coreConf.AnyTLSServerConfig{}
-	if a.PaddingScheme != "" {
-		settings.PaddingScheme = strings.Split(a.PaddingScheme, "\n")
+	settings := &coreConf.AnyTLSServerConfig{
+		PaddingScheme: []string(a.PaddingScheme),
 	}
 	s, err := json.Marshal(settings)
 	if err != nil {
 		return fmt.Errorf("marshal anytls settings error: %s", err)
 	}
 	inbound.Settings = (*json.RawMessage)(&s)
-	t := coreConf.TransportProtocol("tcp")
+
+	network := a.Network
+	if network == "" {
+		network = "tcp"
+	}
+	t := coreConf.TransportProtocol(network)
 	inbound.StreamSetting = &coreConf.StreamConfig{Network: &t}
+
+	if len(a.NetworkSettings) != 0 {
+		switch network {
+		case "tcp":
+			if err := json.Unmarshal(a.NetworkSettings, &inbound.StreamSetting.TCPSettings); err != nil {
+				return fmt.Errorf("unmarshal tcp settings error: %s", err)
+			}
+		case "ws":
+			if err := json.Unmarshal(a.NetworkSettings, &inbound.StreamSetting.WSSettings); err != nil {
+				return fmt.Errorf("unmarshal ws settings error: %s", err)
+			}
+		case "grpc":
+			if err := json.Unmarshal(a.NetworkSettings, &inbound.StreamSetting.GRPCSettings); err != nil {
+				return fmt.Errorf("unmarshal grpc settings error: %s", err)
+			}
+		case "httpupgrade":
+			if err := json.Unmarshal(a.NetworkSettings, &inbound.StreamSetting.HTTPUPGRADESettings); err != nil {
+				return fmt.Errorf("unmarshal httpupgrade settings error: %s", err)
+			}
+		case "splithttp", "xhttp":
+			if err := json.Unmarshal(a.NetworkSettings, &inbound.StreamSetting.SplitHTTPSettings); err != nil {
+				return fmt.Errorf("unmarshal xhttp settings error: %s", err)
+			}
+		}
+	}
 	return nil
 }
 
