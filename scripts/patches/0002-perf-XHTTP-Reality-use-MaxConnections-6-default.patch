@@ -1,0 +1,31 @@
+From 3b7cd49d4322d6763de47ab475bc72e4955a6f18 Mon Sep 17 00:00:00 2001
+From: Rcon CI <ci@rcon>
+Date: Tue, 1 Sep 2026 15:16:58 +0800
+Subject: [PATCH 2/2] =?UTF-8?q?perf:=20XHTTP=20Reality=20=E2=80=94=20use?=
+ =?UTF-8?q?=20MaxConnections=3D6=20default?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ infra/conf/transport_method.go | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/infra/conf/transport_method.go b/infra/conf/transport_method.go
+index cff77da8..726fbda3 100644
+--- a/infra/conf/transport_method.go
++++ b/infra/conf/transport_method.go
+@@ -450,8 +450,8 @@ func (c *SplitHTTPConfig) Build() (proto.Message, error) {
+ 		return nil, errors.New("maxConnections cannot be specified together with maxConcurrency")
+ 	}
+ 	if c.Xmux == (XmuxConfig{}) {
+-		c.Xmux.MaxConnections.From = 3
+-		c.Xmux.MaxConnections.To = 3
++		c.Xmux.MaxConnections.From = 6
++		c.Xmux.MaxConnections.To = 6
+ 		c.Xmux.HMaxRequestTimes.From = 600
+ 		c.Xmux.HMaxRequestTimes.To = 900
+ 		c.Xmux.HMaxReusableSecs.From = 1800
+-- 
+2.52.0.windows.1
+

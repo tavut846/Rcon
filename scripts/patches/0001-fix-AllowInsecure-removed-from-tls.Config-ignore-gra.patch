@@ -1,0 +1,30 @@
+From 2fa7d93fd91e34bc6d41608166acf0520a8e2a49 Mon Sep 17 00:00:00 2001
+From: Rcon CI <ci@rcon>
+Date: Tue, 1 Sep 2026 15:16:46 +0800
+Subject: [PATCH 1/2] =?UTF-8?q?fix:=20AllowInsecure=20removed=20from=20tls?=
+ =?UTF-8?q?.Config=20=E2=80=94=20ignore=20gracefully?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ infra/conf/transport_security.go | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/infra/conf/transport_security.go b/infra/conf/transport_security.go
+index ec45d555..bb284041 100644
+--- a/infra/conf/transport_security.go
++++ b/infra/conf/transport_security.go
+@@ -359,7 +359,8 @@ func (c *TLSConfig) Build() (proto.Message, error) {
+ 	config.MasterKeyLog = c.MasterKeyLog
+ 
+ 	if c.AllowInsecure {
+-		return nil, errors.PrintRemovedFeatureError(`"allowInsecure"`, `"pinnedPeerCertSha256"(pcs) and "verifyPeerCertByName"(vcn)`)
++		// AllowInsecure was removed from tls.Config in upstream; silently ignore for panel compat.
++		// Panels should migrate to pinnedPeerCertSha256 / verifyPeerCertByName instead.
+ 	}
+ 	if c.PinnedPeerCertSha256 != "" {
+ 		for v := range strings.SplitSeq(c.PinnedPeerCertSha256, ",") {
+-- 
+2.52.0.windows.1
+
