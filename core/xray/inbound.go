@@ -71,32 +71,38 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 		Enabled:      true,
 		DestOverride: coreConf.StringList{"http", "tls"},
 	}
-	if option.XrayOptions.DisableSniffing {
-		sniffingConfig.Enabled = false
+	var enableProxyProtocol bool
+	var enableTFO bool
+	if option.XrayOptions != nil {
+		if option.XrayOptions.DisableSniffing {
+			sniffingConfig.Enabled = false
+		}
+		enableProxyProtocol = option.XrayOptions.EnableProxyProtocol
+		enableTFO = option.XrayOptions.EnableTFO
 	}
 	in.SniffingConfig = sniffingConfig
 	switch network {
 	case "tcp":
 		if in.StreamSetting.TCPSettings != nil {
-			in.StreamSetting.TCPSettings.AcceptProxyProtocol = option.XrayOptions.EnableProxyProtocol
+			in.StreamSetting.TCPSettings.AcceptProxyProtocol = enableProxyProtocol
 		} else {
 			tcpSetting := &coreConf.TCPConfig{
-				AcceptProxyProtocol: option.XrayOptions.EnableProxyProtocol,
+				AcceptProxyProtocol: enableProxyProtocol,
 			} //Enable proxy protocol
 			in.StreamSetting.TCPSettings = tcpSetting
 		}
 	case "ws":
 		if in.StreamSetting.WSSettings != nil {
-			in.StreamSetting.WSSettings.AcceptProxyProtocol = option.XrayOptions.EnableProxyProtocol
+			in.StreamSetting.WSSettings.AcceptProxyProtocol = enableProxyProtocol
 		} else {
 			in.StreamSetting.WSSettings = &coreConf.WebSocketConfig{
-				AcceptProxyProtocol: option.XrayOptions.EnableProxyProtocol,
+				AcceptProxyProtocol: enableProxyProtocol,
 			} //Enable proxy protocol
 		}
 	default:
 		socketConfig := &coreConf.SocketConfig{
-			AcceptProxyProtocol: option.XrayOptions.EnableProxyProtocol,
-			TFO:                 option.XrayOptions.EnableTFO,
+			AcceptProxyProtocol: enableProxyProtocol,
+			TFO:                 enableTFO,
 		} //Enable proxy protocol
 		in.StreamSetting.SocketSettings = socketConfig
 	}
