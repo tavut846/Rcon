@@ -27,14 +27,14 @@
   ],
   "Nodes": [
     {
-      "Name": "",
+      "Name": "AnyTLS-Node-Example",
       "Core": "xray",
       "CoreName": "",
       "ApiHost": "http://127.0.0.1",
       "ApiSendIP": "",
-      "ApiKey": "test",
-      "NodeID": 33,
-      "NodeType": "shadowsocks",
+      "ApiKey": "panel_api_token_here",
+      "NodeID": 1,
+      "NodeType": "anytls",
       "Timeout": 30,
       "RuleListPath": "",
       "ListenIP": "0.0.0.0",
@@ -69,6 +69,13 @@
           "Traffic": 0,
           "SpeedLimit": 0,
           "ExpireTime": 0
+        },
+        "EnableAntiScan": false,
+        "AntiScanConfig": {
+          "Threshold": 10,
+          "Window": 60,
+          "BanDuration": 3600,
+          "LogPath": ""
         }
       },
       "XrayOptions": {
@@ -79,10 +86,14 @@
         "EnableTFO": false,
         "DisableIVCheck": false,
         "DisableSniffing": false,
-        "EnableFallback": true,
+        "EnableFallback": false,
         "FallBackConfigs": [
           {
-            "dest": 443
+            "SNI": "",
+            "Alpn": "",
+            "Path": "",
+            "Dest": 443,
+            "ProxyProtocolVer": 0
           }
         ]
       },
@@ -93,10 +104,86 @@
         "CertFile": "/etc/rcon/fullchain.cer",
         "KeyFile": "/etc/rcon/cert.key",
         "Provider": "cloudflare",
-        "Email": "",
+        "Email": "admin@example.com",
         "DNSEnv": {
-          "EnvName": "env1"
+          "CF_DNS_API_TOKEN": "your_cloudflare_api_token"
         }
+      }
+    },
+    {
+      "Name": "VLESS-Reality-Node-Example",
+      "Core": "xray",
+      "CoreName": "",
+      "ApiHost": "http://127.0.0.1",
+      "ApiSendIP": "",
+      "ApiKey": "panel_api_token_here",
+      "NodeID": 2,
+      "NodeType": "vless",
+      "Timeout": 30,
+      "RuleListPath": "",
+      "ListenIP": "0.0.0.0",
+      "SendIP": "0.0.0.0",
+      "DeviceOnlineMinTraffic": 200,
+      "ReportMinTraffic": 0,
+      "LimitConfig": {
+        "EnableRealtime": false,
+        "SpeedLimit": 0,
+        "DeviceLimit": 0,
+        "ConnLimit": 0,
+        "EnableIpRecorder": false,
+        "EnableDynamicSpeedLimit": false,
+        "EnableAntiScan": false
+      },
+      "XrayOptions": {
+        "EnableProxyProtocol": false,
+        "EnableDNS": false,
+        "DNSType": "AsIs",
+        "EnableUot": false,
+        "EnableTFO": false,
+        "DisableIVCheck": false,
+        "DisableSniffing": false,
+        "EnableFallback": false
+      },
+      "CertConfig": {
+        "CertMode": "none"
+      }
+    },
+    {
+      "Name": "Shadowsocks-Node-Example",
+      "Core": "xray",
+      "CoreName": "",
+      "ApiHost": "http://127.0.0.1",
+      "ApiSendIP": "",
+      "ApiKey": "panel_api_token_here",
+      "NodeID": 3,
+      "NodeType": "shadowsocks",
+      "Timeout": 30,
+      "RuleListPath": "",
+      "ListenIP": "0.0.0.0",
+      "SendIP": "0.0.0.0",
+      "DeviceOnlineMinTraffic": 200,
+      "ReportMinTraffic": 0,
+      "LimitConfig": {
+        "EnableRealtime": false,
+        "SpeedLimit": 0,
+        "DeviceLimit": 0,
+        "ConnLimit": 0,
+        "EnableIpRecorder": false,
+        "EnableDynamicSpeedLimit": false,
+        "EnableAntiScan": false
+      },
+      "XrayOptions": {
+        "EnableProxyProtocol": false,
+        "EnableDNS": false,
+        "DNSType": "AsIs",
+        "EnableUot": false,
+        "EnableTFO": false,
+        "DisableIVCheck": false,
+        "DisableSniffing": false,
+        "EnableFallback": false
+      },
+      "CertConfig": {
+        "CertMode": "none"
       }
     }
   ]
