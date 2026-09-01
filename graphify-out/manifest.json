@@ -216,9 +216,9 @@
     "semantic_hash": ""
   },
   "conf/conf_test.go": {
-    "mtime": 1781866626.3381965,
-    "seen": 1787729888.4474535,
-    "ast_hash": "2760d69672bc4654ad18884a9e0ebd65",
+    "mtime": 1788235186.812928,
+    "seen": 1788246110.1724617,
+    "ast_hash": "886738bc83fb9b6684b713c2b366cb7b",
     "semantic_hash": ""
   },
   "conf/core.go": {
@@ -312,9 +312,9 @@
     "semantic_hash": ""
   },
   "core/xray/ss.go": {
-    "mtime": 1781866626.3766396,
-    "seen": 1787729888.4475627,
-    "ast_hash": "52758181b41c09ef9dd90fe9c2699505",
+    "mtime": 1788244456.4089844,
+    "seen": 1788246110.201443,
+    "ast_hash": "66723d9377321fba2ccda828fa3089a1",
     "semantic_hash": ""
   },
   "core/xray/trojan.go": {
@@ -408,9 +408,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/commander/config.pb.go": {
-    "mtime": 1781934275.6099756,
-    "seen": 1787729888.4475904,
-    "ast_hash": "46e4ec862c683568d7a217035b88e1e4",
+    "mtime": 1788243322.995962,
+    "seen": 1788246110.2092876,
+    "ast_hash": "0edbdeccc4fc69b17640f1c91e2ad52e",
     "semantic_hash": ""
   },
   "deps/xray-core/app/commander/outbound.go": {
@@ -426,15 +426,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/dispatcher/config.pb.go": {
-    "mtime": 1781934275.6110454,
-    "seen": 1787729888.4476035,
-    "ast_hash": "b6cb694f8a642448ea4ac540f84d8b33",
+    "mtime": 1788243322.999003,
+    "seen": 1788246110.212133,
+    "ast_hash": "9436931cb030bd1553fd9ce29e1da1cb",
     "semantic_hash": ""
   },
   "deps/xray-core/app/dispatcher/default.go": {
-    "mtime": 1781866637.029139,
-    "seen": 1787729888.4476078,
-    "ast_hash": "78368ae798a4ee2f0e5cd78666facc52",
+    "mtime": 1788243323.0039372,
+    "seen": 1788246110.212142,
+    "ast_hash": "3398893b12adf21452e961d706764d73",
     "semantic_hash": ""
   },
   "deps/xray-core/app/dispatcher/dispatcher.go": {
@@ -480,9 +480,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/dns/config.pb.go": {
-    "mtime": 1781934275.6130526,
-    "seen": 1787729888.447643,
-    "ast_hash": "39d01c2b6c7c94d5cf563724816d2257",
+    "mtime": 1788243323.0072355,
+    "seen": 1788246110.22207,
+    "ast_hash": "6b4b6f08d3a86cca1bbf601d89866040",
     "semantic_hash": ""
   },
   "deps/xray-core/app/dns/dns.go": {
@@ -492,9 +492,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/dns/dnscommon.go": {
-    "mtime": 1781866637.038953,
-    "seen": 1787729888.447655,
-    "ast_hash": "eb2aab7cb997934652237851f244318c",
+    "mtime": 1788243323.0127718,
+    "seen": 1788246110.2247732,
+    "ast_hash": "95c87520ac8730657aa5050c0266a559",
     "semantic_hash": ""
   },
   "deps/xray-core/app/dns/dnscommon_test.go": {
@@ -606,9 +606,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/dns/fakedns/fakedns.pb.go": {
-    "mtime": 1781934275.6156373,
-    "seen": 1787729888.4476721,
-    "ast_hash": "63b381c73ab4587161f05d2e1ab1b0ba",
+    "mtime": 1788243323.0158339,
+    "seen": 1788246110.227394,
+    "ast_hash": "bffe29ec52731fa8a884a33671603d04",
     "semantic_hash": ""
   },
   "deps/xray-core/app/dns/fakedns/fakedns_test.go": {
@@ -624,9 +624,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/geodata/download.go": {
-    "mtime": 1781866637.0568664,
-    "seen": 1787729888.4477217,
-    "ast_hash": "45b9c8c6bf093642ddc8351778a74051",
+    "mtime": 1788243323.0206087,
+    "seen": 1788246110.2456498,
+    "ast_hash": "59a2bc3f4a70eb63d094142836724a51",
     "semantic_hash": ""
   },
   "deps/xray-core/app/geodata/geodata.go": {
@@ -636,9 +636,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/log/config.pb.go": {
-    "mtime": 1781934275.6201756,
-    "seen": 1787729888.4477382,
-    "ast_hash": "b7770326a807f0a27fcf92ef05ddc75d",
+    "mtime": 1788243323.0355659,
+    "seen": 1788246110.2492816,
+    "ast_hash": "fb013662ff6ba8673322a344fe5074f5",
     "semantic_hash": ""
   },
   "deps/xray-core/app/log/log.go": {
@@ -672,27 +672,27 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/log/command/config.pb.go": {
-    "mtime": 1781934275.617675,
-    "seen": 1787729888.447733,
-    "ast_hash": "fb4f7cd68a2d849c0066258e346b1e67",
+    "mtime": 1788243323.0248332,
+    "seen": 1788246110.249266,
+    "ast_hash": "e2e4ca30a6500c76cb3d3450c45fd9ab",
     "semantic_hash": ""
   },
   "deps/xray-core/app/log/command/config_grpc.pb.go": {
-    "mtime": 1781934275.619173,
-    "seen": 1787729888.4477353,
-    "ast_hash": "82e4b5db6e88e8331631b06d4f6d5f81",
+    "mtime": 1788243323.0304615,
+    "seen": 1788246110.249275,
+    "ast_hash": "cdd68b7fb165fa1ef2f0201eac86299e",
     "semantic_hash": ""
   },
   "deps/xray-core/app/metrics/config.pb.go": {
-    "mtime": 1781934275.622566,
-    "seen": 1787729888.4477475,
-    "ast_hash": "c3f7c5027ce5221dfafdf2a0b2183c7d",
+    "mtime": 1788243323.039912,
+    "seen": 1788246110.2538059,
+    "ast_hash": "fa2650769f8ff32bfcbb9d79883608ce",
     "semantic_hash": ""
   },
   "deps/xray-core/app/metrics/metrics.go": {
-    "mtime": 1781866637.0681002,
-    "seen": 1787729888.4477494,
-    "ast_hash": "28a99c6c0b638c6e915f98a907e15ceb",
+    "mtime": 1788243323.0457373,
+    "seen": 1788246110.253814,
+    "ast_hash": "92b9762f97c76ebac58dc3e9511d0b5a",
     "semantic_hash": ""
   },
   "deps/xray-core/app/metrics/outbound.go": {
@@ -702,9 +702,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/observatory/config.pb.go": {
-    "mtime": 1781934275.6289673,
-    "seen": 1787729888.4477794,
-    "ast_hash": "c24e1c488e671d131d29f03914e7ed65",
+    "mtime": 1788243323.0672593,
+    "seen": 1788246110.2648327,
+    "ast_hash": "a1cb1b43adf2ea6861a68fa7b9d5b27e",
     "semantic_hash": ""
   },
   "deps/xray-core/app/observatory/explainErrors.go": {
@@ -720,9 +720,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/observatory/observer.go": {
-    "mtime": 1781866637.0821176,
-    "seen": 1787729888.447786,
-    "ast_hash": "3905aed88d4579f5c3dbea0a528d1642",
+    "mtime": 1788243323.0720546,
+    "seen": 1788246110.2661693,
+    "ast_hash": "80f7120bd0a2ec4e1c80c72a33af7c54",
     "semantic_hash": ""
   },
   "deps/xray-core/app/observatory/observer_test.go": {
@@ -744,9 +744,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/observatory/burst/config.pb.go": {
-    "mtime": 1781934275.6253996,
-    "seen": 1787729888.44776,
-    "ast_hash": "f9ed9a595a74f92babd585deffe1f517",
+    "mtime": 1788243323.0539792,
+    "seen": 1788246110.257762,
+    "ast_hash": "23dc6e6c05a77841773a6250266ab206",
     "semantic_hash": ""
   },
   "deps/xray-core/app/observatory/burst/healthping.go": {
@@ -780,15 +780,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/observatory/command/command.pb.go": {
-    "mtime": 1781934275.6265793,
-    "seen": 1787729888.4477744,
-    "ast_hash": "52d38104a09cdf91d15866397abe0c57",
+    "mtime": 1788243323.0583487,
+    "seen": 1788246110.2648218,
+    "ast_hash": "6f069f1ab72c820bf734043a9fb8f553",
     "semantic_hash": ""
   },
   "deps/xray-core/app/observatory/command/command_grpc.pb.go": {
-    "mtime": 1781934275.6277518,
-    "seen": 1787729888.4477768,
-    "ast_hash": "46890e6895e3b27e78b24a7258b335b7",
+    "mtime": 1788243323.0628674,
+    "seen": 1788246110.2648277,
+    "ast_hash": "1d1c04d71eae8f009d4ecf076ed79897",
     "semantic_hash": ""
   },
   "deps/xray-core/app/policy/config.go": {
@@ -798,9 +798,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/policy/config.pb.go": {
-    "mtime": 1781934275.6309688,
-    "seen": 1787729888.4477923,
-    "ast_hash": "a1c226150838190c682ce776ce53825a",
+    "mtime": 1788243323.0764823,
+    "seen": 1788246110.268061,
+    "ast_hash": "2ebe4440285d959251ddb3d0f8754a30",
     "semantic_hash": ""
   },
   "deps/xray-core/app/policy/manager.go": {
@@ -828,9 +828,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/config.pb.go": {
-    "mtime": 1781934275.636451,
-    "seen": 1787729888.447812,
-    "ast_hash": "33fc853473a77e4dc735f8ec4dce8393",
+    "mtime": 1788243323.0883644,
+    "seen": 1788246110.2736516,
+    "ast_hash": "c11cba6893ba6d5af0cc65e6c992954d",
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/command/command.go": {
@@ -840,15 +840,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/command/command.pb.go": {
-    "mtime": 1781934275.6328385,
-    "seen": 1787729888.4478028,
-    "ast_hash": "99eb2b626fae9afec6d09c55d7f0294a",
+    "mtime": 1788243323.0808,
+    "seen": 1788246110.2716432,
+    "ast_hash": "c8a8ff0ea9238998701efeb1108eb9ef",
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/command/command_grpc.pb.go": {
-    "mtime": 1781934275.6353493,
-    "seen": 1787729888.4478056,
-    "ast_hash": "25096d4170a36b808b3a25fe738efa47",
+    "mtime": 1788243323.0844567,
+    "seen": 1788246110.2716494,
+    "ast_hash": "779858dff9129a7fc4ef96bb964b66bf",
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/command/doc.go": {
@@ -858,9 +858,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/inbound/always.go": {
-    "mtime": 1781932575.4823315,
-    "seen": 1787729888.4478145,
-    "ast_hash": "30c5ade149af5ffed67efcf25a66cc99",
+    "mtime": 1788243323.0937808,
+    "seen": 1788246110.2736576,
+    "ast_hash": "3f4d18a85558448c7de0142673321987",
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/inbound/inbound.go": {
@@ -870,15 +870,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/inbound/worker.go": {
-    "mtime": 1781934275.6378984,
-    "seen": 1787729888.4478185,
-    "ast_hash": "55f080d390b6377aa84f5683a7311b2e",
+    "mtime": 1788243323.0968182,
+    "seen": 1788246110.2747562,
+    "ast_hash": "780402ee8a3a4828f9a424fdc2fa8e95",
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/outbound/handler.go": {
-    "mtime": 1781932575.4860253,
-    "seen": 1787729888.4478202,
-    "ast_hash": "f8264804c044bc238cceb47ac9a15b2c",
+    "mtime": 1788243323.100453,
+    "seen": 1788246110.2747617,
+    "ast_hash": "4368cca20f43dc9cf52e1a00c670b81d",
     "semantic_hash": ""
   },
   "deps/xray-core/app/proxyman/outbound/handler_test.go": {
@@ -891,12 +891,6 @@
     "mtime": 1781866637.099645,
     "seen": 1787729888.4478247,
     "ast_hash": "e2abf960fdb9364660e91dbbeb64eee4",
-    "semantic_hash": ""
-  },
-  "deps/xray-core/app/proxyman/outbound/uot.go": {
-    "mtime": 1781932575.487203,
-    "seen": 1787729888.4478266,
-    "ast_hash": "8934bfa4a50575dfd375145caef2fe6c",
     "semantic_hash": ""
   },
   "deps/xray-core/app/reverse/bridge.go": {
@@ -912,9 +906,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/reverse/config.pb.go": {
-    "mtime": 1781934275.6400988,
-    "seen": 1787729888.447835,
-    "ast_hash": "54f0c6100ae90deff6f1353a36ad17e9",
+    "mtime": 1788243323.1048257,
+    "seen": 1788246110.280117,
+    "ast_hash": "893996b5dad3bbc70159388b69044d1e",
     "semantic_hash": ""
   },
   "deps/xray-core/app/reverse/portal.go": {
@@ -936,45 +930,45 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/balancing.go": {
-    "mtime": 1781866637.1065443,
-    "seen": 1787729888.4478436,
-    "ast_hash": "baacd8cb3eb1f614b4615030afaf5088",
+    "mtime": 1788243323.1093516,
+    "seen": 1788246110.284272,
+    "ast_hash": "0aa6a0f1867d5897c2eb273f8c7969e8",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/balancing_override.go": {
-    "mtime": 1781866637.108287,
-    "seen": 1787729888.4478457,
-    "ast_hash": "82bbc6fdf262c8baac57a499feb7733b",
+    "mtime": 1788243323.11366,
+    "seen": 1788246110.284278,
+    "ast_hash": "7bebb01c176c2018f5e31ae26652b9b6",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/condition.go": {
-    "mtime": 1781866637.114809,
-    "seen": 1787729888.4478583,
-    "ast_hash": "8375ac5631c0b450cea4b692f27e3304",
+    "mtime": 1788243323.1252725,
+    "seen": 1788246110.2874472,
+    "ast_hash": "ea873012043b24185b2240d4f20ff9e2",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/condition_test.go": {
-    "mtime": 1781866637.1158946,
-    "seen": 1787729888.4478605,
-    "ast_hash": "5ae7417dc4518cc9ccaa917714adde4e",
+    "mtime": 1788243323.1300528,
+    "seen": 1788246110.287456,
+    "ast_hash": "89d316d6508dc58229b91e069ec4d774",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/config.go": {
-    "mtime": 1781866637.1164308,
-    "seen": 1787729888.4478624,
-    "ast_hash": "bb38986043aadeb409ec35f9c73f5b9a",
+    "mtime": 1788243323.1330512,
+    "seen": 1788246110.2874625,
+    "ast_hash": "857029afb01562e3ca754e7aa37496d9",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/config.pb.go": {
-    "mtime": 1781934275.6444616,
-    "seen": 1787729888.4478643,
-    "ast_hash": "59be86addd9bdf1458478980e93ce8c6",
+    "mtime": 1788243323.137189,
+    "seen": 1788246110.2874675,
+    "ast_hash": "ba2c29056714532a95cf6214f20e96ef",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/router.go": {
-    "mtime": 1781866637.118043,
-    "seen": 1787729888.4478667,
-    "ast_hash": "b1f67fd784d0e83f13e846e22f40021b",
+    "mtime": 1788243323.1449058,
+    "seen": 1788246110.2874734,
+    "ast_hash": "195dd62a2b777eb52d4dac494256a5e4",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/router_test.go": {
@@ -1008,9 +1002,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/webhook.go": {
-    "mtime": 1781866637.1239617,
-    "seen": 1787729888.4478788,
-    "ast_hash": "5e386d184396623788d25f270b0e40ea",
+    "mtime": 1788243323.1492825,
+    "seen": 1788246110.2949817,
+    "ast_hash": "b0c8139dab99ae5298caea5c1bbed56d",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/weight.go": {
@@ -1032,15 +1026,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/command/command.pb.go": {
-    "mtime": 1781934275.6413245,
-    "seen": 1787729888.4478502,
-    "ast_hash": "23260f546ef25e207251282d33c80818",
+    "mtime": 1788243323.117208,
+    "seen": 1788246110.2857025,
+    "ast_hash": "f98fd5d1430c51bfdac0566f2d0ad80c",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/command/command_grpc.pb.go": {
-    "mtime": 1781934275.643464,
-    "seen": 1787729888.4478524,
-    "ast_hash": "485cc2bb0a3bdf31333cf6934fb0693e",
+    "mtime": 1788243323.121804,
+    "seen": 1788246110.285707,
+    "ast_hash": "8f132612f343f3f7f966305291a76d5d",
     "semantic_hash": ""
   },
   "deps/xray-core/app/router/command/command_test.go": {
@@ -1068,9 +1062,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/stats/config.pb.go": {
-    "mtime": 1781934275.6490915,
-    "seen": 1787729888.4478972,
-    "ast_hash": "5309921f6e5a5ffcc20a0a84a8cf5975",
+    "mtime": 1788243323.1625862,
+    "seen": 1788246110.301766,
+    "ast_hash": "eb212f28fc01fe75d8c145bd032e127b",
     "semantic_hash": ""
   },
   "deps/xray-core/app/stats/counter.go": {
@@ -1092,9 +1086,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/stats/stats.go": {
-    "mtime": 1781866637.1368883,
-    "seen": 1787729888.447905,
-    "ast_hash": "e6634f6268cf3775836c5f50ee8e231a",
+    "mtime": 1788243323.1665082,
+    "seen": 1788246110.3068275,
+    "ast_hash": "8f7a8cb88939b5c2bdee4a880cad5600",
     "semantic_hash": ""
   },
   "deps/xray-core/app/stats/stats_test.go": {
@@ -1110,15 +1104,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/stats/command/command.pb.go": {
-    "mtime": 1781934275.6464727,
-    "seen": 1787729888.447891,
-    "ast_hash": "45d08254653545bdf9a99f4fefdc25ea",
+    "mtime": 1788243323.1548157,
+    "seen": 1788246110.3006659,
+    "ast_hash": "6a247181359dc4b9703598a9b91c505f",
     "semantic_hash": ""
   },
   "deps/xray-core/app/stats/command/command_grpc.pb.go": {
-    "mtime": 1781934275.6480799,
-    "seen": 1787729888.447893,
-    "ast_hash": "6fe4132b543dc2ca41191a0f72b2c709",
+    "mtime": 1788243323.158939,
+    "seen": 1788246110.3006725,
+    "ast_hash": "99e95fe527ca7fc709c2b1e446a4fc40",
     "semantic_hash": ""
   },
   "deps/xray-core/app/stats/command/command_test.go": {
@@ -1128,9 +1122,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/app/version/config.pb.go": {
-    "mtime": 1781934275.6513526,
-    "seen": 1787729888.4479094,
-    "ast_hash": "a1e5656a64050f17104cca9002ac1c77",
+    "mtime": 1788243323.170695,
+    "seen": 1788246110.3076842,
+    "ast_hash": "be3b6d502872aac4f2110abc5e008dac",
     "semantic_hash": ""
   },
   "deps/xray-core/app/version/version.go": {
@@ -1224,9 +1218,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/buf/io.go": {
-    "mtime": 1781866637.1502728,
-    "seen": 1787729888.4479308,
-    "ast_hash": "93143ba589efa7a234a77b87033eb748",
+    "mtime": 1788243323.179151,
+    "seen": 1788246110.3201768,
+    "ast_hash": "6be9a81684081006e9a55c2f36a7cf26",
     "semantic_hash": ""
   },
   "deps/xray-core/common/buf/io_test.go": {
@@ -1272,15 +1266,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/buf/readv_reader.go": {
-    "mtime": 1781866637.1555011,
-    "seen": 1787729888.4479465,
-    "ast_hash": "4b6fb18ee6cd6b6ae4d7dbf82635fdf9",
+    "mtime": 1788243323.1819997,
+    "seen": 1788246110.3278565,
+    "ast_hash": "9136983bda40efbefe1bce868a3a6a33",
     "semantic_hash": ""
   },
   "deps/xray-core/common/buf/readv_reader_stub.go": {
-    "mtime": 1781866637.1555011,
-    "seen": 1787729888.4479487,
-    "ast_hash": "b1cee41f597af74e929b277445dd1b42",
+    "mtime": 1788243323.1867094,
+    "seen": 1788246110.3278644,
+    "ast_hash": "6b91592f4c7ebe24f60517884fd624ac",
     "semantic_hash": ""
   },
   "deps/xray-core/common/buf/readv_test.go": {
@@ -1458,9 +1452,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/errors/feature_errors.go": {
-    "mtime": 1781934275.6523528,
-    "seen": 1787729888.4480093,
-    "ast_hash": "3aa6d0a72d78787cb1be67340288a80a",
+    "mtime": 1788243323.1899147,
+    "seen": 1788246110.365695,
+    "ast_hash": "bf7586c5fb618e72d4ead2538f8b8106",
     "semantic_hash": ""
   },
   "deps/xray-core/common/errors/multi_error.go": {
@@ -1470,9 +1464,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/geodata/domain_matcher.go": {
-    "mtime": 1781932575.5031636,
-    "seen": 1787729888.4480133,
-    "ast_hash": "ba7b9a61ec9495fd7ffa6d9dce77a9c4",
+    "mtime": 1788243323.1980076,
+    "seen": 1788246110.3663177,
+    "ast_hash": "d78aea06b1ba24e81b0da52905858627",
     "semantic_hash": ""
   },
   "deps/xray-core/common/geodata/domain_matcher_test.go": {
@@ -1482,9 +1476,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/geodata/domain_registry.go": {
-    "mtime": 1781932575.5041618,
-    "seen": 1787729888.4480171,
-    "ast_hash": "a3f101bed271ffce5e9a1998e914666c",
+    "mtime": 1788243323.2014198,
+    "seen": 1788246110.366869,
+    "ast_hash": "e1dcbd721c47c3816d4b3420dbd99c08",
     "semantic_hash": ""
   },
   "deps/xray-core/common/geodata/geodat.pb.go": {
@@ -1512,15 +1506,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/geodata/ip_registry.go": {
-    "mtime": 1781932575.5059824,
-    "seen": 1787729888.4480267,
-    "ast_hash": "ecf87588d69a8cc1eef80bde0f1f1229",
+    "mtime": 1788243323.2060766,
+    "seen": 1788246110.370987,
+    "ast_hash": "bc77a4d1357713156050604abc095733",
     "semantic_hash": ""
   },
   "deps/xray-core/common/geodata/rule_parser.go": {
-    "mtime": 1781932575.507181,
-    "seen": 1787729888.448029,
-    "ast_hash": "23896b489825fa1d1634d559eddfd120",
+    "mtime": 1788243323.2095437,
+    "seen": 1788246110.3709936,
+    "ast_hash": "971f217d4627549728e75f04f79a4121",
     "semantic_hash": ""
   },
   "deps/xray-core/common/geodata/rule_parser_test.go": {
@@ -1740,15 +1734,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/log/log.pb.go": {
-    "mtime": 1781934275.6540415,
-    "seen": 1787729888.4481025,
-    "ast_hash": "79a3dc667b972950478ba111728e0747",
+    "mtime": 1788243323.2132542,
+    "seen": 1788246110.4112923,
+    "ast_hash": "62cf41ad0059e7e94fea2a2c8adbf585",
     "semantic_hash": ""
   },
   "deps/xray-core/common/log/logger.go": {
-    "mtime": 1781934275.6545627,
-    "seen": 1787729888.4481065,
-    "ast_hash": "91d8424eee008a22e4a6ade365d31afa",
+    "mtime": 1788243323.217298,
+    "seen": 1788246110.412395,
+    "ast_hash": "43365b174bfcee268de7619ac6aa121a",
     "semantic_hash": ""
   },
   "deps/xray-core/common/log/logger_test.go": {
@@ -1842,9 +1836,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/address.pb.go": {
-    "mtime": 1781934275.6566098,
-    "seen": 1787729888.4481325,
-    "ast_hash": "932455bc67c6137f21ff7c360c8e7202",
+    "mtime": 1788243323.221957,
+    "seen": 1788246110.4273467,
+    "ast_hash": "10f86e2890d925afdf0ace2141761438",
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/address_test.go": {
@@ -1860,9 +1854,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/destination.pb.go": {
-    "mtime": 1781934275.6582446,
-    "seen": 1787729888.4481413,
-    "ast_hash": "d5a7b686638d047c8099beb8bab02b10",
+    "mtime": 1788243323.2254622,
+    "seen": 1788246110.4305873,
+    "ast_hash": "505a62ae0e033c9d1fe660eee022dd21",
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/destination_test.go": {
@@ -1884,9 +1878,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/find_process_others.go": {
-    "mtime": 1781866637.240106,
-    "seen": 1787729888.4481483,
-    "ast_hash": "900e1400cfbf4aa3fd209f99936199f7",
+    "mtime": 1788243323.241357,
+    "seen": 1788246110.4334738,
+    "ast_hash": "5b2379fe864d45b3f3b7284fb71adfca",
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/find_process_windows.go": {
@@ -1908,9 +1902,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/network.pb.go": {
-    "mtime": 1781934275.6593013,
-    "seen": 1787729888.4481559,
-    "ast_hash": "f71e8d6bcb57f0c6c9107221c4937a79",
+    "mtime": 1788243323.2457836,
+    "seen": 1788246110.436969,
+    "ast_hash": "c125ab67abb2498664fa961e39ed9f9f",
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/port.go": {
@@ -1920,9 +1914,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/port.pb.go": {
-    "mtime": 1781934275.660342,
-    "seen": 1787729888.4481597,
-    "ast_hash": "59baa205e1481793dbc64544baac957f",
+    "mtime": 1788243323.2490208,
+    "seen": 1788246110.438422,
+    "ast_hash": "a74c915038836d2df6c373bc111c97e7",
     "semantic_hash": ""
   },
   "deps/xray-core/common/net/port_test.go": {
@@ -2028,9 +2022,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/headers.pb.go": {
-    "mtime": 1781934275.661628,
-    "seen": 1787729888.4481957,
-    "ast_hash": "cfb77332f82007fe55d451dc0b1ecbe1",
+    "mtime": 1788243323.2646055,
+    "seen": 1788246110.455134,
+    "ast_hash": "492ece44810beab4199cd9898a48d020",
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/id.go": {
@@ -2064,9 +2058,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/server_spec.pb.go": {
-    "mtime": 1781934275.6627374,
-    "seen": 1787729888.4482205,
-    "ast_hash": "a9ed433fa077def0ec7203d2d77c2982",
+    "mtime": 1788243323.2846591,
+    "seen": 1788246110.4643607,
+    "ast_hash": "f9513c38bc9d6cf0ebd1c15810199972",
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/time.go": {
@@ -2088,15 +2082,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/user.pb.go": {
-    "mtime": 1781934275.6644957,
-    "seen": 1787729888.4482412,
-    "ast_hash": "bfdc787ca53dac8f61d78d1eb591751f",
+    "mtime": 1788243323.2886553,
+    "seen": 1788246110.4743743,
+    "ast_hash": "fc5a31991e4c641ed2b5d4244b759286",
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/bittorrent/bittorrent.go": {
-    "mtime": 1781866637.2616737,
-    "seen": 1787729888.4481874,
-    "ast_hash": "36fc01027d5c2f2c626defb7aab90022",
+    "mtime": 1788243323.2585936,
+    "seen": 1788246110.451364,
+    "ast_hash": "06e9ff5e4ca0d64cc96557e4c00aa8a4",
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/dns/io.go": {
@@ -2106,15 +2100,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/http/headers.go": {
-    "mtime": 1781932575.5192287,
-    "seen": 1787729888.4481974,
-    "ast_hash": "ae499e6e915949a6a18027c851607204",
+    "mtime": 1788243323.2738883,
+    "seen": 1788246110.4551396,
+    "ast_hash": "92a6ef07482286d0bfc1549907f63389",
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/http/headers_test.go": {
-    "mtime": 1781932575.5203488,
-    "seen": 1787729888.4481995,
-    "ast_hash": "cdb76f67ad5175b6cfbe6b555a05bd45",
+    "mtime": 1788243323.2770398,
+    "seen": 1788246110.4551437,
+    "ast_hash": "ef73fe5358d862c4ee5487bd7c2ef8b0",
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/http/sniff.go": {
@@ -2136,9 +2130,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/quic/sniff.go": {
-    "mtime": 1781866637.2726355,
-    "seen": 1787729888.448215,
-    "ast_hash": "65e513f71dacbecad36a0d7491c33531",
+    "mtime": 1788243323.2816443,
+    "seen": 1788246110.4622347,
+    "ast_hash": "78c5b440aa1f9e281da1d94f32e38804",
     "semantic_hash": ""
   },
   "deps/xray-core/common/protocol/quic/sniff_test.go": {
@@ -2196,9 +2190,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/reflect/marshal_test.go": {
-    "mtime": 1781866637.2882938,
-    "seen": 1787729888.4482446,
-    "ast_hash": "7cc42381cc598c9527d08991707f7fe8",
+    "mtime": 1788243323.2928746,
+    "seen": 1788246110.4752753,
+    "ast_hash": "e246abcb3dc0fa6bdfd1debd89e59b32",
     "semantic_hash": ""
   },
   "deps/xray-core/common/retry/retry.go": {
@@ -2244,9 +2238,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/serial/typed_message.pb.go": {
-    "mtime": 1781934275.6665041,
-    "seen": 1787729888.448259,
-    "ast_hash": "79a27ef493cc7e061df929bc74e5850d",
+    "mtime": 1788243323.297819,
+    "seen": 1788246110.4826617,
+    "ast_hash": "44916da6874b9a05424032b598c97322",
     "semantic_hash": ""
   },
   "deps/xray-core/common/serial/typed_message_test.go": {
@@ -2256,9 +2250,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/session/context.go": {
-    "mtime": 1781932575.5264945,
-    "seen": 1787729888.4482627,
-    "ast_hash": "0f3b92f009a4b77d5e355643ca2b338d",
+    "mtime": 1788243323.302085,
+    "seen": 1788246110.48377,
+    "ast_hash": "7bd9c8e3151f573c3907bd67fa491a41",
     "semantic_hash": ""
   },
   "deps/xray-core/common/session/session.go": {
@@ -2454,9 +2448,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/utils/weak_cache.go": {
-    "mtime": 1781932575.5285923,
-    "seen": 1787729888.4483259,
-    "ast_hash": "4db176cd767dce44ab55b789c1acb155",
+    "mtime": 1788243323.307682,
+    "seen": 1788246110.519072,
+    "ast_hash": "b37b48a8ebed9490d5ec114c87310f5b",
     "semantic_hash": ""
   },
   "deps/xray-core/common/uuid/uuid.go": {
@@ -2472,9 +2466,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/common/xudp/xudp.go": {
-    "mtime": 1781866637.3316104,
-    "seen": 1787729888.4483304,
-    "ast_hash": "b298ff1d14a681a0f0d167aa57b08be8",
+    "mtime": 1788243323.3137045,
+    "seen": 1788246110.5211952,
+    "ast_hash": "8ad537ceb2ae16b9a00fe0d56827696a",
     "semantic_hash": ""
   },
   "deps/xray-core/common/xudp/xudp_test.go": {
@@ -2496,9 +2490,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/core/config.pb.go": {
-    "mtime": 1781934275.6675885,
-    "seen": 1787729888.4483387,
-    "ast_hash": "8c9aa3f5cddc9973027d18ec3add1083",
+    "mtime": 1788243323.3178275,
+    "seen": 1788246110.523972,
+    "ast_hash": "ef12fe3691248c8ec3914ae17efac9f9",
     "semantic_hash": ""
   },
   "deps/xray-core/core/context.go": {
@@ -2514,9 +2508,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/core/core.go": {
-    "mtime": 1781866637.3366258,
-    "seen": 1787729888.448344,
-    "ast_hash": "31af51d3f46920af61e21da336e8aca1",
+    "mtime": 1788243323.3222444,
+    "seen": 1788246110.5261276,
+    "ast_hash": "b84923bd87fe1a6de5e2349b33a2a256",
     "semantic_hash": ""
   },
   "deps/xray-core/core/format.go": {
@@ -2550,9 +2544,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/core/xray.go": {
-    "mtime": 1781866637.3404436,
-    "seen": 1787729888.4483557,
-    "ast_hash": "5a67a66ae3c5bf3218bf00607a7584f2",
+    "mtime": 1788243323.32525,
+    "seen": 1788246110.5327954,
+    "ast_hash": "39ecf3b1405a230d15b11a0faa62d9d0",
     "semantic_hash": ""
   },
   "deps/xray-core/core/xray_test.go": {
@@ -2616,9 +2610,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/features/policy/policy.go": {
-    "mtime": 1781866637.352194,
-    "seen": 1787729888.4483757,
-    "ast_hash": "26927116f432e89315e7d89b542fbbbf",
+    "mtime": 1788243323.3296957,
+    "seen": 1788246110.5456035,
+    "ast_hash": "0a012cb509b9dbb914f6784e377c9112",
     "semantic_hash": ""
   },
   "deps/xray-core/features/routing/balancer.go": {
@@ -2658,9 +2652,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/features/stats/stats.go": {
-    "mtime": 1781866637.3602042,
-    "seen": 1787729888.448388,
-    "ast_hash": "90a2511e54b0bbd784f6e62f065d7a03",
+    "mtime": 1788243323.334702,
+    "seen": 1788246110.5512,
+    "ast_hash": "c8d88c5d72e49de144e0308a96a9e105",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/api.go": {
@@ -2688,9 +2682,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/common.go": {
-    "mtime": 1781866637.3694892,
-    "seen": 1787729888.448403,
-    "ast_hash": "59a29202408a7884b2d91177674a380e",
+    "mtime": 1788243323.353168,
+    "seen": 1788246110.5581512,
+    "ast_hash": "bf3d25f91eef2a4bf24e84ac8ee78a3c",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/common_test.go": {
@@ -2777,12 +2771,6 @@
     "ast_hash": "a7853a7266d3a0231a9f945e06c922a3",
     "semantic_hash": ""
   },
-  "deps/xray-core/infra/conf/grpc.go": {
-    "mtime": 1781866637.3794973,
-    "seen": 1787729888.448428,
-    "ast_hash": "9e25e231dd3c27a64d9cedafe6dee641",
-    "semantic_hash": ""
-  },
   "deps/xray-core/infra/conf/http.go": {
     "mtime": 1781866637.3794973,
     "seen": 1787729888.4484298,
@@ -2796,9 +2784,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/hysteria.go": {
-    "mtime": 1781866637.3815002,
-    "seen": 1787729888.4484324,
-    "ast_hash": "b90cf7907203d5d8bcc5f3065e10bbdf",
+    "mtime": 1788243323.3604634,
+    "seen": 1788246110.5735245,
+    "ast_hash": "4b6feb58608788956eda04fb2f44b456",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/init.go": {
@@ -2826,9 +2814,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/loopback.go": {
-    "mtime": 1781932575.5339918,
-    "seen": 1787729888.4484468,
-    "ast_hash": "67cd5407d4a8072aad9dfbe3cffc15cf",
+    "mtime": 1788243323.365577,
+    "seen": 1788246110.5814016,
+    "ast_hash": "2f0a169af6458833b152c3218feb393e",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/metrics.go": {
@@ -2868,9 +2856,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/router.go": {
-    "mtime": 1781866637.3897502,
-    "seen": 1787729888.4484599,
-    "ast_hash": "ebe9a8a3b1662bee0af84d3e3f15f129",
+    "mtime": 1788243323.3703282,
+    "seen": 1788246110.5872583,
+    "ast_hash": "9f961f52c675e72661bbbb4298366a82",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/router_strategy.go": {
@@ -2886,9 +2874,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/shadowsocks.go": {
-    "mtime": 1781932575.5352259,
-    "seen": 1787729888.4484718,
-    "ast_hash": "84ce3c86eb52dfbe58f02b0dc8f4800b",
+    "mtime": 1788243323.3731,
+    "seen": 1788246110.593235,
+    "ast_hash": "5ee036979b43e04d8f41ec5982f5fe92",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/shadowsocks_test.go": {
@@ -2909,16 +2897,10 @@
     "ast_hash": "3764a53bb60772b806f7f66cb1d538e9",
     "semantic_hash": ""
   },
-  "deps/xray-core/infra/conf/transport_authenticators.go": {
-    "mtime": 1781866637.3979163,
-    "seen": 1787729888.4484794,
-    "ast_hash": "1fc44ad65bcfe8a45267fc66e4a439ac",
-    "semantic_hash": ""
-  },
   "deps/xray-core/infra/conf/transport_internet.go": {
-    "mtime": 1781934275.672943,
-    "seen": 1787729888.448481,
-    "ast_hash": "6658c348dc8463d1891594c841f9526a",
+    "mtime": 1788243323.383648,
+    "seen": 1788246110.5973227,
+    "ast_hash": "80908f60f95191f00f3c50f82f579690",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/transport_test.go": {
@@ -2934,9 +2916,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/tun.go": {
-    "mtime": 1781866637.3999114,
-    "seen": 1787729888.448486,
-    "ast_hash": "0b749a4245bdb32d6d04d6877f6ce95a",
+    "mtime": 1788243323.3983133,
+    "seen": 1788246110.5986369,
+    "ast_hash": "bcf03a0cbba5237d1d76b36261fe2077",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/version.go": {
@@ -2958,9 +2940,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/vmess.go": {
-    "mtime": 1781866637.4037068,
-    "seen": 1787729888.4484935,
-    "ast_hash": "cb4076d8bfced0efd3e2d2f20fc5f337",
+    "mtime": 1788243323.402485,
+    "seen": 1788246110.6011198,
+    "ast_hash": "1309a6cc70879ceb5fe788f5ba36c4e6",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/vmess_test.go": {
@@ -2970,21 +2952,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/wireguard.go": {
-    "mtime": 1781932575.5387514,
-    "seen": 1787729888.448496,
-    "ast_hash": "12750d2a4aacdfd09f1403fe7c098019",
-    "semantic_hash": ""
-  },
-  "deps/xray-core/infra/conf/wireguard_test.go": {
-    "mtime": 1781932575.54078,
-    "seen": 1787729888.448498,
-    "ast_hash": "73a3fff6f48693daba427f00aa3d9ac3",
+    "mtime": 1788243323.405485,
+    "seen": 1788246110.6022162,
+    "ast_hash": "327fb2a7a85b458a931f27b4db808df4",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/xray.go": {
-    "mtime": 1788233359.1483624,
-    "seen": 1788235115.9146967,
-    "ast_hash": "eaa2359de5f4df0baf7ccbcf6d4c8593",
+    "mtime": 1788243323.4091077,
+    "seen": 1788246110.6022215,
+    "ast_hash": "880f52f355a515bf7ad0eebb0b18e0ea",
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/xray_test.go": {
@@ -3060,9 +3036,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/main/run.go": {
-    "mtime": 1781866637.45389,
-    "seen": 1787729888.4486022,
-    "ast_hash": "95ef3e4274e7454dc221d5227adc5e87",
+    "mtime": 1788243323.4180388,
+    "seen": 1788246110.6571078,
+    "ast_hash": "63e458720d07ebe69b6cd565df8a0d76",
     "semantic_hash": ""
   },
   "deps/xray-core/main/version.go": {
@@ -3360,9 +3336,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/main/distro/all/all.go": {
-    "mtime": 1788233359.155362,
-    "seen": 1788235115.9682713,
-    "ast_hash": "8210321fa88bcce00d6555fb236fa98b",
+    "mtime": 1788243323.4148512,
+    "seen": 1788246110.6545932,
+    "ast_hash": "9ad35659c882a5864d07c26d4a41f08f",
     "semantic_hash": ""
   },
   "deps/xray-core/main/json/json.go": {
@@ -3408,9 +3384,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/blackhole/config.pb.go": {
-    "mtime": 1781934275.6771903,
-    "seen": 1787729888.4486206,
-    "ast_hash": "508b3c5edb1709d30433eb5c4c0353a6",
+    "mtime": 1788243323.4583952,
+    "seen": 1788246110.6668057,
+    "ast_hash": "6718deedc05c4c1d65df6cd41c34236e",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/blackhole/config_test.go": {
@@ -3420,9 +3396,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/dns/config.pb.go": {
-    "mtime": 1781934275.6787841,
-    "seen": 1787729888.4486268,
-    "ast_hash": "be57c27c73e9402d90dcdf55df37f412",
+    "mtime": 1788243323.4634647,
+    "seen": 1788246110.6677427,
+    "ast_hash": "399350feb82d078e1fb047c56940639b",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/dns/dns.go": {
@@ -3444,9 +3420,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/dokodemo/config.pb.go": {
-    "mtime": 1781934275.6809525,
-    "seen": 1787729888.4486403,
-    "ast_hash": "222b0f389f625ba1757b76b4c2108895",
+    "mtime": 1788243323.4677887,
+    "seen": 1788246110.6723382,
+    "ast_hash": "5e1c56995da33ee0b692a5dd3fa705b0",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/dokodemo/dokodemo.go": {
@@ -3462,27 +3438,27 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/dokodemo/fakeudp_other.go": {
-    "mtime": 1781866637.4711523,
-    "seen": 1787729888.4486506,
-    "ast_hash": "380b00cbf5d0f24fe37d125e618a5cce",
+    "mtime": 1788243323.4743786,
+    "seen": 1788246110.6743798,
+    "ast_hash": "d93a41399246f952d37b9f7a8aaf700c",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/freedom/config.pb.go": {
-    "mtime": 1781934275.6827962,
-    "seen": 1787729888.4486542,
-    "ast_hash": "4f5972d091450a0461bfae8c797a3ff0",
+    "mtime": 1788243323.4781134,
+    "seen": 1788246110.6743839,
+    "ast_hash": "485dd6a4c6ca5e1cb40540334c31b0c5",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/freedom/freedom.go": {
-    "mtime": 1781866637.474358,
-    "seen": 1787729888.4486582,
-    "ast_hash": "388e2c5749d282c7ff4fdc49039fad61",
+    "mtime": 1788243323.482097,
+    "seen": 1788246110.674388,
+    "ast_hash": "5d5de41d410f3048124ec33470c4d45f",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/http/client.go": {
-    "mtime": 1781866637.4760203,
-    "seen": 1787729888.4486613,
-    "ast_hash": "ddf582ee3d40c5b32b39ba6bf8827b96",
+    "mtime": 1788243323.4884627,
+    "seen": 1788246110.674392,
+    "ast_hash": "da456eb2246a9a6a74ad817d472ac2d5",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/http/config.go": {
@@ -3492,9 +3468,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/http/config.pb.go": {
-    "mtime": 1781934275.6839764,
-    "seen": 1787729888.4486685,
-    "ast_hash": "5031d7d0610de9a668b92dcaf7d32d73",
+    "mtime": 1788243323.4924672,
+    "seen": 1788246110.675354,
+    "ast_hash": "96023ef1d7f82b9bdcc2759952b7c295",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/http/http.go": {
@@ -3510,9 +3486,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/hysteria/client.go": {
-    "mtime": 1781932575.553118,
-    "seen": 1787729888.4486878,
-    "ast_hash": "3b1a0e47dd82e480067f834014f1d2c0",
+    "mtime": 1788243323.5007503,
+    "seen": 1788246110.678656,
+    "ast_hash": "c72bc49918f18ce85ccf06537fd145ce",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/hysteria/config.go": {
@@ -3522,9 +3498,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/hysteria/config.pb.go": {
-    "mtime": 1781866637.48526,
-    "seen": 1787729888.4486942,
-    "ast_hash": "60c093eef70cdeb32b0d147b2b5dc841",
+    "mtime": 1788243323.5049527,
+    "seen": 1788246110.679599,
+    "ast_hash": "ca1e6721423eb6bf03b9fc7cc4a3277a",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/hysteria/protocol.go": {
@@ -3534,15 +3510,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/hysteria/server.go": {
-    "mtime": 1781932575.5542316,
-    "seen": 1787729888.4487014,
-    "ast_hash": "254ab9e3afe87260c8f00cf08cb4a244",
+    "mtime": 1788243323.511001,
+    "seen": 1788246110.6806638,
+    "ast_hash": "8c9a7f7708d2acb6c9f0cc0183423d44",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/hysteria/account/config.go": {
-    "mtime": 1781866637.482587,
-    "seen": 1787729888.4486797,
-    "ast_hash": "3ba29ab4806c0e40df9ceb1be2def5cd",
+    "mtime": 1788243323.497052,
+    "seen": 1788246110.6772625,
+    "ast_hash": "338d843914db9094ba8375464d879f6c",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/hysteria/account/config.pb.go": {
@@ -3558,15 +3534,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/loopback/config.pb.go": {
-    "mtime": 1781934275.6844854,
-    "seen": 1787729888.448708,
-    "ast_hash": "2de0a7218115397c3cd1abef5b577ecf",
+    "mtime": 1788243323.5150573,
+    "seen": 1788246110.6816435,
+    "ast_hash": "b001f429de5a6d8a9f6f6961641bbfe6",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/loopback/loopback.go": {
-    "mtime": 1781932575.557774,
-    "seen": 1787729888.4487138,
-    "ast_hash": "56465288a4e3591f16d890fd1a90769a",
+    "mtime": 1788243323.5216322,
+    "seen": 1788246110.6816494,
+    "ast_hash": "ca76b9152b40bfcbe86bb0569c7b75ac",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/client.go": {
@@ -3576,15 +3552,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/config.go": {
-    "mtime": 1781934275.6859903,
-    "seen": 1787729888.4487252,
-    "ast_hash": "5856c8fa05f355a510d399a8b021623f",
+    "mtime": 1788243323.5291953,
+    "seen": 1788246110.6835866,
+    "ast_hash": "cd3749344f3fb172945ebf43394c61cb",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/config.pb.go": {
-    "mtime": 1781934275.6881082,
-    "seen": 1787729888.4487283,
-    "ast_hash": "83b706ef5402fbaced43dc03afb28c33",
+    "mtime": 1788243323.5325148,
+    "seen": 1788246110.6835904,
+    "ast_hash": "a83db64be327aeafa4e261448bc84d28",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/config_test.go": {
@@ -3594,21 +3570,21 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/protocol.go": {
-    "mtime": 1781934275.68862,
-    "seen": 1787729888.4487362,
-    "ast_hash": "89df692bd83b8630b2811797477b3c2d",
+    "mtime": 1788243323.5429215,
+    "seen": 1788246110.6845481,
+    "ast_hash": "a4215db6d2fbc76428945c95e51833c8",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/protocol_test.go": {
-    "mtime": 1781866637.4992177,
-    "seen": 1787729888.4487395,
-    "ast_hash": "960ca5cc8291567fe82c00913128416b",
+    "mtime": 1788243323.5481794,
+    "seen": 1788246110.6845582,
+    "ast_hash": "d34abc2fa282cad27a3d7eedda95984b",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/server.go": {
-    "mtime": 1781934275.6906452,
-    "seen": 1787729888.4487426,
-    "ast_hash": "422f4ab22c5dd59e6e3ab075bc463f6a",
+    "mtime": 1788243323.551433,
+    "seen": 1788246110.684565,
+    "ast_hash": "2aaa5b07d69db03a2b808fa3a2a2f237",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/shadowsocks.go": {
@@ -3618,9 +3594,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks/validator.go": {
-    "mtime": 1781934275.6916816,
-    "seen": 1787729888.4487493,
-    "ast_hash": "aee4bb7bcf8ca22cef20d6c37e5bd47e",
+    "mtime": 1788243323.5587487,
+    "seen": 1788246110.6864839,
+    "ast_hash": "383829a5524af32742cae9371c13c0d0",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks_2022/config.go": {
@@ -3630,9 +3606,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks_2022/config.pb.go": {
-    "mtime": 1781934275.6931882,
-    "seen": 1787729888.4487565,
-    "ast_hash": "38f289d6b8bf5c490c197748bdce7d48",
+    "mtime": 1788243323.563162,
+    "seen": 1788246110.6872385,
+    "ast_hash": "428c7aabb8a2b1ec92512a0f2c1176da",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks_2022/inbound.go": {
@@ -3654,9 +3630,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks_2022/outbound.go": {
-    "mtime": 1781932575.5694268,
-    "seen": 1787729888.448771,
-    "ast_hash": "e60a0e5f1bad9602f08ed1f960123ae0",
+    "mtime": 1788243323.5731661,
+    "seen": 1788246110.6900854,
+    "ast_hash": "560b2c8b36d480c1c6fea0b6eedc5aa4",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/shadowsocks_2022/shadowsocks_2022.go": {
@@ -3678,15 +3654,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/socks/config.pb.go": {
-    "mtime": 1781934275.6931882,
-    "seen": 1787729888.4487844,
-    "ast_hash": "4ee323d2677bb8db65464ef439728553",
+    "mtime": 1788243323.5764036,
+    "seen": 1788246110.692672,
+    "ast_hash": "e28b9681147cef609e503710783ece60",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/socks/protocol.go": {
-    "mtime": 1781932575.5713613,
-    "seen": 1787729888.4487877,
-    "ast_hash": "be93d7c7353bb2fa23f89dcf8634f202",
+    "mtime": 1788243323.5811472,
+    "seen": 1788246110.6926754,
+    "ast_hash": "1fb7d1143e57156859f9a4fa0a07e991",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/socks/protocol_test.go": {
@@ -3696,9 +3672,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/socks/server.go": {
-    "mtime": 1781932575.5723615,
-    "seen": 1787729888.4487953,
-    "ast_hash": "cb164a0c9780abaac0b8bfa62f0623c7",
+    "mtime": 1788243323.5834785,
+    "seen": 1788246110.6932337,
+    "ast_hash": "0abf2cb8754fc58ba9573a3cd9153c64",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/socks/socks.go": {
@@ -3726,9 +3702,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/trojan/config.pb.go": {
-    "mtime": 1781934275.695709,
-    "seen": 1787729888.4488142,
-    "ast_hash": "d4e5949236d91df1899e6d8ca534931b",
+    "mtime": 1788243323.5891538,
+    "seen": 1788246110.6986752,
+    "ast_hash": "7c467bed91d82670e8222e250c759b23",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/trojan/protocol.go": {
@@ -3744,9 +3720,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/trojan/server.go": {
-    "mtime": 1781934275.6967063,
-    "seen": 1787729888.4488235,
-    "ast_hash": "36496b165f7cc20b79989b6942edaeb0",
+    "mtime": 1788243323.591794,
+    "seen": 1788246110.7005498,
+    "ast_hash": "80ba534180723f88e6903976b252034e",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/trojan/trojan.go": {
@@ -3762,21 +3738,21 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/config.go": {
-    "mtime": 1781866637.5237513,
-    "seen": 1787729888.4488332,
-    "ast_hash": "1de6e620ec15866bf8636abce0e37e93",
+    "mtime": 1788243323.6172428,
+    "seen": 1788246110.702805,
+    "ast_hash": "8c8596265b35a8ec1a2e7ba6f7805d69",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/config.pb.go": {
-    "mtime": 1781866637.5257504,
-    "seen": 1787729888.448837,
-    "ast_hash": "2b94e38e2de905dd75b360bcc349e48d",
+    "mtime": 1788243323.6203644,
+    "seen": 1788246110.7028105,
+    "ast_hash": "386b3730805650439b005425e6c304d1",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/handler.go": {
-    "mtime": 1781932575.5764568,
-    "seen": 1787729888.4488409,
-    "ast_hash": "ef52fd405fd9f619718e857a53d06221",
+    "mtime": 1788243323.6272852,
+    "seen": 1788246110.7028158,
+    "ast_hash": "95953754878c25d3431548b3bb70c4e5",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/stack.go": {
@@ -3810,45 +3786,45 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/tun_android.go": {
-    "mtime": 1781866637.531746,
-    "seen": 1787729888.4488707,
-    "ast_hash": "43e0eafec8286f420695f71581b9ffe8",
+    "mtime": 1788243323.6340704,
+    "seen": 1788246110.7101948,
+    "ast_hash": "979aac1e4d886756b22d093ef0099e59",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/tun_darwin.go": {
-    "mtime": 1781866637.5327477,
-    "seen": 1787729888.4488742,
-    "ast_hash": "47e11200b6a8c3eb74b90a1664991c19",
+    "mtime": 1788243323.6377227,
+    "seen": 1788246110.7102032,
+    "ast_hash": "5a50d5a9c41f26b999f4d8c25b3d82e2",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/tun_default.go": {
-    "mtime": 1781866637.533749,
-    "seen": 1787729888.4488785,
-    "ast_hash": "b3d552d31a1c82a45e6d7aa5a1c04e0e",
+    "mtime": 1788243323.6429052,
+    "seen": 1788246110.7102137,
+    "ast_hash": "3fc51c2015e92a1a9507e70155423a63",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/tun_freebsd.go": {
-    "mtime": 1781866637.533749,
-    "seen": 1787729888.4488826,
-    "ast_hash": "6f9b6328c9a41eaa4be84d0a4308e9e8",
+    "mtime": 1788243323.6464844,
+    "seen": 1788246110.7102177,
+    "ast_hash": "b260264f310c60f58b4d238671959047",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/tun_linux.go": {
-    "mtime": 1781866637.5347455,
-    "seen": 1787729888.4488862,
-    "ast_hash": "bf23ab41de237e85066b8dd3b0963a8b",
+    "mtime": 1788243323.6540692,
+    "seen": 1788246110.7102292,
+    "ast_hash": "29234f82c78613dbda95ab92df73231f",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/tun_windows.go": {
-    "mtime": 1781866637.5347455,
-    "seen": 1787729888.4488895,
-    "ast_hash": "ee299c30cdb1068a267dd16bd8a3c162",
+    "mtime": 1788243323.6570995,
+    "seen": 1788246110.7102342,
+    "ast_hash": "506dd9b29b3d7840d2ba35cfad429662",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/udp_fullcone.go": {
-    "mtime": 1781932575.5785017,
-    "seen": 1787729888.4488926,
-    "ast_hash": "4cbc1d5e9609c08b8745e14bbaffffee",
+    "mtime": 1788243323.6608179,
+    "seen": 1788246110.7102387,
+    "ast_hash": "3a86738f3213e8af996400c46331c4d9",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/icmp/packet.go": {
@@ -3870,9 +3846,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vless/account.pb.go": {
-    "mtime": 1781934275.6988232,
-    "seen": 1787729888.4489,
-    "ast_hash": "f8bcec44e0d9b18c381dfe9280f2013a",
+    "mtime": 1788243323.6651292,
+    "seen": 1788246110.7119474,
+    "ast_hash": "6f5939cfe2ffc3c44835ea7b70c9127f",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vless/validator.go": {
@@ -3894,9 +3870,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vless/encoding/addons.pb.go": {
-    "mtime": 1781934275.700035,
-    "seen": 1787729888.4489076,
-    "ast_hash": "17f100e999b40735f29e45a40c6a28fa",
+    "mtime": 1788243323.6693554,
+    "seen": 1788246110.7131114,
+    "ast_hash": "44ff024fee1501161f6d158cafd0cd24",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vless/encoding/encoding.go": {
@@ -3942,9 +3918,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vless/inbound/config.pb.go": {
-    "mtime": 1781934275.7024813,
-    "seen": 1787729888.4489374,
-    "ast_hash": "54818cc76d787f6a48770db04af81e6a",
+    "mtime": 1788243323.6735706,
+    "seen": 1788246110.7209866,
+    "ast_hash": "6d981896686e889ab707abd129ff4384",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vless/inbound/inbound.go": {
@@ -3960,9 +3936,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vless/outbound/config.pb.go": {
-    "mtime": 1781934275.7035415,
-    "seen": 1787729888.4489477,
-    "ast_hash": "fbf6a5fa7eb44e82f7b697903c78ac24",
+    "mtime": 1788243323.6783218,
+    "seen": 1788246110.7227414,
+    "ast_hash": "eb7a0d6fd6c194cc1f9d87540a31ecbf",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vless/outbound/outbound.go": {
@@ -3978,9 +3954,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/account.pb.go": {
-    "mtime": 1781934275.7061954,
-    "seen": 1787729888.4489644,
-    "ast_hash": "77359d9d94a063e4388164144d0ff24d",
+    "mtime": 1788243323.6816971,
+    "seen": 1788246110.7284749,
+    "ast_hash": "488efec99cf5694390d660214e0366b5",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/validator.go": {
@@ -4038,15 +4014,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/encoding/auth.go": {
-    "mtime": 1781866637.5622435,
-    "seen": 1787729888.4489903,
-    "ast_hash": "d2d4cd6f0413a75e21f5b7b6d95007cf",
+    "mtime": 1788243323.685819,
+    "seen": 1788246110.733883,
+    "ast_hash": "a707c1726ef816505e05429015567567",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/encoding/client.go": {
-    "mtime": 1781866637.5632465,
-    "seen": 1787729888.4489934,
-    "ast_hash": "e5bb5b9871c7a7b45ae50c7b720903bc",
+    "mtime": 1788243323.6888437,
+    "seen": 1788246110.7338877,
+    "ast_hash": "2ed88cd6cf6411211403087bf95f4d92",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/encoding/commands.go": {
@@ -4068,9 +4044,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/encoding/server.go": {
-    "mtime": 1781866637.5652437,
-    "seen": 1787729888.4490073,
-    "ast_hash": "32f88562001c5724682511145e0f9955",
+    "mtime": 1788243323.6920512,
+    "seen": 1788246110.7370768,
+    "ast_hash": "1675cdc6f437fe8f7ed423d89ae0749e",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/inbound/config.go": {
@@ -4080,9 +4056,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/inbound/config.pb.go": {
-    "mtime": 1781934275.7067015,
-    "seen": 1787729888.4490151,
-    "ast_hash": "4ede04bac10c7c9ba02f1373f541d0f8",
+    "mtime": 1788243323.6953595,
+    "seen": 1788246110.73829,
+    "ast_hash": "0f7b94603ddfd193ce8531571f5f9cc6",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/inbound/inbound.go": {
@@ -4104,81 +4080,69 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/outbound/config.pb.go": {
-    "mtime": 1781934275.7087133,
-    "seen": 1787729888.4490283,
-    "ast_hash": "282242bbcc518a006b5ef63facbb1dd7",
+    "mtime": 1788243323.6991851,
+    "seen": 1788246110.7411983,
+    "ast_hash": "879fa4e93922112c7ff27fa12ff616bf",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/vmess/outbound/outbound.go": {
-    "mtime": 1781866637.5722437,
-    "seen": 1787729888.4490316,
-    "ast_hash": "04066d59627c9486f725ce17a9e49773",
+    "mtime": 1788243323.703802,
+    "seen": 1788246110.7412038,
+    "ast_hash": "47f7d9cb12159e833ae76d2086179eba",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/bind.go": {
-    "mtime": 1781932575.5901124,
-    "seen": 1787729888.449045,
-    "ast_hash": "cba16d726dc0bf677311fe3f6f41370e",
+    "mtime": 1788243323.7074003,
+    "seen": 1788246110.7439268,
+    "ast_hash": "8dcfcd4d39ba6bdadc5a5a7f8c2a2a19",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/client.go": {
-    "mtime": 1781932575.5907166,
-    "seen": 1787729888.4490483,
-    "ast_hash": "e1acc7cfa0a3c59b077b912e1476fb6c",
+    "mtime": 1788243323.713486,
+    "seen": 1788246110.7439325,
+    "ast_hash": "45728050b306ddb78b10a5dbeb809bf1",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/config.go": {
-    "mtime": 1781932575.5922408,
-    "seen": 1787729888.449052,
-    "ast_hash": "8b1b08d8d2aa414cad384efbaa695c33",
+    "mtime": 1788243323.7170887,
+    "seen": 1788246110.743937,
+    "ast_hash": "2f4582472dcc250642db06afef94fd3e",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/config.pb.go": {
-    "mtime": 1781934275.7103527,
-    "seen": 1787729888.4490554,
-    "ast_hash": "9686f574a466ff7b0e546351cae4d0ec",
+    "mtime": 1788243323.721488,
+    "seen": 1788246110.7439406,
+    "ast_hash": "7cbb8bc9e2a9c2deb8c8f730c661e5eb",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/server.go": {
-    "mtime": 1781932575.596784,
-    "seen": 1787729888.4490635,
-    "ast_hash": "840bf8f32a6cdf40d6f7e2b623b0b0d6",
-    "semantic_hash": ""
-  },
-  "deps/xray-core/proxy/wireguard/server_test.go": {
-    "mtime": 1781932575.5990329,
-    "seen": 1787729888.4490666,
-    "ast_hash": "0ee40ee73a2bbada7e790cd1dd66e049",
+    "mtime": 1788243323.7335024,
+    "seen": 1788246110.7439494,
+    "ast_hash": "2e18a69c8860d2e3e80e33e0aa4a5e0b",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/tun.go": {
-    "mtime": 1781932575.6011572,
-    "seen": 1787729888.44907,
-    "ast_hash": "fb6a0cfece095e5f9de6c1485818cf78",
+    "mtime": 1788243323.7379434,
+    "seen": 1788246110.7439542,
+    "ast_hash": "3406059eebd6cd1190e3472a12463e96",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/tun_default.go": {
-    "mtime": 1781932575.6021676,
-    "seen": 1787729888.4490736,
-    "ast_hash": "46c029f0d61c11925071d2815b9cf1a5",
+    "mtime": 1788243323.7406588,
+    "seen": 1788246110.743958,
+    "ast_hash": "dd83616e648cf8235c1eb0068f02b1ed",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/tun_linux.go": {
-    "mtime": 1781932575.6037593,
-    "seen": 1787729888.4490767,
-    "ast_hash": "262d7039221949f541fdf3c7d2e1bf2f",
+    "mtime": 1788243323.7442348,
+    "seen": 1788246110.7439623,
+    "ast_hash": "0d7e42e33601fa2132b9844b9868586c",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/wireguard/wireguard.go": {
-    "mtime": 1781932575.604765,
-    "seen": 1787729888.4490802,
-    "ast_hash": "2922c605efbfa5598a491aa800740dcf",
-    "semantic_hash": ""
-  },
-  "deps/xray-core/proxy/wireguard/gvisortun/tun.go": {
-    "mtime": 1781932575.5957332,
-    "seen": 1787729888.4490592,
-    "ast_hash": "88522309286ffaf265ff4f9fd1a88444",
+    "mtime": 1788243323.748428,
+    "seen": 1788246110.743966,
+    "ast_hash": "3103eb727ca52e3a5f012abe7fdb9f02",
     "semantic_hash": ""
   },
   "deps/xray-core/testing/coverage/coverall": {
@@ -4308,9 +4272,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/testing/scenarios/shadowsocks_test.go": {
-    "mtime": 1781866637.601355,
-    "seen": 1787729888.4491625,
-    "ast_hash": "251efe7f43a2f942c5e30c57870ac25b",
+    "mtime": 1788243323.75217,
+    "seen": 1788246110.7668333,
+    "ast_hash": "c4f01919361303612e7a01e66ff19559",
     "semantic_hash": ""
   },
   "deps/xray-core/testing/scenarios/socks_test.go": {
@@ -4338,9 +4302,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/testing/scenarios/vmess_test.go": {
-    "mtime": 1781866637.6057372,
-    "seen": 1787729888.4491823,
-    "ast_hash": "fdf84d8e23a82d1f3c0dbe4f222a0bf1",
+    "mtime": 1788243323.7559469,
+    "seen": 1788246110.7720494,
+    "ast_hash": "5166f5d3a46b40386617c2a000b28df4",
     "semantic_hash": ""
   },
   "deps/xray-core/testing/scenarios/wireguard_test.go": {
@@ -4392,9 +4356,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/config.pb.go": {
-    "mtime": 1781934275.7118604,
-    "seen": 1787729888.4492166,
-    "ast_hash": "b6378aea20e40afd53c70b892ce61460",
+    "mtime": 1788243323.76368,
+    "seen": 1788246110.7806718,
+    "ast_hash": "21fe14733c00fa664aec3e6dcc29ca7c",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/dialer.go": {
@@ -4482,9 +4446,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/sockopt_other.go": {
-    "mtime": 1781866637.755233,
-    "seen": 1787729888.4497833,
-    "ast_hash": "cf5e983342f55872eb6de91a450f24eb",
+    "mtime": 1788243324.063556,
+    "seen": 1788246110.9011638,
+    "ast_hash": "8f2aadca63e68bf6b96c558a81db04ef",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/sockopt_test.go": {
@@ -4500,9 +4464,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/system_dialer.go": {
-    "mtime": 1781866637.773744,
-    "seen": 1787729888.4498594,
-    "ast_hash": "f6d088d7dbd17f96e31579835f6d2c62",
+    "mtime": 1788243324.1114926,
+    "seen": 1788246110.9110012,
+    "ast_hash": "7d939564ac211b99d1dedc39b892a1b3",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/system_listener.go": {
@@ -4518,21 +4482,21 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tcp_hub.go": {
-    "mtime": 1781866637.7873158,
-    "seen": 1787729888.449916,
-    "ast_hash": "c1c218fc6d062707db2e430a03be6e4b",
+    "mtime": 1788243324.1215894,
+    "seen": 1788246110.9311757,
+    "ast_hash": "33b2f31c21a83dee8516f6bdb30c3cf2",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/browser_dialer/dialer.go": {
-    "mtime": 1781866637.614323,
-    "seen": 1787729888.4492078,
-    "ast_hash": "47354b2a8dede129ae7bce0f3b01faa0",
+    "mtime": 1788243323.7604637,
+    "seen": 1788246110.7791739,
+    "ast_hash": "9a45ea8a37b81a62c2af35684b85cc6e",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/finalmask.go": {
-    "mtime": 1781932575.608197,
-    "seen": 1787729888.4492376,
-    "ast_hash": "db9db383c0d4848b4699e857f54d18f9",
+    "mtime": 1788243323.7705956,
+    "seen": 1788246110.786799,
+    "ast_hash": "88353bf42cf3a6684b2c5bf97567b7c8",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/tcp_test.go": {
@@ -4542,9 +4506,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/udp_test.go": {
-    "mtime": 1781932575.6150434,
-    "seen": 1787729888.4494817,
-    "ast_hash": "f52dc3d44971f7273ad25f26333cca24",
+    "mtime": 1788243323.8227613,
+    "seen": 1788246110.83225,
+    "ast_hash": "570ec04e500e44c6f7014eea36079b37",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/fragment/config.go": {
@@ -4554,15 +4518,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/fragment/config.pb.go": {
-    "mtime": 1781866637.624332,
-    "seen": 1787729888.4492452,
-    "ast_hash": "5b03c018e6f7b96655278f77c897018c",
+    "mtime": 1788243323.7729323,
+    "seen": 1788246110.7879944,
+    "ast_hash": "f20ddae475fc67e9977d3cc24e27b55b",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/fragment/conn.go": {
-    "mtime": 1781866637.6263313,
-    "seen": 1787729888.449249,
-    "ast_hash": "0ed4eb98fce9cbab0faf149a571f8e37",
+    "mtime": 1788243323.78012,
+    "seen": 1788246110.788,
+    "ast_hash": "d8a5a53d7097ce8b5729e4acbe039f43",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/header/custom/config.go": {
@@ -4758,9 +4722,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/realm/client.go": {
-    "mtime": 1781866637.6569698,
-    "seen": 1787729888.4494052,
-    "ast_hash": "04f8758283c35ecf8d09cc61f09ac3cf",
+    "mtime": 1788243323.7851653,
+    "seen": 1788246110.820067,
+    "ast_hash": "88aa1ff020e47f9f4156af79bc9e6047",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/realm/config.go": {
@@ -4770,9 +4734,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/realm/config.pb.go": {
-    "mtime": 1781866637.658972,
-    "seen": 1787729888.4494135,
-    "ast_hash": "8415b98bfdfc9a1e955213fbe4d73b31",
+    "mtime": 1788243323.7885523,
+    "seen": 1788246110.8211007,
+    "ast_hash": "11a1f1e7f117c9a33c9bdf6ded1ff284",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/realm/http.go": {
@@ -4788,15 +4752,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/realm/server.go": {
-    "mtime": 1781866637.6633556,
-    "seen": 1787729888.4494238,
-    "ast_hash": "f8820fd3c31c928553a6efd8c2fb6f1a",
+    "mtime": 1788243323.7981954,
+    "seen": 1788246110.8228586,
+    "ast_hash": "8d4b45d6152d13f66569bb2dfe86b3c3",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/realm/stun.go": {
-    "mtime": 1781866637.6633556,
-    "seen": 1787729888.4494274,
-    "ast_hash": "b28592aa208bfd0fa687df3eb6f7896f",
+    "mtime": 1788243323.8014388,
+    "seen": 1788246110.8228629,
+    "ast_hash": "85349aa986615e145b466ae35c4c1a40",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/salamander/config.go": {
@@ -4824,15 +4788,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/salamander/salamander.go": {
-    "mtime": 1781932575.6093078,
-    "seen": 1787729888.4494455,
-    "ast_hash": "c5674588d3c07d981b6791473f6ca1c2",
+    "mtime": 1788243323.8049302,
+    "seen": 1788246110.826623,
+    "ast_hash": "cf4456e0817ee1553359ff5f166a0132",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/sudoku/codec.go": {
-    "mtime": 1781932575.610814,
-    "seen": 1787729888.4494495,
-    "ast_hash": "67b365bbe29351093fdaa7afbf0d6b7b",
+    "mtime": 1788243323.808199,
+    "seen": 1788246110.8266296,
+    "ast_hash": "0ae4be08c574be1ef2b80d4a1aa7473d",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/sudoku/config.go": {
@@ -4854,9 +4818,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/sudoku/conn_tcp_packed.go": {
-    "mtime": 1781932575.6124322,
-    "seen": 1787729888.4494646,
-    "ast_hash": "a11cc9f755e5ba2aa94209d6d86b4703",
+    "mtime": 1788243323.8124917,
+    "seen": 1788246110.830592,
+    "ast_hash": "0d371b305452fae40078c38a1833a94d",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/sudoku/conn_udp.go": {
@@ -4866,15 +4830,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/sudoku/sudoku_test.go": {
-    "mtime": 1781866637.674366,
-    "seen": 1787729888.4494712,
-    "ast_hash": "62b328cb18358f55580d49bcdac49c6d",
+    "mtime": 1788243323.8156579,
+    "seen": 1788246110.831263,
+    "ast_hash": "7b84e408c8c17b4500eda10830ce8d76",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/sudoku/table.go": {
-    "mtime": 1781932575.6138535,
-    "seen": 1787729888.449475,
-    "ast_hash": "632f00d7dd4ce998bd2e4dbebaf6f478",
+    "mtime": 1788243323.8191476,
+    "seen": 1788246110.8312662,
+    "ast_hash": "a362dae2dc89c17ae7b7dc76b6976707",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/xdns/client.go": {
@@ -4944,9 +4908,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/xicmp/server.go": {
-    "mtime": 1781932575.6165261,
-    "seen": 1787729888.449524,
-    "ast_hash": "12f5433bd63810448837bfd9b1a66233",
+    "mtime": 1788243323.826166,
+    "seen": 1788246110.843859,
+    "ast_hash": "8fba76db2b02cdb19336b01b5aeda870",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/finalmask/xicmp/xicmp_test.go": {
@@ -4962,9 +4926,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/config.pb.go": {
-    "mtime": 1781934275.7134614,
-    "seen": 1787729888.4495342,
-    "ast_hash": "87ba75c7026bd9c054211a4eeb07cc58",
+    "mtime": 1788243323.9553015,
+    "seen": 1788246110.846143,
+    "ast_hash": "e995169700a3d08657b92b4099e3bf60",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/config_test.go": {
@@ -4974,9 +4938,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/dial.go": {
-    "mtime": 1781932575.6195672,
-    "seen": 1787729888.449541,
-    "ast_hash": "5d4f81e35d875c81f460c844ac8590e6",
+    "mtime": 1788243323.960303,
+    "seen": 1788246110.8470843,
+    "ast_hash": "22e1a4c0dc3ca17e1f450ec613c5671b",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/grpc.go": {
@@ -4986,9 +4950,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/hub.go": {
-    "mtime": 1781932575.6254473,
-    "seen": 1787729888.4495714,
-    "ast_hash": "a9a0d7daf6d3df7b27778f9af1dcca3b",
+    "mtime": 1788243323.9894836,
+    "seen": 1788246110.8501642,
+    "ast_hash": "12b61a3b7f6a8ddbd334b940db1beb3d",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/encoding/customSeviceName.go": {
@@ -5004,27 +4968,27 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/encoding/hunkconn.go": {
-    "mtime": 1781932575.6210744,
-    "seen": 1787729888.449553,
-    "ast_hash": "1a998b7c0d242b5dfc067510b2aa63c2",
+    "mtime": 1788243323.9653022,
+    "seen": 1788246110.8491538,
+    "ast_hash": "09d4808edb159aebb881f1aa1c6b66fe",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/encoding/multiconn.go": {
-    "mtime": 1781932575.6221907,
-    "seen": 1787729888.449557,
-    "ast_hash": "0c1d8b4db57c0d4309a07059e2747ee7",
+    "mtime": 1788243323.9685683,
+    "seen": 1788246110.8491597,
+    "ast_hash": "5962562c454384f7a4068f94b2c11ca6",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/encoding/stream.pb.go": {
-    "mtime": 1781934275.7156506,
-    "seen": 1787729888.4495606,
-    "ast_hash": "58588d4ea09fadfcab082fdf9d252349",
+    "mtime": 1788243323.9811285,
+    "seen": 1788246110.8491752,
+    "ast_hash": "6887cd5abebad7194135959da8aec959",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/grpc/encoding/stream_grpc.pb.go": {
-    "mtime": 1781934275.7183013,
-    "seen": 1787729888.449564,
-    "ast_hash": "19945317179b22cba3629f6c9b1f512c",
+    "mtime": 1788243323.9852812,
+    "seen": 1788246110.8491795,
+    "ast_hash": "fc001623b7e738171ccf1da16aba6be4",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/headers/http/config.go": {
@@ -5034,9 +4998,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/headers/http/config.pb.go": {
-    "mtime": 1781934275.719404,
-    "seen": 1787729888.449586,
-    "ast_hash": "03c325dbd2b0d9a23716a8e579a8e5c2",
+    "mtime": 1788243323.9939744,
+    "seen": 1788246110.8533683,
+    "ast_hash": "6b74eb41d8924478a1a9d6d6853dc88d",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/headers/http/http.go": {
@@ -5064,9 +5028,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/headers/noop/config.pb.go": {
-    "mtime": 1781934275.7209215,
-    "seen": 1787729888.4496045,
-    "ast_hash": "ce7981d048cb1b931ecdae906e711806",
+    "mtime": 1788243323.9981306,
+    "seen": 1788246110.858536,
+    "ast_hash": "4880bdd24f62250de8afd8e1c6e039e4",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/headers/noop/noop.go": {
@@ -5082,9 +5046,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/httpupgrade/config.pb.go": {
-    "mtime": 1781934275.7219949,
-    "seen": 1787729888.4496155,
-    "ast_hash": "d8271d16debd7f2a5721afcf1bc8ee3e",
+    "mtime": 1788243324.0005367,
+    "seen": 1788246110.8604503,
+    "ast_hash": "8f0c26bc62a31f305c5f2817ebc553be",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/httpupgrade/connection.go": {
@@ -5106,15 +5070,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/httpupgrade/httpupgrade_test.go": {
-    "mtime": 1781932575.631016,
-    "seen": 1787729888.4496286,
-    "ast_hash": "6a947b4a4b8659e5d5b2c26f79877a69",
+    "mtime": 1788243324.0051794,
+    "seen": 1788246110.8638728,
+    "ast_hash": "e5e74429206a650b227a2bf05b4db967",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/httpupgrade/hub.go": {
-    "mtime": 1781932575.632046,
-    "seen": 1787729888.449632,
-    "ast_hash": "dfcc27593f37681180f35dd3a4776909",
+    "mtime": 1788243324.0093358,
+    "seen": 1788246110.8638783,
+    "ast_hash": "cea414b0a3ae23040a6e2407d4e866e6",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/config.go": {
@@ -5124,9 +5088,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/config.pb.go": {
-    "mtime": 1781866637.7206554,
-    "seen": 1787729888.4496403,
-    "ast_hash": "62b495ad715da6f4349602acdb71fcb2",
+    "mtime": 1788243324.014124,
+    "seen": 1788246110.864858,
+    "ast_hash": "c1adc8719c62dc961bce8841bcbc898c",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/conn.go": {
@@ -5136,21 +5100,21 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/dialer.go": {
-    "mtime": 1781932575.6340551,
-    "seen": 1787729888.449689,
-    "ast_hash": "6c2344ed1c8246cabda6ec0400b1f8cd",
+    "mtime": 1788243324.0358672,
+    "seen": 1788246110.8756456,
+    "ast_hash": "536e4644a75455d1431ccd8fb39ca785",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/hub.go": {
-    "mtime": 1781866637.733685,
-    "seen": 1787729888.449692,
-    "ast_hash": "1080ac941b36557d4d1d86948100e949",
+    "mtime": 1788243324.0403376,
+    "seen": 1788246110.875651,
+    "ast_hash": "8a4d4630ee9605b412f42513d0fe578b",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/congestion/utils.go": {
-    "mtime": 1781866637.731682,
-    "seen": 1787729888.4496818,
-    "ast_hash": "c07db63cb1d55937020125f5d2079327",
+    "mtime": 1788243324.031722,
+    "seen": 1788246110.8746965,
+    "ast_hash": "e97b8e60c1673c15faac8fe6f752f9ff",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/congestion/bbr/bandwidth.go": {
@@ -5202,9 +5166,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/congestion/brutal/brutal.go": {
-    "mtime": 1781866637.7296846,
-    "seen": 1787729888.4496741,
-    "ast_hash": "e6d009e3b4cbc82e54e38cbfc58dfe7f",
+    "mtime": 1788243324.0243118,
+    "seen": 1788246110.8736835,
+    "ast_hash": "a7e0a10ba57a02f842367c2fcf542092",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/congestion/common/pacer.go": {
@@ -5214,9 +5178,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/hysteria/udphop/conn.go": {
-    "mtime": 1781932575.63511,
-    "seen": 1787729888.4496946,
-    "ast_hash": "5256df5fe6014596bc76c841266ab5da",
+    "mtime": 1788243324.0447125,
+    "seen": 1788246110.8756545,
+    "ast_hash": "47cd0721fc502d51e6d85a2bcae6e566",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/kcp/config.go": {
@@ -5226,9 +5190,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/kcp/config.pb.go": {
-    "mtime": 1781934275.7234125,
-    "seen": 1787729888.449704,
-    "ast_hash": "070c90b1173c3f2ea7e850dd31aaa8e5",
+    "mtime": 1788243324.0508845,
+    "seen": 1788246110.8776352,
+    "ast_hash": "d1f0964a63dc504d8c86b0e8e137d6e4",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/kcp/connection.go": {
@@ -5316,9 +5280,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/reality/config.pb.go": {
-    "mtime": 1781934275.7249181,
-    "seen": 1787729888.449759,
-    "ast_hash": "7eb6fad055f0be8264b83b73366c9f1e",
+    "mtime": 1788243324.0554397,
+    "seen": 1788246110.8943856,
+    "ast_hash": "1188ed57f9f137fc1ab179936de81b2e",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/reality/reality.go": {
@@ -5334,9 +5298,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/client.go": {
-    "mtime": 1781932575.6396177,
-    "seen": 1787729888.449798,
-    "ast_hash": "597208f977ae8cb6e9df953eb1dad66a",
+    "mtime": 1788243324.06856,
+    "seen": 1788246110.9052327,
+    "ast_hash": "b22a59fd311ada81a0bb0600fb75961a",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/common.go": {
@@ -5346,21 +5310,21 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/config.go": {
-    "mtime": 1781932575.641186,
-    "seen": 1787729888.4498048,
-    "ast_hash": "b4bd5f571ef7df72d3e95ae352ec33ac",
+    "mtime": 1788243324.0722985,
+    "seen": 1788246110.9061143,
+    "ast_hash": "2dcceef90931336453338c9a39915423",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/config.pb.go": {
-    "mtime": 1781934275.7264256,
-    "seen": 1787729888.4498084,
-    "ast_hash": "86a6da6c5add1b9a3d888871de8d285f",
+    "mtime": 1788243324.0753517,
+    "seen": 1788246110.9061184,
+    "ast_hash": "9a9b7328ddea7303cd532a530931a6fb",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/config_test.go": {
-    "mtime": 1781866637.7627726,
-    "seen": 1787729888.4498122,
-    "ast_hash": "1e213d14496eabb8d4118d43f138dac8",
+    "mtime": 1788243324.0832856,
+    "seen": 1788246110.9061222,
+    "ast_hash": "26c5a8521ee97ecbf262236d2639a556",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/connection.go": {
@@ -5370,9 +5334,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/dialer.go": {
-    "mtime": 1781932575.6444285,
-    "seen": 1787729888.4498196,
-    "ast_hash": "d6894597a51f61a68053caf948840848",
+    "mtime": 1788243324.086636,
+    "seen": 1788246110.9069374,
+    "ast_hash": "5a2ec9d62c23d1244ac2c95bf31069e4",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/h1_conn.go": {
@@ -5382,21 +5346,21 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/hub.go": {
-    "mtime": 1781932575.6465075,
-    "seen": 1787729888.4498267,
-    "ast_hash": "405666902724c5e6c929ca38e2cc4b21",
+    "mtime": 1788243324.090763,
+    "seen": 1788246110.9079487,
+    "ast_hash": "c723b7bffa73dcfe18bb9985f03a905c",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/mux.go": {
-    "mtime": 1781932575.6480048,
-    "seen": 1787729888.4498312,
-    "ast_hash": "e95d4dce5c3c81aea56306fa8c42dd23",
+    "mtime": 1788243324.0937626,
+    "seen": 1788246110.9079552,
+    "ast_hash": "4343013e596c850b822fbdb940e1ff84",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/mux_test.go": {
-    "mtime": 1781932575.6495984,
-    "seen": 1787729888.4498355,
-    "ast_hash": "bf4e27d57cc209d88b8fa2cb406daa42",
+    "mtime": 1788243324.097196,
+    "seen": 1788246110.9079616,
+    "ast_hash": "9a7e0c0a9d7af1a964ff1af14774df6f",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/splithttp.go": {
@@ -5406,15 +5370,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/splithttp_test.go": {
-    "mtime": 1781932575.6508365,
-    "seen": 1787729888.4498425,
-    "ast_hash": "d092518488d30a9b7ab98e998da1b2d9",
+    "mtime": 1788243324.1001992,
+    "seen": 1788246110.909009,
+    "ast_hash": "8b45e6d10ad61b1e92de1607c078cbc7",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/upload_queue.go": {
-    "mtime": 1781866637.7700193,
-    "seen": 1787729888.449846,
-    "ast_hash": "62fdd1c65b3aad6ee985133041d2325b",
+    "mtime": 1788243324.1046343,
+    "seen": 1788246110.9090216,
+    "ast_hash": "6712bdebc503c20309f0d2dc383fc703",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/upload_queue_test.go": {
@@ -5424,9 +5388,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/splithttp/xpadding.go": {
-    "mtime": 1781932575.6523454,
-    "seen": 1787729888.449853,
-    "ast_hash": "ffbc3a237c8133b014f0968b4070f4f9",
+    "mtime": 1788243324.1081548,
+    "seen": 1788246110.9101691,
+    "ast_hash": "ca2a1006587906b3f45f086b2c26c5bb",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/stat/connection.go": {
@@ -5460,9 +5424,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tcp/config.pb.go": {
-    "mtime": 1781934275.7277105,
-    "seen": 1787729888.4498847,
-    "ast_hash": "ac069b766fc47ba8c8aee856f34bc6da",
+    "mtime": 1788243324.114488,
+    "seen": 1788246110.9190686,
+    "ast_hash": "034a649a70dfde1a615a6362de177423",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tcp/dialer.go": {
@@ -5472,9 +5436,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tcp/hub.go": {
-    "mtime": 1781866637.783318,
-    "seen": 1787729888.4498923,
-    "ast_hash": "a41bbdf968f400189652aec1ceac88a4",
+    "mtime": 1788243324.1175234,
+    "seen": 1788246110.9210172,
+    "ast_hash": "92d39b8ebb3eecf28a82e0f2b69927b7",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tcp/sockopt_darwin.go": {
@@ -5514,15 +5478,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tls/config.go": {
-    "mtime": 1781934275.729219,
-    "seen": 1787729888.4499195,
-    "ast_hash": "4d2b983099a4a7f2fda7dda3df187315",
+    "mtime": 1788243324.124173,
+    "seen": 1788246110.9311807,
+    "ast_hash": "22274481b1c409fcb9734c340f2d7f85",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tls/config.pb.go": {
-    "mtime": 1781934275.7312727,
-    "seen": 1787729888.449923,
-    "ast_hash": "59f5281c326f176028ae18ca64d78fc4",
+    "mtime": 1788243324.1277163,
+    "seen": 1788246110.9311857,
+    "ast_hash": "e6e89cae37882a25bfce1bd4390f60d4",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tls/config_other.go": {
@@ -5544,15 +5508,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tls/ech.go": {
-    "mtime": 1781932575.6597188,
-    "seen": 1787729888.4499366,
-    "ast_hash": "dd69426f723ed9dd054d21ae17ca175c",
+    "mtime": 1788243324.1308672,
+    "seen": 1788246110.9347794,
+    "ast_hash": "16a374a4c95b275ccf749d6fc47ffd0f",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tls/ech_test.go": {
-    "mtime": 1781866637.7938402,
-    "seen": 1787729888.4499395,
-    "ast_hash": "3b668793bc7c20683dc8c2b2108f8ca3",
+    "mtime": 1788243324.1342442,
+    "seen": 1788246110.9347844,
+    "ast_hash": "853980997ee73fccf487286970eb77cc",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/tls/grpc.go": {
@@ -5592,9 +5556,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/udp/config.pb.go": {
-    "mtime": 1781934275.7332466,
-    "seen": 1787729888.449964,
-    "ast_hash": "d8afc4b113a3dfdd813cd252fa28b641",
+    "mtime": 1788243324.1596048,
+    "seen": 1788246110.9419365,
+    "ast_hash": "99188eee48e9c391fb9999df4c672971",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/udp/dialer.go": {
@@ -5640,9 +5604,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/udp/hub_other.go": {
-    "mtime": 1781866637.8058436,
-    "seen": 1787729888.4499943,
-    "ast_hash": "01a9e68e30f3a845eee239b1e6ed7d79",
+    "mtime": 1788243324.1713417,
+    "seen": 1788246110.950309,
+    "ast_hash": "989fbf7c253d907e3e3cdac3cac05d01",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/udp/udp.go": {
@@ -5658,9 +5622,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/websocket/config.pb.go": {
-    "mtime": 1781934275.734775,
-    "seen": 1787729888.4500046,
-    "ast_hash": "157953ad4353226d97041a468a8a9462",
+    "mtime": 1788243324.1763518,
+    "seen": 1788246110.9561467,
+    "ast_hash": "5be4db5c8bed90c14fe5011576d43241",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/websocket/connection.go": {
@@ -5676,9 +5640,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/websocket/hub.go": {
-    "mtime": 1781932575.6642663,
-    "seen": 1787729888.4500153,
-    "ast_hash": "7a53f7a4e4f40a45849d1ea6df79ddcc",
+    "mtime": 1788243324.180387,
+    "seen": 1788246110.9900079,
+    "ast_hash": "ede0c990dbf039ebbd673bb708addb81",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/websocket/ws.go": {
@@ -5688,9 +5652,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/websocket/ws_test.go": {
-    "mtime": 1781932575.6653302,
-    "seen": 1787729888.4500222,
-    "ast_hash": "c4963325d08f20269b58934cbe34b5a1",
+    "mtime": 1788243324.183436,
+    "seen": 1788246110.9923995,
+    "ast_hash": "6fdd582ede415ab8ce9c9395f2e9d69e",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/pipe/impl.go": {
@@ -9138,9 +9102,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/README.md": {
-    "mtime": 1781932575.4561954,
-    "seen": 1787729888.4503827,
-    "ast_hash": "027f5964ef153edf038644830262d2f2",
+    "mtime": 1788243322.9907494,
+    "seen": 1788246111.1279373,
+    "ast_hash": "7cade660163bcc60a1ab291821aa4420",
     "semantic_hash": ""
   },
   "deps/xray-core/SECURITY.md": {
@@ -9150,9 +9114,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/tun/README.md": {
-    "mtime": 1781866637.5237513,
-    "seen": 1787729888.4503891,
-    "ast_hash": "313dde99ec913f45ab7ccfee8fed9c51",
+    "mtime": 1788243323.6136851,
+    "seen": 1788246111.1294165,
+    "ast_hash": "2eca84e1f6e29e472f8f93c37acf3a46",
     "semantic_hash": ""
   },
   "deps/xray-core/transport/internet/browser_dialer/dialer.html": {
@@ -15120,15 +15084,15 @@
     "semantic_hash": ""
   },
   "deps/xray-core/go.mod": {
-    "mtime": 1781934275.668102,
-    "seen": 1787729888.4483895,
-    "ast_hash": "e022090b325027ff1e8e896c27b18da2",
+    "mtime": 1788243323.3381727,
+    "seen": 1788246110.5512066,
+    "ast_hash": "74bcfccd17e28b3b6c630dfe07f02558",
     "semantic_hash": ""
   },
   "example/config.json": {
-    "mtime": 1781866626.3922281,
-    "seen": 1787729888.450047,
-    "ast_hash": "64db6642f1c2437939303ed48fc7f3f1",
+    "mtime": 1788235171.8344696,
+    "seen": 1788246111.0053253,
+    "ast_hash": "a9c17088139807637ae64d077d02480d",
     "semantic_hash": ""
   },
   "example/custom_inbound.json": {
@@ -15150,9 +15114,9 @@
     "semantic_hash": ""
   },
   "go.mod": {
-    "mtime": 1781930662.540903,
-    "seen": 1787729888.4500604,
-    "ast_hash": "c1eee6a7cdd0811bfce4f3e4afc9992d",
+    "mtime": 1788244203.068011,
+    "seen": 1788246111.010212,
+    "ast_hash": "2be6cf78845f280c7c4cd5b7046a2654",
     "semantic_hash": ""
   },
   "rcon-script/initconfig.sh": {
@@ -15378,33 +15342,33 @@
     "semantic_hash": ""
   },
   "deps/xray-core/.github/workflows/docker.yml": {
-    "mtime": 1781932575.450022,
-    "seen": 1787729888.450361,
-    "ast_hash": "b472f2cffc6b7ed0d574004fb7169a85",
+    "mtime": 1788243322.973466,
+    "seen": 1788246111.126389,
+    "ast_hash": "46734baca3c2ae32ab906bc4e15e21f6",
     "semantic_hash": ""
   },
   "deps/xray-core/.github/workflows/release-win7.yml": {
-    "mtime": 1781932575.4505565,
-    "seen": 1787729888.4503644,
-    "ast_hash": "6b006f3446fd537c772b784b5703885a",
+    "mtime": 1788243322.977715,
+    "seen": 1788246111.1263976,
+    "ast_hash": "24ddea9b0d85fbc63d8c9060c121229e",
     "semantic_hash": ""
   },
   "deps/xray-core/.github/workflows/release.yml": {
-    "mtime": 1781932575.453086,
-    "seen": 1787729888.4503682,
-    "ast_hash": "51f3554b83f305465788b3428bce6744",
+    "mtime": 1788243322.9810908,
+    "seen": 1788246111.1264048,
+    "ast_hash": "1f1cf4bf8a635814b98fdb7ba9dee93d",
     "semantic_hash": ""
   },
   "deps/xray-core/.github/workflows/scheduled-assets-update.yml": {
-    "mtime": 1781932575.4540849,
-    "seen": 1787729888.450372,
-    "ast_hash": "a29760f3fe6c8fa0440a80f27577cc94",
+    "mtime": 1788243322.9836466,
+    "seen": 1788246111.1264124,
+    "ast_hash": "636480476f3e798f44bd5ab6f109e106",
     "semantic_hash": ""
   },
   "deps/xray-core/.github/workflows/test.yml": {
-    "mtime": 1781932575.4555907,
-    "seen": 1787729888.4503746,
-    "ast_hash": "57b15364c2bddcb574d022670019a67e",
+    "mtime": 1788243322.987647,
+    "seen": 1788246111.12642,
+    "ast_hash": "136c0330ddbcd3904a9adb65a6778605",
     "semantic_hash": ""
   },
   "SupportProject/v2node/api/v2board/node.go": {
@@ -15696,9 +15660,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/infra/conf/anytls.go": {
-    "mtime": 1788233359.1423619,
-    "seen": 1788235115.852583,
-    "ast_hash": "f266d968229accd165c1e60d0df9e176",
+    "mtime": 1788243323.3487358,
+    "seen": 1788246110.5512118,
+    "ast_hash": "858c361b4e3b5f0e8ea73bc02d49c0e4",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/anytls.go": {
@@ -15708,9 +15672,9 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/config.go": {
-    "mtime": 1788233359.1673646,
-    "seen": 1788235115.9752166,
-    "ast_hash": "cf9223d8b13318cb2930455159253cd7",
+    "mtime": 1788243323.4240496,
+    "seen": 1788246110.6602468,
+    "ast_hash": "d3e8f6db8f6fde4d6babecdb7045012f",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/config.pb.go": {
@@ -15720,21 +15684,21 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/frame.go": {
-    "mtime": 1788233359.1794958,
-    "seen": 1788235115.9752266,
-    "ast_hash": "8a110b745362807ca0daca125542eba5",
+    "mtime": 1788243323.4333687,
+    "seen": 1788246110.6616237,
+    "ast_hash": "afe721ad8b91c86b519be0820a17c4a3",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/inbound.go": {
-    "mtime": 1788233359.184497,
-    "seen": 1788235115.9752302,
-    "ast_hash": "dea46f7435e4cf24c4bbbfb73fa4fa90",
+    "mtime": 1788243323.4376352,
+    "seen": 1788246110.6616306,
+    "ast_hash": "ff01c4c02d2f9e3921c62f9e276b51ef",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/outbound.go": {
-    "mtime": 1788233359.1884968,
-    "seen": 1788235115.9752345,
-    "ast_hash": "7e85270533d3557a649637aec0a41ed4",
+    "mtime": 1788243323.440884,
+    "seen": 1788246110.6616354,
+    "ast_hash": "a03c3af2f870ef511358df8d9f327974",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/padding.go": {
@@ -15744,27 +15708,27 @@
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/session.go": {
-    "mtime": 1788233432.2805505,
-    "seen": 1788235115.975243,
-    "ast_hash": "a7144ac940f3484de8927f964183faf1",
+    "mtime": 1788243323.444744,
+    "seen": 1788246110.6629162,
+    "ast_hash": "b290a2e99e7096c6b47cb4532bfe916e",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/session_client.go": {
-    "mtime": 1788233359.1995087,
-    "seen": 1788235115.9752467,
-    "ast_hash": "9710589843c05a3a9d007db1adc0815c",
+    "mtime": 1788243323.447983,
+    "seen": 1788246110.662922,
+    "ast_hash": "5c0f82df5d3580adcfdbb2d44d19cfd4",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/stream.go": {
-    "mtime": 1788233359.203505,
-    "seen": 1788235115.9752514,
-    "ast_hash": "545365b2e92a3114205292c4506687e6",
+    "mtime": 1788243323.4517343,
+    "seen": 1788246110.6629264,
+    "ast_hash": "f0e5fed293b83403a4fc2861122e08e3",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/user.go": {
-    "mtime": 1788233359.20851,
-    "seen": 1788235115.9752562,
-    "ast_hash": "04962c25caec7f86f9dbcda51b56346c",
+    "mtime": 1788243323.455965,
+    "seen": 1788246110.6629314,
+    "ast_hash": "f230a44c603b97d601ef74fc40d695cd",
     "semantic_hash": ""
   },
   "deps/xray-core/proxy/anytls/utils.go": {
@@ -15789,6 +15753,402 @@
     "mtime": 1787185829.0,
     "seen": 1788235116.4513907,
     "ast_hash": "38d2a015cc01680664b87a4e5304f91c",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/app/metrics/metrics_test.go": {
+    "mtime": 1788243323.048235,
+    "seen": 1788246110.2538204,
+    "ast_hash": "0d1ef37ebed8e55008bdadff83666895",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/common/antireplay/sharded_bloomring.go": {
+    "mtime": 1788243323.174697,
+    "seen": 1788246110.3115952,
+    "ast_hash": "4cd3b25b349c958e08b067228a88d563",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/common/geodata/consts.go": {
+    "mtime": 1788243323.1948729,
+    "seen": 1788246110.366314,
+    "ast_hash": "37c274ee4cdfa20a0ae6924b62ffbbc0",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/common/net/find_process_darwin.go": {
+    "mtime": 1788243323.2287855,
+    "seen": 1788246110.4323912,
+    "ast_hash": "b4f368d4ff1a8fcf903fbc89620e76e6",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/common/net/find_process_darwin_test.go": {
+    "mtime": 1788243323.2347844,
+    "seen": 1788246110.432395,
+    "ast_hash": "94a9f7b0d2e6bca1a3b852a19476506c",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/common/net/find_process_ios.go": {
+    "mtime": 1788243323.2371101,
+    "seen": 1788246110.432398,
+    "ast_hash": "933fe6256ebc4489a90c92fa8f7af3fc",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/common/platform/env_reload.go": {
+    "mtime": 1788243323.2540512,
+    "seen": 1788246110.4434035,
+    "ast_hash": "61ebf9cf0f2e843b019bc29390a633be",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/common/protocol/bittorrent/bittorrent_test.go": {
+    "mtime": 1788243323.2615962,
+    "seen": 1788246110.4513721,
+    "ast_hash": "1133a0c1ad1bc47c03c68480467d199a",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/common/singbridge/tls.go": {
+    "mtime": 1788243323.3045025,
+    "seen": 1788246110.5013664,
+    "ast_hash": "09080026b02c674c0ba055fe4759486e",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/infra/conf/env_test.go": {
+    "mtime": 1788243323.3553908,
+    "seen": 1788246110.5656688,
+    "ast_hash": "d8c1345dc0b356897be32bc5c945e3c9",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/infra/conf/transport_finalmask.go": {
+    "mtime": 1788243323.3765638,
+    "seen": 1788246110.5973148,
+    "ast_hash": "6db521928e675d9b30d05f0f1ee31447",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/infra/conf/transport_finalmask_xmc_test.go": {
+    "mtime": 1788243323.379018,
+    "seen": 1788246110.597319,
+    "ast_hash": "418b34c284a86e7bb6020947b7dc8428",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/infra/conf/transport_method.go": {
+    "mtime": 1788243323.3867476,
+    "seen": 1788246110.5973256,
+    "ast_hash": "317802ecee52ee80460f99b5a875e5e6",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/infra/conf/transport_security.go": {
+    "mtime": 1788243323.3899035,
+    "seen": 1788246110.597328,
+    "ast_hash": "9b867172d7e7108841a88375c250ac03",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/infra/conf/transport_sockopt.go": {
+    "mtime": 1788243323.3923519,
+    "seen": 1788246110.5973303,
+    "ast_hash": "92ee2ca36aaed2402e463973daf14240",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/infra/conf/tuic.go": {
+    "mtime": 1788243323.3949172,
+    "seen": 1788246110.5986319,
+    "ast_hash": "757fc2c0549a2ccf0dce64eb2a56ada9",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/dokodemo/fakeudp_openbsd.go": {
+    "mtime": 1788243323.4710076,
+    "seen": 1788246110.6743734,
+    "ast_hash": "3bb9571303666c88d50348f761dd15c9",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/shadowsocks/attack_defense.go": {
+    "mtime": 1788243323.5236964,
+    "seen": 1788246110.682649,
+    "ast_hash": "8e2d8c7257933c4b9eedb97983bdf0bc",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/shadowsocks/pool.go": {
+    "mtime": 1788243323.5394025,
+    "seen": 1788246110.684536,
+    "ast_hash": "7965631c13cdd9cb8de46448593bda5d",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/shadowsocks/user_cache.go": {
+    "mtime": 1788243323.5551608,
+    "seen": 1788246110.6864767,
+    "ast_hash": "e713e9a915319114ba77542053fd0ed9",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/tuic/config.go": {
+    "mtime": 1788243323.5958426,
+    "seen": 1788246110.702532,
+    "ast_hash": "ed1bed4b0b27039cac154a5868531b49",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/tuic/config.pb.go": {
+    "mtime": 1788243323.5989819,
+    "seen": 1788246110.702537,
+    "ast_hash": "38ee982e393a2c0c284e0a5ffbd24bbc",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/tuic/inbound.go": {
+    "mtime": 1788243323.6033037,
+    "seen": 1788246110.7025418,
+    "ast_hash": "82d526bc84f23097b4c42d4dab9364c2",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/tuic/outbound.go": {
+    "mtime": 1788243323.6071224,
+    "seen": 1788246110.7025464,
+    "ast_hash": "3532514a072d6557f85fa8ba2321045c",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/tuic/tuic.go": {
+    "mtime": 1788243323.6091218,
+    "seen": 1788246110.7027962,
+    "ast_hash": "0749d5df0eae2471c666a061398f2dc3",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/tun/handler_test.go": {
+    "mtime": 1788243323.6303535,
+    "seen": 1788246110.7028205,
+    "ast_hash": "2ef9be1f401d04270abbda6af0176441",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/tun/tun_darwin_test.go": {
+    "mtime": 1788243323.6398623,
+    "seen": 1788246110.7102084,
+    "ast_hash": "f04015ada44981ce76f6045c31a41fdd",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/tun/tun_freebsd_test.go": {
+    "mtime": 1788243323.6495838,
+    "seen": 1788246110.7102249,
+    "ast_hash": "19813570b8fd90e7a3740748a5cfaeaf",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/proxy/wireguard/netstack.go": {
+    "mtime": 1788243323.7301073,
+    "seen": 1788246110.7439451,
+    "ast_hash": "54e303ee254dab18b733be03a7ebc46b",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/realm/portmap.go": {
+    "mtime": 1788243323.7944305,
+    "seen": 1788246110.821973,
+    "ast_hash": "251a995831e09dc0268baeac8a4ac4fe",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xicmp/server_oob.go": {
+    "mtime": 1788243323.829356,
+    "seen": 1788246110.843866,
+    "ast_hash": "daef9680f9f9f2652b9f67fc2c537d29",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/cfb8.go": {
+    "mtime": 1788243323.8804781,
+    "seen": 1788246110.845064,
+    "ast_hash": "a921c7a797176bd9307f018f3e603972",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/client.go": {
+    "mtime": 1788243323.882509,
+    "seen": 1788246110.8450687,
+    "ast_hash": "64ed0daa8ad8b247a584997dc07d5008",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/config.go": {
+    "mtime": 1788243323.886797,
+    "seen": 1788246110.8450723,
+    "ast_hash": "580f5f5bcce8bc3fb65d863b03d60081",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/config.pb.go": {
+    "mtime": 1788243323.8899558,
+    "seen": 1788246110.8450768,
+    "ast_hash": "9e3ea72768fb305978166b62c38a68cb",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/deadline.go": {
+    "mtime": 1788243323.8949554,
+    "seen": 1788246110.8450809,
+    "ast_hash": "c720d1785c42d58a25c742b0d9767a75",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/deadline_test.go": {
+    "mtime": 1788243323.8990862,
+    "seen": 1788246110.8450842,
+    "ast_hash": "0dd7b9483cd20237e66f13af9e6e122c",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/derivation.go": {
+    "mtime": 1788243323.9030547,
+    "seen": 1788246110.845087,
+    "ast_hash": "5a9308c6c35bd8253f8a5681e0e1e8dc",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/derivation_test.go": {
+    "mtime": 1788243323.906047,
+    "seen": 1788246110.8450897,
+    "ast_hash": "279637e2c9d2b3d7d65db207257da8b7",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/handshake_test.go": {
+    "mtime": 1788243323.9081018,
+    "seen": 1788246110.845094,
+    "ast_hash": "c9af0aa7d3e89660398095cd6fbb1e61",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/packet_stream.go": {
+    "mtime": 1788243323.912167,
+    "seen": 1788246110.8450985,
+    "ast_hash": "309fcd04bdd5fe898fe1f36d0faf3de4",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/packet_stream_test.go": {
+    "mtime": 1788243323.9154544,
+    "seen": 1788246110.845102,
+    "ast_hash": "853d299a99a119fa1fd2454cf9d4def3",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/padding.go": {
+    "mtime": 1788243323.919529,
+    "seen": 1788246110.845106,
+    "ast_hash": "405aefef33e3488b0a3d4a00d65acd2e",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/padding_preset.go": {
+    "mtime": 1788243323.9226513,
+    "seen": 1788246110.84511,
+    "ast_hash": "0f02361c17b36703bca0af34a2ee39c8",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/padding_test.go": {
+    "mtime": 1788243323.925139,
+    "seen": 1788246110.8451138,
+    "ast_hash": "5d429051f683aa0dc3ebb4aa6b9cf25f",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/profile.go": {
+    "mtime": 1788243323.9299178,
+    "seen": 1788246110.8451178,
+    "ast_hash": "ef860b046cc6418f650d34357d0aa9fb",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/profile_test.go": {
+    "mtime": 1788243323.931923,
+    "seen": 1788246110.8451219,
+    "ast_hash": "59dcc6bdcd67e41f4bc7d309c59266aa",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/protocol.go": {
+    "mtime": 1788243323.9361846,
+    "seen": 1788246110.8451252,
+    "ast_hash": "9a5816b10b9d25b11774fd27c5fb1057",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/protocol_test.go": {
+    "mtime": 1788243323.9393651,
+    "seen": 1788246110.8451276,
+    "ast_hash": "a6fc32925bf27efce003b3511a676fb2",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/server.go": {
+    "mtime": 1788243323.9433663,
+    "seen": 1788246110.8451307,
+    "ast_hash": "d1e9726feec8226dca9040b93ec59ce7",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/stream.go": {
+    "mtime": 1788243323.9472628,
+    "seen": 1788246110.845134,
+    "ast_hash": "83cedd593175a92c806ed3b96b88210a",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/finalmask/xmc/stream_test.go": {
+    "mtime": 1788243323.9502797,
+    "seen": 1788246110.8451371,
+    "ast_hash": "ad385a1dbb7253535fc9867f9b848c4d",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/grpc/encoding/remoteaddr.go": {
+    "mtime": 1788243323.9725647,
+    "seen": 1788246110.8491652,
+    "ast_hash": "994c0160c2d408359ab40120be171ab8",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/grpc/encoding/remoteaddr_test.go": {
+    "mtime": 1788243323.9755948,
+    "seen": 1788246110.8491702,
+    "ast_hash": "98023d6ced4e9354d2075405a16428b6",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/hysteria/congestion/brutal/brutal_test.go": {
+    "mtime": 1788243324.0272267,
+    "seen": 1788246110.8736908,
+    "ast_hash": "37775db3f0f33b242c34f4eb3d761277",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/sockopt_openbsd.go": {
+    "mtime": 1788243324.0587304,
+    "seen": 1788246110.9011567,
+    "ast_hash": "2c208c04f70d98a332940de1e52bf739",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/tuic/config.go": {
+    "mtime": 1788243324.1382911,
+    "seen": 1788246110.9410048,
+    "ast_hash": "4edf7d3b7d309cff96ba44833e2e5a71",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/tuic/context.go": {
+    "mtime": 1788243324.1405826,
+    "seen": 1788246110.9410088,
+    "ast_hash": "41a44bb56542054ac949c48d135f8161",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/tuic/dialer.go": {
+    "mtime": 1788243324.1431446,
+    "seen": 1788246110.941013,
+    "ast_hash": "114d30a23792d36680a5020559e09336",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/tuic/hub.go": {
+    "mtime": 1788243324.1467228,
+    "seen": 1788246110.9410176,
+    "ast_hash": "949986907f149a79cd554df3824f21fb",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/tuic/packet.go": {
+    "mtime": 1788243324.150302,
+    "seen": 1788246110.9410253,
+    "ast_hash": "b5cc2edb1466cee610859259c2975aeb",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/tuic/protocol.go": {
+    "mtime": 1788243324.1528258,
+    "seen": 1788246110.9410312,
+    "ast_hash": "4d3fbbd766da56acdef9dfe792524ea0",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/tuic/service.go": {
+    "mtime": 1788243324.155536,
+    "seen": 1788246110.9410357,
+    "ast_hash": "271df0855a9bbebb1d64c2810c8477af",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/udp/hub_openbsd.go": {
+    "mtime": 1788243324.163912,
+    "seen": 1788246110.9502995,
+    "ast_hash": "daa0f63e26da2bde9b64d17a73ca1bb0",
+    "semantic_hash": ""
+  },
+  "deps/xray-core/transport/internet/udp/hub_openbsd_test.go": {
+    "mtime": 1788243324.1670847,
+    "seen": 1788246110.9503045,
+    "ast_hash": "cec008a847a0de587d3ef49e9ccee73f",
+    "semantic_hash": ""
+  },
+  "node/cert/user/user-test@test.com.json": {
+    "mtime": 1788244396.262344,
+    "seen": 1788246111.01748,
+    "ast_hash": "1fce57142499c5f8d9eb19ee4cf2dfcb",
     "semantic_hash": ""
   }
 }
