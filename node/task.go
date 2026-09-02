@@ -1,4 +1,4 @@
-﻿package node
+package node
 
 import (
 	"time"
@@ -56,7 +56,7 @@ func (c *Controller) nodeInfoMonitor() (err error) {
 		log.WithFields(log.Fields{
 			"tag": c.tag,
 			"err": err,
-		}).Error("Get node info failed")
+		}).Errorf("[Node Health: ERROR] Get node info from panel failed: %v", err)
 		return nil
 	}
 	// get user info
@@ -65,7 +65,7 @@ func (c *Controller) nodeInfoMonitor() (err error) {
 		log.WithFields(log.Fields{
 			"tag": c.tag,
 			"err": err,
-		}).Error("Get user list failed")
+		}).Errorf("[Node Health: ERROR] Get user list from panel failed: %v", err)
 		return nil
 	}
 	// get user alive
@@ -74,7 +74,7 @@ func (c *Controller) nodeInfoMonitor() (err error) {
 		log.WithFields(log.Fields{
 			"tag": c.tag,
 			"err": err,
-		}).Error("Get alive list failed")
+		}).Errorf("[Node Health: ERROR] Get alive list from panel failed: %v", err)
 		return nil
 	}
 	if newN != nil {
@@ -85,7 +85,7 @@ func (c *Controller) nodeInfoMonitor() (err error) {
 		}
 		c.traffic = make(map[string]int64)
 		// Remove old node
-		log.WithField("tag", c.tag).Info("Node changed, reload")
+		log.WithField("tag", c.tag).Info("[Node] Configuration updated from panel, reloading inbound...")
 		err = c.server.DelNode(c.tag)
 		if err != nil {
 			log.WithFields(log.Fields{
@@ -163,7 +163,7 @@ func (c *Controller) nodeInfoMonitor() (err error) {
 			c.userReportPeriodic.Close()
 			_ = c.userReportPeriodic.Start(false)
 		}
-		log.WithField("tag", c.tag).Infof("Added %d new users", len(c.userList))
+		log.WithField("tag", c.tag).Infof("[Node Health: OK] Node reloaded successfully | Port: %d | Active Users: %d", newN.Common.ServerPort, len(c.userList))
 		// exit
 		return nil
 	}
@@ -173,6 +173,7 @@ func (c *Controller) nodeInfoMonitor() (err error) {
 	}
 	// node no changed, check users
 	if len(newU) == 0 {
+		log.WithField("tag", c.tag).Debugf("[Node Health: OK] Panel sync: node config unchanged, 0 users returned")
 		return nil
 	}
 	deleted, added := compareUserList(c.userList, newU)
@@ -222,7 +223,9 @@ func (c *Controller) nodeInfoMonitor() (err error) {
 	c.userList = newU
 	if len(added)+len(deleted) != 0 {
 		log.WithField("tag", c.tag).
-			Infof("%d user deleted, %d user added", len(deleted), len(added))
+			Infof("[Node Health: OK] User sync: %d added, %d deleted (Total active users: %d)", len(added), len(deleted), len(c.userList))
+	} else {
+		log.WithField("tag", c.tag).Debugf("[Node Health: OK] Panel sync: node config and users (%d) up to date", len(c.userList))
 	}
 	return nil
 }

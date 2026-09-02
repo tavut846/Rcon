@@ -1,4 +1,4 @@
-﻿package node
+package node
 
 import (
 	"errors"
@@ -91,7 +91,22 @@ func (c *Controller) Start() error {
 	if err != nil {
 		return fmt.Errorf("add users error: %s", err)
 	}
-	log.WithField("tag", c.tag).Infof("Added %d new users", added)
+	securityStr := "none"
+	switch node.Security {
+	case panel.Tls:
+		securityStr = "tls"
+	case panel.Reality:
+		securityStr = "reality"
+	}
+	log.WithFields(log.Fields{
+		"tag":      c.tag,
+		"nodeId":   node.Id,
+		"nodeType": node.Type,
+		"listen":   fmt.Sprintf("%s:%d", c.Options.ListenIP, node.Common.ServerPort),
+		"security": securityStr,
+		"users":    len(c.userList),
+	}).Infof("[Node Health: OK] Node [%s] initialized successfully: Type=%s, Port=%d, Security=%s, Loaded %d users",
+		c.tag, node.Type, node.Common.ServerPort, securityStr, added)
 	c.info = node
 	c.startTasks(node)
 	return nil

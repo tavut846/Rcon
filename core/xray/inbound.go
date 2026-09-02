@@ -106,6 +106,9 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 		} //Enable proxy protocol
 		in.StreamSetting.SocketSettings = socketConfig
 	}
+	if enableProxyProtocol {
+		log.WithField("tag", tag).Infof("[Inbound] AcceptProxyProtocol is ENABLED on %s:%d (Node expects incoming PROXY protocol header from upstream proxy)", option.ListenIP, nodeInfo.Common.ServerPort)
+	}
 	// Set TLS or Reality settings
 	switch nodeInfo.Security {
 	case panel.Tls:
@@ -163,10 +166,8 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 		if xver == 0 {
 			xver = realityConfig.Xver
 		}
-		d, err := json.Marshal(fmt.Sprintf(
-			"%s:%s",
-			dest,
-			tlsSettings.ServerPort))
+		destWithPort := fmt.Sprintf("%s:%s", dest, tlsSettings.ServerPort)
+		d, err := json.Marshal(destWithPort)
 		if err != nil {
 			return nil, fmt.Errorf("marshal reality dest error: %s", err)
 		}
@@ -182,6 +183,36 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 			MaxTimeDiff:  uint64(mtd.Microseconds()),
 			ShortIds:     []string{tlsSettings.ShortId},
 			Mldsa65Seed:  tlsSettings.Mldsa65Seed,
+		}
+
+		// Log Reality details & Steal-Oneself xver diagnostics
+		isLocalSteal := dest == "127.0.0.1" || dest == "localhost" || dest == "::1" || strings.HasPrefix(dest, "127.")
+		modeStr := "Remote Website Steal"
+		if isLocalSteal {
+			modeStr = "Steal-Oneself (Local Web Server)"
+		}
+
+		var xverDesc string
+		switch xver {
+		case 1:
+			xverDesc = "v1 ENABLED (writes text PROXY header to fallback)"
+		case 2:
+			xverDesc = "v2 ENABLED (writes binary PROXY header to fallback)"
+		default:
+			xverDesc = "0 (DISABLED, no PROXY header sent to fallback)"
+		}
+
+		log.WithField("tag", tag).Infof("[REALITY] Configured on port %d | Mode: %s | SNI: %s | Fallback Dest: %s | PROXY protocol (xver): %s",
+			nodeInfo.Common.ServerPort, modeStr, tlsSettings.ServerName, destWithPort, xverDesc)
+
+		if isLocalSteal {
+			if xver > 0 {
+				log.WithField("tag", tag).Infof("[REALITY] Steal-oneself active with PROXY protocol v%d: fallback traffic forwarded to %s with PROXY v%d header (ensure backend web server like Caddy/Nginx is listening with proxy_protocol on %s)",
+					xver, destWithPort, xver, tlsSettings.ServerPort)
+			} else {
+				log.WithField("tag", tag).Warnf("[REALITY] Steal-oneself active (Dest: %s), but PROXY protocol (xver) is DISABLED (0). Backend web server will see 127.0.0.1 instead of real visitor IP. Set xver=1 or xver=2 in panel/TLS settings if you want real client IPs forwarded.",
+					destWithPort)
+			}
 		}
 	default:
 		break
@@ -455,6 +486,16 @@ func buildVlessFallbacks(fallbackConfigs []conf.FallBackConfigForXray) ([]*coreC
 		if len(c.Dest) == 0 {
 			return nil, fmt.Errorf("dest is required for fallback config[%d]", i)
 		}
+		var xverDesc string
+		switch c.ProxyProtocolVer {
+		case 1:
+			xverDesc = "v1 ENABLED"
+		case 2:
+			xverDesc = "v2 ENABLED"
+		default:
+			xverDesc = "DISABLED (0)"
+		}
+		log.Infof("[vless] Fallback #%d: SNI=%q, Path=%q, Dest=%s, PROXY protocol (xver)=%s", i+1, c.SNI, c.Path, string(c.Dest), xverDesc)
 		vlessFallBacks[i] = &coreConf.VLessInboundFallback{
 			Name: c.SNI,
 			Alpn: c.Alpn,
@@ -475,6 +516,16 @@ func buildTrojanFallbacks(fallbackConfigs []conf.FallBackConfigForXray) ([]*core
 		if len(c.Dest) == 0 {
 			return nil, fmt.Errorf("dest is required for fallback config[%d]", i)
 		}
+		var xverDesc string
+		switch c.ProxyProtocolVer {
+		case 1:
+			xverDesc = "v1 ENABLED"
+		case 2:
+			xverDesc = "v2 ENABLED"
+		default:
+			xverDesc = "DISABLED (0)"
+		}
+		log.Infof("[trojan] Fallback #%d: SNI=%q, Path=%q, Dest=%s, PROXY protocol (xver)=%s", i+1, c.SNI, c.Path, string(c.Dest), xverDesc)
 		trojanFallBacks[i] = &coreConf.TrojanInboundFallback{
 			Name: c.SNI,
 			Alpn: c.Alpn,

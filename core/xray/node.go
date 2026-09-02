@@ -1,4 +1,4 @@
-﻿package xray
+package xray
 
 import (
 	"context"
@@ -6,6 +6,7 @@ import (
 
 	"github.com/tavut846/Rcon/api/panel"
 	"github.com/tavut846/Rcon/conf"
+	log "github.com/sirupsen/logrus"
 	"github.com/xtls/xray-core/core"
 	"github.com/xtls/xray-core/features/inbound"
 	"github.com/xtls/xray-core/features/outbound"
@@ -38,6 +39,23 @@ func (c *Xray) AddNode(tag string, info *panel.NodeInfo, config *conf.Options) e
 	if err != nil {
 		return fmt.Errorf("add outbound error: %s", err)
 	}
+	network := "tcp"
+	if info.VAllss != nil && info.VAllss.Network != "" {
+		network = info.VAllss.Network
+	} else if info.Trojan != nil && info.Trojan.Network != "" {
+		network = info.Trojan.Network
+	} else if info.AnyTLS != nil && info.AnyTLS.Network != "" {
+		network = info.AnyTLS.Network
+	}
+	securityStr := "none"
+	switch info.Security {
+	case panel.Tls:
+		securityStr = "tls"
+	case panel.Reality:
+		securityStr = "reality"
+	}
+	log.WithField("tag", tag).Infof("[Core] Inbound handler added successfully: Port=%d, Protocol=%s, Transport=%s, Security=%s",
+		info.Common.ServerPort, info.Type, network, securityStr)
 	return nil
 }
 

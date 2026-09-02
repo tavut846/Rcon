@@ -1,4 +1,4 @@
-﻿package node
+package node
 
 import (
 	"strconv"
@@ -15,15 +15,20 @@ func (c *Controller) reportUserTrafficTask() (err error) {
 			log.WithFields(log.Fields{
 				"tag": c.tag,
 				"err": err,
-			}).Info("Report user traffic failed")
+			}).Errorf("[Node Health: ERROR] Report user traffic failed: %v", err)
 		} else {
-			log.WithField("tag", c.tag).Infof("Report %d users traffic", len(userTraffic))
+			log.WithField("tag", c.tag).Infof("[Node Health: OK] Reported traffic for %d active users", len(userTraffic))
 			log.WithField("tag", c.tag).Debugf("User traffic: %+v", userTraffic)
 		}
+	} else {
+		log.WithField("tag", c.tag).Debugf("[Node Health: OK] Periodic traffic check: 0 active users with traffic in this cycle")
 	}
 
 	if onlineDevice, err := c.limiter.GetOnlineDevice(); err != nil {
-		log.Print(err)
+		log.WithFields(log.Fields{
+			"tag": c.tag,
+			"err": err,
+		}).Warnf("[Limiter] Get online device error: %v", err)
 	} else if len(*onlineDevice) > 0 {
 		// Only report user has traffic > 100kb to allow ping test
 		var result []panel.OnlineUser
@@ -48,9 +53,9 @@ func (c *Controller) reportUserTrafficTask() (err error) {
 			log.WithFields(log.Fields{
 				"tag": c.tag,
 				"err": err,
-			}).Info("Report online users failed")
+			}).Errorf("[Node Health: ERROR] Report online users failed: %v", err)
 		} else {
-			log.WithField("tag", c.tag).Infof("Total %d online users, %d Reported", len(*onlineDevice), len(result))
+			log.WithField("tag", c.tag).Infof("[Node Health: OK] Online users: %d total online (%d active reported to panel)", len(*onlineDevice), len(result))
 			log.WithField("tag", c.tag).Debugf("Online users: %+v", data)
 		}
 	}
