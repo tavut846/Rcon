@@ -11,6 +11,8 @@ on:
       - "**/*.go"
       - "go.mod"
       - "go.sum"
+      - ".gitmodules"
+      - "deps/**"
       - ".github/workflows/release-dev.yml"
       - "scripts/**"
       - "example/**"
