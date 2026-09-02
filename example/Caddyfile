@@ -1,0 +1,37 @@
+# Caddyfile for REALITY "Steal Oneself" (Self-Fallback with PROXY Protocol)
+# Requires Caddy compiled with Cloudflare DNS + mastercactapus/caddy2-proxyprotocol
+# Download: curl -o /usr/local/bin/caddy "https://caddyserver.com/api/download?os=linux&arch=amd64&p=github.com/caddy-dns/cloudflare&p=github.com/mastercactapus/caddy2-proxyprotocol"
+
+{
+    servers :8001 {
+        listener_wrappers {
+            proxy_protocol {
+                allow_pools 127.0.0.1/32
+            }
+            tls
+        }
+    }
+}
+
+in001.666633.best:8001 {
+    bind 127.0.0.1
+    encode gzip
+
+    tls {
+        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+        protocols tls1.2 tls1.3
+    }
+
+    reverse_proxy https://simulate-news.316293.xyz {
+        header_up Host simulate-news.316293.xyz
+        header_up X-Real-IP {http.request.remote}
+        header_up X-Forwarded-Proto https
+        header_up Cache-Control "no-cache, no-store, must-revalidate"
+        header_up Pragma "no-cache"
+        header_up Expires "0"
+
+        header_down Cache-Control "no-cache, no-store, must-revalidate"
+        header_down Pragma "no-cache"
+        header_down Expires "0"
+    }
+}

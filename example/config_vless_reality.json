@@ -1,0 +1,68 @@
+{
+  "Log": {
+    "Level": "info",
+    "Output": ""
+  },
+  "Cores": [
+    {
+      "Type": "xray",
+      "Log": {
+        "Level": "warning",
+        "AccessPath": "",
+        "ErrorPath": ""
+      },
+      "AssetPath": "/etc/rcon/",
+      "DnsConfigPath": "",
+      "RouteConfigPath": "",
+      "InboundConfigPath": "",
+      "OutboundConfigPath": "",
+      "XrayConnectionConfig": {
+        "handshake": 4,
+        "connIdle": 30,
+        "uplinkOnly": 2,
+        "downlinkOnly": 4,
+        "bufferSize": 64
+      }
+    }
+  ],
+  "Nodes": [
+    {
+      "Name": "VLESS-Reality-Steal-Oneself-Node",
+      "Core": "xray",
+      "CoreName": "",
+      "ApiHost": "https://your-panel.com",
+      "ApiSendIP": "",
+      "ApiKey": "panel_api_token_here",
+      "NodeID": 1,
+      "NodeType": "vless",
+      "Timeout": 30,
+      "RuleListPath": "",
+      "ListenIP": "0.0.0.0",
+      "SendIP": "0.0.0.0",
+      "DeviceOnlineMinTraffic": 200,
+      "ReportMinTraffic": 0,
+      "LimitConfig": {
+        "EnableRealtime": false,
+        "SpeedLimit": 0,
+        "DeviceLimit": 0,
+        "ConnLimit": 0,
+        "EnableIpRecorder": false,
+        "EnableDynamicSpeedLimit": false,
+        "EnableAntiScan": false
+      },
+      "XrayOptions": {
+        "EnableProxyProtocol": true,
+        "EnableDNS": false,
+        "DNSType": "UseIPv4",
+        "EnableUot": true,
+        "EnableTFO": true,
+        "DisableIVCheck": false,
+        "DisableSniffing": false,
+        "EnableFallback": false
+      },
+      "CertConfig": {
+        "CertMode": "none"
+      }
+    }
+  ]
+}
