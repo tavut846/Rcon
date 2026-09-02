@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - master
-      - dev_new
     tags:
       - "*"
     paths:
@@ -241,12 +240,11 @@ jobs:
             ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}/*
 
       - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
+        uses: softprops/action-gh-release@v2
         if: github.event_name == 'release' || github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')))
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}.zip*
-          tag: ${{ needs.prepare.outputs.version }}
-          file_glob: true
-          overwrite: true
-          release_name: "Release ${{ needs.prepare.outputs.version }}"
+          tag_name: ${{ needs.prepare.outputs.version }}
+          name: Release ${{ needs.prepare.outputs.version }}
+          files: |
+            ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}.zip*
+          token: ${{ secrets.GITHUB_TOKEN }}

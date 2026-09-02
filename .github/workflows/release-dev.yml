@@ -42,7 +42,7 @@ jobs:
           echo "version=${MAJOR}.${MINOR}.$((PATCH + 1))-dev.${{ github.run_number }}" >> $GITHUB_OUTPUT
 
       - name: Create GitHub release
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/dev_new')
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/dev_new' || github.ref == 'refs/heads/stable'))
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.version.outputs.version }}
@@ -201,12 +201,12 @@ jobs:
             ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}/*
 
       - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@v2
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/dev_new')
+        uses: softprops/action-gh-release@v2
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && (github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/dev_new' || github.ref == 'refs/heads/stable'))
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}.zip*
-          tag: ${{ needs.prepare.outputs.version }}
-          file_glob: true
-          overwrite: true
-          release_name: "Pre-Release ${{ needs.prepare.outputs.version }}"
+          tag_name: ${{ needs.prepare.outputs.version }}
+          name: Pre-Release ${{ needs.prepare.outputs.version }}
+          files: |
+            ./rcon-${{ steps.get_filename.outputs.ASSET_NAME }}.zip*
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: true
