@@ -51,7 +51,8 @@
         "EnableAntiScan": false
       },
       "XrayOptions": {
-        "EnableProxyProtocol": true,
+        "Xver": 1,
+        "EnableProxyProtocol": false,
         "EnableDNS": false,
         "DNSType": "UseIPv4",
         "EnableUot": true,

@@ -13,7 +13,7 @@
     }
 }
 
-in001.666633.best:8001 {
+yourdomain.com:8001 {
     bind 127.0.0.1
     encode gzip
 
