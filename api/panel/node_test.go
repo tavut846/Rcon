@@ -87,4 +87,36 @@ func TestAnyTLSNode_UnmarshalJSON(t *testing.T) {
 	}
 }
 
+func TestTlsSettings_Xver(t *testing.T) {
+	// Test int xver
+	jsonInt := []byte(`{"server_name": "example.com", "xver": 1}`)
+	var s1 TlsSettings
+	if err := json.Unmarshal(jsonInt, &s1); err != nil {
+		t.Fatalf("failed to unmarshal int xver: %v", err)
+	}
+	if uint64(s1.Xver) != 1 {
+		t.Fatalf("expected xver 1, got %d", s1.Xver)
+	}
+
+	// Test string xver
+	jsonStr := []byte(`{"server_name": "example.com", "xver": "2"}`)
+	var s2 TlsSettings
+	if err := json.Unmarshal(jsonStr, &s2); err != nil {
+		t.Fatalf("failed to unmarshal string xver: %v", err)
+	}
+	if uint64(s2.Xver) != 2 {
+		t.Fatalf("expected xver 2, got %d", s2.Xver)
+	}
+
+	// Test omitted xver
+	jsonNone := []byte(`{"server_name": "example.com"}`)
+	var s3 TlsSettings
+	if err := json.Unmarshal(jsonNone, &s3); err != nil {
+		t.Fatalf("failed to unmarshal omitted xver: %v", err)
+	}
+	if uint64(s3.Xver) != 0 {
+		t.Fatalf("expected xver 0, got %d", s3.Xver)
+	}
+}
+
 

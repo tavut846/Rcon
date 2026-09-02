@@ -1,4 +1,4 @@
-﻿package conf
+package conf
 
 import "encoding/json"
 
@@ -49,6 +49,7 @@ func NewXrayConfig() *XrayConfig {
 }
 
 type XrayOptions struct {
+	Xver                uint64                  `json:"Xver"`
 	EnableProxyProtocol bool                    `json:"EnableProxyProtocol"`
 	EnableDNS           bool                    `json:"EnableDNS"`
 	DNSType             string                  `json:"DNSType"`

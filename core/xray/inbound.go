@@ -162,9 +162,12 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 		if dest == "" {
 			dest = tlsSettings.ServerName
 		}
-		xver := tlsSettings.Xver
+		xver := uint64(tlsSettings.Xver)
 		if xver == 0 {
-			xver = realityConfig.Xver
+			xver = uint64(realityConfig.Xver)
+		}
+		if option.XrayOptions != nil && option.XrayOptions.Xver != 0 {
+			xver = option.XrayOptions.Xver
 		}
 		destWithPort := fmt.Sprintf("%s:%s", dest, tlsSettings.ServerPort)
 		d, err := json.Marshal(destWithPort)

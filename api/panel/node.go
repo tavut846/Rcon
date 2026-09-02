@@ -73,6 +73,35 @@ type VAllssNode struct {
 	RealityConfig RealityConfig `json:"-"`
 }
 
+type FlexUint64 uint64
+
+func (f *FlexUint64) UnmarshalJSON(b []byte) error {
+	if len(b) == 0 || string(b) == "null" || string(b) == `""` {
+		*f = 0
+		return nil
+	}
+	var n uint64
+	if err := json.Unmarshal(b, &n); err == nil {
+		*f = FlexUint64(n)
+		return nil
+	}
+	var s string
+	if err := json.Unmarshal(b, &s); err == nil {
+		s = strings.TrimSpace(s)
+		if s == "" {
+			*f = 0
+			return nil
+		}
+		val, err := strconv.ParseUint(s, 10, 64)
+		if err != nil {
+			return nil
+		}
+		*f = FlexUint64(val)
+		return nil
+	}
+	return nil
+}
+
 type TlsSettings struct {
 	ServerName  string     `json:"server_name"`
 	Dest        string     `json:"dest"`
@@ -80,7 +109,7 @@ type TlsSettings struct {
 	ShortId     string     `json:"short_id"`
 	PrivateKey  string     `json:"private_key"`
 	Mldsa65Seed string     `json:"mldsa65Seed"`
-	Xver        uint64     `json:"xver,string"`
+	Xver        FlexUint64 `json:"xver"`
 	Ech         *EchConfig `json:"ech"`
 }
 
@@ -98,10 +127,10 @@ type EncSettings struct {
 }
 
 type RealityConfig struct {
-	Xver         uint64 `json:"Xver"`
-	MinClientVer string `json:"MinClientVer"`
-	MaxClientVer string `json:"MaxClientVer"`
-	MaxTimeDiff  string `json:"MaxTimeDiff"`
+	Xver         FlexUint64 `json:"Xver"`
+	MinClientVer string     `json:"MinClientVer"`
+	MaxClientVer string     `json:"MaxClientVer"`
+	MaxTimeDiff  string     `json:"MaxTimeDiff"`
 }
 
 type ShadowsocksNode struct {
