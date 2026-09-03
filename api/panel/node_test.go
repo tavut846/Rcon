@@ -119,4 +119,32 @@ func TestTlsSettings_Xver(t *testing.T) {
 	}
 }
 
+func TestTlsSettings_ServerNamesAndDest(t *testing.T) {
+	// Test server_names array and dest from dashboard
+	jsonData := []byte(`{
+		"server_name": "fallback.com",
+		"server_names": ["in001.666633.best", "in002.666633.best"],
+		"dest": "127.0.0.1",
+		"server_port": "8001",
+		"short_ids": ["abcdef12", "34567890"]
+	}`)
+	var s TlsSettings
+	if err := json.Unmarshal(jsonData, &s); err != nil {
+		t.Fatalf("failed to unmarshal: %v", err)
+	}
+	if s.Dest != "127.0.0.1" {
+		t.Fatalf("expected dest 127.0.0.1, got %s", s.Dest)
+	}
+	if s.PrimaryServerName() != "in001.666633.best" {
+		t.Fatalf("expected primary server name in001.666633.best, got %s", s.PrimaryServerName())
+	}
+	if len(s.EffectiveServerNames()) != 2 {
+		t.Fatalf("expected 2 server names, got %d", len(s.EffectiveServerNames()))
+	}
+	if len(s.EffectiveShortIds()) != 2 {
+		t.Fatalf("expected 2 short ids, got %d", len(s.EffectiveShortIds()))
+	}
+}
+
+
 

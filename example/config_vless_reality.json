@@ -52,6 +52,7 @@
       },
       "XrayOptions": {
         "Xver": 1,
+        "Dest": "127.0.0.1",
         "EnableProxyProtocol": false,
         "EnableDNS": false,
         "DNSType": "UseIPv4",

@@ -50,6 +50,7 @@ func NewXrayConfig() *XrayConfig {
 
 type XrayOptions struct {
 	Xver                uint64                  `json:"Xver"`
+	Dest                string                  `json:"Dest"`
 	EnableProxyProtocol bool                    `json:"EnableProxyProtocol"`
 	EnableDNS           bool                    `json:"EnableDNS"`
 	DNSType             string                  `json:"DNSType"`

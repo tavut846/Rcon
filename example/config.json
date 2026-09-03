@@ -80,6 +80,7 @@
       },
       "XrayOptions": {
         "Xver": 0,
+        "Dest": "",
         "EnableProxyProtocol": false,
         "EnableDNS": false,
         "DNSType": "AsIs",

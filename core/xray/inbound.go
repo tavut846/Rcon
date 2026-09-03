@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"encoding/json"
+	stdnet "net"
 
 	"github.com/tavut846/Rcon/api/panel"
 	"github.com/tavut846/Rcon/conf"
@@ -29,7 +30,11 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 	switch nodeInfo.Type {
 	case "vmess", "vless":
 		err = buildV2ray(option, nodeInfo, in)
-		network = nodeInfo.VAllss.Network
+		if nodeInfo.VAllss.Network != "" {
+			network = nodeInfo.VAllss.Network
+		} else {
+			network = "tcp"
+		}
 		logXhttpRealityHint(nodeInfo)
 	case "trojan":
 		err = buildTrojan(option, nodeInfo, in)
@@ -81,6 +86,10 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 		enableTFO = option.XrayOptions.EnableTFO
 	}
 	in.SniffingConfig = sniffingConfig
+	if in.StreamSetting == nil {
+		t := coreConf.TransportProtocol(network)
+		in.StreamSetting = &coreConf.StreamConfig{Network: &t}
+	}
 	switch network {
 	case "tcp":
 		if in.StreamSetting.TCPSettings != nil {
@@ -158,10 +167,41 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 			return nil, fmt.Errorf("node type %s does not support reality", nodeInfo.Type)
 		}
 
+		serverNames := tlsSettings.EffectiveServerNames()
+		shortIds := tlsSettings.EffectiveShortIds()
+		primaryServerName := tlsSettings.PrimaryServerName()
+
 		dest := tlsSettings.Dest
-		if dest == "" {
-			dest = tlsSettings.ServerName
+		if option.XrayOptions != nil && option.XrayOptions.Dest != "" {
+			dest = option.XrayOptions.Dest
 		}
+
+		serverPort := tlsSettings.ServerPort
+		if serverPort == "" {
+			serverPort = "443"
+		}
+
+		if dest == "" {
+			if serverPort != "443" {
+				// Custom fallback port specified (e.g. 8001) with empty Dest:
+				// Panel (e.g. Xboard) only provides server_name and local fallback port without a Dest field.
+				// Defaulting to 127.0.0.1 for local steal-oneself prevents dialing the public domain loopback.
+				log.WithField("tag", tag).Infof("[REALITY] Port is %s (non-443) with empty Dest; defaulting fallback Dest to 127.0.0.1 for local steal-oneself (set Dest in panel or XrayOptions.Dest to override)", serverPort)
+				dest = "127.0.0.1"
+			} else {
+				dest = primaryServerName
+			}
+		}
+
+		var destWithPort string
+		if strings.HasPrefix(dest, "/") || strings.HasPrefix(dest, "@") {
+			destWithPort = dest
+		} else if _, _, err := stdnet.SplitHostPort(dest); err == nil {
+			destWithPort = dest
+		} else {
+			destWithPort = stdnet.JoinHostPort(dest, serverPort)
+		}
+
 		xver := uint64(tlsSettings.Xver)
 		if xver == 0 {
 			xver = uint64(realityConfig.Xver)
@@ -169,7 +209,6 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 		if option.XrayOptions != nil && option.XrayOptions.Xver != 0 {
 			xver = option.XrayOptions.Xver
 		}
-		destWithPort := fmt.Sprintf("%s:%s", dest, tlsSettings.ServerPort)
 		d, err := json.Marshal(destWithPort)
 		if err != nil {
 			return nil, fmt.Errorf("marshal reality dest error: %s", err)
@@ -179,17 +218,27 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 			Dest:         d,
 			Xver:         xver,
 			Show:         false,
-			ServerNames:  []string{tlsSettings.ServerName},
+			ServerNames:  serverNames,
 			PrivateKey:   tlsSettings.PrivateKey,
 			MinClientVer: realityConfig.MinClientVer,
 			MaxClientVer: realityConfig.MaxClientVer,
 			MaxTimeDiff:  uint64(mtd.Microseconds()),
-			ShortIds:     []string{tlsSettings.ShortId},
+			ShortIds:     shortIds,
 			Mldsa65Seed:  tlsSettings.Mldsa65Seed,
 		}
 
 		// Log Reality details & Steal-Oneself xver diagnostics
-		isLocalSteal := dest == "127.0.0.1" || dest == "localhost" || dest == "::1" || strings.HasPrefix(dest, "127.")
+		isLocalSteal := false
+		if strings.HasPrefix(dest, "/") || strings.HasPrefix(dest, "@") {
+			isLocalSteal = true
+		} else {
+			host := dest
+			if h, _, err := stdnet.SplitHostPort(dest); err == nil {
+				host = h
+			}
+			host = strings.Trim(host, "[]")
+			isLocalSteal = host == "127.0.0.1" || host == "localhost" || host == "::1" || strings.HasPrefix(host, "127.")
+		}
 		modeStr := "Remote Website Steal"
 		if isLocalSteal {
 			modeStr = "Steal-Oneself (Local Web Server)"
@@ -206,12 +255,12 @@ func buildInbound(option *conf.Options, nodeInfo *panel.NodeInfo, tag string) (*
 		}
 
 		log.WithField("tag", tag).Infof("[REALITY] Configured on port %d | Mode: %s | SNI: %s | Fallback Dest: %s | PROXY protocol (xver): %s",
-			nodeInfo.Common.ServerPort, modeStr, tlsSettings.ServerName, destWithPort, xverDesc)
+			nodeInfo.Common.ServerPort, modeStr, strings.Join(serverNames, ", "), destWithPort, xverDesc)
 
 		if isLocalSteal {
 			if xver > 0 {
 				log.WithField("tag", tag).Infof("[REALITY] Steal-oneself active with PROXY protocol v%d: fallback traffic forwarded to %s with PROXY v%d header (ensure backend web server like Caddy/Nginx is listening with proxy_protocol on %s)",
-					xver, destWithPort, xver, tlsSettings.ServerPort)
+					xver, destWithPort, xver, serverPort)
 			} else {
 				log.WithField("tag", tag).Warnf("[REALITY] Steal-oneself active (Dest: %s), but PROXY protocol (xver) is DISABLED (0). Backend web server will see 127.0.0.1 instead of real visitor IP. Set xver=1 or xver=2 in panel/TLS settings if you want real client IPs forwarded.",
 					destWithPort)

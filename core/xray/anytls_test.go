@@ -169,3 +169,80 @@ func TestBuildAnyTLSUsers(t *testing.T) {
 		t.Fatal("expected non-nil memory user")
 	}
 }
+
+func TestBuildInbound_Reality_DestHandling(t *testing.T) {
+	rawKey := make([]byte, 32)
+	for i := range rawKey {
+		rawKey[i] = byte(i + 1)
+	}
+	privKey := base64.RawURLEncoding.EncodeToString(rawKey)
+
+	// Case 1: Non-443 server_port (8001) with empty Dest -> auto-defaults to 127.0.0.1:8001
+	nodeInfoAuto := &panel.NodeInfo{
+		Id:       10,
+		Type:     "vless",
+		Security: panel.Reality,
+		Common: &panel.CommonNode{
+			ServerPort: 443,
+		},
+		VAllss: &panel.VAllssNode{
+			CommonNode: panel.CommonNode{ServerPort: 443},
+			Tls:        2,
+			TlsSettings: panel.TlsSettings{
+				ServerName: "in001.666633.best",
+				ServerPort: "8001",
+				Dest:       "",
+				PrivateKey: privKey,
+				ShortId:    "abcdef12",
+			},
+			RealityConfig: panel.RealityConfig{
+				MaxTimeDiff: "0s",
+			},
+		},
+	}
+
+	optsAuto := &conf.Options{
+		ListenIP:    "0.0.0.0",
+		XrayOptions: &conf.XrayOptions{Xver: 1},
+	}
+
+	inboundAuto, err := buildInbound(optsAuto, nodeInfoAuto, "reality-auto-steal-test")
+	if err != nil {
+		t.Fatalf("buildInbound failed for auto steal-oneself: %v", err)
+	}
+	if inboundAuto == nil {
+		t.Fatal("expected non-nil inboundConfig")
+	}
+
+	// Case 2: Explicit XrayOptions.Dest set to "127.0.0.1"
+	optsExplicit := &conf.Options{
+		ListenIP: "0.0.0.0",
+		XrayOptions: &conf.XrayOptions{
+			Xver: 1,
+			Dest: "127.0.0.1",
+		},
+	}
+	inboundExplicit, err := buildInbound(optsExplicit, nodeInfoAuto, "reality-explicit-dest-test")
+	if err != nil {
+		t.Fatalf("buildInbound failed for explicit XrayOptions.Dest: %v", err)
+	}
+	if inboundExplicit == nil {
+		t.Fatal("expected non-nil inboundConfig")
+	}
+
+	// Case 3: Explicit XrayOptions.Dest already with port "127.0.0.1:9000"
+	optsExplicitPort := &conf.Options{
+		ListenIP: "0.0.0.0",
+		XrayOptions: &conf.XrayOptions{
+			Xver: 1,
+			Dest: "127.0.0.1:9000",
+		},
+	}
+	inboundExplicitPort, err := buildInbound(optsExplicitPort, nodeInfoAuto, "reality-explicit-port-test")
+	if err != nil {
+		t.Fatalf("buildInbound failed for explicit XrayOptions.Dest with port: %v", err)
+	}
+	if inboundExplicitPort == nil {
+		t.Fatal("expected non-nil inboundConfig")
+	}
+}

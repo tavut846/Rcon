@@ -103,14 +103,44 @@ func (f *FlexUint64) UnmarshalJSON(b []byte) error {
 }
 
 type TlsSettings struct {
-	ServerName  string     `json:"server_name"`
-	Dest        string     `json:"dest"`
-	ServerPort  string     `json:"server_port"`
-	ShortId     string     `json:"short_id"`
-	PrivateKey  string     `json:"private_key"`
-	Mldsa65Seed string     `json:"mldsa65Seed"`
-	Xver        FlexUint64 `json:"xver"`
-	Ech         *EchConfig `json:"ech"`
+	ServerName   string     `json:"server_name"`
+	ServerNames  []string   `json:"server_names"`
+	Dest         string     `json:"dest"`
+	ServerPort   string     `json:"server_port"`
+	ShortId      string     `json:"short_id"`
+	ShortIds     []string   `json:"short_ids"`
+	PrivateKey   string     `json:"private_key"`
+	Mldsa65Seed  string     `json:"mldsa65Seed"`
+	Xver         FlexUint64 `json:"xver"`
+	Ech          *EchConfig `json:"ech"`
+}
+
+func (t TlsSettings) EffectiveServerNames() []string {
+	if len(t.ServerNames) > 0 {
+		return t.ServerNames
+	}
+	if t.ServerName == "" {
+		return nil
+	}
+	return []string{t.ServerName}
+}
+
+func (t TlsSettings) EffectiveShortIds() []string {
+	if len(t.ShortIds) > 0 {
+		return t.ShortIds
+	}
+	if t.ShortId == "" {
+		return nil
+	}
+	return []string{t.ShortId}
+}
+
+func (t TlsSettings) PrimaryServerName() string {
+	serverNames := t.EffectiveServerNames()
+	if len(serverNames) == 0 {
+		return ""
+	}
+	return serverNames[0]
 }
 
 type EchConfig struct {
